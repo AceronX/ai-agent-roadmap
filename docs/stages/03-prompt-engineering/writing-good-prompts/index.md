@@ -4,370 +4,420 @@
 
 <section class="topic-hero topic-hero--prompt">
   <span class="topic-hero__eyebrow">Stage 03 · Prompt Engineering</span>
-  <p class="topic-hero__lead">A good prompt is a clear request with enough detail for the model to understand the goal, the audience, the constraints, and the expected output. This guide teaches the practical writing habits that make prompts more reliable.</p>
+  <p class="topic-hero__lead">A good prompt tells the model exactly what result you want. This page focuses on one core skill first: making vague requests specific, testable, and useful.</p>
   <div class="topic-hero__facts">
-    <span>Specific goal</span>
-    <span>Useful context</span>
-    <span>Relevant terms</span>
-    <span>Examples</span>
-    <span>Testing</span>
-    <span>Format control</span>
+    <span>Specific task</span>
+    <span>Clear audience</span>
+    <span>Useful scope</span>
+    <span>Required output</span>
+    <span>Practical examples</span>
   </div>
 </section>
 
 ## Learning Path
 
-This topic is organized into six parts. This version focuses deeply on Part 1: **Be specific in what you want**. The other parts are included as a clear roadmap and will be expanded in later updates.
+Good prompts are built from six practical habits. This page focuses deeply on **Part 1: Be specific in what you want**.
 
 <div class="learning-grid learning-grid--path">
   <a class="learning-card" href="#part-1-be-specific-in-what-you-want">
     <strong>Part 1 · Be Specific</strong>
-    <span>Turn vague requests into clear tasks with purpose, audience, scope, constraints, and success criteria.</span>
+    <span>Say exactly what task, audience, scope, constraints, and output you want.</span>
   </a>
   <a class="learning-card" href="#part-2-provide-additional-context">
     <strong>Part 2 · Add Context</strong>
-    <span>Give the model the background it needs without overloading it with irrelevant details.</span>
+    <span>Give only the background that changes the answer.</span>
   </a>
   <a class="learning-card" href="#part-3-use-relevant-technical-terms">
     <strong>Part 3 · Use Terms</strong>
-    <span>Use domain language when it helps precision, but define terms when the meaning could be unclear.</span>
+    <span>Use precise technical words when they reduce confusion.</span>
   </a>
   <a class="learning-card" href="#part-4-use-examples-in-your-prompt">
     <strong>Part 4 · Add Examples</strong>
-    <span>Show the model the pattern you want when the task has a custom style, label, or format.</span>
+    <span>Show the model what a good answer looks like.</span>
   </a>
   <a class="learning-card" href="#part-5-iterate-and-test-your-prompts">
     <strong>Part 5 · Test Prompts</strong>
-    <span>Improve prompts by testing normal cases, edge cases, and bad inputs.</span>
+    <span>Check prompts with normal, edge, and bad inputs.</span>
   </a>
   <a class="learning-card" href="#part-6-specify-length-format-and-delivery-rules">
     <strong>Part 6 · Control Format</strong>
-    <span>Specify length, structure, tone, tables, JSON, bullets, headings, and other delivery rules.</span>
+    <span>Tell the model the length, format, tone, and structure.</span>
   </a>
 </div>
 
-## Why Good Prompt Writing Matters
+## Part 1: Be Specific in What You Want
 
-Large language models are powerful, but they are not mind readers. If your prompt is vague, the model must guess your goal. Sometimes that guess is useful. Often it is too broad, too long, too shallow, or aimed at the wrong audience.
+Being specific means the model should not need to guess your goal.
 
-Good prompt writing reduces guessing.
+Do not only say the topic. Say the exact task, audience, scope, rules, and output.
+
+## The Specific Prompt Builder
+
+Use this diagram as the main mental model for this page. A useful prompt is not just a question. It is a small instruction package.
 
 ```mermaid
 flowchart LR
-    A[Vague Request] --> B[Model Guesses]
-    B --> C[Inconsistent Output]
-    D[Specific Request] --> E[Model Has Clear Target]
-    E --> F[More Useful Output]
+    A[Task] --> G[Specific Prompt]
+    B[Audience] --> G
+    C[Scope] --> G
+    D[Input] --> G
+    E[Rules] --> G
+    F[Output Format] --> G
+    G --> H[Useful Result]
 ```
 
-The key idea is simple: **tell the model what success looks like**.
+Each part has a job:
 
-## Part 1: Be Specific in What You Want
-
-This is the most important beginner skill in prompt writing. Being specific means clearly telling the model what task to do, who the output is for, what should be included, what should be excluded, and how the answer will be judged.
-
-### What Specificity Means
-
-Specificity does not mean writing a very long prompt. It means removing unnecessary ambiguity.
-
-| Vague Prompt | Why It Fails | Specific Prompt |
+| Part | Meaning | Example |
 | --- | --- | --- |
-| `Explain APIs.` | Audience, depth, and format are unclear. | `Explain REST APIs to a beginner web developer in 5 bullet points. Include one HTTP GET example.` |
-| `Make this better.` | "Better" has no clear meaning. | `Improve this paragraph for clarity, remove repeated ideas, and keep the same meaning.` |
-| `Write a plan.` | The type of plan is unclear. | `Create a 7-day study plan for learning prompt engineering, with 1 hour of practice per day.` |
-| `Review this code.` | The review focus is unclear. | `Review this code for security bugs and missing tests. Return findings ordered by severity.` |
-| `Summarize this.` | Length, audience, and purpose are unclear. | `Summarize this for a product manager in 4 bullets. Focus on risks, decisions, and next steps.` |
+| Task | What the model must do | `Explain`, `summarize`, `review`, `classify`, `rewrite` |
+| Audience | Who the answer is for | `beginner developer`, `engineering manager`, `support agent` |
+| Scope | What to include or focus on | `REST APIs only`, `security risks only`, `first 3 sections` |
+| Input | The data the model should use | `Use the article below`, `Code: {code_diff}` |
+| Rules | What must or must not happen | `Do not invent facts`, `Use simple English` |
+| Output Format | How the answer should look | `5 bullets`, `Markdown table`, `JSON object` |
 
-### Diagram: Specificity Reduces Guessing
+## Specificity Rule
 
-This diagram shows why vague prompts create weak results. The model has too many possible directions. A specific prompt narrows the target.
+Use this rule:
 
-```mermaid
-flowchart TD
-    A[User Need] --> B{Prompt Specific?}
-    B -->|No| C[Model guesses audience]
-    C --> D[Model guesses scope]
-    D --> E[Model guesses format]
-    E --> F[Weak or inconsistent result]
-    B -->|Yes| G[Clear task]
-    G --> H[Clear audience]
-    H --> I[Clear constraints]
-    I --> J[Useful result]
+```text
+If two smart people could read your prompt and expect different answers, the prompt is not specific enough.
 ```
 
-### The Specific Prompt Checklist
+Example:
 
-When a prompt feels unclear, check these ten details.
+```text
+Explain agents.
+```
 
-| Detail | Question to Ask | Example |
+This is too vague because the model does not know:
+
+- whether you mean AI agents, software agents, or business agents
+- who the explanation is for
+- how deep the answer should be
+- whether you want examples
+- what format you want
+
+Better:
+
+```text
+Explain AI agents to a beginner Python developer.
+Keep it under 250 words.
+Include:
+- a plain-English definition
+- one simple workflow example
+- one common mistake
+```
+
+## Bad Prompt vs Good Prompt
+
+| Bad Prompt | Problem | Good Prompt |
 | --- | --- | --- |
-| Task | What exactly should the model do? | `Create`, `classify`, `summarize`, `review`, `rewrite` |
-| Audience | Who will read or use the answer? | `beginner developer`, `product manager`, `support agent` |
-| Purpose | Why do you need the output? | `to decide`, `to teach`, `to debug`, `to publish` |
-| Scope | What should be covered? | `authentication only`, `first 3 chapters`, `API errors` |
-| Exclusions | What should be avoided? | `Do not discuss pricing.` |
-| Constraints | What rules must be followed? | `Use plain English. Keep public API names unchanged.` |
-| Input | What data should the model use? | `Use only the text below.` |
-| Output format | How should the answer be structured? | `Return a table with columns: issue, risk, fix.` |
-| Length | How long should it be? | `Under 200 words`, `exactly 5 bullets` |
-| Success criteria | What makes the answer good? | `Actionable, accurate, and easy to copy into a ticket.` |
+| `Explain databases.` | Too broad | `Explain relational databases to a beginner backend developer. Include tables, rows, primary keys, and one SQL SELECT example.` |
+| `Summarize this.` | No purpose | `Summarize this incident report for an engineering manager. Focus on impact, root cause, fix, and prevention.` |
+| `Review my code.` | No review focus | `Review this API handler for security bugs, missing validation, and missing tests. Ignore style unless it affects correctness.` |
+| `Write an email.` | No audience or tone | `Write a polite customer email explaining a delayed shipment. Keep it under 120 words and do not mention internal systems.` |
+| `Make it better.` | "Better" is undefined | `Improve clarity, remove repeated ideas, and keep the original meaning.` |
 
-### A Specific Prompt Formula
+## The 6 Questions to Ask Before Writing a Prompt
 
-Use this formula when you want reliable results:
+Before you send an important prompt, answer these six questions.
+
+| Question | Why It Matters | Example Answer |
+| --- | --- | --- |
+| What do I want? | Defines the task | `Create a study plan` |
+| Who is it for? | Sets depth and tone | `Beginner AI learner` |
+| What should it include? | Defines required content | `Daily task, time estimate, practice exercise` |
+| What should it avoid? | Prevents unwanted output | `Do not include paid courses` |
+| What source should it use? | Reduces invented facts | `Use only the notes below` |
+| What format should it return? | Makes output usable | `Markdown table` |
+
+## Prompt Formula
+
+Use this formula for most practical prompts:
 
 ```text
 Task:
 {What should the model do?}
 
 Audience:
-{Who is this for?}
+{Who is the result for?}
 
-Purpose:
-{Why do you need this?}
+Scope:
+{What should be included or focused on?}
 
 Input:
-{The content, data, code, or question}
+{Text, code, notes, document, ticket, or data}
 
-Requirements:
-- {What must be included}
-- {What must be avoided}
-- {Important constraints}
+Rules:
+- {Required rule}
+- {Required rule}
+- {What to avoid}
 
-Output format:
-{Exact structure, length, or style}
+Output:
+{Length, format, tone, and sections}
 ```
 
-### Real Example: Beginner Explanation
+## Example 1: Explanation Prompt
 
-Weak prompt:
+Weak:
 
 ```text
 Explain APIs.
 ```
 
-Better prompt:
+Strong:
 
 ```text
-Explain REST APIs to a beginner web developer.
+Task:
+Explain REST APIs.
 
-Requirements:
+Audience:
+A beginner web developer who knows basic HTTP.
+
+Scope:
+Cover client, server, request, response, endpoint, and status code.
+
+Rules:
 - Use simple English.
-- Include the words client, server, request, and response.
 - Include one HTTP GET example.
 - Mention one common beginner mistake.
-- Keep it under 300 words.
+- Do not discuss GraphQL.
 
-Output format:
-Use these headings:
-1. What It Means
-2. Simple Example
-3. Common Mistake
+Output:
+Use 4 short sections:
+1. Definition
+2. How It Works
+3. Example
+4. Common Mistake
 ```
 
-Why this is better:
+Why it works:
 
-- It names the audience.
-- It defines the topic more precisely.
-- It lists required concepts.
-- It controls length.
-- It gives a clear output format.
+- `REST APIs` is more specific than `APIs`.
+- The audience controls the difficulty.
+- The scope tells the model what concepts to include.
+- The exclusion prevents the answer from becoming too broad.
+- The output structure makes the response easy to read.
 
-### Real Example: Code Review
+## Example 2: Summary Prompt
 
-Weak prompt:
+Weak:
+
+```text
+Summarize this.
+```
+
+Strong:
+
+```text
+Task:
+Summarize the incident report.
+
+Audience:
+Engineering manager.
+
+Scope:
+Focus on operational impact and prevention.
+
+Rules:
+- Use only the report below.
+- Do not add guesses.
+- If root cause is missing, write "Root cause not confirmed."
+
+Output:
+Return exactly 5 bullets:
+- Impact
+- Timeline
+- Root cause
+- Fix applied
+- Prevention
+
+Report:
+{incident_report}
+```
+
+Why it works:
+
+- The model knows the summary is for a manager.
+- It knows which details matter.
+- It has a rule for missing information.
+- The output is predictable.
+
+## Example 3: Code Review Prompt
+
+Weak:
 
 ```text
 Review this code.
 ```
 
-Better prompt:
+Strong:
 
 ```text
-You are reviewing a backend API change before production release.
-
 Task:
-Find bugs, security risks, and missing tests.
+Review this backend API change before production release.
 
-Do not comment on style unless it affects correctness.
+Focus:
+- security bugs
+- missing validation
+- database transaction risks
+- missing tests
 
-Return a Markdown table with:
+Rules:
+- Do not comment on naming or style unless it affects correctness.
+- Quote the exact line or behavior that supports each finding.
+- If there are no high-risk issues, say so clearly.
+
+Output:
+Return a Markdown table:
 Finding | Severity | Evidence | Suggested Fix
 
 Code:
 {code_diff}
 ```
 
-Why this is better:
+Why it works:
 
-- It tells the model what kind of review to perform.
-- It prevents low-value style feedback.
+- It defines the type of review.
+- It removes low-value feedback.
 - It asks for evidence.
-- It returns a format that is easy to scan.
+- It returns a format that can be used in a pull request.
 
-### Real Example: AI Agent Task
+## Example 4: AI Agent Prompt
 
-Weak prompt:
+Weak:
 
 ```text
-Help me with this customer ticket.
+Help with customer tickets.
 ```
 
-Better prompt:
+Strong:
 
 ```text
+Role:
 You are a customer-support AI agent.
 
-Goal:
+Task:
 Draft a reply to the customer ticket.
 
 Ticket:
 {ticket_text}
 
 Rules:
+- Use only facts from the ticket.
 - Be polite and concise.
-- Do not promise refunds, credits, or account changes.
+- Do not promise refunds, credits, account changes, or delivery dates.
 - If key information is missing, ask one clarifying question.
-- Use only the facts in the ticket.
 
-Output format:
+Output:
 1. Customer reply
-2. Missing information, if any
-3. Internal note for the support team
+2. Missing information
+3. Internal support note
 ```
 
-Why this is better:
+Why it works:
 
-- It defines the agent role.
-- It sets boundaries.
-- It prevents unsafe promises.
-- It separates customer-facing text from internal notes.
+- The role is clear.
+- The task is narrow.
+- Risky promises are blocked.
+- The final answer separates customer-facing text from internal notes.
 
-### Specificity Ladder
+## Specificity Checklist
 
-Use this ladder to improve a prompt step by step.
+Use this checklist before sending an important prompt.
 
-| Level | Prompt | Quality |
+- Is the task an action, not just a topic?
+- Is the audience clear?
+- Is the scope clear?
+- Did you include the input data?
+- Did you say what to avoid?
+- Did you define the output format?
+- Did you include length or section rules if needed?
+- Did you include a rule for missing information?
+- Can the result be checked?
+
+## Common Specificity Mistakes
+
+| Mistake | Weak Prompt | Better Direction |
 | --- | --- | --- |
-| 1 | `Write about onboarding.` | Too broad |
-| 2 | `Write about SaaS onboarding.` | Better topic |
-| 3 | `Write a short guide about SaaS onboarding for new product managers.` | Clear audience and purpose |
-| 4 | `Write a 600-word guide about SaaS onboarding for new product managers. Include activation, friction, lifecycle emails, and one checklist.` | Clear scope and required content |
-| 5 | `Write a 600-word guide about SaaS onboarding for new product managers. Use simple language, include activation, friction, lifecycle emails, one checklist, and avoid vendor-specific tools.` | Strong prompt |
+| Topic instead of task | `AI agents` | `Explain AI agents to a beginner developer in 5 bullets.` |
+| Undefined quality word | `Make this better` | `Improve clarity and remove repeated ideas.` |
+| Missing audience | `Explain vector databases` | `Explain vector databases to a backend developer new to RAG.` |
+| Missing source rule | `Answer from this document` | `Use only the document below. If missing, say unknown.` |
+| Missing boundary | `Give advice` | `Give general information, not legal/medical/financial advice.` |
+| Missing output shape | `Analyze this` | `Return a table with issue, evidence, risk, fix.` |
 
-### What to Specify First
+## When to Keep a Prompt Short
 
-If you do not have time to write a detailed prompt, specify these four things first:
+Short prompts are fine when the task is simple and low-risk.
 
-```text
-1. Task: What should the model do?
-2. Audience: Who is the answer for?
-3. Output: What format should it return?
-4. Constraints: What must it include or avoid?
-```
-
-Example:
+Good short prompt:
 
 ```text
-Summarize this incident report for an engineering manager.
-Return 5 bullets:
-- impact
-- root cause
-- timeline
-- fix
-- prevention
-
-Do not add facts that are not in the report.
+Rewrite this sentence in plain English:
+{sentence}
 ```
 
-### When Specificity Can Go Too Far
+Use a longer prompt when:
 
-Being specific is good, but over-controlling the prompt can make the answer worse. Avoid specifying details that do not matter.
-
-Bad over-specific prompt:
-
-```text
-Write exactly 7 sentences. Each sentence must be 13 words.
-Use three commas. Use no word longer than 8 letters.
-Explain Kubernetes networking.
-```
-
-Better:
-
-```text
-Explain Kubernetes networking to a junior backend developer.
-Keep it under 250 words.
-Use simple language and one request-flow example.
-```
-
-Good specificity gives the model direction. Bad specificity creates artificial constraints that distract from the real goal.
-
-### Common Specificity Mistakes
-
-| Mistake | Example | Fix |
-| --- | --- | --- |
-| Asking for a broad topic | `Teach me AI agents.` | Define level, scope, and output. |
-| Hiding the purpose | `Summarize this.` | Say whether the summary is for a decision, study note, report, or email. |
-| No audience | `Explain vector databases.` | Say who the explanation is for and what they already know. |
-| No boundaries | `Give legal advice.` | Ask for general information and require professional review. |
-| No format | `Analyze this ticket.` | Ask for a table, bullets, JSON, or sections. |
-| No source rule | `Answer using this document.` | Add `Use only the document below. If missing, say unknown.` |
+- the task is important
+- the answer must follow a format
+- the model must use source material
+- the task has safety or business risk
+- the output will be used by an app or agent
 
 ## Part 2: Provide Additional Context
 
-Context is the background information the model needs to answer correctly. It can include the user's goal, domain, audience, source material, constraints, previous decisions, or application state.
-
-This section will be expanded later. For now, remember this rule:
+Quick rule:
 
 ```text
-Add context that changes the answer.
-Remove context that does not change the answer.
+Add context that changes the answer. Remove context that does not.
 ```
 
-Useful context examples:
+Useful context:
 
-- The reader's knowledge level.
-- The product or business domain.
-- The codebase or framework.
-- The user goal.
-- Relevant source documents.
-- Current constraints or known issues.
-
-Avoid dumping long unrelated information into the prompt. Too much context can make the model focus on the wrong details.
-
-## Part 3: Use Relevant Technical Terms
-
-Technical terms can make prompts more precise when the model and the user share the same meaning.
-
-This section will be expanded later. For now:
-
-- Use correct domain terms when they reduce ambiguity.
-- Define terms when they may be unfamiliar.
-- Avoid jargon when simple words are enough.
-- Prefer exact terms like `JWT authentication`, `RAG`, `vector search`, `rate limit`, or `idempotency` when they matter.
+- user's goal
+- audience knowledge level
+- product or business domain
+- source document
+- codebase or framework
+- known constraints
 
 Example:
 
 ```text
-Review this endpoint for idempotency problems.
-Focus on duplicate payment requests, retry behavior, and database transaction safety.
+Explain rate limits for junior backend developers building a public REST API.
+The API serves mobile clients and must prevent abuse without blocking normal users.
 ```
+
+## Part 3: Use Relevant Technical Terms
+
+Technical terms make prompts clearer when they are correct and relevant.
+
+Example:
+
+```text
+Review this payment endpoint for idempotency problems.
+Focus on duplicate requests, retry behavior, and database transaction safety.
+```
+
+Better technical terms:
+
+- `idempotency` instead of `duplicate issue`
+- `JWT authentication` instead of `login stuff`
+- `RAG` instead of `AI search thing`
+- `rate limit` instead of `too many requests problem`
 
 ## Part 4: Use Examples in Your Prompt
 
-Examples show the model the pattern you want. This is especially useful for custom labels, tone, style, grading, classification, or strict formats.
+Use examples when the model must follow a custom pattern.
 
-This section will be expanded later. For now, use examples when:
-
-- The output format is custom.
-- The labels are not obvious.
-- The tone matters.
-- The task is hard to explain with rules alone.
-
-Mini example:
+Example:
 
 ```text
-Convert support tickets into this format:
+Classify support tickets.
 
 Example:
 Ticket: "I was charged twice."
@@ -375,56 +425,55 @@ Category: Billing
 Priority: High
 
 Now classify:
-Ticket: "The export button gives a 500 error."
+Ticket: "The export button returns a 500 error."
 ```
+
+Examples are useful for labels, tone, style, grading, extraction, and strict formats.
 
 ## Part 5: Iterate and Test Your Prompts
 
-A prompt that works once may fail on another input. Treat important prompts like small software artifacts: test them, revise them, and keep examples of failures.
+Do not judge a prompt from one good answer. Test it.
 
-This section will be expanded later. For now, test prompts with:
+Use this small test set:
 
-- Normal inputs.
-- Edge cases.
-- Missing information.
-- Ambiguous language.
-- Very short input.
-- Very long input.
-- Malicious or instruction-like input.
+| Test Type | What to Try |
+| --- | --- |
+| Normal input | A typical request |
+| Short input | Very little information |
+| Long input | More information than usual |
+| Missing data | Important detail is absent |
+| Ambiguous input | Text could mean two things |
+| Bad input | User tries to override rules |
 
-```mermaid
-flowchart LR
-    A[Draft Prompt] --> B[Test Examples]
-    B --> C[Find Failures]
-    C --> D[Revise Prompt]
-    D --> E[Retest]
-    E --> F[Use in Workflow]
-```
+Record what failed, then update the prompt.
 
 ## Part 6: Specify Length, Format, and Delivery Rules
 
-Format rules make the output easier to use. They are especially important when the answer will be copied into documentation, tickets, code, JSON, spreadsheets, or agent workflows.
+Format rules make output easier to use.
 
-This section will be expanded later. For now, specify:
+Examples:
 
-- Length: `under 300 words`, `exactly 5 bullets`, `one paragraph`.
-- Format: `Markdown table`, `JSON`, `numbered list`, `email draft`.
-- Tone: `plain English`, `professional`, `friendly`, `direct`.
-- Sections: `Problem`, `Cause`, `Fix`, `Test`.
-- Exclusions: `Do not include implementation code`.
-
-Example:
+```text
+Return exactly 5 bullet points.
+```
 
 ```text
 Return a Markdown table with these columns:
 Risk | Evidence | Impact | Recommended Fix
-
-Keep each row under 25 words.
 ```
 
-## Practice
+```text
+Return only valid JSON:
+{
+  "summary": "string",
+  "risk": "low | medium | high",
+  "next_action": "string"
+}
+```
 
-Complete these exercises to prove you understand specificity.
+Use format rules when the answer will be copied into documentation, tickets, code, spreadsheets, or an agent workflow.
+
+## Practice
 
 ### Exercise 1: Rewrite a Vague Prompt
 
@@ -436,11 +485,11 @@ Explain databases.
 
 Make it specific by adding:
 
-- Audience.
-- Scope.
-- Required concepts.
-- Length.
-- Output format.
+- task
+- audience
+- scope
+- rules
+- output format
 
 ### Exercise 2: Create a Specific Code Review Prompt
 
@@ -451,11 +500,11 @@ Write a prompt that reviews a backend API change for:
 - missing tests
 - performance risks
 
-The output should be a table.
+The output must be a Markdown table.
 
 ### Exercise 3: Improve an Agent Prompt
 
-Rewrite this weak agent prompt:
+Rewrite this:
 
 ```text
 Help users with support tickets.
@@ -463,22 +512,22 @@ Help users with support tickets.
 
 Add:
 
-- agent role
-- goal
+- role
+- task
+- ticket input
 - boundaries
-- allowed output
-- when to ask a clarifying question
+- output sections
 
 ## Exit Criteria
 
 You understand this topic when you can:
 
-- Explain why vague prompts produce inconsistent results.
-- Turn a broad request into a specific task.
-- Identify the audience, purpose, scope, constraints, and output format.
-- Write a prompt that reduces guessing.
-- Avoid over-specifying details that do not matter.
-- Create specific prompts for explanations, code review, and AI agent workflows.
+- Explain why vague prompts create weak results.
+- Turn a topic into a clear task.
+- Add audience, scope, rules, and output format.
+- Write specific prompts for explanation, summary, code review, and agent tasks.
+- Avoid adding constraints that do not help the real goal.
+- Test a prompt with more than one input.
 
 ## Further Reading
 

@@ -38,7 +38,7 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - stylesheets/extra.css?v=2
+  - stylesheets/extra.css?v=7
 
 not_in_nav: |
   stages/**/checkpoint.md
@@ -49,6 +49,8 @@ not_in_nav: |
   reference/best-practices/*.md
 
 markdown_extensions:
+  - toc:
+      toc_depth: 2-3
   - admonition
   - attr_list
   - md_in_html

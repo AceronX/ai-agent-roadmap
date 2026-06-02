@@ -260,16 +260,113 @@
 
 /* -------------------------- Topic learning pages ------------------------ */
 
+.md-main__inner:has(.topic-page) {
+  max-width: 92rem;
+}
+
+.md-content:has(.topic-page) {
+  min-width: 0;
+}
+
+.md-content:has(.topic-page) .md-content__inner {
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.md-typeset .topic-page {
+  --topic-border: color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+  --topic-soft: color-mix(in srgb, var(--md-primary-fg-color) 4%, var(--md-default-bg-color));
+  max-width: 100%;
+}
+
+.md-typeset .topic-page > h2 {
+  margin-top: 3.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--topic-border);
+  font-size: 1.45rem;
+}
+
+.md-typeset .topic-page > h2[id^="part-"] {
+  position: relative;
+  margin-top: 3.8rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--topic-border);
+  border-left: 5px solid var(--md-primary-fg-color);
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--topic-soft), var(--md-default-bg-color));
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.04);
+}
+
+.md-typeset .topic-page > h2[id^="part-"]::before {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--md-primary-fg-color);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  content: "Current learning section";
+}
+
+.md-typeset .topic-page > h3 {
+  margin-top: 2.2rem;
+  font-size: 1.08rem;
+}
+
+.md-typeset .topic-page > h4 {
+  margin-top: 1.8rem;
+  color: var(--md-default-fg-color);
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.md-typeset .topic-page > p,
+.md-typeset .topic-page > ul,
+.md-typeset .topic-page > ol {
+  max-width: 82ch;
+  line-height: 1.75;
+}
+
+.md-typeset .topic-page table {
+  display: table;
+  width: 100%;
+  margin: 1.2rem 0 2.2rem;
+  overflow: hidden;
+  border: 1px solid var(--topic-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.04);
+}
+
+.md-typeset .topic-page table th {
+  background: var(--topic-soft);
+  color: var(--md-default-fg-color);
+  font-weight: 800;
+}
+
+.md-typeset .topic-page table td,
+.md-typeset .topic-page table th {
+  padding: 0.78rem 0.9rem;
+  vertical-align: top;
+}
+
+.md-typeset .topic-page pre {
+  border-radius: 8px;
+}
+
 .topic-hero {
   position: relative;
   overflow: hidden;
-  margin: 0.5rem 0 2rem;
-  padding: 2rem;
+  margin: 0.75rem 0 2.8rem;
+  padding: 2.75rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(63, 81, 181, 0.11), rgba(0, 188, 212, 0.08)),
+    linear-gradient(135deg, rgba(63, 81, 181, 0.13), rgba(0, 188, 212, 0.08) 52%, rgba(34, 197, 94, 0.07)),
     var(--md-default-bg-color);
+  box-shadow: 0 16px 34px rgba(17, 24, 39, 0.08);
 }
 
 .topic-hero::after {
@@ -291,49 +388,63 @@
 }
 
 .md-typeset .topic-hero__lead {
-  max-width: 62rem;
+  max-width: 66rem;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
   color: var(--md-default-fg-color);
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 1.12rem;
+  line-height: 1.75;
 }
 
 .topic-hero__facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1.2rem;
+  gap: 0.7rem;
+  margin-top: 1.45rem;
 }
 
 .topic-hero__facts span {
-  padding: 0.28rem 0.58rem;
+  padding: 0.38rem 0.72rem;
   border: 1px solid color-mix(in srgb, var(--md-primary-fg-color) 24%, var(--md-default-fg-color--lightest));
   border-radius: 999px;
   background: color-mix(in srgb, var(--md-primary-fg-color) 7%, var(--md-default-bg-color));
   color: var(--md-default-fg-color);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 700;
 }
 
 .learning-grid,
 .practice-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin: 1.25rem 0 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.35rem 0 2.4rem;
 }
 
 .learning-card,
 .practice-grid article {
-  padding: 1rem;
+  min-height: 8rem;
+  padding: 1.25rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-top: 4px solid var(--md-primary-fg-color);
   border-radius: 8px;
   background: var(--md-default-bg-color);
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.md-typeset a.learning-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.learning-grid--path .learning-card {
+  min-height: 9rem;
+}
+
+.learning-grid--path .learning-card strong {
+  color: var(--md-primary-fg-color);
 }
 
 .learning-card:nth-child(2),
@@ -361,27 +472,27 @@
 .learning-card strong,
 .practice-grid strong {
   display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.92rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
 .learning-card span,
 .practice-grid span {
   display: block;
   color: var(--md-default-fg-color--light);
-  font-size: 0.78rem;
-  line-height: 1.5;
+  font-size: 0.84rem;
+  line-height: 1.6;
 }
 
 .visual-checklist {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
-  margin: 1.25rem 0 2rem;
+  gap: 1rem;
+  margin: 1.35rem 0 2.4rem;
 }
 
 .visual-checklist > div {
-  padding: 1rem;
+  padding: 1.25rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-left: 4px solid #ef4444;
   border-radius: 8px;
@@ -405,13 +516,13 @@
 .prompt-compare {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
-  margin: 1.25rem 0 2rem;
+  gap: 1rem;
+  margin: 1.35rem 0 2.4rem;
 }
 
 .prompt-compare section {
   min-width: 0;
-  padding: 1rem;
+  padding: 1.25rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 8px;
   background: var(--md-default-bg-color);
@@ -444,25 +555,25 @@
 .md-typeset .prompt-compare p {
   margin: 0;
   color: var(--md-default-fg-color--light);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
+  line-height: 1.55;
 }
 
-.md-typeset .mermaid {
-  margin: 1.25rem 0 2rem;
-  padding: 1rem;
+.md-typeset .topic-page .mermaid {
+  margin: 1.4rem 0 2.4rem;
+  padding: 1.35rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 8px;
-  background: color-mix(in srgb, var(--md-primary-fg-color) 3%, var(--md-default-bg-color));
-}
-
-@media screen and (max-width: 900px) {
-  .learning-grid,
-  .practice-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  background: var(--topic-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 40%, transparent);
 }
 
 @media screen and (max-width: 620px) {
+  .md-content:has(.topic-page) .md-content__inner {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+  }
+
   .topic-hero {
     padding: 1.35rem;
   }

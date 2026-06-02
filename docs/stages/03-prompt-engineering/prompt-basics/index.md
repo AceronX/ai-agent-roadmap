@@ -1,22 +1,40 @@
 # Prompt Basics
 
-Prompts are the instructions, context, examples, and output rules you give to an AI model. A good prompt helps the model understand the task, avoid guessing, and return an answer that is useful in your real workflow.
+<section class="topic-hero topic-hero--prompt">
+  <span class="topic-hero__eyebrow">Stage 03 · Prompt Engineering</span>
+  <p class="topic-hero__lead">A prompt is the instruction package you give to an AI model. Good prompts help the model understand the task, use the right context, follow constraints, and return output that your app or agent can actually use.</p>
+  <div class="topic-hero__facts">
+    <span>Clear task</span>
+    <span>Useful context</span>
+    <span>Output rules</span>
+    <span>Tested results</span>
+  </div>
+</section>
 
-Prompting is not magic wording. It is clear communication plus testing. For AI agents, prompt quality is even more important because the prompt can control how the agent plans, uses tools, checks results, and stops.
+## What You Will Learn
 
-## Goal
-
-By the end of this topic, you should be able to:
-
-- Explain what a prompt is and why it affects model output.
-- Write prompts with clear role, task, context, constraints, and output format.
-- Choose between zero-shot, few-shot, role, step-back, reasoning, self-consistency, Tree of Thoughts, ReAct, and automatic prompt improvement patterns.
-- Design prompts that are practical for AI agent workflows.
-- Test a prompt and improve it based on real outputs.
+<div class="learning-grid">
+  <article class="learning-card">
+    <strong>Understand prompts</strong>
+    <span>Learn what a prompt is, why it changes model behavior, and how it fits inside an AI application.</span>
+  </article>
+  <article class="learning-card">
+    <strong>Write better instructions</strong>
+    <span>Use role, task, context, constraints, examples, and output format clearly.</span>
+  </article>
+  <article class="learning-card">
+    <strong>Choose a technique</strong>
+    <span>Know when to use zero-shot, few-shot, step-back, reasoning, ReAct, and Tree of Thoughts.</span>
+  </article>
+  <article class="learning-card">
+    <strong>Build agent-ready prompts</strong>
+    <span>Write prompts that help agents plan, use tools, validate outputs, and stop correctly.</span>
+  </article>
+</div>
 
 ## What Is a Prompt?
 
-A prompt is the input that tells an AI model what to do. It can be a simple question, a long instruction, a document to analyze, a set of examples, or a structured request from an application.
+A prompt is the input that tells an AI model what to do. It can be a short question, a detailed instruction, a document to analyze, a set of examples, a JSON schema, or a tool-use rule for an agent.
 
 Simple prompt:
 
@@ -41,88 +59,76 @@ Article:
 {article_text}
 ```
 
-The better prompt gives the model more useful information:
-
-- Who the answer is for.
-- What task to complete.
-- What rules to follow.
-- What data to use.
-- What format to return.
-
-## Why Prompt Basics Matter for AI Agents
-
-An AI chatbot usually answers one message. An AI agent may do more:
-
-- Plan multiple steps.
-- Call tools or APIs.
-- Read files or search data.
-- Remember state.
-- Decide when work is complete.
-- Recover from errors.
-
-That means weak prompts can create bigger problems in agents. A vague prompt may cause the agent to use the wrong tool, skip validation, produce unsafe output, or continue working after it should stop.
-
-Good agent prompts define:
-
-- The agent's job.
-- The user's goal.
-- Available tools and when to use them.
-- Boundaries and safety rules.
-- The expected final answer.
-- The completion standard.
-
-## The Prompt Loop
-
-Prompting is an iterative process. You write a prompt, inspect the output, compare it with your success criteria, then revise the prompt.
+The second prompt works better because it explains the audience, task, rules, input data, and output format.
 
 ```mermaid
 flowchart LR
     A[User Goal] --> B[Prompt]
     B --> C[AI Model]
     C --> D[Output]
-    D --> E{Meets Criteria?}
-    E -->|Yes| F[Use the Result]
+    D --> E{Useful?}
+    E -->|Yes| F[Use Result]
     E -->|No| G[Improve Prompt]
     G --> B
 ```
 
-The goal is not to make the prompt longer. The goal is to make the instruction easier to follow and easier to test.
+## Why Prompts Matter for AI Agents
 
-## Core Parts of a Good Prompt
+An AI chatbot usually answers one message. An AI agent may plan multiple steps, call tools, read files, search data, remember state, and decide when work is complete. That makes prompt quality more important.
 
-Not every prompt needs every part, but these building blocks are useful for most developer and agent tasks.
+<div class="visual-checklist">
+  <div>
+    <strong>A weak agent prompt may cause:</strong>
+    <ul>
+      <li>Wrong tool usage</li>
+      <li>Missing validation</li>
+      <li>Invented facts</li>
+      <li>Unsafe actions</li>
+      <li>Unclear final answers</li>
+    </ul>
+  </div>
+  <div>
+    <strong>A strong agent prompt defines:</strong>
+    <ul>
+      <li>The agent role</li>
+      <li>The user goal</li>
+      <li>Tool rules</li>
+      <li>Boundaries</li>
+      <li>Completion criteria</li>
+    </ul>
+  </div>
+</div>
 
-| Part | Purpose | Example |
-| --- | --- | --- |
-| Role | Sets the perspective or expertise | `You are a senior Python reviewer.` |
-| Task | Defines the action | `Find bugs in this function.` |
-| Context | Gives background information | `This code runs in a serverless API.` |
-| Input Data | Provides the content to work on | `Code: {code_block}` |
-| Constraints | Sets limits and rules | `Do not change public API names.` |
-| Output Format | Makes the answer easy to use | `Return a Markdown table.` |
-| Examples | Shows the pattern to follow | `Input: ... Output: ...` |
-| Success Criteria | Defines what "good" means | `The answer must include risks and tests.` |
+## Prompt Anatomy
 
-## Prompt Anatomy Diagram
-
-The model does not only see your final question. In a real application, the final prompt is often built from several parts.
+A production prompt is often built from several parts before the model sees it.
 
 ```mermaid
 flowchart TD
-    A[System or Developer Rules] --> E[Final Prompt Sent to Model]
-    B[User Request] --> E
-    C[Retrieved Context or Documents] --> E
-    D[Examples and Output Schema] --> E
-    E --> F[Model Response]
-    F --> G[Application Validation]
-    G --> H[User or Agent Next Step]
+    A[System Rules] --> F[Final Prompt]
+    B[User Request] --> F
+    C[Context or Documents] --> F
+    D[Examples] --> F
+    E[Output Schema] --> F
+    F --> G[Model Response]
+    G --> H[Validation]
+    H --> I[User Answer or Agent Next Step]
 ```
 
-For a normal chat, you may only write the user request. For an AI application, your code may add system instructions, retrieved documents, examples, and output schemas before the model receives the final prompt.
+| Prompt Part | What It Does | Example |
+| --- | --- | --- |
+| Role | Sets perspective and responsibility | `You are a senior backend reviewer.` |
+| Task | States the action clearly | `Find bugs in this function.` |
+| Context | Gives background that changes the answer | `This runs in a serverless API.` |
+| Input | Provides the data to work on | `Code: {code_block}` |
+| Constraints | Sets rules and limits | `Do not change public API names.` |
+| Output format | Makes the answer easy to use | `Return a Markdown table.` |
+| Examples | Shows the desired pattern | `Input: ... Output: ...` |
+| Success criteria | Defines what good means | `Include risks and tests.` |
 
-## A Practical Prompt Formula
+## The Prompt Recipe
 
-Use this structure when you are not sure how to write a prompt:
+Use this structure when you are not sure how to write a prompt.
 
 ```text
 Role:
@@ -156,7 +162,7 @@ Role:
 You are a technical writing assistant for beginner developers.
 
 Task:
-Explain the concept of API rate limits.
+Explain API rate limits.
 
 Context:
 The reader knows basic HTTP but has never built a production API.
@@ -175,26 +181,43 @@ Use these headings:
 4. Common Mistake
 ```
 
-## Prompt Types Beginners Should Know
+## Choose the Right Prompting Technique
 
 Start simple. Use advanced techniques only when the task needs them.
 
-| Technique | Best For | Avoid When |
+```mermaid
+flowchart TD
+    A[What kind of task is it?] --> B{Simple and familiar?}
+    B -->|Yes| C[Use zero-shot]
+    B -->|No| D{Need a custom style or labels?}
+    D -->|Yes| E[Use few-shot examples]
+    D -->|No| F{Need high-level framing?}
+    F -->|Yes| G[Use step-back prompting]
+    F -->|No| H{Need tools or external data?}
+    H -->|Yes| I[Use ReAct or agent prompt]
+    H -->|No| J{Need complex search or planning?}
+    J -->|Yes| K[Use Tree of Thoughts]
+    J -->|No| L[Use clear direct instructions]
+```
+
+| Technique | Best For | Cost |
 | --- | --- | --- |
-| Zero-shot | Simple tasks with clear instructions | The output pattern is custom or unusual |
-| Few-shot | Custom formats, labels, tone, style | Examples are low quality or misleading |
-| Role prompting | Setting perspective, tone, expertise | The role is vague or stereotyped |
-| System prompting | Stable app or agent behavior | Task details change every request |
-| Step-back prompting | Framing complex problems | The task is already direct and simple |
-| Reasoning prompt | Multi-step problems and checks | You only need a simple rewrite or summary |
-| Self-consistency | High-risk answers that can be checked | Cost or latency must stay very low |
-| Tree of Thoughts | Search, planning, strategy | The problem has one obvious path |
-| ReAct | Tool-using agents | No tools or external observations are needed |
-| Automatic Prompt Engineering | Reusable production prompts | One-time personal prompts |
+| Zero-shot | Simple tasks with clear instructions | Low |
+| Few-shot | Custom labels, style, tone, or format | Medium |
+| Role prompting | Setting perspective and audience | Low |
+| System prompting | Stable app or agent behavior | Low |
+| Step-back prompting | Better framing before solving | Medium |
+| Reasoning prompt | Multi-step problems and checks | Medium |
+| Self-consistency | More reliable answers from multiple attempts | High |
+| Tree of Thoughts | Search, planning, strategy, hard problems | High |
+| ReAct | Tool-using agents | Medium to high |
+| Automatic Prompt Engineering | Improving reusable production prompts | High |
 
-### 1. Zero-Shot Prompting
+## Core Techniques
 
-Zero-shot prompting means asking the model to do a task without giving examples. Use it when the task is simple or common.
+### Zero-Shot Prompting
+
+Zero-shot prompting means asking the model to do a task without examples. Use it when the task is common and the output format is simple.
 
 ```text
 Classify this user message as Bug Report, Feature Request, Billing, or Other.
@@ -205,19 +228,11 @@ Message:
 Return only the category.
 ```
 
-Use zero-shot prompting for:
+Good for summaries, simple classification, rewriting, basic extraction, and common coding help.
 
-- Summaries.
-- Simple classification.
-- Rewriting text.
-- Common coding help.
-- Basic extraction tasks.
+### Few-Shot Prompting
 
-Avoid zero-shot prompting when the task has a special format, unusual rules, or domain-specific judgment. In those cases, examples help.
-
-### 2. Few-Shot Prompting
-
-Few-shot prompting gives the model examples before the real task. The examples teach the model the desired pattern.
+Few-shot prompting gives the model examples before the real task. The examples teach the output pattern.
 
 ```text
 Classify each message.
@@ -237,16 +252,9 @@ Message: "Please support CSV import."
 Category:
 ```
 
-Use few-shot prompting when:
+Use few-shot prompting when labels are custom, tone matters, or the format must be exact. Keep examples short, correct, and close to real inputs.
 
-- The format must be exact.
-- The labels are custom.
-- The tone matters.
-- The task is easy for humans but hard to describe as rules.
-
-Good examples should be correct, short, and close to the real task.
-
-### 3. Role Prompting
+### Role Prompting
 
 Role prompting asks the model to answer from a specific perspective.
 
@@ -258,25 +266,13 @@ Focus on authentication, session handling, and error messages.
 Return findings ordered by severity.
 ```
 
-Roles can improve tone, depth, and focus. But a role is not enough by itself. "You are an expert" is weaker than giving the model a clear task, context, and output format.
+Roles can improve tone and focus, but the role must be useful. `You are a senior backend engineer reviewing a production API change` is better than `You are very smart`.
 
-Good role:
+### System Prompting
 
-```text
-You are a senior backend engineer reviewing a production API change.
-```
+A system prompt defines stable behavior for an assistant or agent. A user prompt gives the current task.
 
-Weak role:
-
-```text
-You are very smart.
-```
-
-### 4. System Prompting
-
-In many AI applications, there are different message levels. A system prompt usually defines high-level behavior for the assistant or agent. A user prompt gives the current task.
-
-System prompt example:
+System prompt:
 
 ```text
 You are a documentation assistant for an AI Agents Roadmap.
@@ -286,26 +282,17 @@ Do not invent links, APIs, or benchmark numbers.
 When unsure, say what needs verification.
 ```
 
-User prompt example:
+User prompt:
 
 ```text
 Write a beginner-friendly explanation of tool calling.
 ```
 
-For agents, system prompts often define:
+For agents, system prompts often define the role, boundaries, tool-use rules, memory rules, output requirements, and stop conditions.
 
-- The agent role.
-- Allowed and disallowed behavior.
-- Tool-use rules.
-- Memory rules.
-- Output requirements.
-- Stop conditions.
+### Step-Back Prompting
 
-Keep system prompts stable and general. Put task-specific details in the user prompt or task context.
-
-### 5. Step-Back Prompting
-
-Step-back prompting asks the model to first identify the general principle behind a problem, then solve the specific problem.
+Step-back prompting asks the model to identify the general principle first, then solve the specific task.
 
 ```text
 Question:
@@ -318,21 +305,13 @@ Step 2:
 Use those principles to suggest 5 specific onboarding improvements.
 ```
 
-Use step-back prompting when:
+This helps when the model may focus too much on surface details. It is useful for architecture, debugging strategy, product decisions, and reasoning-heavy questions.
 
-- The task is complex.
-- The model may focus too much on surface details.
-- You want a better high-level frame before specific recommendations.
+### Reasoning Prompts
 
-This is useful for architecture, debugging strategy, product decisions, and reasoning-heavy questions.
+Some tasks need careful reasoning: math, planning, debugging, policy checks, and multi-step decisions.
 
-### 6. Reasoning Prompts
-
-Some tasks require careful reasoning: math, planning, debugging, policy checks, or multi-step decisions.
-
-Instead of asking the model to expose a long private chain of thought, ask for a concise explanation, key checks, or a verified final answer.
-
-Good:
+Ask for a concise explanation and checks, not a long hidden reasoning trace.
 
 ```text
 Solve the problem carefully.
@@ -343,19 +322,11 @@ Return:
 4. Checks performed
 ```
 
-Avoid:
+Reasoning prompts can improve correctness, but they may increase cost and latency. For simple tasks, direct instructions are usually better.
 
-```text
-Show every hidden thought step in detail.
-```
+### Self-Consistency
 
-Reasoning prompts are useful when correctness matters, but they can increase cost and latency. For simple tasks, direct instructions are usually enough.
-
-### 7. Self-Consistency
-
-Self-consistency means generating multiple answers or reasoning paths, then choosing the answer that is most consistent.
-
-Simple version:
+Self-consistency means generating multiple attempts and choosing the answer that is most consistent.
 
 ```text
 Answer the question using three independent attempts.
@@ -365,59 +336,32 @@ Question:
 {question}
 ```
 
-Use self-consistency when:
+Use it when the task has a clear correct answer and the cost of a wrong answer is higher than the cost of extra model calls.
 
-- The task has a clear correct answer.
-- A single response may be unreliable.
-- The cost of a wrong answer is higher than the cost of extra model calls.
+### Tree of Thoughts
 
-Tradeoff: it can improve reliability, but it uses more tokens and takes longer.
-
-### 8. Tree of Thoughts
-
-Tree of Thoughts is an advanced pattern for hard problems. Instead of following one reasoning path, the model explores multiple possible paths, evaluates them, and continues with the most promising ones.
+Tree of Thoughts explores several possible paths, evaluates them, and continues with the best path.
 
 ```mermaid
 flowchart TD
-    A[Problem] --> B[Option 1]
-    A --> C[Option 2]
-    A --> D[Option 3]
+    A[Problem] --> B[Path 1]
+    A --> C[Path 2]
+    A --> D[Path 3]
     B --> E[Evaluate]
     C --> E
     D --> E
-    E --> F[Choose Best Path]
-    F --> G[Final Answer]
+    E --> F{Best path?}
+    F --> G[Continue]
+    F --> H[Backtrack]
+    G --> I[Final Answer]
+    H --> E
 ```
 
-Use Tree of Thoughts for:
+Use it for planning, strategy, search-style tasks, and hard problems with several possible approaches. Do not use it for simple tasks.
 
-- Planning.
-- Complex problem solving.
-- Strategy.
-- Search-style tasks.
-- Creative tasks where several options should be compared.
+### ReAct Prompting
 
-Do not use it for every prompt. It is heavier than normal prompting and may be unnecessary for simple work.
-
-### 9. ReAct Prompting
-
-ReAct means reasoning plus action. It is important for agents because the model can think about what to do, use a tool, observe the result, and continue.
-
-Agent-style loop:
-
-```text
-Goal:
-Find the latest project build status and explain any failure.
-
-Loop:
-1. Decide what information is needed.
-2. Use the available tool.
-3. Read the tool result.
-4. Decide the next step.
-5. Stop when the answer is complete.
-```
-
-Typical ReAct flow:
+ReAct means reasoning plus action. It is important for agents because the model can decide what to do, use a tool, observe the result, and continue.
 
 ```mermaid
 sequenceDiagram
@@ -433,7 +377,7 @@ sequenceDiagram
     Agent-->>User: Final answer
 ```
 
-For production agents, keep tool rules explicit:
+Keep tool rules explicit:
 
 - When to use a tool.
 - Which tool to use.
@@ -441,26 +385,41 @@ For production agents, keep tool rules explicit:
 - How to handle tool errors.
 - When to stop.
 
-### 10. Automatic Prompt Engineering
+### Automatic Prompt Engineering
 
-Automatic Prompt Engineering uses an AI model to generate or improve prompt candidates, then tests those candidates against examples.
+Automatic Prompt Engineering uses a model to generate or improve prompt candidates, then tests those prompts against examples.
 
-Simple workflow:
-
-```text
-1. Write 5 prompt versions for this task.
-2. Test each prompt against the same 10 examples.
-3. Score each output using the criteria.
-4. Keep the best prompt and explain why it performed best.
+```mermaid
+flowchart LR
+    A[Draft Prompt] --> B[Generate Variants]
+    B --> C[Test on Examples]
+    C --> D[Score Outputs]
+    D --> E[Choose Best Prompt]
+    E --> F[Monitor in Use]
 ```
 
-This is useful when a prompt will be reused many times in an application. It is less useful for one-off questions.
+This is useful when a prompt will be reused many times in an application. It is usually unnecessary for one-time personal prompts.
 
-## Good Prompt vs Weak Prompt
+## Weak vs Strong Prompts
+
+<div class="prompt-compare">
+  <section>
+    <span class="prompt-compare__label prompt-compare__label--bad">Weak</span>
+    <pre><code>Explain agents.</code></pre>
+    <p>Too broad. No audience, scope, depth, or output format.</p>
+  </section>
+  <section>
+    <span class="prompt-compare__label prompt-compare__label--good">Strong</span>
+    <pre><code>Explain AI agents to a beginner developer.
+Use 5 bullet points.
+Include one simple example.
+Mention one common mistake.</code></pre>
+    <p>Clear audience, clear task, useful constraints, and predictable output.</p>
+  </section>
+</div>
 
 | Weak Prompt | Problem | Better Prompt |
 | --- | --- | --- |
-| `Explain agents.` | Too broad | `Explain AI agents to a beginner developer in 5 bullets, with one example.` |
 | `Fix this code.` | No success criteria | `Find the bug, explain the cause, and provide a minimal patch.` |
 | `Make it better.` | "Better" is undefined | `Improve clarity, reduce repetition, and keep the same meaning.` |
 | `Analyze this.` | No output format | `Return a table with issue, evidence, severity, and recommendation.` |
@@ -468,9 +427,7 @@ This is useful when a prompt will be reused many times in an application. It is 
 
 ## Prompting for Structured Outputs
 
-Structured outputs are important in applications because code often needs to parse the model response.
-
-Example:
+Structured outputs are important because applications often need to parse the model response.
 
 ```text
 Extract the task information from the message.
@@ -503,8 +460,6 @@ For production systems, validate the output in code. Do not trust the model to a
 
 An agent prompt should define behavior, not just ask a question.
 
-Basic agent prompt skeleton:
-
 ```text
 You are an AI agent that helps with {domain}.
 
@@ -529,7 +484,17 @@ Final response format:
 {format}
 ```
 
-Good agent prompts answer these questions:
+```mermaid
+flowchart TD
+    A[Agent Prompt] --> B[Role]
+    A --> C[Goal]
+    A --> D[Tools]
+    A --> E[Rules]
+    A --> F[Stop Criteria]
+    A --> G[Final Format]
+```
+
+Good agent prompts answer:
 
 - What is the agent responsible for?
 - What is outside the agent's responsibility?
@@ -547,7 +512,7 @@ Common risks:
 - A document tells the agent to ignore its original instructions.
 - A user asks the agent to reveal hidden system prompts.
 - Tool output contains text that looks like an instruction.
-- The model invents facts because the prompt asks for an answer even when information is missing.
+- The model invents facts because information is missing.
 - The agent uses a tool when it should ask for confirmation.
 
 Basic safety rules:
@@ -562,74 +527,17 @@ Before taking irreversible actions, ask for confirmation.
 
 For production agents, prompts are only one layer of safety. You should also use code-level permissions, output validation, logging, tests, and human approval for sensitive actions.
 
-## Common Prompting Mistakes
-
-### Mistake 1: Being Too Vague
-
-Weak:
-
-```text
-Write about databases.
-```
-
-Better:
-
-```text
-Explain relational databases to a beginner backend developer.
-Include tables, rows, primary keys, and one simple SQL example.
-Keep it under 400 words.
-```
-
-### Mistake 2: Mixing Too Many Tasks
-
-Weak:
-
-```text
-Summarize this, rewrite it, find errors, make a plan, and create a quiz.
-```
-
-Better:
-
-```text
-First summarize the document in 5 bullets.
-After that, list the 3 most important errors.
-Do not rewrite the document yet.
-```
-
-Break complex workflows into steps when you need control or review.
-
-### Mistake 3: Missing Output Format
-
-If you need a table, JSON, checklist, or short answer, say so.
-
-```text
-Return a Markdown table with these columns:
-Topic | What it means | Why it matters | Example
-```
-
-### Mistake 4: Giving Irrelevant Context
-
-More context is not always better. Too much unrelated information can distract the model and increase cost.
-
-Use this rule:
-
-```text
-Include information that changes the answer.
-Remove information that does not change the answer.
-```
-
-### Mistake 5: Not Testing the Prompt
-
-A prompt that works once may fail on another input. Test prompts with:
-
-- Normal examples.
-- Edge cases.
-- Short inputs.
-- Long inputs.
-- Ambiguous inputs.
-- Bad or malicious inputs.
-
 ## Prompt Testing Checklist
+
+```mermaid
+flowchart LR
+    A[Write Prompt] --> B[Test Normal Inputs]
+    B --> C[Test Edge Cases]
+    C --> D[Test Bad Inputs]
+    D --> E[Compare to Criteria]
+    E --> F[Revise Prompt]
+    F --> G[Retest]
+```
 
 Before using a prompt in an app or agent, check:
 
@@ -644,57 +552,36 @@ Before using a prompt in an app or agent, check:
 - Has it been tested with realistic inputs?
 - Is the output validated by code if the app depends on structure?
 
+## Common Mistakes
+
+| Mistake | Why It Hurts | Fix |
+| --- | --- | --- |
+| Being too vague | The model guesses the goal | Add audience, task, scope, and format |
+| Mixing too many tasks | Output becomes incomplete or messy | Split the workflow into steps |
+| Missing output format | The answer is hard to use | Ask for bullets, JSON, table, or headings |
+| Too much irrelevant context | The model may focus on noise | Include only context that changes the answer |
+| Not testing | One good result can hide failures | Test normal, edge, ambiguous, and bad inputs |
+
 ## Practice
 
-Complete these exercises to prove you understand prompt basics.
-
-### Exercise 1: Rewrite a Weak Prompt
-
-Rewrite this prompt:
-
-```text
-Explain APIs.
-```
-
-Requirements:
-
-- Audience: beginner web developer.
-- Include one HTTP example.
-- Include one common mistake.
-- Keep it under 300 words.
-
-### Exercise 2: Build a Few-Shot Classifier
-
-Write a prompt that classifies support messages into:
-
-- `Bug`
-- `Feature Request`
-- `Billing`
-- `Account`
-- `Other`
-
-Include at least three examples before the real message.
-
-### Exercise 3: Create an Agent Prompt
-
-Write a system prompt for a documentation review agent.
-
-The agent should:
-
-- Review Markdown files.
-- Find unclear explanations.
-- Suggest better headings.
-- Avoid changing technical meaning.
-- Return findings in a table.
-
-### Exercise 4: Test and Improve
-
-Run one of your prompts against five different inputs. Record:
-
-- What worked.
-- What failed.
-- What you changed.
-- Whether the new version improved the output.
+<div class="practice-grid">
+  <article>
+    <strong>Rewrite a weak prompt</strong>
+    <span>Turn `Explain APIs` into a prompt for beginner web developers with one HTTP example.</span>
+  </article>
+  <article>
+    <strong>Build a classifier</strong>
+    <span>Create a few-shot prompt that classifies support messages into custom labels.</span>
+  </article>
+  <article>
+    <strong>Create an agent prompt</strong>
+    <span>Write a system prompt for a Markdown documentation review agent.</span>
+  </article>
+  <article>
+    <strong>Test and improve</strong>
+    <span>Run one prompt against five inputs, record failures, and improve the prompt.</span>
+  </article>
+</div>
 
 ## Exit Criteria
 
@@ -724,7 +611,6 @@ You understand this topic when you can:
 - [Learn Prompting: Self-Consistency](https://learnprompting.org/docs/intermediate/self_consistency)
 - [Prompt Engineering Guide: Tree of Thoughts](https://www.promptingguide.ai/techniques/tot)
 - [IBM: Tree of Thoughts Prompting](https://www.ibm.com/think/topics/tree-of-thoughts)
-- [Medium: Tree-of-Thought Prompting Overview](https://medium.com/@WeavePlatform/the-revolutionary-approach-of-tree-of-thought-prompting-in-ai-eb7c0872247b)
 - [Prompt Engineering Guide: ReAct Prompting](https://www.promptingguide.ai/techniques/react)
 - [Learn Prompting: ReAct Prompting](https://learnprompting.org/docs/techniques/react)
 - [Claude Docs: Prompt Engineering Overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
@@ -734,12 +620,3 @@ You understand this topic when you can:
 - [Learn Prompting: Prompt Structure](https://learnprompting.org/docs/basics/prompt_structure)
 - [Prompt Engineering Guide: Automatic Prompt Engineer](https://www.promptingguide.ai/techniques/ape)
 - [Wei et al. 2022: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)
-- [roadmap.sh AI Guide: Zero-Shot Prompting](https://roadmap.sh/ai/guide/search?term=Zero-Shot%20Prompting&src=topic)
-- [roadmap.sh AI Guide: Step-back Prompting](https://roadmap.sh/ai/guide/search?term=Step-back%20Prompting&src=topic)
-- [roadmap.sh AI Guide: Tree of Thoughts Prompting](https://roadmap.sh/ai/guide/search?term=%20Tree%20of%20Thoughts%20(ToT)%20Prompting&src=topic)
-- [roadmap.sh AI Guide: ReAct Prompting](https://roadmap.sh/ai/guide/search?term=ReAct%20Prompting&src=topic)
-- [roadmap.sh AI Guide: System Prompting](https://roadmap.sh/ai/guide/search?term=System%20Prompting&src=topic)
-- [roadmap.sh AI Guide: Automatic Prompt Engineering](https://roadmap.sh/ai/guide/search?term=Automatic%20Prompt%20Engineering&src=topic)
-- [YouTube Reference: Prompting Concepts](https://youtu.be/vD0E3EUb8-8?si=Fi2igdPTBUocqnX7&t=177)
-- [YouTube Reference: Reasoning Prompting](https://youtu.be/vD0E3EUb8-8?si=Y6MCLPzjmhMB4jSu&t=203)
-- [YouTube Reference: Role/System Prompting](https://youtu.be/vD0E3EUb8-8?si=9orzEniOGmRD7g-o&t=136)

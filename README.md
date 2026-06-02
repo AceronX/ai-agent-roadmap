@@ -12,6 +12,10 @@ This repository is designed as a GitHub Pages documentation website powered by M
 - `docs/reference/` - glossary, resources, and best practices
 - `docs/assets/` - diagrams, images, PDFs, and downloads
 
+## Contributing
+
+Before adding or updating stage pages, read [CONTRIBUTING.md](CONTRIBUTING.md). It explains where to add Markdown files, how to link new pages, and how to verify the site before pushing.
+
 ## Local Development
 
 ```bash

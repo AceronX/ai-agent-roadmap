@@ -1,0 +1,93 @@
+site_name: AI Agent Roadmap
+site_description: A practical AI agent learning path and knowledge database for developers.
+site_url: https://AceronX.github.io/ai-agent-roadmap/
+repo_url: https://github.com/AceronX/ai-agent-roadmap
+repo_name: ai-agent-roadmap
+
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/robot-outline
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - navigation.path
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+
+extra_css:
+  - stylesheets/extra.css
+
+not_in_nav: |
+  stages/**/checkpoint.md
+  stages/*/*/index.md
+  stages/*/*/resources.md
+  stages/*/*/examples.md
+  stages/*/*/*.md
+  reference/resources/*.md
+  reference/best-practices/*.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - Roadmap: roadmap.md
+  - Stages:
+      - stages/index.md
+      - Roadmap.sh Alignment: stages/roadmap-sh-alignment.md
+      - 00 Orientation: stages/00-orientation/index.md
+      - 01 Prerequisites: stages/01-prerequisites/index.md
+      - 02 LLM Fundamentals: stages/02-llm-fundamentals/index.md
+      - 03 Prompt Engineering: stages/03-prompt-engineering/index.md
+      - 04 Agent Fundamentals: stages/04-agent-fundamentals/index.md
+      - 05 Tools and Actions: stages/05-tools-and-actions/index.md
+      - 06 MCP: stages/06-mcp/index.md
+      - 07 RAG and Memory: stages/07-rag-and-memory/index.md
+      - 08 Agent Architectures: stages/08-agent-architectures/index.md
+      - 09 Building Agents: stages/09-building-agents/index.md
+      - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md
+      - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md
+      - 12 Security and Ethics: stages/12-security-ethics/index.md
+      - 13 Production Deployment: stages/13-production-deployment/index.md
+  - Reference:
+      - reference/index.md
+      - Glossary: reference/glossary.md
+      - Resources: reference/resources/index.md
+      - Best Practices: reference/best-practices/index.md

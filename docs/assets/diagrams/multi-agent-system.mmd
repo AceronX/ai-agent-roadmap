@@ -1,0 +1,12 @@
+flowchart TB
+    user["User Request"] --> supervisor["Supervisor Agent"]
+    supervisor --> planner["Planner Agent"]
+    supervisor --> researcher["Research Agent"]
+    supervisor --> writer["Writer Agent"]
+    supervisor --> reviewer["Reviewer Agent"]
+
+    planner --> supervisor
+    researcher --> supervisor
+    writer --> supervisor
+    reviewer --> supervisor
+    supervisor --> finalOutput["Final Output"]

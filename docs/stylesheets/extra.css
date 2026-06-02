@@ -1,0 +1,122 @@
+/* ---------------------------------------------------------------------------
+   AI Agent Roadmap - minimal, clean theme on top of Material for MkDocs.
+   Keep this small. Prefer simple, readable layouts over decoration.
+--------------------------------------------------------------------------- */
+
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ----------------------------- Hero banner ------------------------------ */
+
+.hero {
+  margin: 0 0 2.5rem;
+  padding: 2.8rem 1.5rem;
+  border-radius: 14px;
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  text-align: center;
+}
+
+[data-md-color-scheme="slate"] .hero {
+  background: var(--md-code-bg-color);
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.md-typeset .hero h1 {
+  margin: 0 auto 0.8rem;
+  max-width: 18ch;
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.1;
+}
+
+.md-typeset .hero p {
+  margin: 0 auto 1.6rem;
+  max-width: 52ch;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.05rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.md-typeset .hero .md-button {
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+
+.md-typeset .hero .md-button--primary,
+.md-typeset .hero .md-button:hover {
+  border-color: #fff;
+  background: #fff;
+  color: var(--md-primary-fg-color);
+}
+
+/* --------------------------- Phase overview ----------------------------- */
+
+.phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.phase {
+  padding: 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-top: 3px solid var(--md-primary-fg-color);
+  border-radius: 10px;
+  background: var(--md-default-bg-color);
+}
+
+.phase__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--md-primary-fg-color);
+}
+
+.md-typeset .phase h3 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.md-typeset .phase p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+
+@media screen and (max-width: 800px) {
+  .phases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .phases {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Slightly rounder native grid cards */
+.md-typeset .grid.cards > :is(ul, ol) > li {
+  border-radius: 12px;
+}

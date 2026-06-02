@@ -2,7 +2,7 @@
 
 Thanks for helping improve the AI Agent Roadmap.
 
-This site is built with MkDocs Material and deployed automatically from the `main` branch. Most contributions should update or add Markdown files under `docs/stages/`.
+This site is built with MkDocs Material and deployed automatically from the `main` branch. Contributors should update Markdown source files under `docs/`; the generated HTML is created by MkDocs.
 
 ## Before You Edit
 
@@ -43,18 +43,21 @@ docs/stages/02-llm-fundamentals/
   checkpoint.md
   tokenization/
     index.md
-    resources.md
 ```
 
 Follow these rules:
 
+- Edit Markdown files under `docs/` only.
+- Do not edit generated `.html` files.
+- Do not add files under `site/`.
 - Put broad stage summaries in the stage `index.md`.
 - Put focused topic notes in a topic subdirectory, for example `tokenization/index.md`.
-- Put topic-specific links in `resources.md`.
-- Put examples in a clearly named file, for example `examples.md` or `json-and-http.md`.
+- Every topic subdirectory must have one main content file: `index.md`.
+- Put examples, practice tasks, and resources directly in the topic `index.md`.
 - Use lowercase folder names with hyphens, not spaces.
 - Keep one topic per page.
-- Do not add generated files from `site/`.
+- Do not create `resources.md` files for stage topics.
+- Avoid adding extra files inside a topic folder unless the topic has become too large for one page.
 
 ## Making New Pages Discoverable
 
@@ -63,8 +66,8 @@ MkDocs will build Markdown files under `docs/`, but contributors must link new p
 When you add a topic page:
 
 1. Add the file under the correct stage directory.
-2. Link it from that stage's `index.md` under the `Learn` section.
-3. Link related resource pages from the topic page when useful.
+2. Name the main content file `index.md`.
+3. Link it from that stage's `index.md` under the `Learn` section.
 4. Run a strict build before pushing.
 
 Example:
@@ -77,6 +80,8 @@ Example:
 ```
 
 Only add pages to `mkdocs.yml` when they should appear in the main top-level navigation. Most topic pages should stay linked from their stage page instead.
+
+Important: MkDocs can build a new Markdown file even if nobody links to it. That is not enough for this project. If users should find a page from the live site, link it from the nearest parent `index.md`.
 
 ## Page Style
 
@@ -138,7 +143,7 @@ Build or inspect one small example.
 
 ## Resources
 
-Use `resources.md` for topic-specific links.
+Add useful links directly here.
 ```
 
 ## Content Quality Rules
@@ -151,6 +156,7 @@ Good contributions are practical, accurate, and easy to maintain.
 - Avoid large pasted articles or copied copyrighted text.
 - Add links only when they are useful and relevant.
 - Prefer official documentation, canonical papers, maintained projects, and runnable examples.
+- Put resource links directly inside the relevant topic `index.md`.
 - Explain tradeoffs, not just definitions.
 - Keep claims current. If a tool, model, API, or price may have changed, verify it before adding it.
 

@@ -43,7 +43,6 @@ extra_css:
 not_in_nav: |
   stages/**/checkpoint.md
   stages/*/*/index.md
-  stages/*/*/resources.md
   stages/*/*/examples.md
   stages/*/*/*.md
   reference/resources/*.md

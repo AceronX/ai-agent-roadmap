@@ -23,4 +23,4 @@ Build or document one small example that proves you understand this topic.
 
 ## Resources
 
-Use `resources.md` in this folder when the topic accumulates multiple links, papers, videos, or tools.
+Add useful links directly in this section. Prefer official docs, canonical papers, maintained tools, and runnable examples.

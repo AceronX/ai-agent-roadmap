@@ -51,7 +51,7 @@ Being specific means the model should not need to guess your goal.
 
 Do not only say the topic. Say the exact task, audience, scope, rules, and output.
 
-## The Specific Prompt Builder
+### The Specific Prompt Builder
 
 Use this diagram as the main mental model for this page. A useful prompt is not just a question. It is a small instruction package.
 
@@ -77,7 +77,7 @@ Each part has a job:
 | Rules | What must or must not happen | `Do not invent facts`, `Use simple English` |
 | Output Format | How the answer should look | `5 bullets`, `Markdown table`, `JSON object` |
 
-## Specificity Rule
+### Specificity Rule
 
 Use this rule:
 
@@ -110,7 +110,7 @@ Include:
 - one common mistake
 ```
 
-## Bad Prompt vs Good Prompt
+### Bad Prompt vs Good Prompt
 
 | Bad Prompt | Problem | Good Prompt |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ Include:
 | `Write an email.` | No audience or tone | `Write a polite customer email explaining a delayed shipment. Keep it under 120 words and do not mention internal systems.` |
 | `Make it better.` | "Better" is undefined | `Improve clarity, remove repeated ideas, and keep the original meaning.` |
 
-## The 6 Questions to Ask Before Writing a Prompt
+### The 6 Questions to Ask Before Writing a Prompt
 
 Before you send an important prompt, answer these six questions.
 
@@ -133,7 +133,7 @@ Before you send an important prompt, answer these six questions.
 | What source should it use? | Reduces invented facts | `Use only the notes below` |
 | What format should it return? | Makes output usable | `Markdown table` |
 
-## Prompt Formula
+### Prompt Formula
 
 Use this formula for most practical prompts:
 
@@ -159,7 +159,7 @@ Output:
 {Length, format, tone, and sections}
 ```
 
-## Example 1: Explanation Prompt
+### Example 1: Explanation Prompt
 
 Weak:
 
@@ -201,7 +201,7 @@ Why it works:
 - The exclusion prevents the answer from becoming too broad.
 - The output structure makes the response easy to read.
 
-## Example 2: Summary Prompt
+### Example 2: Summary Prompt
 
 Weak:
 
@@ -245,7 +245,7 @@ Why it works:
 - It has a rule for missing information.
 - The output is predictable.
 
-## Example 3: Code Review Prompt
+### Example 3: Code Review Prompt
 
 Weak:
 
@@ -285,7 +285,7 @@ Why it works:
 - It asks for evidence.
 - It returns a format that can be used in a pull request.
 
-## Example 4: AI Agent Prompt
+### Example 4: AI Agent Prompt
 
 Weak:
 
@@ -324,7 +324,7 @@ Why it works:
 - Risky promises are blocked.
 - The final answer separates customer-facing text from internal notes.
 
-## Specificity Checklist
+### Specificity Checklist
 
 Use this checklist before sending an important prompt.
 
@@ -338,7 +338,7 @@ Use this checklist before sending an important prompt.
 - Did you include a rule for missing information?
 - Can the result be checked?
 
-## Common Specificity Mistakes
+### Common Specificity Mistakes
 
 | Mistake | Weak Prompt | Better Direction |
 | --- | --- | --- |
@@ -349,7 +349,7 @@ Use this checklist before sending an important prompt.
 | Missing boundary | `Give advice` | `Give general information, not legal/medical/financial advice.` |
 | Missing output shape | `Analyze this` | `Return a table with issue, evidence, risk, fix.` |
 
-## When to Keep a Prompt Short
+### When to Keep a Prompt Short
 
 Short prompts are fine when the task is simple and low-risk.
 

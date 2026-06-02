@@ -43,6 +43,8 @@ docs/stages/02-llm-fundamentals/
   checkpoint.md
   tokenization/
     index.md
+    token-counting.md
+    common-mistakes.md
 ```
 
 Follow these rules:
@@ -52,12 +54,65 @@ Follow these rules:
 - Do not add files under `site/`.
 - Put broad stage summaries in the stage `index.md`.
 - Put focused topic notes in a topic subdirectory, for example `tokenization/index.md`.
-- Every topic subdirectory must have one main content file: `index.md`.
-- Put examples, practice tasks, and resources directly in the topic `index.md`.
+- Every topic subdirectory must have a main entry file: `index.md`.
+- Put explanations, examples, practice tasks, and resources directly in the topic `index.md` by default.
 - Use lowercase folder names with hyphens, not spaces.
 - Keep one topic per page.
 - Do not create `resources.md` files for stage topics.
-- Avoid adding extra files inside a topic folder unless the topic has become too large for one page.
+- Add extra Markdown files inside a topic folder only when the topic has become too large for one page.
+- If a topic folder has extra Markdown files, the topic `index.md` must link to every one of them.
+
+## Large Topic Rule
+
+Start with one file:
+
+```text
+docs/stages/02-llm-fundamentals/tokenization/index.md
+```
+
+This is enough for most topics. Keep everything in `index.md` while the page is easy to read.
+
+If the page becomes too large, split it into smaller lesson pages:
+
+```text
+docs/stages/02-llm-fundamentals/tokenization/
+  index.md
+  token-counting.md
+  tokenizer-tools.md
+  common-mistakes.md
+```
+
+When you split a topic, `index.md` becomes the topic landing page. It must summarize the topic and link to each extra page:
+
+```markdown
+# Tokenization
+
+## Goal
+
+Understand how text becomes tokens and why token counts affect context, cost, and latency.
+
+## Lessons
+
+- [Token Counting](token-counting.md)
+- [Tokenizer Tools](tokenizer-tools.md)
+- [Common Mistakes](common-mistakes.md)
+
+## Practice
+
+Build a small script that counts tokens for different prompts.
+
+## Resources
+
+- Useful links for this topic
+```
+
+Use this rule of thumb:
+
+- Under about 1,500 words: keep one `index.md`.
+- Over about 1,500-2,000 words: consider splitting.
+- If the page contains several separate lessons, examples, or exercises: split into linked sub-pages.
+
+Do not split just to create more files. Split only when it makes the topic easier to read.
 
 ## Making New Pages Discoverable
 
@@ -82,6 +137,8 @@ Example:
 Only add pages to `mkdocs.yml` when they should appear in the main top-level navigation. Most topic pages should stay linked from their stage page instead.
 
 Important: MkDocs can build a new Markdown file even if nobody links to it. That is not enough for this project. If users should find a page from the live site, link it from the nearest parent `index.md`.
+
+For extra files inside a topic folder, the nearest parent is the topic `index.md`.
 
 ## Page Style
 

@@ -21,40 +21,39 @@ A simple, ordered path to understand, build, and ship AI agents — from the bas
 
 The roadmap has **14 stages**, grouped into **4 simple phases**. Follow them in order.
 
-```mermaid
-flowchart LR
-    A["Phase 1<br/>Foundations"] --> B["Phase 2<br/>Agent Core"] --> C["Phase 3<br/>Systems"] --> D["Phase 4<br/>Production"]
-```
-
-<div class="phases" markdown>
-<div class="phase" markdown>
-<span class="phase__label">Phase 1</span>
-### Foundations
-Prerequisites, LLMs, and prompts.
+<div class="phase-flow" markdown>
+<div class="flow-step" markdown>
+<span class="flow-step__number">Phase 1</span>
+<span class="flow-step__title">Foundations</span>
+<span class="flow-step__text">Learn the base skills.</span>
 </div>
-<div class="phase" markdown>
-<span class="phase__label">Phase 2</span>
-### Agent Core
-Agent loops, tools, MCP, RAG, memory.
+<div class="flow-step" markdown>
+<span class="flow-step__number">Phase 2</span>
+<span class="flow-step__title">Agent Core</span>
+<span class="flow-step__text">Build agents with tools.</span>
 </div>
-<div class="phase" markdown>
-<span class="phase__label">Phase 3</span>
-### Systems
-Multi-agent, evaluation, security.
+<div class="flow-step" markdown>
+<span class="flow-step__number">Phase 3</span>
+<span class="flow-step__title">Systems</span>
+<span class="flow-step__text">Measure, coordinate, secure.</span>
 </div>
-<div class="phase" markdown>
-<span class="phase__label">Phase 4</span>
-### Production
-Deploy, monitor, and operate.
+<div class="flow-step" markdown>
+<span class="flow-step__number">Phase 4</span>
+<span class="flow-step__title">Production</span>
+<span class="flow-step__text">Deploy and operate.</span>
 </div>
 </div>
 
 ## Where to Start
 
+<div class="stage-list" markdown>
+
 - **New to AI agents?** Begin at [Stage 0 - Orientation](stages/00-orientation/index.md).
 - **Already use LLM APIs?** Jump to [Stage 2 - LLM Fundamentals](stages/02-llm-fundamentals/index.md).
 - **Building agents now?** Go to [Stage 4 - Agent Fundamentals](stages/04-agent-fundamentals/index.md).
 - **Shipping to production?** Start at [Stage 11 - Evaluation](stages/11-evaluation-observability/index.md).
+
+</div>
 
 ## The Learning Standard
 

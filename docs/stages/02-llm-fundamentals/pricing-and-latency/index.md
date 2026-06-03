@@ -1,26 +1,112 @@
 # Pricing and Latency
 
-## Goal
+Pricing and Latency are two of the most important concepts in LLM fundamentals, especially when building AI agents, chatbots, or production applications.
 
-Estimate model cost and performance before running agent workloads.
+## 1. What is Pricing?
+Pricing refers to how much it costs to use an LLM.
 
-## Why It Matters
+Most LLM providers charge based on the number of tokens processed.
 
-This topic is part of the core AI-agent learning path and maps back to the roadmap.sh AI Agents workflow.
+A token is roughly:
 
-## Study Notes
+1 word ≈ 1.3 tokens (English average)
+100 words ≈ 130 tokens
 
-Start with the core idea, then connect it to a small agent-building task. Focus on what the learner must understand, what can go wrong, and how to prove the idea with a simple example.
+For example:
+```
+User:
+What is machine learning?
 
-- Define the topic in plain language.
-- Identify the main tradeoffs or failure modes.
-- Build or inspect one small example.
-- Record what changed in quality, cost, latency, or reliability.
+Assistant:
+Machine learning is a field of AI...
+```
+Both the user's message and the model's response consume tokens.
+---
+#### Pricing Formula
 
-## Practice
+Generally:
 
-Build or document one small example that proves you understand this topic.
+Total Cost
+=
+Input Tokens Cost
++
+Output Tokens Cost
+## 2. What is Latency?
+Latency is the time it takes for the model to produce a response.
 
-## Resources
+Simply:
+Latency=Response Time
+Example
 
-Add useful links directly in this section. Prefer official docs, canonical papers, maintained tools, and runnable examples.
+User sends:
+
+What is reinforcement learning?
+##### Fast Model
+Response in 0.5 seconds
+```
+Latency = 0.5s
+```
+##### Slow Model
+Response in 10 seconds
+```
+Latency = 10s
+```
+---
+#### Components of Latency
+
+Total latency often consists of:
+```
+Network Time
++
+Queue Time
++
+Inference Time
++
+Tool Time
+```
+---
+##### Network Time
+
+Time for data to travel.
+
+Example:
+```
+User → API
+API → User
+```
+Often:
+```
+50ms–500ms
+```
+##### Queue Time
+
+Sometimes servers are busy.
+
+Request waits before processing.
+
+Example:
+```
+Busy GPU cluster
+Inference Time
+```
+The actual thinking/generation time of the model.
+
+Usually the largest component.
+
+##### Tool Time
+
+For agents:
+```
+User
+ ↓
+LLM
+ ↓
+Search Tool
+ ↓
+Database
+ ↓
+LLM
+ ↓
+Answer
+```
+Every tool call adds latency.

@@ -14,11 +14,14 @@ By the end of this topic, you should be able to answer:
 
 ## Architecture for AI Agent
 
+```text
+
 Input -> Chunking -> Embedding Model -> Vector Database <- Embedding Model -> Similarity Search -> Relevant Chunks -> LLM -> Output
                                                                   ▲
                                                                   │
                                                              User Query
-                 
+```
+
 ## What Is an Embedding?
 
 Embeddings are stored in a vector database by first converting data, such as text, images, or audio, into high-dimensional vectors using machine learning models. These vectors, also called embeddings, capture the semantic relationships and patterns within the data. Once generated, each embedding is indexed in the vector database along with its associated metadata, such as the original data (e.g., text or image) or an identifier. The vector database then organizes these embeddings to support efficient similarity searches, typically using techniques like approximate nearest neighbor (ANN) search.

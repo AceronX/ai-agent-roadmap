@@ -18,6 +18,8 @@ After this lesson, you should be able to explain:
 
 RAG means **Retrieval-Augmented Generation**.
 
+
+
 Retrieval-Augmented Generation (RAG) combines information retrieval with language generation to produce more accurate, context-aware responses. It uses two components: a retriever, which searches a database to find relevant information, and a generator, which crafts a response based on the retrieved data. Implementing RAG involves using a retrieval model (e.g., embeddings and vector search) alongside a generative language model (like GPT). The process starts by converting a query into embeddings, retrieving relevant documents from a vector database, and feeding them to the language model, which then generates a coherent, informed response. This approach grounds outputs in real-world data, resulting in more reliable and detailed answers.
 
 ```text
@@ -33,6 +35,10 @@ Do not ask the model to guess.
 Give the model useful source text first.
 Then ask it to answer.
 ```
+
+![AWS diagram showing how RAG retrieves external knowledge before sending context to a foundation model](../../../assets/images/aws-sagemaker-rag-architecture.jpg)
+
+Source image: [AWS SageMaker documentation](https://docs.aws.amazon.com/images/sagemaker/latest/dg/images/jumpstart/jumpstart-fm-rag.jpg).
 
 ## Why RAG Matters
 

@@ -2,25 +2,423 @@
 
 ## Goal
 
-Learn how retrieval-augmented generation grounds model outputs in external knowledge.
+Understand Retrieval-Augmented Generation, or RAG, in a simple developer-focused way.
 
-## Why It Matters
+After this lesson, you should be able to explain:
 
-This topic is part of the core AI-agent learning path and maps back to the roadmap.sh AI Agents workflow.
+- what RAG means,
+- why RAG is useful,
+- how retrieval and generation work together,
+- what a basic RAG architecture looks like,
+- how documents become searchable context,
+- what can go wrong in a RAG system,
+- how to build and test a small RAG example.
 
-## Study Notes
+## Simple Definition
 
-Start with the core idea, then connect it to a small agent-building task. Focus on what the learner must understand, what can go wrong, and how to prove the idea with a simple example.
+RAG means **Retrieval-Augmented Generation**.
 
-- Define the topic in plain language.
-- Identify the main tradeoffs or failure modes.
-- Build or inspect one small example.
-- Record what changed in quality, cost, latency, or reliability.
+It is a way to make an LLM look up useful information before it writes an answer.
 
-## Practice
+```text
+Retrieval  = search for relevant information
+Augmented  = add that information to the prompt
+Generation = let the LLM write the final answer
+```
 
-Build or document one small example that proves you understand this topic.
+The simple idea:
+
+```text
+Do not ask the model to guess.
+Give the model useful source text first.
+Then ask it to answer.
+```
+
+## Why RAG Matters
+
+LLMs have limits:
+
+- They do not automatically know your private documents.
+- They may not know new information after training.
+- They can forget details in long conversations.
+- They can sound confident even when they are wrong.
+- They cannot fit every document into the context window.
+
+RAG helps because it gives the model relevant outside information on demand.
+
+RAG can help a system:
+
+- answer from company documents,
+- use newer information,
+- reduce guessing,
+- cite real sources,
+- avoid expensive fine-tuning for every knowledge update,
+- answer questions about data the base model never saw during training.
+
+## The Basic Picture
+
+```text
+User asks a question
+        |
+        v
+Search knowledge source
+        |
+        v
+Retrieve relevant passages
+        |
+        v
+Put passages into the prompt
+        |
+        v
+LLM writes final answer
+```
+
+In one sentence:
+
+```text
+RAG = search first, answer second.
+```
+
+## Two Main Pipelines
+
+A RAG app usually has two pipelines:
+
+- indexing pipeline,
+- question-answering pipeline.
+
+### 1. Indexing Pipeline
+
+This happens before the user asks a question.
+
+```text
+Documents
+  -> clean text
+  -> split into chunks
+  -> create embeddings
+  -> store vectors + text + metadata
+  -> make the knowledge base searchable
+```
+
+Example:
+
+```text
+Company handbook
+  -> chunk 1: Password reset policy
+  -> chunk 2: Vacation approval process
+  -> chunk 3: Expense rules
+  -> chunk 4: Laptop return process
+```
+
+Each chunk is embedded and stored so the system can find it later.
+
+### 2. Question-Answering Pipeline
+
+This happens when the user asks a question.
+
+```text
+Question
+  -> turn question into search query
+  -> retrieve top matching chunks
+  -> add chunks to the prompt
+  -> ask the LLM to answer using those chunks
+  -> return answer with sources
+```
+
+Example:
+
+```text
+User:
+  "How do I reset my password?"
+
+Retriever finds:
+  "To reset your password, open the identity portal..."
+
+LLM answers:
+  "Open the identity portal and choose Reset Password. Source: IT Handbook."
+```
+
+## Component Breakdown
+
+| Component | What It Does |
+| --- | --- |
+| User query | The question or task from the user |
+| Retriever | Searches for relevant information |
+| Knowledge source | Documents, database rows, tickets, web pages, notes, or files |
+| Chunks | Small pieces of documents |
+| Embeddings | Number vectors that represent meaning |
+| Vector store | Stores embeddings and searches by similarity |
+| Metadata | Source, URL, date, owner, permission, category |
+| Prompt builder | Combines user question and retrieved context |
+| LLM | Generates the final answer |
+| Citations | Show where the answer came from |
+
+## RAG With Embeddings
+
+Most modern RAG systems use embeddings and vector search.
+
+```text
+Document chunk:
+  "Employees can reset passwords in the identity portal."
+
+Embedding:
+  [0.12, -0.44, 0.87, ...]
+
+User question:
+  "How can I recover my account password?"
+
+Query embedding:
+  [0.11, -0.40, 0.82, ...]
+
+Vector search:
+  These meanings are close, so return the chunk.
+```
+
+This is useful because the user and the document do not need to use the same words.
+
+## Simple RAG Example
+
+Imagine this small knowledge base:
+
+```text
+Document A:
+  Passwords can be reset from the identity portal.
+
+Document B:
+  Expense reports must be submitted within 30 days.
+
+Document C:
+  Laptops must be returned to IT before the last work day.
+```
+
+User asks:
+
+```text
+Where do I reset my password?
+```
+
+RAG flow:
+
+```text
+1. Search the knowledge base.
+2. Retrieve Document A.
+3. Add Document A to the prompt.
+4. Ask the LLM to answer only from the retrieved context.
+5. Return the answer.
+```
+
+Prompt sent to the LLM:
+
+```text
+Use the context below to answer the user.
+If the context does not contain the answer, say you do not know.
+
+Context:
+Passwords can be reset from the identity portal.
+
+Question:
+Where do I reset my password?
+```
+
+Good answer:
+
+```text
+You can reset your password from the identity portal.
+```
+
+Bad answer:
+
+```text
+You can reset it by calling your manager.
+```
+
+The bad answer is not grounded in the retrieved source.
+
+## RAG As A Developer Workflow
+
+For developers, a simple RAG system can be built in this order:
+
+1. Choose a small knowledge source.
+2. Split the documents into chunks.
+3. Store each chunk with metadata.
+4. Create embeddings for each chunk.
+5. Save embeddings in a vector database or local vector index.
+6. Embed the user's question.
+7. Retrieve the most similar chunks.
+8. Put the chunks into the prompt.
+9. Tell the LLM to answer using only the provided context.
+10. Return the answer and source.
+
+## Prompt Template
+
+A basic RAG prompt should be strict.
+
+```text
+You are a helpful assistant.
+Answer the question using only the provided context.
+If the context does not contain the answer, say:
+"I do not know from the provided context."
+Include the source name when possible.
+
+Context:
+{retrieved_chunks}
+
+Question:
+{user_question}
+```
+
+This reduces unsupported answers. It does not fully remove hallucinations, so you still need testing.
+
+## When To Use RAG
+
+Use RAG when:
+
+- the answer depends on private data,
+- the answer depends on recent data,
+- the knowledge changes often,
+- users need citations,
+- the model should answer from a known source,
+- fine-tuning would be too slow or expensive,
+- the model needs access to many documents.
+
+Do not use RAG for everything.
+
+RAG may be unnecessary when:
+
+- the task is simple writing or rewriting,
+- the answer is already in the prompt,
+- the model's general knowledge is enough,
+- there is no external knowledge source,
+- incorrect retrieval would add more risk than value.
+
+## RAG vs Fine-Tuning
+
+RAG and fine-tuning solve different problems.
+
+| Need | Better Tool |
+| --- | --- |
+| Add new facts | RAG |
+| Use private documents | RAG |
+| Keep answers up to date | RAG |
+| Cite sources | RAG |
+| Change tone or style | Fine-tuning |
+| Teach repeated output format | Fine-tuning or prompting |
+| Improve behavior on many examples | Fine-tuning |
+
+Simple rule:
+
+```text
+Use RAG for knowledge.
+Use fine-tuning for behavior.
+```
+
+## Common Failure Modes
+
+Wrong chunk retrieved:
+
+The LLM receives irrelevant context and writes a bad answer.
+
+Missing chunk:
+
+The correct answer exists, but retrieval did not find it.
+
+Chunk too large:
+
+The chunk includes too much noise.
+
+Chunk too small:
+
+The chunk misses important surrounding context.
+
+No source metadata:
+
+The answer cannot show where it came from.
+
+Stale documents:
+
+The system retrieves outdated information.
+
+Permission leak:
+
+The system retrieves data the user should not see.
+
+Prompt ignores context:
+
+The model answers from general knowledge instead of the retrieved text.
+
+Too many retrieved chunks:
+
+The prompt becomes noisy and expensive.
+
+Too few retrieved chunks:
+
+The answer misses important evidence.
+
+## How To Improve RAG Quality
+
+Improve the documents:
+
+- remove duplicate content,
+- remove obsolete files,
+- keep document titles and headings,
+- add source metadata,
+- update the index when documents change.
+
+Improve retrieval:
+
+- tune chunk size,
+- use metadata filters,
+- use hybrid search for exact terms,
+- retrieve more candidates,
+- rerank the best candidates,
+- test with realistic questions.
+
+Improve generation:
+
+- use a strict prompt,
+- require citations,
+- tell the model what to do when context is missing,
+- keep retrieved context short and relevant,
+- evaluate final answers.
+
+## Evaluation Checklist
+
+Test retrieval before testing the chatbot.
+
+Create a small table:
+
+```text
+Question | Expected source | Expected answer
+```
+
+Example:
+
+```text
+Question:
+  How do I reset my password?
+
+Expected source:
+  IT Handbook > Password Reset
+
+Expected answer:
+  Use the identity portal.
+```
+
+Check:
+
+- Did the correct source appear in the top results?
+- Was the first result useful?
+- Did the final answer use the retrieved context?
+- Did the answer cite the source?
+- Did the answer refuse when context was missing?
+- Was the response fast enough?
+- Did permission filtering work?
 
 ## Resources
 
-Add useful links directly in this section. Prefer official docs, canonical papers, maintained tools, and runnable examples.
+- [OpenAI retrieval guide](https://platform.openai.com/docs/guides/retrieval)
+- [OpenAI guide: optimizing LLM accuracy with RAG](https://platform.openai.com/docs/guides/optimizing-llm-accuracy/understanding-the-tools)
+- [IBM: What is retrieval augmented generation?](https://www.ibm.com/think/topics/retrieval-augmented-generation)
+- [IBM video: What is Retrieval-Augmented Generation?](https://www.ibm.com/think/videos/rag)
+- [Google Cloud: What is Retrieval-Augmented Generation?](https://cloud.google.com/use-cases/retrieval-augmented-generation)
+- [An introduction to RAG and simple/complex RAG](https://readmedium.com/an-introduction-to-rag-and-simple-complex-rag-9c3aa9bd017b)
+- [Learn RAG from Scratch playlist](https://skillagents.ai/videos/learn-rag-from-scratch)

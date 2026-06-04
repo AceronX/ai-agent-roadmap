@@ -24,6 +24,8 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
+    - navigation.instant
+    - navigation.instant.progress
     - navigation.tabs
     - navigation.indexes
     - navigation.top
@@ -37,7 +39,7 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - stylesheets/extra.css?v=9
+  - stylesheets/extra.css?v=10
 
 not_in_nav: |
   stages/**/checkpoint.md

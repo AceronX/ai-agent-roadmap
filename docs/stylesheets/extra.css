@@ -260,22 +260,6 @@
 
 /* -------------------------- Topic learning pages ------------------------ */
 
-.md-main__inner:has(.topic-page) {
-  max-width: 92rem;
-}
-
-.md-content:has(.topic-page) {
-  min-width: 0;
-}
-
-.md-content:has(.topic-page) .md-content__inner {
-  max-width: none;
-  margin-right: 0;
-  margin-left: 0;
-  padding-right: 1rem;
-  padding-left: 1rem;
-}
-
 .md-typeset .topic-page {
   --topic-border: color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
   --topic-soft: color-mix(in srgb, var(--md-primary-fg-color) 4%, var(--md-default-bg-color));
@@ -569,11 +553,6 @@
 }
 
 @media screen and (max-width: 620px) {
-  .md-content:has(.topic-page) .md-content__inner {
-    padding-right: 0.8rem;
-    padding-left: 0.8rem;
-  }
-
   .topic-hero {
     padding: 1.35rem;
   }

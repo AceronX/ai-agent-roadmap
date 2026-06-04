@@ -25,7 +25,6 @@ theme:
         name: Switch to light mode
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.indexes
     - navigation.top
     - navigation.tracking
@@ -77,14 +76,14 @@ nav:
           - What Are AI Agents: stages/00-orientation/what-are-ai-agents/index.md
       - 01 Prerequisites:
           - stages/01-prerequisites/index.md
-          - Git and Terminal: stages/01-prerequisites/git-and-terminal/index.md
           - Backend Basics: stages/01-prerequisites/backend-basics/index.md
+          - Git and Terminal: stages/01-prerequisites/git-and-terminal/index.md
       - 02 LLM Fundamentals:
           - stages/02-llm-fundamentals/index.md
-          - Model Families: stages/02-llm-fundamentals/model-families/index.md
           - Transformer Models: stages/02-llm-fundamentals/transformer-models/index.md
           - Tokenization: stages/02-llm-fundamentals/tokenization/index.md
           - Context Windows: stages/02-llm-fundamentals/context-windows/index.md
+          - Model Families: stages/02-llm-fundamentals/model-families/index.md
           - Generation Controls: stages/02-llm-fundamentals/generation-controls/index.md
           - Pricing and Latency: stages/02-llm-fundamentals/pricing-and-latency/index.md
           - Embeddings and Vector Search: stages/02-llm-fundamentals/embeddings-vector-search/index.md
@@ -108,15 +107,15 @@ nav:
           - Tool Definition: stages/05-tools-and-actions/tool-definition/index.md
           - Tool Schemas: stages/05-tools-and-actions/tool-schemas/index.md
           - Function Calling: stages/05-tools-and-actions/function-calling/index.md
-          - Common Agent Tools: stages/05-tools-and-actions/common-agent-tools/index.md
           - Tool Error Handling: stages/05-tools-and-actions/tool-error-handling/index.md
+          - Common Agent Tools: stages/05-tools-and-actions/common-agent-tools/index.md
           - Boundaries and Destructive Tools: stages/05-tools-and-actions/boundaries-and-destructive-tools/index.md
       - 06 MCP:
           - stages/06-mcp/index.md
           - MCP Overview: stages/06-mcp/mcp-overview/index.md
           - MCP Hosts, Clients, Servers: stages/06-mcp/mcp-hosts-clients-servers/index.md
-          - Local vs Remote MCP: stages/06-mcp/local-vs-remote-mcp/index.md
           - Building MCP Servers: stages/06-mcp/building-mcp-servers/index.md
+          - Local vs Remote MCP: stages/06-mcp/local-vs-remote-mcp/index.md
       - 07 RAG and Memory: stages/07-rag-and-memory/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md
       - 09 Building Agents: stages/09-building-agents/index.md

@@ -38,7 +38,7 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - stylesheets/extra.css?v=8
+  - stylesheets/extra.css?v=9
 
 not_in_nav: |
   stages/**/checkpoint.md

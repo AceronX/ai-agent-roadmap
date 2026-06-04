@@ -14,7 +14,7 @@ Learn how to design safe, reliable tools that an agent can call.
 - [Function Calling](function-calling/index.md)
 - [Tool Error Handling](tool-error-handling/index.md)
 - [Common Agent Tools](common-agent-tools/index.md)
-- Permission boundaries for read, write, and destructive tools
+- [Permission boundaries for read, write, and destructive tools](boundaries-and-destructive-tools/index.md)
 
 ## Build
 

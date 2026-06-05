@@ -187,6 +187,152 @@ Function returns result
 Step 7
 AI creates final answer
 ```
+# 5. Function vs Tool vs Action
+
+| Term     | Meaning                           |
+| -------- | --------------------------------- |
+| Function | Actual code                       |
+| Tool     | Function exposed to AI            |
+| Action   | Real-world task performed         |
+| Agent    | AI that decides which tool to use |
+
+Example:
+```
+def send_email():
+    ...
+```
+
+Function:
+```
+send_email()
+```
+
+Tool:
+```
+Email Tool
+```
+
+Action:
+```
+Email gets sent
+```
+
+Agent:
+```
+Decides when to send email
+```
+# 6. Single Tool Example
+
+Imagine a calculator tool.
+```
+def multiply(a,b):
+    return a*b
+```
+User:
+```
+23 × 42
+```
+Agent:
+```
+Need calculator
+```
+Function call:
+```
+{
+  "name":"multiply",
+  "arguments":{
+      "a":23,
+      "b":42
+  }
+}
+```
+Tool returns:
+```
+966
+```
+AI:
+```
+23 × 42 = 966
+```
+# 7. Multi-Tool Function Calling
+Modern agents can use many tools.
+
+Example:
+
+User:
+```
+Find cheapest flight to Paris
+and email me the details.
+```
+Agent workflow:
+
+```
+User
+ │
+ ▼
+Search Flight Tool
+ │
+ ▼
+Find Best Flight
+ │
+ ▼
+Email Tool
+ │
+ ▼
+Send Email
+ │
+ ▼
+Return Confirmation
+```
+Functions called:
+```
+search_flights()
+send_email()
+```
+Multiple tools can be chained together.
+
+# 8. Function Calling in AI Agents
+
+Agent Loop:
+```
+Observe
+   │
+   ▼
+Reason
+   │
+   ▼
+Choose Tool
+   │
+   ▼
+Call Tool
+   │
+   ▼
+Get Result
+   │
+   ▼
+Reason Again
+   │
+   ▼
+Final Answer
+```
+This cycle is often called:
+
+Tool-Use Loop
+
+or
+
+Reasoning Loop
+
+# 9. Function Calling vs Prompting
+
+| Prompt Only        | Function Calling |
+| ------------------ | ---------------- |
+| Can explain        | Can execute      |
+| Can guess          | Can verify       |
+| Text only          | Real actions     |
+| No APIs            | Uses APIs        |
+| No database access | Database access  |
+
 
 # Summary
 

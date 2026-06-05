@@ -4,7 +4,7 @@ Function Calling is one of the most important concepts in modern AI agents.
 Without function calling, an AI can only talk.
 With function calling, an AI can do things.
 
-## 1. What is Function Calling?
+# 1. What is Function Calling?
 Function Calling is a mechanism that allows an AI agent to use external tools, APIs, databases, calculators, search engines, applications, or custom code.
 
 Without function calling, an AI can only generate text.
@@ -30,7 +30,9 @@ Think of it like this:
 | Sends email     | Calls email function      |
 | Checks weather  | Calls weather API         |
 | Books hotel     | Calls booking API         |
-### Overall Architecture
+
+
+# Overall Architecture
           USER
             │
             ▼
@@ -59,7 +61,8 @@ Think of it like this:
             │
             ▼
          USER
-## 2. Why It Matters
+
+# 2. Why It Matters
 
 Large Language Models have limitations.
 
@@ -105,7 +108,7 @@ The LLM is the brain.
 
 Functions are the hands.
 
-## 3. What is a Tool?
+# 3. What is a Tool?
 A Tool is simply a function that the AI can call.
 Example:
 def add(a, b):
@@ -133,7 +136,8 @@ AI may call:
 Result:
 
 55
-## 4. Function Calling Flow
+
+# 4. Function Calling Flow
 
 The complete process:
 Step 1

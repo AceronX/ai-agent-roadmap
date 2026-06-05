@@ -7,7 +7,7 @@ Stopping criteria is the set of rules that tells an AI agent:
 "You have done enough. Stop working and return the result."
 
 Without stopping criteria, an agent could keep thinking, planning, calling tools, and generating actions forever.
-## AI Agent Loop
+# AI Agent Loop
 
 Most agents follow this cycle:
 
@@ -38,7 +38,10 @@ Goal Finished?
  STOP      Repeat
 
 The Stopping Criteria is the decision point.
-## Why It Matters
+
+
+# Why It Matters
+
 An AI agent typically follows a loop:
 ```
 User Request
@@ -146,6 +149,7 @@ or
 ```
 Research confidence > 90%.
 ```
+
 ## Common Types of Stopping Criteria
 ### 1. Goal Completion
 
@@ -294,6 +298,8 @@ max_iterations=20	Stop after 20 loops
 max_execution_time=300	Stop after 300 seconds
 
 # Complete Stopping Criteria Flow
+
+
 Start Agent
       │
       ▼
@@ -344,6 +350,8 @@ Continue Loop
 | Resource Limit    | Budget exhausted    | $1 spent          |
 | Human Approval    | Await user decision | Delete files      |
 | No Progress       | Agent stuck         | Repeating actions |
+
+
 ## Key Takeaway
 
 A good AI agent rarely relies on only one stopping criterion. Most production systems use a combination such as:

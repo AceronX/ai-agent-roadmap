@@ -33,6 +33,7 @@ Think of it like this:
 
 
 # Overall Architecture
+```
           USER
             │
             ▼
@@ -62,6 +63,7 @@ Think of it like this:
             ▼
          USER
 
+```
 # 2. Why It Matters
 
 Large Language Models have limitations.
@@ -87,7 +89,7 @@ But cannot automatically:
 Function Calling solves this.
 
 ### AI Agent = Brain + Tools
-
+```
           AI AGENT
 
      ┌───────────────┐
@@ -103,7 +105,7 @@ Function Calling solves this.
      ▼        ▼        ▼
 
     Tools   Tools   Tools
-
+```
 The LLM is the brain.
 
 Functions are the hands.
@@ -111,20 +113,23 @@ Functions are the hands.
 # 3. What is a Tool?
 A Tool is simply a function that the AI can call.
 Example:
+```
 def add(a, b):
     return a + b
+```
 Tool definition:
-
+```
 {
   "name": "add",
   "description": "Add two numbers"
 }
+```
 When user asks:
-
+```
 25 + 30
-
+```
 AI may call:
-
+```
 {
   "name": "add",
   "arguments": {
@@ -132,15 +137,17 @@ AI may call:
     "b": 30
   }
 }
-
+```
 Result:
-
+```
 55
+```
 
 # 4. Function Calling Flow
 
 The complete process:
 Step 1
+```
 User asks question
 
         │
@@ -178,6 +185,7 @@ Function returns result
 
 Step 7
 AI creates final answer
+```
 
 # Summary
 

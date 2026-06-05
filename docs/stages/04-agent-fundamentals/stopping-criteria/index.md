@@ -10,7 +10,7 @@ Without stopping criteria, an agent could keep thinking, planning, calling tools
 # AI Agent Loop
 
 Most agents follow this cycle:
-
+```
 ┌──────────────┐
 │ User Request │
 └──────┬───────┘
@@ -36,7 +36,7 @@ Goal Finished?
  Yes         No
    │          │
  STOP      Repeat
-
+```
 The Stopping Criteria is the decision point.
 
 
@@ -299,7 +299,7 @@ max_execution_time=300	Stop after 300 seconds
 
 # Complete Stopping Criteria Flow
 
-
+```
 Start Agent
       │
       ▼
@@ -337,9 +337,10 @@ Budget Exhausted?
        │
        ▼
 Continue Loop
-
+```
 
 # Summary Table
+
 | Stopping Criteria | Description         | Example           |
 | ----------------- | ------------------- | ----------------- |
 | Goal Completion   | Task finished       | Answer found      |

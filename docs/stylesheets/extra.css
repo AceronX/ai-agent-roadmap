@@ -648,3 +648,164 @@
     }
   }
 }
+
+/* -------------------------- Diagram viewer ------------------------------ */
+
+.diagram-viewer {
+  position: relative;
+}
+
+.diagram-viewer__button {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.62rem;
+  height: 1.62rem;
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--md-default-bg-color) 86%, transparent);
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  opacity: 0.78;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease;
+}
+
+.diagram-viewer__button svg {
+  width: 0.82rem;
+  height: 0.82rem;
+  fill: currentColor;
+}
+
+.diagram-viewer__button:hover,
+.diagram-viewer__button:focus-visible {
+  border-color: color-mix(in srgb, var(--md-primary-fg-color) 44%, var(--md-default-fg-color--lightest));
+  background: var(--md-default-bg-color);
+  color: var(--md-primary-fg-color);
+  opacity: 1;
+}
+
+.diagram-modal[hidden] {
+  display: none;
+}
+
+.diagram-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+
+.diagram-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.68);
+}
+
+.diagram-modal__panel {
+  position: absolute;
+  inset: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.34);
+}
+
+.diagram-modal__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  background: color-mix(in srgb, var(--md-primary-fg-color) 5%, var(--md-default-bg-color));
+}
+
+.diagram-modal__title {
+  color: var(--md-default-fg-color);
+  font-size: 0.85rem;
+}
+
+.diagram-modal__close {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.diagram-modal__close:hover,
+.diagram-modal__close:focus-visible {
+  border-color: var(--md-primary-fg-color);
+  color: var(--md-primary-fg-color);
+}
+
+.diagram-modal__body {
+  flex: 1;
+  overflow: auto;
+  padding: 1.5rem;
+}
+
+.diagram-modal__diagram {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min-content;
+  min-height: 100%;
+  margin: 0;
+  padding: 1rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.diagram-modal__loading,
+.diagram-modal__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18rem;
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85rem;
+}
+
+.diagram-modal__source {
+  width: 100%;
+  margin: 0;
+}
+
+.diagram-modal__diagram .diagram-viewer__button {
+  display: none;
+}
+
+.diagram-modal__diagram svg {
+  width: auto;
+  max-width: none;
+  height: auto;
+  min-width: min(100%, 56rem);
+}
+
+.diagram-modal-open {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 620px) {
+  .diagram-modal__panel {
+    inset: 0.65rem;
+  }
+
+  .diagram-modal__body {
+    padding: 0.9rem;
+  }
+}

@@ -39,7 +39,10 @@ theme:
     - content.tabs.link
 
 extra_css:
-  - stylesheets/extra.css?v=10
+  - stylesheets/extra.css?v=15
+
+extra_javascript:
+  - javascripts/diagram-viewer.js?v=5
 
 not_in_nav: |
   stages/**/checkpoint.md

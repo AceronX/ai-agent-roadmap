@@ -146,8 +146,9 @@ Result:
 # 4. Function Calling Flow
 
 The complete process:
-Step 1
 ```
+Step 1
+
 User asks question
 
         │

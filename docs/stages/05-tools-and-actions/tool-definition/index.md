@@ -447,18 +447,6 @@ Examples:
 
 Then convert it into your framework's schema format.
 
-## What This Topic Does Not Cover
-
-To avoid overlap with the rest of Stage 05:
-
-| Topic | Covered Elsewhere |
-| --- | --- |
-| JSON Schema, Pydantic, and Zod validation | [Tool Schemas](../tool-schemas/index.md) |
-| API-specific function calling flow | [Function Calling](../function-calling/index.md) |
-| Retries, timeouts, and failed tool calls | [Tool Error Handling](../tool-error-handling/index.md) |
-| Search, file, database, browser, and code tools | [Common Agent Tools](../common-agent-tools/index.md) |
-| Read, write, destructive, and approval boundaries | [Permission boundaries](../boundaries-and-destructive-tools/index.md) |
-
 ## Practice
 
 Write definitions for three tools in the same product area.

@@ -13,7 +13,7 @@ Understand Model Context Protocol as a standard way for agents to connect to too
 - [MCP Hosts, Clients, and Servers](mcp-hosts-clients-servers/index.md)
 - [Building MCP Servers](building-mcp-servers/index.md)
 - [Local vs Remote MCP](local-vs-remote-mcp/index.md)
-- Tool and resource exposure
+- [Tool and Resource Exposure](tool-and-resource-exposure/index.md)
 - Security boundaries for MCP-connected tools
 
 ## Build
@@ -24,6 +24,7 @@ Build a simple MCP server that exposes safe tools and document how a host connec
 
 - You can explain MCP as agent-to-tool communication.
 - You can identify host, client, and server responsibilities.
+- You can distinguish exposed resources from exposed tools.
 - You can describe when local MCP is safer than remote MCP.
 
 ## Checkpoint

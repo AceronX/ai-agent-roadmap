@@ -29,6 +29,10 @@ Create a model comparison notebook or script that tests the same prompt across m
 - You can estimate cost before running a workload.
 - You understand when RAG is better than long context or fine-tuning.
 
+## Test
+
+Use the [Test of LLM Fundamentals](test-of-llm-fundamentals/index.md) to check your understanding of every topic in this stage.
+
 ## Checkpoint
 
 Use the [Stage 2 checkpoint](checkpoint.md) before moving on.

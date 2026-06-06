@@ -30,3 +30,7 @@ Build a tool-calling agent with calculator, web/API, and file-safe tools.
 ## Checkpoint
 
 Use the [Stage 5 checkpoint](checkpoint.md) before moving on.
+
+## Test
+
+Use the [Test of 05 Tools and Actions](test-of-05-tools-and-actions/index.md) to check your understanding of every topic in this stage.

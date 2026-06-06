@@ -117,6 +117,7 @@ nav:
           - Tool Error Handling: stages/05-tools-and-actions/tool-error-handling/index.md
           - Common Agent Tools: stages/05-tools-and-actions/common-agent-tools/index.md
           - Boundaries and Destructive Tools: stages/05-tools-and-actions/boundaries-and-destructive-tools/index.md
+          - Test of 05 Tools and Actions: stages/05-tools-and-actions/test-of-05-tools-and-actions/index.md
       - 06 MCP:
           - stages/06-mcp/index.md
           - MCP Overview: stages/06-mcp/mcp-overview/index.md

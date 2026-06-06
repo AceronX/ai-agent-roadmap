@@ -25,6 +25,10 @@ Build a prompt testing lab with several prompts, test inputs, expected outputs, 
 - You can test prompt changes instead of guessing.
 - You can use structured output formats when downstream code depends on the result.
 
+## Test
+
+Use the [Test of 03 Prompt Engineering](test-of-03-prompt-engineering/index.md) to check your understanding of every topic in this stage.
+
 ## Checkpoint
 
 Use the [Stage 3 checkpoint](checkpoint.md) before moving on.

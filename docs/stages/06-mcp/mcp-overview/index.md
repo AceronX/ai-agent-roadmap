@@ -139,16 +139,19 @@ Instead of each AI app building every integration itself, external capabilities 
 
 ```mermaid
 flowchart LR
-    A[AI App / MCP Host] --> B[MCP Client]
-    B --> C[MCP Server: GitHub]
-    B --> D[MCP Server: Database]
-    B --> E[MCP Server: Files]
-    C --> F[GitHub API]
-    D --> G[Database]
-    E --> H[Local File System]
+    H[AI App / MCP Host]
+    H --> C1[MCP Client<br/>GitHub connection]
+    H --> C2[MCP Client<br/>Database connection]
+    H --> C3[MCP Client<br/>Files connection]
+    C1 --> S1[MCP Server: GitHub]
+    C2 --> S2[MCP Server: Database]
+    C3 --> S3[MCP Server: Files]
+    S1 --> X1[GitHub API]
+    S2 --> X2[Database]
+    S3 --> X3[Local File System]
 ```
 
-**How to read this diagram:** the AI application talks MCP. Each MCP server handles the details of one external system or capability.
+**How to read this diagram:** the host can connect to several MCP servers. Each server normally has its own MCP client connection inside the host.
 
 ### Plain-English Definition
 

@@ -277,6 +277,164 @@ Remote MCP makes the server easier to reuse across users and environments, but
 it also introduces network, authentication, authorization, deployment, scaling,
 and monitoring concerns.
 
+### What You Can Do With Remote MCP
+
+Remote MCP is useful when the assistant needs a shared service instead of local
+machine context. The server runs independently, usually behind HTTPS, and many
+hosts or users can connect to the same integration.
+
+Common remote MCP use cases:
+
+| Remote MCP server | What it lets the agent do | Example user request |
+| --- | --- | --- |
+| Issue tracker | Search, summarize, and update shared issues | `Summarize the highest-priority bugs opened this week.` |
+| Observability | Inspect incidents, traces, logs, and alerts | `Find the service causing the latest checkout incident.` |
+| Company knowledge base | Search shared docs, policies, and runbooks | `Find the escalation policy for enterprise support.` |
+| CRM or support platform | Read customer records and support history | `Summarize this customer's last three support cases.` |
+| Hosted database | Query approved business metrics | `Show active trials by region for this week.` |
+| Git hosting platform | Read pull requests, issues, branches, and reviews | `Summarize open PRs waiting for review.` |
+| Messaging platform | Read channels or draft messages with approval | `Draft a status update for the incident channel.` |
+
+Remote MCP is valuable when the source of truth already lives outside the
+developer's machine and multiple users need the same controlled integration.
+
+### Remote MCP Workflow Examples
+
+#### Example 1: Production Incident Assistant
+
+```text
+Goal:
+Explain what caused the latest checkout incident.
+
+Remote MCP servers:
+- observability server for incidents, traces, and logs
+- issue tracker server for related bug reports
+- knowledge base server for runbooks
+
+Agent flow:
+1. Read the active incident.
+2. Inspect related traces and error groups.
+3. Search runbooks for the affected service.
+4. Find linked issues or deployments.
+5. Produce a short incident summary with evidence.
+```
+
+This is a good remote MCP use case because the data is hosted, shared, and
+operational. The server should enforce authentication, authorization, rate
+limits, and audit logging.
+
+#### Example 2: Customer Support Assistant
+
+```text
+Goal:
+Summarize a customer's current account state and open support cases.
+
+Remote MCP servers:
+- CRM server for account records
+- support platform server for tickets
+- knowledge base server for product policies
+
+Agent flow:
+1. Retrieve the customer's account record.
+2. Search open support cases.
+3. Find relevant policy or troubleshooting docs.
+4. Draft a support summary.
+5. Ask for approval before sending any message.
+```
+
+This is a good remote MCP use case because support agents need shared customer
+systems, not one user's local files. The main risk is exposing customer data to
+the wrong user or tenant.
+
+#### Example 3: Team Knowledge Assistant
+
+```text
+Goal:
+Find the approved deployment checklist for mobile releases.
+
+Remote MCP servers:
+- company docs server
+- release management server
+
+Agent flow:
+1. Search the shared docs index.
+2. Filter to approved or current documents.
+3. Read the deployment checklist.
+4. Check release status if needed.
+5. Return the checklist with links.
+```
+
+This is a better remote MCP fit than local MCP because the knowledge base should
+be consistent across the team and centrally maintained.
+
+#### Example 4: Remote Git Hosting Assistant
+
+```text
+Goal:
+Summarize open pull requests for the backend team.
+
+Remote MCP servers:
+- Git hosting server
+- issue tracker server
+
+Agent flow:
+1. List open pull requests for the backend repository.
+2. Filter by team label or branch convention.
+3. Read review status and linked issues.
+4. Group PRs by blocked, ready for review, and ready to merge.
+5. Produce a team summary.
+```
+
+This is different from a local Git MCP server. Local Git is best for the current
+working tree. Remote Git hosting is best for shared PRs, reviews, issues, and
+repository metadata.
+
+### Remote MCP Configuration Example
+
+A remote MCP server is usually configured as a network endpoint instead of a
+local command.
+
+```json
+{
+  "mcpServers": {
+    "company-docs": {
+      "url": "https://mcp.example.com/docs"
+    }
+  }
+}
+```
+
+Real deployments should include authentication and authorization. The exact
+configuration depends on the host, but the design should answer:
+
+- Which users can connect?
+- Which tools can each user call?
+- Which resources can each user read?
+- How are tokens or credentials stored?
+- What gets logged for audit and debugging?
+
+For example, a remote issue tracker MCP server might expose only issue-reading
+tools to most users, while requiring additional permissions for status changes
+or comments.
+
+### Remote MCP Safety Checklist
+
+Before exposing a remote MCP server, ask:
+
+- Is the server reachable only over HTTPS?
+- How does the server authenticate users or clients?
+- Does authorization check the user's real permissions in the backing system?
+- Is tenant or workspace isolation enforced?
+- Are tool calls logged with user, time, arguments, and result summary?
+- Are rate limits and timeouts configured?
+- Are write actions separated from read-only tools?
+- Do high-impact actions require confirmation?
+- Can credentials be rotated without redeploying every client?
+- Does the server return only the minimum data the agent needs?
+
+Remote MCP should be treated like an API surface. A valid MCP request still
+needs identity, policy, and operational controls.
+
 ### Local vs Remote at a Glance
 
 | Question | Local MCP | Remote MCP |

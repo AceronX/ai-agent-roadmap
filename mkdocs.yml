@@ -93,6 +93,7 @@ nav:
           - Pricing and Latency: stages/02-llm-fundamentals/pricing-and-latency/index.md
           - Embeddings and Vector Search: stages/02-llm-fundamentals/embeddings-vector-search/index.md
           - RAG Basics: stages/02-llm-fundamentals/rag-basics/index.md
+          - Test of LLM Fundamentals: stages/02-llm-fundamentals/test-of-llm-fundamentals/index.md
       - 03 Prompt Engineering:
           - stages/03-prompt-engineering/index.md
           - Prompt Basics: stages/03-prompt-engineering/prompt-basics/index.md

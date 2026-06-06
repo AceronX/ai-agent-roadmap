@@ -38,6 +38,34 @@ A server does three things, in order:
 
 Everything else — the handshake, listing capabilities, routing calls — the SDK handles for you. You mostly write normal Python functions and decorate them.
 
+## Background: The Words You Need First
+
+You will build a *server*, but a server never works alone. Here are the few terms used throughout this page. The [MCP Overview](../mcp-overview/index.md) and [MCP Hosts, Clients, and Servers](../mcp-hosts-clients-servers/index.md) topics explain them in full; this is the quick version.
+
+| Term | Plain meaning | Who owns it |
+| --- | --- | --- |
+| **Host** | The AI application the user opens (Claude Desktop, an IDE assistant, your agent). It owns the model. | The app |
+| **Client** | A connector *inside* the host that holds one connection to one server. Three servers means three clients. | The host |
+| **Server** | The program you are building. It exposes a menu of capabilities for one outside system. | You |
+| **Transport** | How messages travel: `stdio` (local program) or HTTP (over the network). | Both |
+| **Handshake** | The first exchange when a client connects (`initialize`): agree on a version and announce what each side supports. | Client + server |
+| **Discovery** | Right after the handshake, the client asks "what is on your menu?" (`tools/list`, `resources/list`, `prompts/list`). | Client asks, server answers |
+
+The key thing to internalize before you write code:
+
+> Your server does **not** contain an AI model. The host owns the model. Your server only exposes capabilities, and the client talks to your server — not to the model.
+
+Every connection follows the same order, and the SDK does most of it for you:
+
+```text
+1. Connect    -> the client opens a connection to your server
+2. Handshake  -> initialize: agree on protocol version + capabilities
+3. Discover   -> client lists your tools, resources, and prompts
+4. Use        -> client calls tools / reads resources, reusing the connection
+```
+
+You write step 4's functions. The SDK handles steps 1-3.
+
 ## Learning Path
 
 This topic is designed in four parts. Read them in order.

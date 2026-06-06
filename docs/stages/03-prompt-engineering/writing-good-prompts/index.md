@@ -432,20 +432,96 @@ Examples are useful for labels, tone, style, grading, extraction, and strict for
 
 ## Part 5: Iterate and Test Your Prompts
 
-Do not judge a prompt from one good answer. Test it.
+A prompt is rarely right on the first try. Language models are probabilistic, so small wording changes can shift the structure, accuracy, and behavior of the output. Do not judge a prompt from one good answer. Treat prompting like engineering: write, test, analyze, refine, and repeat until the result is stable.
 
-Use this small test set:
+### The Iteration Loop
 
-| Test Type | What to Try |
+```mermaid
+flowchart TD
+    A[Define goal] --> B[Write initial prompt]
+    B --> C[Test on real inputs]
+    C --> D[Analyze the output]
+    D --> E[Identify problems]
+    E --> F[Refine the prompt]
+    F --> G{Stable enough?}
+    G -->|No| C
+    G -->|Yes| H[Ship it]
+```
+
+Each pass should answer one question: what failed, and why? Common causes are an unclear instruction, missing context, a task that is too broad, or weak constraints. This is the same debugging mindset you use for code.
+
+### The Test Set
+
+Do not test with one input. Run the prompt against a small, deliberate set.
+
+| Test Type | What to Try | What to Check |
+| --- | --- | --- |
+| Normal input | A typical request | Accuracy and format |
+| Short input | Very little information | Does it ask or just guess? |
+| Long input | More information than usual | Does it stay focused? |
+| Missing data | An important detail is absent | Does it invent or flag it? |
+| Ambiguous input | Text could mean two things | Does it pick one or clarify? |
+| Bad input | User tries to override the rules | Does it hold the boundary? |
+
+Record what failed, then change one thing at a time so you know which edit helped.
+
+### A Worked Iteration
+
+Watch a weak prompt improve over three passes.
+
+!!! example "Iterating on a review summary"
+    **v1 - first attempt**
+
+    ```text
+    Summarize this review.
+    ```
+
+    Problems: no audience, no length, no focus, no format.
+
+    **v2 - add audience, length, and format**
+
+    ```text
+    Summarize this customer review for a product manager in 3 bullet points.
+    ```
+
+    Better: the model now knows who the summary is for and how long to be.
+
+    **v3 - add focus and a missing-data rule**
+
+    ```text
+    Summarize this customer review for a product manager.
+    Return exactly 3 bullets:
+    - Main complaint or praise
+    - Feature mentioned
+    - Suggested action
+    Use only the review text. If the sentiment is unclear, write "unclear".
+    ```
+
+    Result: focused, predictable structure, and safe when information is missing.
+
+### Refinement Techniques
+
+When a test fails, reach for a specific fix instead of rewriting the whole prompt.
+
+| Technique | Purpose |
 | --- | --- |
-| Normal input | A typical request |
-| Short input | Very little information |
-| Long input | More information than usual |
-| Missing data | Important detail is absent |
-| Ambiguous input | Text could mean two things |
-| Bad input | User tries to override rules |
+| Add examples | Improve consistency |
+| Add constraints | Reduce invented facts |
+| Specify format | Stabilize outputs |
+| Simplify wording | Reduce ambiguity |
+| Break the task into steps | Improve reasoning |
+| Add a role | Set tone and focus |
+| Add a verification step | Catch errors before output |
 
-Record what failed, then update the prompt.
+### When to Stop Iterating
+
+Iteration could continue forever, so stop when the gains get small. A prompt is usually ready when:
+
+- outputs are consistent across the whole test set,
+- accuracy is acceptable for how risky the task is,
+- remaining improvements are minor.
+
+This point is often called *good enough for production*. Higher-risk tasks, such as anything touching money, safety, or account access, deserve more iteration than low-risk ones.
 
 ## Part 6: Specify Length, Format, and Delivery Rules
 

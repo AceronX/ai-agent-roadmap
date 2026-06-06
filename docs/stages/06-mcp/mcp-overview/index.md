@@ -492,6 +492,28 @@ MCP standardizes the connection. It does not remove the need for product-level a
 | "MCP is only for Claude." | MCP began with Anthropic, but the ecosystem now includes many clients, SDKs, and servers. |
 | "MCP tools are automatically safe." | Tool safety depends on permissions, validation, approval flows, and server implementation. |
 
+#### MCP vs RAG
+
+MCP and RAG both help AI systems use external information, but they solve different problems.
+
+| Question | RAG | MCP |
+| --- | --- | --- |
+| What is it? | A retrieval workflow or architecture pattern. | A communication protocol. |
+| Main goal | Find relevant text and add it to the model's context. | Connect AI apps to external tools, resources, and prompts through a standard interface. |
+| Typical flow | Search documents, retrieve useful chunks, put them into the prompt, then answer. | Connect to an MCP server, discover capabilities, call tools or read resources, then return results. |
+| Main capability | Mostly read-only knowledge retrieval. | Can read data and, when allowed, take actions through tools. |
+| Simple analogy | An open-book exam with highlighted pages. | A standard adapter port for AI integrations. |
+
+They are not rivals. MCP can support a RAG system.
+
+Example:
+
+```text
+AI app -> MCP client -> RAG MCP server -> vector database -> relevant documents -> model context
+```
+
+In that setup, RAG decides **which documents are relevant**. MCP defines **how the AI app connects to the server that performs retrieval**.
+
 ## A Small End-to-End Example
 
 Imagine a coding assistant that helps debug production errors.

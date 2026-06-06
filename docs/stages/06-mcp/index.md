@@ -14,7 +14,7 @@ Understand Model Context Protocol as a standard way for agents to connect to too
 - [Building MCP Servers](building-mcp-servers/index.md)
 - [Local vs Remote MCP](local-vs-remote-mcp/index.md)
 - [Tool and Resource Exposure](tool-and-resource-exposure/index.md)
-- Security boundaries for MCP-connected tools
+- [Security boundaries for MCP-connected tools](security-boundaries-conn-tool/index.md)
 
 ## Build
 

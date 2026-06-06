@@ -99,6 +99,7 @@ nav:
           - Writing Good Prompts: stages/03-prompt-engineering/writing-good-prompts/index.md
           - Structured Outputs: stages/03-prompt-engineering/structured-outputs/index.md
           - Prompt Testing: stages/03-prompt-engineering/prompt-testing/index.md
+          - Test of 03 Prompt Engineering: stages/03-prompt-engineering/test-of-03-prompt-engineering/index.md
       - 04 Agent Fundamentals:
           - stages/04-agent-fundamentals/index.md
           - Agent Loop: stages/04-agent-fundamentals/agent-loop/index.md

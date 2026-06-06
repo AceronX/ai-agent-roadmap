@@ -108,6 +108,7 @@ nav:
           - Acting and Observation: stages/04-agent-fundamentals/acting-and-observation/index.md
           - Stopping Criteria: stages/04-agent-fundamentals/stopping-criteria/index.md
           - Tools Overview: stages/04-agent-fundamentals/tools-overview/index.md
+          - Test of 04 Agent Fundamentals: stages/04-agent-fundamentals/test-of-04-agent-fundamentals/index.md
       - 05 Tools and Actions:
           - stages/05-tools-and-actions/index.md
           - Tool Definition: stages/05-tools-and-actions/tool-definition/index.md

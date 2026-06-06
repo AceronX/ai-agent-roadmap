@@ -29,3 +29,7 @@ Implement a simple ReAct-style loop from scratch with one or two safe tools.
 ## Checkpoint
 
 Use the [Stage 4 checkpoint](checkpoint.md) before moving on.
+
+## Test
+
+Use the [Test of 04 Agent Fundamentals](test-of-04-agent-fundamentals/index.md) to check your understanding of every topic in this stage.

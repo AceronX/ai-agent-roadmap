@@ -509,10 +509,38 @@ They are not rivals. MCP can support a RAG system.
 Example:
 
 ```text
-AI app -> MCP client -> RAG MCP server -> vector database -> relevant documents -> model context
+User asks:
+"What does our refund policy say about duplicate charges?"
 ```
 
-In that setup, RAG decides **which documents are relevant**. MCP defines **how the AI app connects to the server that performs retrieval**.
+One possible design:
+
+```mermaid
+flowchart LR
+    A[AI app / MCP host] --> B[MCP client<br/>connection to docs server]
+    B --> C[Docs MCP server]
+    C --> D[RAG search logic]
+    D --> E[Vector database<br/>or document index]
+    E --> F[Relevant policy sections]
+    F --> C
+    C --> B
+    B --> A
+    A --> G[Model answers using retrieved context]
+```
+
+**How to read this diagram:** MCP is the connection between the AI app and the docs server. RAG is the retrieval logic inside or behind that server. The vector database stores searchable document chunks. The model receives the relevant policy sections as context.
+
+Step by step:
+
+1. The AI app connects to a docs MCP server.
+2. The user asks a question about the refund policy.
+3. The AI app asks the MCP server for relevant policy information.
+4. The MCP server runs RAG search against a vector database or document index.
+5. The server returns the most relevant policy sections.
+6. The AI app gives those sections to the model as context.
+7. The model answers using the retrieved context.
+
+In this setup, **MCP handles the connection** and **RAG handles the document retrieval**.
 
 ## A Small End-to-End Example
 

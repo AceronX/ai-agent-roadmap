@@ -1,34 +1,79 @@
 # Local vs Remote MCP
 
+<div class="topic-page" markdown="1">
+
+<section class="topic-hero">
+  <span class="topic-hero__eyebrow">Stage 06 - Model Context Protocol</span>
+  <p class="topic-hero__lead">Local and remote MCP servers solve different connection problems. Local MCP gives an AI assistant controlled access to files, tools, scripts, and data near the user. Remote MCP exposes shared services over the network for teams, SaaS tools, production systems, and hosted data.</p>
+  <div class="topic-hero__facts">
+    <span>Local MCP</span>
+    <span>Remote MCP</span>
+    <span>stdio</span>
+    <span>HTTP</span>
+    <span>Boundaries</span>
+  </div>
+</section>
+
 ## Goal
 
 Understand the difference between local and remote MCP servers, when to use
 each deployment mode, and what tradeoffs they create for security, latency,
 sharing, operations, and agent design.
 
-## Why It Matters
+After this topic, you should be able to choose whether an MCP server should run
+locally, remotely, or as part of a hybrid setup.
+
+## Local vs Remote in One Minute
 
 MCP connects AI applications to tools, resources, and prompts. Those MCP servers
 can run locally on the same machine as the host application, or remotely as a
 network service.
 
-The deployment choice changes how the agent behaves:
+The short version:
 
-- Local MCP is usually easier for personal tools, files, and development.
-- Remote MCP is usually better for shared services, hosted APIs, and team-wide
-  integrations.
-- Local MCP often has a smaller network surface, but can access sensitive local
-  files or processes.
-- Remote MCP is easier to share, but needs stronger authentication,
-  authorization, monitoring, and network security.
+```text
+Local MCP  = best when the assistant needs local context or local actions.
+Remote MCP = best when the assistant needs shared hosted systems.
+Hybrid MCP = common when an agent needs both.
+```
 
-Choosing local or remote is not only an infrastructure decision. It affects what
-the agent can access, who can use the tool, how failures are handled, and what
-security boundaries must exist.
+Example:
 
-## Study Notes
+```text
+Coding assistant
+  -> local filesystem MCP server for the current repository
+  -> local git MCP server for the working tree
+  -> remote issue tracker MCP server for team issues
+  -> remote observability MCP server for production incidents
+```
 
-### Core Idea
+The deployment choice changes what the agent can access, who can use the tool,
+how failures are handled, and what security boundaries must exist.
+
+## Learning Path
+
+This topic is designed in four parts.
+
+<div class="learning-grid learning-grid--path">
+  <a class="learning-card" href="#part-1-understand-the-deployment-choice">
+    <strong>Part 1 - The Deployment Choice</strong>
+    <span>Learn what local and remote MCP mean and how transports differ.</span>
+  </a>
+  <a class="learning-card" href="#part-2-understand-local-mcp">
+    <strong>Part 2 - Local MCP</strong>
+    <span>See what local MCP can do with files, repos, tests, notes, memory, and local data.</span>
+  </a>
+  <a class="learning-card" href="#part-3-understand-remote-mcp">
+    <strong>Part 3 - Remote MCP</strong>
+    <span>See how remote MCP supports shared services, hosted tools, production systems, and team workflows.</span>
+  </a>
+  <a class="learning-card" href="#part-4-choose-the-right-mode">
+    <strong>Part 4 - Choose the Right Mode</strong>
+    <span>Compare tradeoffs, security boundaries, hybrid setups, failure modes, and practice decisions.</span>
+  </a>
+</div>
+
+## Part 1: Understand the Deployment Choice
 
 MCP follows a host-client-server architecture.
 
@@ -57,7 +102,48 @@ The word "server" can be confusing. An MCP server is not always a remote web
 server. A local command-line program launched by the host can also be an MCP
 server.
 
-### Local MCP
+### Why This Matters
+
+Local MCP and remote MCP create different risk and operating models.
+
+- Local MCP is usually easier for personal tools, files, and development.
+- Remote MCP is usually better for shared services, hosted APIs, and team-wide
+  integrations.
+- Local MCP often has a smaller network surface, but can access sensitive local
+  files or processes.
+- Remote MCP is easier to share, but needs stronger authentication,
+  authorization, monitoring, and network security.
+
+Choosing local or remote is not only an infrastructure decision. It affects what
+the agent can access and what controls the application must enforce.
+
+### Transport Difference
+
+MCP defines standard transports for client-server communication.
+
+For local MCP, `stdio` is common:
+
+```text
+Host launches server process
+Host writes MCP messages to stdin
+Server writes MCP messages to stdout
+```
+
+This works well for local tools because the host can start and stop the server
+process directly.
+
+For remote MCP, Streamable HTTP is common:
+
+```text
+Host connects to https://example.com/mcp
+Client sends MCP messages over HTTP
+Server handles one or more remote clients
+```
+
+This works well for hosted services because the server can run independently and
+serve multiple clients.
+
+## Part 2: Understand Local MCP
 
 A local MCP server runs on the same machine or local environment as the host
 application. In many local setups, the host launches the MCP server as a child
@@ -107,9 +193,9 @@ Common local MCP use cases:
 These tools are useful because the assistant can work with the same context the
 developer sees: files, scripts, test output, notes, and local databases.
 
-### Local MCP Workflow Examples
+### Local Workflow Examples
 
-#### Example 1: Local Repository Assistant
+#### Local Repository Assistant
 
 ```text
 Goal:
@@ -131,7 +217,7 @@ Agent flow:
 This is a good local MCP use case because the key evidence is local: the working
 tree, the test suite, and uncommitted changes.
 
-#### Example 2: Personal Knowledge Assistant
+#### Personal Knowledge Assistant
 
 ```text
 Goal:
@@ -151,7 +237,7 @@ Agent flow:
 This is a good local MCP use case because the data is personal and does not need
 to live in a remote shared service.
 
-#### Example 3: Local Data Analysis
+#### Local Data Analysis
 
 ```text
 Goal:
@@ -171,7 +257,7 @@ Agent flow:
 This is useful when the database is a developer copy, fixture database, or local
 debugging environment.
 
-#### Example 4: Desktop Automation
+#### Desktop Automation
 
 ```text
 Goal:
@@ -192,7 +278,7 @@ Agent flow:
 This kind of workflow should stay local unless there is a strong reason to send
 the documents to a remote service.
 
-### Local MCP Configuration Example
+### Local Configuration Examples
 
 Many local MCP servers are launched by the host using a command. A local
 filesystem server might be configured with an allowed directory:
@@ -248,7 +334,7 @@ Before enabling a local MCP server, ask:
 Good local MCP design starts narrow. Add access only when a real workflow needs
 it.
 
-### Remote MCP
+## Part 3: Understand Remote MCP
 
 A remote MCP server runs as a network service. The host connects to it over a
 transport such as Streamable HTTP.
@@ -298,9 +384,9 @@ Common remote MCP use cases:
 Remote MCP is valuable when the source of truth already lives outside the
 developer's machine and multiple users need the same controlled integration.
 
-### Remote MCP Workflow Examples
+### Remote Workflow Examples
 
-#### Example 1: Production Incident Assistant
+#### Production Incident Assistant
 
 ```text
 Goal:
@@ -323,7 +409,7 @@ This is a good remote MCP use case because the data is hosted, shared, and
 operational. The server should enforce authentication, authorization, rate
 limits, and audit logging.
 
-#### Example 2: Customer Support Assistant
+#### Customer Support Assistant
 
 ```text
 Goal:
@@ -346,7 +432,7 @@ This is a good remote MCP use case because support agents need shared customer
 systems, not one user's local files. The main risk is exposing customer data to
 the wrong user or tenant.
 
-#### Example 3: Team Knowledge Assistant
+#### Team Knowledge Assistant
 
 ```text
 Goal:
@@ -367,7 +453,7 @@ Agent flow:
 This is a better remote MCP fit than local MCP because the knowledge base should
 be consistent across the team and centrally maintained.
 
-#### Example 4: Remote Git Hosting Assistant
+#### Remote Git Hosting Assistant
 
 ```text
 Goal:
@@ -389,7 +475,7 @@ This is different from a local Git MCP server. Local Git is best for the current
 working tree. Remote Git hosting is best for shared PRs, reviews, issues, and
 repository metadata.
 
-### Remote MCP Configuration Example
+### Remote Configuration Example
 
 A remote MCP server is usually configured as a network endpoint instead of a
 local command.
@@ -435,6 +521,12 @@ Before exposing a remote MCP server, ask:
 Remote MCP should be treated like an API surface. A valid MCP request still
 needs identity, policy, and operational controls.
 
+## Part 4: Choose the Right Mode
+
+Neither local nor remote MCP is always better. The right choice depends on the
+tool, user, data sensitivity, deployment environment, and expected usage
+pattern.
+
 ### Local vs Remote at a Glance
 
 | Question | Local MCP | Remote MCP |
@@ -449,60 +541,6 @@ needs identity, policy, and operational controls.
 | Scaling | One user or one host at a time | Many clients and users |
 | Main risk | Sensitive local access | Exposed network service |
 | Operations | User or developer manages it | Service owner manages it |
-
-Neither mode is always better. The right choice depends on the tool, user,
-data sensitivity, deployment environment, and expected usage pattern.
-
-### Transport Difference
-
-MCP currently defines standard transports for client-server communication.
-
-For local MCP, `stdio` is common:
-
-```text
-Host launches server process
-Host writes MCP messages to stdin
-Server writes MCP messages to stdout
-```
-
-This works well for local tools because the host can start and stop the server
-process directly.
-
-For remote MCP, Streamable HTTP is common:
-
-```text
-Host connects to https://example.com/mcp
-Client sends MCP messages over HTTP
-Server handles one or more remote clients
-```
-
-This works well for hosted services because the server can run independently and
-serve multiple clients.
-
-### Security Boundaries
-
-Local and remote MCP have different security concerns.
-
-Local MCP can be dangerous because it may access local files, environment
-variables, shell commands, or private developer resources. The server may not be
-exposed to the internet, but it can still do sensitive things on the user's
-machine.
-
-Remote MCP can be dangerous because it is reachable over a network. A remote
-server needs stronger controls around identity, authorization, rate limits,
-tenant isolation, logging, and request validation.
-
-| Risk | Local MCP control | Remote MCP control |
-| --- | --- | --- |
-| Local file exposure | Limit roots and file permissions | Avoid exposing local files remotely |
-| Unsafe commands | Restrict tools and require approval | Avoid arbitrary command tools |
-| Unauthorized users | Host-level approval and local config | Authentication and authorization |
-| Network attacks | Bind local servers to localhost | Validate origins, use HTTPS, auth |
-| Data leakage | Keep outputs minimal | Enforce tenant and permission boundaries |
-| Abuse or runaway usage | Local limits | Rate limits, quotas, monitoring |
-
-A good MCP design assumes that tool access is powerful. The host should expose
-only the tools and resources the agent actually needs.
 
 ### When to Use Local MCP
 
@@ -575,6 +613,31 @@ should not automatically gain access to local files. A local tool should not
 send private code or secrets to a remote service unless the user and policy
 allow it.
 
+### Security Boundaries
+
+Local and remote MCP have different security concerns.
+
+Local MCP can be dangerous because it may access local files, environment
+variables, shell commands, or private developer resources. The server may not be
+exposed to the internet, but it can still do sensitive things on the user's
+machine.
+
+Remote MCP can be dangerous because it is reachable over a network. A remote
+server needs stronger controls around identity, authorization, rate limits,
+tenant isolation, logging, and request validation.
+
+| Risk | Local MCP control | Remote MCP control |
+| --- | --- | --- |
+| Local file exposure | Limit roots and file permissions | Avoid exposing local files remotely |
+| Unsafe commands | Restrict tools and require approval | Avoid arbitrary command tools |
+| Unauthorized users | Host-level approval and local config | Authentication and authorization |
+| Network attacks | Bind local servers to localhost | Validate origins, use HTTPS, auth |
+| Data leakage | Keep outputs minimal | Enforce tenant and permission boundaries |
+| Abuse or runaway usage | Local limits | Rate limits, quotas, monitoring |
+
+A good MCP design assumes that tool access is powerful. The host should expose
+only the tools and resources the agent actually needs.
+
 ### Common Failure Modes
 
 | Failure mode | What happens | How to reduce it |
@@ -646,6 +709,40 @@ Write:
 6. Which files or secrets must be blocked.
 7. What a successful agent run should look like.
 
+### Remote MCP Exercise
+
+Design a remote MCP setup for a team assistant.
+
+Choose one workflow:
+
+- production incident assistant
+- customer support assistant
+- team knowledge assistant
+- remote Git hosting assistant
+
+Write:
+
+1. Which remote MCP servers are needed.
+2. Which users or teams can connect.
+3. Which tools are read-only.
+4. Which tools can write or send messages.
+5. Which actions require approval.
+6. What should be logged for audit.
+7. What rate limits, timeouts, or quotas are needed.
+
+## Exit Criteria
+
+You understand this topic when you can:
+
+- Explain local MCP and remote MCP in plain language.
+- Identify which transport is common for local and remote servers.
+- Give concrete examples of what local MCP can do.
+- Give concrete examples of what remote MCP can do.
+- Choose local, remote, or hybrid for a tool workflow.
+- Explain why local MCP still needs safety boundaries.
+- Explain why remote MCP needs authentication, authorization, logging, and rate
+  limits.
+
 ## Resources
 
 - [MCP Architecture Overview](https://modelcontextprotocol.io/docs/concepts/architecture)
@@ -654,3 +751,5 @@ Write:
 - [MCP Client Concepts](https://modelcontextprotocol.io/docs/learn/client-concepts)
 - [MCP Example Servers](https://modelcontextprotocol.io/examples)
 - [Model Context Protocol Servers Repository](https://github.com/modelcontextprotocol/servers)
+
+</div>

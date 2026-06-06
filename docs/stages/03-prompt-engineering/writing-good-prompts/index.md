@@ -394,21 +394,215 @@ The API serves mobile clients and must prevent abuse without blocking normal use
 
 ## Part 3: Use Relevant Technical Terms
 
-Technical terms make prompts clearer when they are correct and relevant.
+Technical terms make prompts clearer when they are correct and relevant. They
+act like shortcut labels for precise ideas.
 
-Example:
+If you use the exact term, the model does not have to guess which concept you
+mean. This saves time, reduces follow-up questions, and helps the answer start
+at the right level.
+
+Think of a technical term as a well-labeled folder. A vague everyday
+description makes the model search through several possible meanings. A precise
+term points it toward the right concept immediately.
+
+### The Pizza Example
+
+Imagine you are ordering food from a futuristic robot chef.
+
+Without the technical term:
+
+```text
+Make me that round, flat Italian thing with red sauce, melted white cheese,
+and little spicy meat circles.
+```
+
+The robot has to infer what you mean. It might wonder whether you want pizza,
+flatbread, a calzone-style dish, or something else. It may ask follow-up
+questions because the description is long but still indirect.
+
+With the technical term:
+
+```text
+Make me a pepperoni pizza.
+```
+
+Now the robot knows the dish, the usual ingredients, the cooking method, and
+the expected result. The phrase `pepperoni pizza` removes guesswork.
+
+Prompts work the same way. If you say `HTTP 404`, `SQL`, `idempotency`, or
+`JWT authentication`, the model can use a more precise concept than if you say
+`page problem`, `text database language`, `duplicate issue`, or `login stuff`.
+
+### Technical Terms vs Everyday Terms
+
+| Everyday Term | Technical Term | Why the Technical Term Helps |
+| --- | --- | --- |
+| `a page not found error` | `HTTP status code 404` | Names the exact web response code. |
+| `fast sorting methods` | `O(n log n) sorting algorithms` | Points to algorithmic complexity, not just speed in normal speech. |
+| `heart attack` | `myocardial infarction` | Names the medical condition more formally. |
+| `the text database language` | `SQL` | Names the query language directly. |
+| `login token` | `JWT` | Points to a specific token format. |
+| `AI search over my documents` | `RAG` | Points to retrieval-augmented generation. |
+| `do not charge twice` | `idempotency` | Points to safe retry behavior for repeated requests. |
+
+The goal is not to sound fancy. The goal is to remove ambiguity.
+
+### Why Technical Terms Improve Prompts
+
+Technical terms help in three main ways.
+
+| Benefit | Meaning | Example |
+| --- | --- | --- |
+| Precision | The term has a specific meaning in a field. | `HTTP 401` means unauthorized, not just "something broke." |
+| Depth | The model can answer at the right expert level. | `Explain vector embeddings for semantic search` gets a deeper answer than `Explain AI matching text.` |
+| Efficiency | One term replaces a long description. | `DNS` replaces `the system that converts website names into IP addresses.` |
+
+For example, this prompt is understandable but weak:
+
+```text
+Review this code for duplicate payment problems.
+```
+
+This version is stronger:
 
 ```text
 Review this payment endpoint for idempotency problems.
 Focus on duplicate requests, retry behavior, and database transaction safety.
 ```
 
-Better technical terms:
+The stronger prompt uses the technical term `idempotency`, then supports it
+with plain-language details. That combination is usually best: use the exact
+term, then add enough context to make the task clear.
 
-- `idempotency` instead of `duplicate issue`
-- `JWT authentication` instead of `login stuff`
-- `RAG` instead of `AI search thing`
-- `rate limit` instead of `too many requests problem`
+### Good Technical Terms in Prompts
+
+Use technical terms when they name the exact thing you care about.
+
+| Instead Of | Use | Example Prompt |
+| --- | --- | --- |
+| `duplicate issue` | `idempotency` | `Check this checkout flow for idempotency bugs.` |
+| `login stuff` | `JWT authentication` | `Explain how JWT authentication works in a REST API.` |
+| `AI search thing` | `RAG` | `Design a RAG workflow for searching internal policy documents.` |
+| `too many requests problem` | `rate limiting` | `Suggest a rate-limiting strategy for a public API.` |
+| `database speed problem` | `query optimization` | `Review this SQL query for optimization opportunities.` |
+| `hidden prompt attack` | `prompt injection` | `Review this agent workflow for prompt injection risks.` |
+
+### How to Recognize a Technical Term
+
+Use these checks when you are not sure whether a word is a real technical term.
+
+| Check | Question | Example |
+| --- | --- | --- |
+| Search result test | Would official docs, textbooks, papers, or code examples use this term? | `DNS` appears in networking docs. |
+| Shortcut test | Does the term replace a whole sentence of explanation? | `OAuth` replaces a long description of delegated authorization. |
+| Exact spelling test | Does capitalization, punctuation, or notation matter? | `SQL`, `JSON`, `O(n log n)`, `HTTP 404`. |
+| Field test | Does the term belong to a specific domain? | `myocardial infarction` belongs to medicine; `mutex` belongs to programming. |
+
+If the answer is yes, the term can probably make your prompt more precise.
+
+### Technical Terms Are Not Buzzwords
+
+A technical term should point to a real concept. A buzzword often sounds
+impressive but does not tell the model what to do.
+
+Useful:
+
+```text
+Explain how RAG differs from fine-tuning for a customer-support chatbot.
+```
+
+Weak:
+
+```text
+Explain the synergistic AI-powered paradigm for next-generation support.
+```
+
+The first prompt contains real technical terms: `RAG`, `fine-tuning`, and
+`customer-support chatbot`. The second prompt uses vague business language that
+does not define a task.
+
+### Do Not Pretend With Terms You Do Not Understand
+
+Technical terms help only when they are relevant and correct. If you use the
+wrong term, the model may answer the wrong question very confidently.
+
+Weak:
+
+```text
+Explain OAuth cookies for database encryption.
+```
+
+This mixes unrelated ideas. A better prompt explains the goal in plain language
+and asks for the right terms:
+
+```text
+I want users to sign in with Google and let my app access their calendar.
+What technical terms should I know, and how do they fit together?
+```
+
+When you are learning a new field, it is okay to ask the model to help you find
+the terms first.
+
+### Prompt Pattern
+
+Use this pattern when you know some technical terms but still want a clear
+answer:
+
+```text
+Task:
+{what you want}
+
+Technical terms to use:
+{term 1}, {term 2}, {term 3}
+
+Audience:
+{who the answer is for}
+
+Rules:
+- Define each technical term briefly.
+- Use the terms accurately.
+- If a term does not fit this task, explain why.
+```
+
+Example:
+
+```text
+Task:
+Review this payment endpoint before release.
+
+Technical terms to use:
+idempotency, retries, database transactions
+
+Audience:
+Backend developer.
+
+Rules:
+- Define any term that affects the review.
+- Focus on duplicate charges and failed payment retries.
+- If the code is safe, say what behavior makes it safe.
+```
+
+### Practice: Upgrade Everyday Words
+
+Try turning vague phrases into technical terms:
+
+| Vague Phrase | Better Technical Term |
+| --- | --- |
+| `website name lookup` | `DNS resolution` |
+| `making the page load faster` | `frontend performance optimization` |
+| `checking if data is shaped correctly` | `schema validation` |
+| `AI remembering facts from documents` | `retrieval-augmented generation` |
+| `stopping users from spamming requests` | `rate limiting` |
+
+The best prompt often combines both:
+
+```text
+Explain DNS resolution in simple terms.
+Use the phrase "website name lookup" as the beginner-friendly analogy.
+```
+
+That prompt gets the benefit of the technical term without losing clarity for a
+beginner.
 
 ## Part 4: Use Examples in Your Prompt
 

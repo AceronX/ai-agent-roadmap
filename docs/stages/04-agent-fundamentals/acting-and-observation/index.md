@@ -17,6 +17,48 @@ This loop is similar to how people solve real problems. Imagine a robot playing 
 
 Agents work the same way. A good agent does not blindly run tools or blindly trust its first answer. It acts, looks at the result, checks whether the result helps the goal, and then decides what to do next.
 
+## A Clear Mental Model
+
+Reasoning, planning, observing, and reflecting are related, but they do different jobs in the agent loop.
+
+- Reasoning means thinking through the goal, facts, constraints, and missing information.
+- Planning means choosing the next step or sequence of steps.
+- Acting means taking the step, often by calling a tool.
+- Observing means reading what actually happened after the action.
+- Reflecting means judging whether the observation helps the goal and whether the plan should change.
+
+Reflection is a kind of reasoning, but it has a special job: it happens after feedback. Planning looks forward before action. Reflection looks backward after action, then decides whether to continue, revise, ask, or stop.
+
+```mermaid
+flowchart TD
+    A[User goal] --> B[Reasoning: understand goal, facts, and missing information]
+    B --> C[Planning: choose the next step or tool]
+    C --> D[Acting: call tool or take action]
+    D --> E[Observing: read the exact result, error, or change]
+    E --> F[Reflecting: compare result with goal and plan]
+    F -->|Need more work| B
+    F -->|Goal satisfied| G[Final answer]
+```
+
+**How to read this diagram:** reasoning and planning happen before the action. Observing and reflecting happen after the action. Reflection feeds the next round of reasoning and planning.
+
+## Quick Comparison
+
+| Concept | Main Question | Timing | Output | Weather Example |
+| --- | --- | --- | --- | --- |
+| Reasoning | What do I know, and what is missing? | Before or after new information | A better understanding of the task | The user wants to launch a rocket, so rain and wind matter. |
+| Planning | What should I do next? | Before action | A step, tool choice, or sequence | Search for tomorrow's forecast in the user's location. |
+| Acting | What step do I take? | During execution | A tool call or external action | Call the weather tool with the location and date. |
+| Observing | What actually happened? | After action | Raw result, error, or state change | The forecast says heavy thunderstorms and high winds. |
+| Reflecting | What does that result mean for the goal? | After observation | Continue, revise, ask, answer, or stop | Launching tomorrow is unsafe, so recommend waiting. |
+
+The simplest difference is this:
+
+```text
+Observation: The forecast says heavy thunderstorms and high winds.
+Reflection: That weather makes a model rocket launch unsafe, so the agent should warn the user.
+```
+
 ## Part 1: Acting, Or Tool Invocation
 
 Acting is the step where the agent stops only thinking and actually does something.
@@ -65,6 +107,15 @@ An AI agent does the same thing:
 - Reflection: "Does this result help the user's goal? Did I make a mistake? What is the most useful next action?"
 
 Observation is about seeing the facts. Reflection is about understanding the facts.
+
+A useful rule is to write observation like evidence and reflection like a decision.
+
+| Situation | Observation | Reflection |
+| --- | --- | --- |
+| Weather tool | `90% chance of thunderstorms and high winds.` | The user should not launch the rocket tomorrow. |
+| Calculator check | `$1.00 - $0.10 = $0.90.` | The first answer breaks the rule, so solve again. |
+| File search | `No file named report.pdf was found.` | The agent should try a broader search or ask for the filename. |
+| API call | `The API returned 401 Unauthorized.` | The tool did not succeed, so do not trust missing data as a real answer. |
 
 ## Why This Matters
 

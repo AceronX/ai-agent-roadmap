@@ -86,6 +86,168 @@ Local MCP is useful when the tool needs access to local context:
 Local MCP is often the simplest way to build and test an MCP server because the
 developer controls the machine, process, logs, and permissions.
 
+### What You Can Do With Local MCP
+
+Local MCP is not only "MCP running on your computer." It is a way to give an AI
+assistant controlled access to local context and local actions that a remote
+service should not automatically see.
+
+Common local MCP use cases:
+
+| Local MCP server | What it lets the agent do | Example user request |
+| --- | --- | --- |
+| Filesystem | Read, search, and sometimes write files inside allowed folders | `Summarize the README and find TODO comments in this repo.` |
+| Git | Inspect repository status, commits, diffs, branches, and history | `Explain what changed in my last commit.` |
+| Local test runner | Run safe project test commands | `Run the parser tests and explain the failure.` |
+| Local SQLite or dev database | Query local development data | `Show the 10 newest failed jobs in my local dev DB.` |
+| Memory | Store and retrieve user or project facts locally | `Remember that this project uses MkDocs Material.` |
+| Time | Convert time zones and calculate local times | `Schedule this for 9 AM Tokyo time.` |
+| Fetch | Fetch and convert web content for local analysis | `Read this docs page and compare it with my local implementation.` |
+
+These tools are useful because the assistant can work with the same context the
+developer sees: files, scripts, test output, notes, and local databases.
+
+### Local MCP Workflow Examples
+
+#### Example 1: Local Repository Assistant
+
+```text
+Goal:
+Explain why a test is failing.
+
+Local MCP servers:
+- filesystem server scoped to the repository
+- git server scoped to the repository
+- test runner server with approved commands only
+
+Agent flow:
+1. Read the failing test output.
+2. Search relevant source files.
+3. Inspect the recent git diff.
+4. Run a targeted test.
+5. Explain the likely cause and suggested fix.
+```
+
+This is a good local MCP use case because the key evidence is local: the working
+tree, the test suite, and uncommitted changes.
+
+#### Example 2: Personal Knowledge Assistant
+
+```text
+Goal:
+Find notes about refund policy and draft a short answer.
+
+Local MCP servers:
+- filesystem server scoped to a notes folder
+- memory server for durable personal preferences
+
+Agent flow:
+1. Search local notes for refund policy.
+2. Read only matching files.
+3. Retrieve the user's preferred answer style from memory.
+4. Draft the response.
+```
+
+This is a good local MCP use case because the data is personal and does not need
+to live in a remote shared service.
+
+#### Example 3: Local Data Analysis
+
+```text
+Goal:
+Summarize failed background jobs from a local SQLite database.
+
+Local MCP servers:
+- SQLite or database server connected to the local dev database
+- filesystem server for reading related logs
+
+Agent flow:
+1. Query recent failed jobs.
+2. Group failures by error type.
+3. Read related local log files.
+4. Produce a short diagnosis.
+```
+
+This is useful when the database is a developer copy, fixture database, or local
+debugging environment.
+
+#### Example 4: Desktop Automation
+
+```text
+Goal:
+Organize downloaded invoices into the right local folders.
+
+Local MCP servers:
+- filesystem server scoped to Downloads and an invoices folder
+- optional local OCR or document parser server
+
+Agent flow:
+1. List recent PDF files in Downloads.
+2. Extract vendor and date.
+3. Propose target filenames.
+4. Ask for approval before moving files.
+5. Move approved files.
+```
+
+This kind of workflow should stay local unless there is a strong reason to send
+the documents to a remote service.
+
+### Local MCP Configuration Example
+
+Many local MCP servers are launched by the host using a command. A local
+filesystem server might be configured with an allowed directory:
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/allowed/project"
+      ]
+    }
+  }
+}
+```
+
+The important part is the allowed path. The server should not receive access to
+the entire machine when the agent only needs one project directory.
+
+Another local example is a Git server scoped to a repository:
+
+```json
+{
+  "mcpServers": {
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "/path/to/repo"]
+    }
+  }
+}
+```
+
+This gives the assistant repository context without exposing unrelated folders.
+
+### Local MCP Safety Checklist
+
+Local MCP can touch sensitive files and processes. Treat it as local automation,
+not as a harmless chat feature.
+
+Before enabling a local MCP server, ask:
+
+- Which directory, database, or command does this server access?
+- Can it write, delete, move, send, or execute anything?
+- Does it need the whole filesystem or only one folder?
+- Does it expose secrets from `.env`, shell history, SSH keys, or config files?
+- Should write actions require explicit user approval?
+- What logs show which tools were called and with what arguments?
+- Can the server be stopped easily if it behaves unexpectedly?
+
+Good local MCP design starts narrow. Add access only when a real workflow needs
+it.
+
 ### Remote MCP
 
 A remote MCP server runs as a network service. The host connects to it over a
@@ -266,6 +428,8 @@ allow it.
 | Too much context shared | Agent or server sees more data than needed | Scope resources and return minimal results |
 | No logs for remote tools | Failures and misuse are hard to investigate | Add logging, audit trails, and monitoring |
 | No timeout or rate limit | Remote server can be overloaded or abused | Add timeouts, quotas, and rate limits |
+| Local server has too much access | Agent can read or change unrelated files | Use allowed directories and least privilege |
+| Local command tool is too broad | Agent can run unsafe shell commands | Expose narrow commands, not arbitrary shell |
 
 ## Practice
 
@@ -278,6 +442,9 @@ Use this table:
 | Read local project files |  |  |  |  |
 | Query production incidents |  |  |  |  |
 | Search personal notes |  |  |  |  |
+| Run local unit tests |  |  |  |  |
+| Query a local SQLite database |  |  |  |  |
+| Search a shared company knowledge base |  |  |  |  |
 
 Then write one paragraph explaining your choices.
 
@@ -300,9 +467,32 @@ Answer:
 4. What requires user approval?
 5. What should be logged?
 
+### Local MCP Exercise
+
+Design a local MCP setup for your own computer.
+
+Choose one workflow:
+
+- code assistant for one repository
+- personal notes assistant
+- local database analyst
+- desktop file organizer
+
+Write:
+
+1. Which local MCP servers are needed.
+2. Which folders or databases each server can access.
+3. Which tools are read-only.
+4. Which tools can write or execute.
+5. Which actions require approval.
+6. Which files or secrets must be blocked.
+7. What a successful agent run should look like.
+
 ## Resources
 
 - [MCP Architecture Overview](https://modelcontextprotocol.io/docs/concepts/architecture)
 - [MCP Transports](https://modelcontextprotocol.io/docs/concepts/transports)
 - [MCP Specification: Architecture](https://modelcontextprotocol.io/specification/2025-06-18/architecture)
 - [MCP Client Concepts](https://modelcontextprotocol.io/docs/learn/client-concepts)
+- [MCP Example Servers](https://modelcontextprotocol.io/examples)
+- [Model Context Protocol Servers Repository](https://github.com/modelcontextprotocol/servers)

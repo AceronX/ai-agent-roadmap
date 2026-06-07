@@ -16,7 +16,7 @@ This study test checks understanding of every main section in **06 MCP**.
 
 ### Question 1
 
-**Q:** What is MCP in plain English?
+**Q:** What is MCP?
 
 **A:**
 
@@ -40,7 +40,7 @@ A coding assistant often needs project files, GitHub issues, logs, and runbooks.
 
 ### Question 4
 
-**Q:** In the integration-problem diagram, what happens without MCP?
+**Q:** What happens without MCP?
 
 **A:**
 
@@ -48,11 +48,11 @@ Every AI app must know how to connect to every external system directly, creatin
 
 ### Question 5
 
-**Q:** In the MCP architecture diagram, what changes compared with direct integrations?
+**Q:** What changes compared with direct integrations?
 
 **A:**
 
-The AI app acts as an MCP host, creates MCP client connections, and talks to MCP servers that wrap external systems such as GitHub, databases, and files.
+Instead of each AI app building every integration itself, external capabilities can be exposed through MCP servers. AI applications that support MCP can connect to those servers through the same protocol.
 
 ### Question 6
 
@@ -248,6 +248,10 @@ Model choice, token limits, approvals, rate limits, prompt visibility, and sensi
 
 Tools, resources, and prompts.
 
+- tools can do work, so the model may request them but the host should approve risky calls,
+- resources provide context, so the application decides what to retrieve and include,
+- prompts are workflow templates, so users or the host typically invoke them explicitly.
+
 ### Question 30
 
 **Q:** Compare tools, resources, and prompts by control model.
@@ -258,7 +262,7 @@ Tools are model-requested actions that the host approves. Resources are applicat
 
 ### Question 31
 
-**Q:** In the connection lifecycle diagram, what are the two broad phases?
+**Q:** In the connection lifecycle, what are the two broad phases?
 
 **A:**
 

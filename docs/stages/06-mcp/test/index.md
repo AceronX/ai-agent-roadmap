@@ -5,12 +5,12 @@ This study test checks understanding of every main section in **06 MCP**.
 | Section | Questions |
 | --- | ---: |
 | MCP Overview | 16 |
-| MCP Hosts, Clients, and Servers | 16 |
+| MCP Hosts, Clients, and Servers | 20 |
 | Building MCP Servers | 16 |
 | Local vs Remote MCP | 16 |
 | Tool and Resource Exposure in MCP | 16 |
 | Security Boundaries for MCP-Connected Tools | 16 |
-| **Total** | **96** |
+| **Total** | **100** |
 
 ## MCP Overview
 
@@ -276,9 +276,55 @@ Setup and discovery happen first. Then the use phase repeats tool calls or resou
 
 `get_order_status` is a scoped read. `send_email` communicates externally and can expose information or affect users, so the host should preview and approve it.
 
+### Question 33
+
+**Q:** In the MCP architecture, how does a user request reach an external system, and what stays under host control?
+
+**A:**
+
+The model never touches external systems directly. The host routes each request through the right client to a server, and keeps permissions, approval, logging, and context policy under its own control.
+
+```mermaid
+flowchart LR
+    U[User] --> H[MCP host]
+    H --> M[Model]
+    H --> C[MCP client]
+    C <-->|MCP protocol| S[MCP server]
+    S --> X[External system]
+    H --> P[Permissions, approval, logging, context policy]
+    P --> C
+```
+
+### Question 34
+
+**Q:** Give examples of tools an MCP server might expose, with their risk levels.
+
+**A:**
+
+- `search_flights(origin, destination, date)` — read, usually allowed
+- `create_issue(repo, title, body)` — write, show a draft or require confirmation
+- `send_email(to, subject, body)` — external write, require preview and approval
+- `delete_database(name)` — destructive, deny by default or require strong approval
+
+### Question 35
+
+**Q:** Give examples of resources an MCP server might expose.
+
+**A:**
+
+Direct resources are identified by a URI, such as `file:///workspace/README.md`, `calendar://events/2026-06`, or `logs://payment-service/latest-errors`. Resource templates add parameters, such as `weather://forecast/{city}/{date}` or `repo://pull-request/{owner}/{repo}/{number}`.
+
+### Question 36
+
+**Q:** Give an example of a prompt an MCP server might expose.
+
+**A:**
+
+A `review-pr` prompt that takes `repo` and `pr_number` (and an optional `focus`) to guide the assistant through a code-review workflow. Hosts often surface prompts as slash commands like `/review-pr`, command-palette entries, or buttons.
+
 ## Building MCP Servers
 
-### Question 33
+### Question 37
 
 **Q:** What are the three jobs of a basic MCP server?
 
@@ -286,7 +332,7 @@ Setup and discovery happen first. Then the use phase repeats tool calls or resou
 
 Declare itself, register capabilities such as tools/resources/prompts, and run on a transport such as `stdio` or HTTP.
 
-### Question 34
+### Question 38
 
 **Q:** What does an MCP server not contain?
 
@@ -294,7 +340,7 @@ Declare itself, register capabilities such as tools/resources/prompts, and run o
 
 It does not contain the AI model. The host owns the model; the server exposes capabilities.
 
-### Question 35
+### Question 39
 
 **Q:** What sequence does every MCP connection follow before use?
 
@@ -302,7 +348,7 @@ It does not contain the AI model. The host owns the model; the server exposes ca
 
 Connect, handshake with `initialize`, discover capabilities, then use tools or resources over the connection.
 
-### Question 36
+### Question 40
 
 **Q:** After the server object is created, what happens next?
 
@@ -310,7 +356,7 @@ Connect, handshake with `initialize`, discover capabilities, then use tools or r
 
 The developer registers tools, resources, and prompts, then runs the server on a transport so clients can connect and discover those capabilities.
 
-### Question 37
+### Question 41
 
 **Q:** In FastMCP, what does `FastMCP("demo")` represent?
 
@@ -318,7 +364,7 @@ The developer registers tools, resources, and prompts, then runs the server on a
 
 It declares a server named `demo`, which is how the host identifies the local MCP server.
 
-### Question 38
+### Question 42
 
 **Q:** Why do type hints matter in a FastMCP tool?
 
@@ -326,7 +372,7 @@ It declares a server named `demo`, which is how the host identifies the local MC
 
 Type hints help generate input and output schemas automatically, so the host and model know what arguments are valid.
 
-### Question 39
+### Question 43
 
 **Q:** Why does the docstring matter in an MCP tool?
 
@@ -334,7 +380,7 @@ Type hints help generate input and output schemas automatically, so the host and
 
 The docstring becomes the tool description the model uses to decide when to call the tool. Vague docstrings cause wrong tool choices.
 
-### Question 40
+### Question 44
 
 **Q:** Why is `stdio` usually appropriate for a local server?
 
@@ -342,7 +388,7 @@ The docstring becomes the tool description the model uses to decide when to call
 
 The host can launch the server as a subprocess and communicate through standard input/output without exposing a network endpoint.
 
-### Question 41
+### Question 45
 
 **Q:** What does a host configuration for a local `stdio` server usually include?
 
@@ -350,7 +396,7 @@ The host can launch the server as a subprocess and communicate through standard 
 
 It includes a server name, command, and arguments, such as running `python /absolute/path/to/server.py`.
 
-### Question 42
+### Question 46
 
 **Q:** What is the difference between `@mcp.tool()`, `@mcp.resource(...)`, and `@mcp.prompt(...)`?
 
@@ -358,7 +404,7 @@ It includes a server name, command, and arguments, such as running `python /abso
 
 `@mcp.tool()` exposes an action. `@mcp.resource(...)` exposes read-only data identified by a URI. `@mcp.prompt(...)` exposes a reusable prompt template.
 
-### Question 43
+### Question 47
 
 **Q:** Why should resources stay read-only?
 
@@ -366,7 +412,7 @@ It includes a server name, command, and arguments, such as running `python /abso
 
 Resources are intended as readable context. If a function changes state, it should be a tool so the host can classify and gate it properly.
 
-### Question 44
+### Question 48
 
 **Q:** What is the MCP Inspector used for?
 
@@ -374,7 +420,7 @@ Resources are intended as readable context. If a function changes state, it shou
 
 It connects to a server, lists capabilities, and lets developers call tools, read resources, and inspect prompts before integrating with a full host.
 
-### Question 45
+### Question 49
 
 **Q:** Why is SDK type validation not enough for business safety?
 
@@ -382,7 +428,7 @@ It connects to a server, lists capabilities, and lets developers call tools, rea
 
 The SDK can validate basic types, but it cannot know business rules such as "denominator must not be zero" or "path must stay inside this folder."
 
-### Question 46
+### Question 50
 
 **Q:** Give three safety controls for a server you build.
 
@@ -390,7 +436,7 @@ The SDK can validate basic types, but it cannot know business rules such as "den
 
 Expose few tools, separate read from write, scope access, validate inputs, fail safely, and keep secrets out of results.
 
-### Question 47
+### Question 51
 
 **Q:** If the model never calls your tool, what server-design issue might be responsible?
 
@@ -398,7 +444,7 @@ Expose few tools, separate read from write, scope access, validate inputs, fail 
 
 The tool name or docstring may be vague, missing, or not aligned with the user's task.
 
-### Question 48
+### Question 52
 
 **Q:** Why does a `stdio` server seem to do nothing when run directly in a terminal?
 
@@ -408,7 +454,7 @@ It is designed to communicate with a host or the Inspector over stdin/stdout, no
 
 ## Local vs Remote MCP
 
-### Question 49
+### Question 53
 
 **Q:** What is local MCP?
 
@@ -416,7 +462,7 @@ It is designed to communicate with a host or the Inspector over stdin/stdout, no
 
 Local MCP means the server runs on the user's machine or local development environment, often launched by the host over `stdio`.
 
-### Question 50
+### Question 54
 
 **Q:** What is remote MCP?
 
@@ -424,7 +470,7 @@ Local MCP means the server runs on the user's machine or local development envir
 
 Remote MCP means the server runs as a network service, usually over an HTTP-based transport, for shared hosted tools or data.
 
-### Question 51
+### Question 55
 
 **Q:** What is hybrid MCP?
 
@@ -432,7 +478,7 @@ Remote MCP means the server runs as a network service, usually over an HTTP-base
 
 Hybrid MCP combines local servers and remote servers, such as a coding assistant using local filesystem tools and remote issue tracker or observability tools.
 
-### Question 52
+### Question 56
 
 **Q:** Compare common transports for local and remote MCP.
 
@@ -440,7 +486,7 @@ Hybrid MCP combines local servers and remote servers, such as a coding assistant
 
 Local MCP commonly uses `stdio`. Remote MCP commonly uses Streamable HTTP.
 
-### Question 53
+### Question 57
 
 **Q:** Why is the word "server" sometimes confusing in MCP?
 
@@ -448,7 +494,7 @@ Local MCP commonly uses `stdio`. Remote MCP commonly uses Streamable HTTP.
 
 An MCP server is not always a remote web server. A local command-line process launched by the host can also be an MCP server.
 
-### Question 54
+### Question 58
 
 **Q:** When is local MCP a good fit?
 
@@ -456,7 +502,7 @@ An MCP server is not always a remote web server. A local command-line process la
 
 Use local MCP for local files, repositories, scripts, dev databases, notes, desktop workflows, and prototypes that should not be exposed over the network.
 
-### Question 55
+### Question 59
 
 **Q:** When is remote MCP a good fit?
 
@@ -464,7 +510,7 @@ Use local MCP for local files, repositories, scripts, dev databases, notes, desk
 
 Use remote MCP for shared services, SaaS tools, hosted internal APIs, production observability, support platforms, and team-wide knowledge systems.
 
-### Question 56
+### Question 60
 
 **Q:** Why is local MCP not automatically safe?
 
@@ -472,7 +518,7 @@ Use remote MCP for shared services, SaaS tools, hosted internal APIs, production
 
 It may access sensitive local files, environment variables, shell commands, browser state, local databases, or private developer resources.
 
-### Question 57
+### Question 61
 
 **Q:** Why does remote MCP need stronger authentication and authorization?
 
@@ -480,7 +526,7 @@ It may access sensitive local files, environment variables, shell commands, brow
 
 Remote MCP is reachable over a network and may serve many users, so it must verify identity, permissions, tenant isolation, scopes, and request legitimacy.
 
-### Question 58
+### Question 62
 
 **Q:** In a local repository assistant, which servers are likely local?
 
@@ -488,7 +534,7 @@ Remote MCP is reachable over a network and may serve many users, so it must veri
 
 Filesystem, Git, and test-runner servers are likely local because they need access to the current working tree and local test environment.
 
-### Question 59
+### Question 63
 
 **Q:** In a production incident assistant, why are observability and issue tracker servers likely remote?
 
@@ -496,7 +542,7 @@ Filesystem, Git, and test-runner servers are likely local because they need acce
 
 The data is hosted, shared, operational, and used by multiple users, so remote servers can centralize authentication, authorization, and logging.
 
-### Question 60
+### Question 64
 
 **Q:** What is the main risk of a hybrid setup?
 
@@ -504,7 +550,7 @@ The data is hosted, shared, operational, and used by multiple users, so remote s
 
 A remote tool might accidentally gain access to local files, or local private data might be sent to a remote service without user approval and policy checks.
 
-### Question 61
+### Question 65
 
 **Q:** What should a local MCP safety checklist ask about filesystem access?
 
@@ -512,7 +558,7 @@ A remote tool might accidentally gain access to local files, or local private da
 
 It should ask which folders are accessible, whether the server can write or delete, whether secrets like `.env` or SSH keys are blocked, and whether approval is required for risky actions.
 
-### Question 62
+### Question 66
 
 **Q:** What should a remote MCP safety checklist ask about users and tenants?
 
@@ -520,7 +566,7 @@ It should ask which folders are accessible, whether the server can write or dele
 
 It should ask how users authenticate, how authorization checks real backing-system permissions, whether tenant isolation is enforced, and what gets logged.
 
-### Question 63
+### Question 67
 
 **Q:** Why is binding a local server to public interfaces a failure mode?
 
@@ -528,7 +574,7 @@ It should ask how users authenticate, how authorization checks real backing-syst
 
 It can expose local capabilities to the network. Local services should usually bind to localhost or use `stdio`.
 
-### Question 64
+### Question 68
 
 **Q:** A team needs a shared company knowledge base assistant. Should the docs MCP server be local or remote?
 
@@ -538,7 +584,7 @@ Remote is usually better because the knowledge base should be centrally maintain
 
 ## Tool and Resource Exposure in MCP
 
-### Question 65
+### Question 69
 
 **Q:** What does tool and resource exposure mean?
 
@@ -546,7 +592,7 @@ Remote is usually better because the knowledge base should be centrally maintain
 
 It means choosing which information an agent can read and which actions it can request through an MCP server.
 
-### Question 66
+### Question 70
 
 **Q:** What is the simple mental model for resources and tools?
 
@@ -554,7 +600,7 @@ It means choosing which information an agent can read and which actions it can r
 
 Resources are what the agent may inspect. Tools are what the agent may ask to do.
 
-### Question 67
+### Question 71
 
 **Q:** In an MCP-connected system, who decides what to show the model and what calls to allow?
 
@@ -562,7 +608,7 @@ Resources are what the agent may inspect. Tools are what the agent may ask to do
 
 The host decides what context reaches the model, what tool calls are allowed, and when human approval is needed.
 
-### Question 68
+### Question 72
 
 **Q:** Compare a resource, a tool, and a prompt.
 
@@ -570,7 +616,7 @@ The host decides what context reaches the model, what tool calls are allowed, an
 
 A resource is readable context. A tool is an invocable action. A prompt is a reusable instruction template or workflow.
 
-### Question 69
+### Question 73
 
 **Q:** What questions should a resource answer before exposure?
 
@@ -578,7 +624,7 @@ A resource is readable context. A tool is an invocable action. A prompt is a reu
 
 What information is available, who can read it, how fresh and large it is, what format it uses, and whether it is safe for model context.
 
-### Question 70
+### Question 74
 
 **Q:** Why should resource exposure be narrow?
 
@@ -586,7 +632,7 @@ What information is available, who can read it, how fresh and large it is, what 
 
 Narrow resources reduce data leaks, token bloat, irrelevant context, and access to unrelated private systems.
 
-### Question 71
+### Question 75
 
 **Q:** What questions should a tool answer before exposure?
 
@@ -594,7 +640,7 @@ Narrow resources reduce data leaks, token bloat, irrelevant context, and access 
 
 What action it performs, what input it requires, what output it returns, whether it is read/write/destructive, whether approval is needed, and how failures are handled.
 
-### Question 72
+### Question 76
 
 **Q:** Why is `create_calendar_event` safer than `run_arbitrary_calendar_command`?
 
@@ -602,7 +648,7 @@ What action it performs, what input it requires, what output it returns, whether
 
 It is specific, easier for the model to choose correctly, easier to validate, and easier for the host to classify and approve.
 
-### Question 73
+### Question 77
 
 **Q:** What happens after the server returns an observation?
 
@@ -610,7 +656,7 @@ It is specific, easier for the model to choose correctly, easier to validate, an
 
 The client sends the result to the host, the host adds appropriate observation context to the model, and the model continues, asks, or answers.
 
-### Question 74
+### Question 78
 
 **Q:** Why should an agent read a resource like its inventory before acting?
 
@@ -618,7 +664,7 @@ The client sends the result to the host, the host adds appropriate observation c
 
 The inventory resource tells the agent what materials exist. Without that observation, it may plan actions that cannot be completed.
 
-### Question 75
+### Question 79
 
 **Q:** What is a good resource exposure example?
 
@@ -626,7 +672,7 @@ The inventory resource tells the agent what materials exist. Without that observ
 
 `ticket://12345` containing one redacted ticket with current status and access limited to the support agent role.
 
-### Question 76
+### Question 80
 
 **Q:** What is a weak resource exposure example?
 
@@ -634,7 +680,7 @@ The inventory resource tells the agent what materials exist. Without that observ
 
 `database://all-customer-data` available to any connected agent because it exposes too much sensitive data without task scope.
 
-### Question 77
+### Question 81
 
 **Q:** What is a good tool exposure example?
 
@@ -642,7 +688,7 @@ The inventory resource tells the agent what materials exist. Without that observ
 
 `create_refund_draft(ticket_id, amount, reason)`, which creates an internal draft and requires approval before sending or processing.
 
-### Question 78
+### Question 82
 
 **Q:** What is a weak tool exposure example?
 
@@ -650,7 +696,7 @@ The inventory resource tells the agent what materials exist. Without that observ
 
 `handle_customer_money(any text command)`, which can refund, charge, cancel, or edit billing without clear inputs or approval.
 
-### Question 79
+### Question 83
 
 **Q:** Why is mixing read and write in one tool a common mistake?
 
@@ -658,7 +704,7 @@ The inventory resource tells the agent what materials exist. Without that observ
 
 It makes risk hard to classify and prevents the host from approving only the risky parts.
 
-### Question 80
+### Question 84
 
 **Q:** Why should resource content be treated carefully?
 
@@ -668,7 +714,7 @@ Resources can contain stale data, sensitive information, too much context, or pr
 
 ## Security Boundaries for MCP-Connected Tools
 
-### Question 81
+### Question 85
 
 **Q:** What is a security boundary in MCP?
 
@@ -676,7 +722,7 @@ Resources can contain stale data, sensitive information, too much context, or pr
 
 A security boundary is a limit around what an MCP-connected agent, server, tool, credential, or external system may access or change.
 
-### Question 82
+### Question 86
 
 **Q:** What is the simplest security rule for MCP-connected agents?
 
@@ -684,7 +730,7 @@ A security boundary is a limit around what an MCP-connected agent, server, tool,
 
 An AI agent should not automatically get full access to every tool it can connect to.
 
-### Question 83
+### Question 87
 
 **Q:** Why does MCP connection not equal trust?
 
@@ -692,7 +738,7 @@ An AI agent should not automatically get full access to every tool it can connec
 
 MCP standardizes communication, but servers, tools, resources, and results can still be unsafe, misleading, over-broad, or malicious.
 
-### Question 84
+### Question 88
 
 **Q:** What crosses the host-to-model boundary?
 
@@ -700,7 +746,7 @@ MCP standardizes communication, but servers, tools, resources, and results can s
 
 Prompts, tool definitions, resources, conversation history, and tool results can cross into model context, creating risks around sensitive data and prompt injection.
 
-### Question 85
+### Question 89
 
 **Q:** Why should tool results be treated as data, not trusted instructions?
 
@@ -708,7 +754,7 @@ Prompts, tool definitions, resources, conversation history, and tool results can
 
 Tool results may contain malicious text such as "ignore previous instructions." The model should analyze them as content, not obey them as policy.
 
-### Question 86
+### Question 90
 
 **Q:** Name four MCP boundary controls.
 
@@ -716,7 +762,7 @@ Tool results may contain malicious text such as "ignore previous instructions." 
 
 Server allowlists, schema validation, policy checks, scoped credentials, sandboxing, human approval, output filtering, and audit logs.
 
-### Question 87
+### Question 91
 
 **Q:** What is the five-step beginner recipe for classifying an MCP server?
 
@@ -724,7 +770,7 @@ Server allowlists, schema validation, policy checks, scoped credentials, sandbox
 
 List exposed items, mark each as read/write/send/execute/destructive, decide what is automatic, decide what needs approval, and deny what is not needed.
 
-### Question 88
+### Question 92
 
 **Q:** Why must read permission and send permission be separate?
 
@@ -732,7 +778,7 @@ List exposed items, mark each as read/write/send/execute/destructive, decide wha
 
 Reading private data should not imply permission to send it outside the trust zone through email, Slack, public issues, or remote APIs.
 
-### Question 89
+### Question 93
 
 **Q:** What should a strong approval prompt show?
 
@@ -740,7 +786,7 @@ Reading private data should not imply permission to send it outside the trust zo
 
 It should show the tool name, target, exact content or command, data leaving the chat, impact, and whether the user approves.
 
-### Question 90
+### Question 94
 
 **Q:** What is wrong with "Allow this agent to manage GitHub" as approval?
 
@@ -748,7 +794,7 @@ It should show the tool name, target, exact content or command, data leaving the
 
 It is too broad. It does not identify the exact action, repository, content, scope, or impact.
 
-### Question 91
+### Question 95
 
 **Q:** Why are broad scopes like `repo:*` risky?
 
@@ -756,7 +802,7 @@ It is too broad. It does not identify the exact action, repository, content, sco
 
 They let one mistake or stolen credential affect unrelated repositories and actions. Narrow task-specific scopes reduce blast radius.
 
-### Question 92
+### Question 96
 
 **Q:** What local MCP paths should commonly be blocked?
 
@@ -764,7 +810,7 @@ They let one mistake or stolen credential affect unrelated repositories and acti
 
 `.env`, `.ssh`, cloud credentials, password stores, browser cookies, system folders, and broad roots such as `/` or the full home directory.
 
-### Question 93
+### Question 97
 
 **Q:** What remote MCP controls are recommended?
 
@@ -772,7 +818,7 @@ They let one mistake or stolen credential affect unrelated repositories and acti
 
 Approved URLs, TLS, user/client authentication, scoped tokens, validated redirects, token rotation, egress restrictions, authorization checks, and audit logs.
 
-### Question 94
+### Question 98
 
 **Q:** What is prompt injection through MCP?
 
@@ -780,7 +826,7 @@ Approved URLs, TLS, user/client authentication, scoped tokens, validated redirec
 
 It is malicious text in resources, tool results, emails, web pages, logs, or prompt templates that tries to override instructions or trigger unsafe tool calls.
 
-### Question 95
+### Question 99
 
 **Q:** In a secure MCP tool call, what happens after the server returns a result?
 
@@ -788,7 +834,7 @@ It is malicious text in resources, tool results, emails, web pages, logs, or pro
 
 The client returns the observation to the host, and the host filters the result and checks for untrusted instructions before showing an answer or approval prompt.
 
-### Question 96
+### Question 100
 
 **Q:** What is the core rule from the security-boundaries summary?
 

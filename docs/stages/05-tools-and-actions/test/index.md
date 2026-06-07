@@ -9,8 +9,8 @@ This study test checks understanding of every main section in **05 Tools and Act
 | Function Calling | 15 |
 | Tool Error Handling | 15 |
 | Common Agent Tools | 15 |
-| Permission Boundaries for Read, Write, and Destructive Tools | 15 |
-| **Total** | **90** |
+| Permission Boundaries for Read, Write, and Destructive Tools | 16 |
+| **Total** | **91** |
 
 ## Tool Definition
 
@@ -296,9 +296,11 @@ Guardrails validate arguments, check authorization and safety policy, log the ac
 
 **A:**
 
-```text
-Plan -> choose tool -> generate arguments -> validate
--> execute -> observe -> continue or answer
+```mermaid
+flowchart LR
+    P[Plan] --> C[Choose tool] --> G[Generate arguments] --> V[Validate] --> E[Execute] --> O[Observe] --> D{Continue or answer?}
+    D -->|continue| P
+    D -->|answer| F[Answer]
 ```
 
 ### Question 36
@@ -750,3 +752,25 @@ Privilege escalation happens when an agent uses allowed permissions to gain stro
 **A:**
 
 Ask whether it is read, write, or destructive; what resource it touches; whether it is in scope; whether it exposes secrets; whether it affects production; whether it is reversible; whether approval is required; and whether it will be logged.
+
+### Question 91
+
+**Q:** What is the permission boundary architecture for handling a requested tool action?
+
+**A:**
+
+The agent classifies each requested action, routes it to the matching boundary, executes only what is allowed, and logs the outcome.
+
+```mermaid
+flowchart TD
+    U[User request] --> A[Agent] --> C[Classify action]
+    C --> R[Read tool] --> RP[Read boundary: allowed sources]
+    C --> W[Write tool] --> WP[Write boundary: scoped resources]
+    C --> D[Destructive tool] --> AP{Approved?}
+    RP --> X[Execute]
+    WP --> X
+    AP -->|yes| X
+    AP -->|no| B[Block]
+    X --> L[Audit log]
+    B --> L
+```

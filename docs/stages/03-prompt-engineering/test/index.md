@@ -30,7 +30,7 @@ A detailed prompt reduces guessing by defining the audience, task, rules, input 
 
 ### Question 3
 
-**Q:** Why is prompting an iterative process?
+**Q:** What does the prompt improvement loop show?
 
 **A:**
 
@@ -60,10 +60,11 @@ It should define role, goal, tool rules, boundaries, completion criteria, and fi
 
 ### Question 6
 
-**Q:** What inputs can be combined into the final prompt before the model responds?
+**Q:** What Builds the Final Prompt?
 
 **A:**
 
+In a real application, the model usually receives more than the user's visible message. Your app may add system rules, retrieved documents, examples, or an output schema.
 The final prompt can combine system rules, user request, context or documents, examples, and output schema before producing a model response that may be validated.
 
 ### Question 7
@@ -132,11 +133,11 @@ Weak: `Review this code.` It has no focus. Strong: `Review this API handler for 
 
 ### Question 15
 
-**Q:** If you are unsure how to write a prompt, what reliable structure can you start from?
+**Q:** Explain prompt technique overview.
 
 **A:**
 
-Use the prompt recipe: state the role, the task, the context, the input, the constraints, the output format, and the success criteria. Filling in these parts in order turns a vague request into a clear, testable prompt.
+zero-shot, few-shot, role prompting, system prompting, step-bakc prompting, reasoning prompt, self-consistency, tree of thoughts, ReAct, automatic prompt engineering
 
 ### Question 16
 
@@ -244,7 +245,7 @@ ReAct combines reasoning and action. The agent decides the next action, calls a 
 
 ### Question 29
 
-**Q:** What is the basic loop in ReAct prompting?
+**Q:** In the ReAct sequence diagram, what is the basic loop?
 
 **A:**
 
@@ -262,11 +263,11 @@ Automatic Prompt Engineering uses a model to generate prompt variants, test them
 
 ### Question 31
 
-**Q:** How should you choose a prompting technique?
+**Q:** What must an agent-ready prompt define?
 
 **A:**
 
-Start with the simplest method that fits, usually clear zero-shot instructions. Move to few-shot, step-back, reasoning, ReAct, or Tree of Thoughts only when the task needs custom patterns, framing, multi-step reasoning, tools, or search. Advanced techniques add cost and latency, so use them only when the task needs them.
+It must define role, goal, tools, rules, stop criteria, and final format.
 
 ### Question 32
 
@@ -288,7 +289,7 @@ It means the model should not need to guess the task, audience, scope, rules, in
 
 ### Question 34
 
-**Q:** What elements combine to make a prompt specific?
+**Q:** What is the Specific Prompt Builder diagram showing?
 
 **A:**
 
@@ -328,12 +329,30 @@ Ask what you want, who it is for, what to include, what to avoid, what source to
 
 ### Question 39
 
-**Q:** What is a general formula for structuring a prompt?
+**Q:** What is the formula for most practical prompts?
 
 **A:**
 
 ```text
-Task -> Audience -> Scope -> Input -> Rules -> Output
+Task:
+{What should the model do?}
+
+Audience:
+{Who is the result for?}
+
+Scope:
+{What should be included or focused on?}
+
+Input:
+{Text, code, notes, document, ticket, or data}
+
+Rules:
+- {Required rule}
+- {Required rule}
+- {What to avoid}
+
+Output:
+{Length, format, tone, and sections}
 ```
 
 ### Question 40
@@ -458,7 +477,7 @@ Examples teach the model the pattern. If examples differ from real inputs, the m
 
 ### Question 55
 
-**Q:** What are the steps of the prompt iteration loop?
+**Q:** What does the prompt iteration loop show?
 
 **A:**
 
@@ -550,7 +569,7 @@ Prompt-only JSON is weakest. JSON mode improves JSON syntax. Structured outputs 
 
 ### Question 66
 
-**Q:** What are the steps in a structured output flow?
+**Q:** What does the structured output flow diagram show?
 
 **A:**
 
@@ -592,11 +611,26 @@ Enums limit output to fixed choices, such as `low`, `medium`, or `high`, which m
 
 ### Question 71
 
-**Q:** Why is a stable shape useful?
+**Q:** Give examples about good pattern and risky pattern
 
 **A:**
 
-Stable fields are easier for code to parse than responses where fields appear and disappear unpredictably.
+Good pattern:
+
+```text
+{
+  "order_id": null,
+  "missing_fields": ["order_id"]
+}
+```
+
+Risky pattern:
+
+```text
+{
+  "missing_order": true
+}
+```
 
 ### Question 72
 
@@ -656,7 +690,7 @@ The model can still produce invalid, incomplete, unsafe, or business-incorrect d
 
 ### Question 79
 
-**Q:** What are the steps in validating a structured output?
+**Q:** What does the validation flow diagram show?
 
 **A:**
 
@@ -708,19 +742,25 @@ The evidence rule failed or was missing. The prompt should require `order_id: nu
 
 ### Question 85
 
-**Q:** What is the main goal of prompt testing?
+**Q:** What is prompt testing??
 
 **A:**
 
-The goal is to test prompts systematically instead of trusting one-off experiments.
+Prompt testing is the process of evaluating how an AI model responds to a prompt to ensure the output is accurate, relevant, and consistent.
 
 ### Question 86
 
-**Q:** Why does prompt testing matter for AI agents?
+**Q:** What are the main goals of prompt testing?
 
 **A:**
 
-Agent prompts affect tool use, planning, validation, safety, and final answers. Untested prompts can fail in realistic workflows.
+The main goals are to verify:
+
+- Correctness of responses
+- Consistency across runs
+- Adherence to instructions
+- Robustness to different inputs
+- Safety and compliance
 
 ### Question 87
 

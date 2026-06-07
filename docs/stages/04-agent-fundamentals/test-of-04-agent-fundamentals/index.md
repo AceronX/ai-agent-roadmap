@@ -116,7 +116,7 @@ More tools increase complexity, permission risk, validation work, logging needs,
 
 ### Question 13
 
-**Q:** In the core architecture, what is the difference between the agent brain and the tool layer?
+**Q:** What is the difference between the agent brain and the tool layer?
 
 **A:**
 
@@ -174,7 +174,7 @@ ReAct means **Reason + Act**. The agent reasons about the next useful step, take
 
 ### Question 20
 
-**Q:** What is the one-sentence definition of ReAct from this section?
+**Q:** What is a one-sentence definition of ReAct?
 
 **A:**
 
@@ -182,7 +182,7 @@ ReAct is an agent loop where reasoning chooses the next action, and the observat
 
 ### Question 21
 
-**Q:** Draw the ReAct loop in a compact form.
+**Q:** What is the ReAct loop in compact form?
 
 **A:**
 
@@ -432,7 +432,7 @@ Acting is the step where the agent does something beyond thinking, often by invo
 
 ### Question 51
 
-**Q:** What are the three important parts of tool invocation in this section?
+**Q:** What are the three important parts of tool invocation?
 
 **A:**
 
@@ -456,7 +456,7 @@ Reflection is deciding what an observation means for the user's goal and whether
 
 ### Question 54
 
-**Q:** Compare observation and reflection using the weather example.
+**Q:** Using an example, compare observation and reflection.
 
 **A:**
 
@@ -472,7 +472,7 @@ It happens after feedback. It looks backward at the result of an action, then de
 
 ### Question 56
 
-**Q:** In the acting-and-observation diagram, what happens before the action and what happens after it?
+**Q:** In the agent loop, what happens before an action and what happens after it?
 
 **A:**
 
@@ -488,7 +488,7 @@ Weather changes constantly. The agent needs current real-world data from a weath
 
 ### Question 58
 
-**Q:** In the rocket-launch example, why should the agent ask for location if it does not know it?
+**Q:** Why should a weather agent ask for the location if it does not know it?
 
 **A:**
 
@@ -496,23 +496,23 @@ The forecast depends on location. Without a trusted location, the tool input wou
 
 ### Question 59
 
-**Q:** What did reflection add beyond simply reporting "90% chance of thunderstorms"?
+**Q:** Beyond reporting a tool's raw result, what does reflection add?
 
 **A:**
 
-Reflection connected the forecast to the user's real goal: launching a model rocket. It produced the safety recommendation to wait for a clear, calm day.
+Reflection connects the result to the user's real goal and turns it into a decision. For example, instead of just reporting a 90% chance of thunderstorms, it recommends waiting for a clear, calm day before a model rocket launch.
 
 ### Question 60
 
-**Q:** In the bat-and-ball example, what does checking the first guess reveal?
+**Q:** Why should an agent verify its first answer instead of returning it immediately?
 
 **A:**
 
-The first guess satisfies the total cost but fails the rule that the bat costs exactly one dollar more than the ball. Reflection catches the mistake before final response.
+A first guess can satisfy part of the problem but violate another constraint. In the bat-and-ball puzzle, the naive guess matches the total cost but breaks the rule that the bat costs exactly one dollar more than the ball; reflection catches this before the final response.
 
 ### Question 61
 
-**Q:** What is an example of bad tool input from this section?
+**Q:** What is an example of bad tool input?
 
 **A:**
 
@@ -554,7 +554,7 @@ Stopping criteria are rules that tell an agent when work is complete, blocked, u
 
 ### Question 66
 
-**Q:** Where are stopping criteria checked in the basic agent loop diagram?
+**Q:** Where in the agent loop are stopping criteria checked?
 
 **A:**
 
@@ -626,7 +626,7 @@ Explicit state lets the application decide whether to continue using counts, lim
 
 ### Question 75
 
-**Q:** In the stop decision flow, why should safety or approval checks happen before continuing?
+**Q:** Why should safety or approval checks happen before the agent continues?
 
 **A:**
 
@@ -666,7 +666,7 @@ They answer: What proves success? What are the time, money, token, and tool limi
 
 ### Question 80
 
-**Q:** In the `should_stop` pseudocode, why is `unsafe_action_requested` checked before iteration limits?
+**Q:** Why should an unsafe action request be checked before iteration limits?
 
 **A:**
 
@@ -684,7 +684,7 @@ Tools are external capabilities that let agents interact with the world beyond t
 
 ### Question 82
 
-**Q:** What are the four core agent primitives shown in this section?
+**Q:** What are the four core agent primitives?
 
 **A:**
 

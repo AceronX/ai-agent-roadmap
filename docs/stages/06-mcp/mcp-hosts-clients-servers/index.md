@@ -38,9 +38,9 @@ A **host** is the AI application the user interacts with. A **client** is a prot
 Claude Desktop, IDE assistant, or custom agent = Host
 
 Host
- ├─ MCP client A -> filesystem server -> project files
- ├─ MCP client B -> GitHub server     -> GitHub API
- └─ MCP client C -> database server   -> Postgres
+ |-- MCP client A -> filesystem server -> project files
+ |-- MCP client B -> GitHub server     -> GitHub API
+ `-- MCP client C -> database server   -> Postgres
 ```
 
 The beginner rule:
@@ -105,22 +105,22 @@ In MCP:
 
 ```mermaid
 flowchart LR
-    U[User] --> H[MCP host<br/>chat app, IDE, agent runtime]
-    H --> M[LLM or model service]
+    U["User"] --> H["MCP host: chat app, IDE, or agent runtime"]
+    H --> M["LLM or model service"]
 
-    H --> C1[MCP client<br/>filesystem session]
-    H --> C2[MCP client<br/>GitHub session]
-    H --> C3[MCP client<br/>database session]
+    H --> C1["MCP client: filesystem session"]
+    H --> C2["MCP client: GitHub session"]
+    H --> C3["MCP client: database session"]
 
-    C1 <-->|MCP protocol| S1[Filesystem server]
-    C2 <-->|MCP protocol| S2[GitHub server]
-    C3 <-->|MCP protocol| S3[Database server]
+    C1 <-->|MCP protocol| S1["Filesystem server"]
+    C2 <-->|MCP protocol| S2["GitHub server"]
+    C3 <-->|MCP protocol| S3["Database server"]
 
-    S1 --> X1[Project files]
-    S2 --> X2[GitHub API]
-    S3 --> X3[Postgres]
+    S1 --> X1["Project files"]
+    S2 --> X2["GitHub API"]
+    S3 --> X3["Postgres"]
 
-    H --> G[Permissions<br/>approval<br/>logging<br/>context policy]
+    H --> G["Permissions, approval, logging, and context policy"]
     G --> C1
     G --> C2
     G --> C3
@@ -159,11 +159,11 @@ Examples:
 - a support assistant connected to ticket, CRM, policy, and email servers,
 - a data assistant connected to warehouse, dashboard, and notebook servers.
 
-### What The Host Owns
+### What the Host Owns
 
 The host is the trusted center of the system because it sees the whole picture.
 
-| Host Responsibility | Why It Belongs To The Host |
+| Host Responsibility | Why It Belongs to the Host |
 | --- | --- |
 | User interface | The user approves, cancels, edits, and receives results through the host. |
 | Model connection | The host decides which model is used and what context the model receives. |
@@ -178,17 +178,17 @@ The host should never blindly forward everything between the model and a server.
 
 ```mermaid
 flowchart TD
-    U[User request] --> H[Host]
-    H --> M[Model]
-    H --> P[Policy engine]
-    H --> CM[Client manager]
-    H --> CTX[Context builder]
-    CM --> C1[Client: files]
-    CM --> C2[Client: GitHub]
-    CM --> C3[Client: calendar]
-    P --> A{Approval needed?}
+    U["User request"] --> H["Host"]
+    H --> M["Model"]
+    H --> P["Policy engine"]
+    H --> CM["Client manager"]
+    H --> CTX["Context builder"]
+    CM --> C1["Client: files"]
+    CM --> C2["Client: GitHub"]
+    CM --> C3["Client: calendar"]
+    P --> A{"Approval needed?"}
     A -->|No| CM
-    A -->|Yes| UI[Show preview to user]
+    A -->|Yes| UI["Show preview to user"]
     UI -->|Approved| CM
     UI -->|Rejected| H
     CTX --> M
@@ -196,7 +196,7 @@ flowchart TD
 
 The host owns the control plane: model selection, context design, permission gates, approval UI, and client routing.
 
-### What The Host Should Decide
+### What the Host Should Decide
 
 | Decision | Example |
 | --- | --- |
@@ -215,7 +215,7 @@ Official MCP docs emphasize this distinction: the host is the application users 
 !!! warning "Common misconception"
     An MCP client is not the language model API client. The host talks to the model. The MCP client talks to an MCP server.
 
-### What The Client Does
+### What the Client Does
 
 | Client Job | What It Means |
 | --- | --- |
@@ -232,12 +232,12 @@ Each server has its own connection state, capability list, trust level, and perm
 
 ```text
 Host
- ├─ Client(files)
- │    └─ capabilities: read_file, search_files, file:// resources
- ├─ Client(github)
- │    └─ capabilities: search_issues, create_issue, repo:// resources
- └─ Client(calendar)
-      └─ capabilities: list_events, create_event, calendar:// resources
+ |-- Client(files)
+ |   `-- capabilities: read_file, search_files, file:// resources
+ |-- Client(github)
+ |   `-- capabilities: search_issues, create_issue, repo:// resources
+ `-- Client(calendar)
+     `-- capabilities: list_events, create_event, calendar:// resources
 ```
 
 One-client-per-server helps because:
@@ -269,7 +269,7 @@ sequenceDiagram
     participant H as Host UI
     participant U as User
 
-    S->>C: elicitation/create<br/>Need confirmation and preferences
+    S->>C: elicitation/create - need confirmation and preferences
     C->>H: Show structured form
     H->>U: Confirm booking? Seat? Insurance?
     U-->>H: Approve, decline, or cancel
@@ -346,7 +346,7 @@ sequenceDiagram
     participant M as Model
     participant U as User
 
-    S->>C: sampling request<br/>Compare 47 flight options
+    S->>C: sampling request - compare 47 flight options
     C->>H: Ask permission or apply policy
     H->>U: Show prompt preview if needed
     H->>M: Run separate model call
@@ -562,7 +562,7 @@ sequenceDiagram
     S-->>C: capability metadata
     C-->>H: Discovered capabilities
     U->>H: Ask task
-    H->>M: User goal + selected capabilities/context
+    H->>M: User goal plus selected capabilities and context
     M-->>H: Proposed tool call
     H->>H: Validate policy and approval need
     H->>C: Route allowed call
@@ -687,18 +687,18 @@ This example combines server features and client features.
 
 ```mermaid
 flowchart TD
-    U[User wants Barcelona trip] --> H[Travel host]
-    H --> M[Model]
-    H --> CT[Travel client]
-    H --> CW[Weather client]
-    H --> CC[Calendar client]
-    CT --> ST[Travel server<br/>tools + prompts]
-    CW --> SW[Weather server<br/>resources]
-    CC --> SC[Calendar server<br/>resources + tools]
+    U["User wants Barcelona trip"] --> H["Travel host"]
+    H --> M["Model"]
+    H --> CT["Travel client"]
+    H --> CW["Weather client"]
+    H --> CC["Calendar client"]
+    CT --> ST["Travel server: tools and prompts"]
+    CW --> SW["Weather server: resources"]
+    CC --> SC["Calendar server: resources and tools"]
 
-    ST --> E[Elicitation<br/>ask seat and room preferences]
-    CC --> R[Roots<br/>travel workspace files]
-    ST --> SA[Sampling<br/>compare flight options]
+    ST --> E["Elicitation: ask seat and room preferences"]
+    CC --> R["Roots: travel workspace files"]
+    ST --> SA["Sampling: compare flight options"]
 ```
 
 Possible workflow:

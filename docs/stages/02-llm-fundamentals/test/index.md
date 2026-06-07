@@ -20,7 +20,7 @@ This study test checks understanding of every main section in **02 LLM Fundament
 
 **Q:** What is LLM?
 
-**A:** LLMs, or Large Language Models, are advanced AI models trained on vast datasets to understand and generate human-like text. They can perform a wide range of natural language processing tasks, such as text generation, translation, summarization, and question answering. Examples include GPT-5, BERT, and DeepSeek.
+**A:** LLMs, or Large Language Models, are advanced AI models trained on vast datasets to understand and generate human-like text. They can perform a wide range of natural language processing tasks, such as text generation, translation, summarization, and question answering. Well-known examples include the GPT, Claude, Gemini, and Llama model families.
 
 ### Question 2
 
@@ -28,8 +28,9 @@ This study test checks understanding of every main section in **02 LLM Fundament
 
 **A:** A Transformer is a neural network architecture designed to process and understand sequences of data, especially text.
 
-```text
-Input Text -> Token IDs -> Embeddings -> Positional Information -> Transformer Blocks -> Logits -> Softmax -> Next Token Prediction
+```mermaid
+flowchart LR
+    I[Input text] --> T[Token IDs] --> E[Embeddings] --> P[Positional information] --> B[Transformer blocks] --> L[Logits] --> S[Softmax] --> N[Next-token prediction]
 ```
 
 ### Question 3
@@ -40,7 +41,7 @@ Input Text -> Token IDs -> Embeddings -> Positional Information -> Transformer B
 
 ### Question 4
 
-**Q:** In the next-token prediction diagram, what happens after the model picks one token?
+**Q:** After the model picks one token, what happens next?
 
 **A:** The chosen token is appended to the tokens so far, and the model runs again to predict the next token.
 
@@ -116,9 +117,9 @@ A token can be a word, part of a word, punctuation, whitespace, a symbol, a byte
 
 **A:** Tokenization is the step where raw text is broken into small pieces called tokens, and each token is given a unique number.
 
-```text
-raw text -> tokenizer -> token pieces -> token IDs
--> embeddings -> LLM -> output token IDs -> decoded text
+```mermaid
+flowchart LR
+    A[Raw text] --> B[Tokenizer] --> C[Token pieces] --> D[Token IDs] --> E[Embeddings] --> F[LLM] --> G[Output token IDs] --> H[Decoded text]
 ```
 
 ### Question 16
@@ -143,22 +144,15 @@ raw text -> tokenizer -> token pieces -> token IDs
 
 **Q:** What is the basic idea of BPE-style tokenization?
 
-**A:** BPE starts with small units and repeatedly merges frequent adjacent pairs, creating useful token pieces from common patterns.
-Imagine a tiny training set:
-  input : hug, hugs, pug, pugs
-  A simple BPE-style process might learn:
-    - Start:
-        h u g
-        h u g s
-        p u g
-        p u g s
-    - Frequent pair:
-        u + g -> ug
-    - After merge:
-        h ug
-        h ug s
-        p ug
-        p ug s
+**A:** BPE starts with small units and repeatedly merges frequent adjacent pairs, creating useful token pieces from common patterns. For example, on the tiny training set `hug, hugs, pug, pugs`:
+
+```text
+Start        Frequent pair      After merge
+  h u g        u + g -> ug         h ug
+  h u g s                          h ug s
+  p u g                            p ug
+  p u g s                          p ug s
+```
 
 ### Question 20
 
@@ -382,9 +376,9 @@ License:  API terms, Apache 2.0, MIT, GPL, custom community license, proprietary
 
 **A:** This is common generation control.
 
-```text
-raw logits -> repetition penalties -> temperature
--> softmax -> top-k/top-p filtering -> renormalize -> sample
+```mermaid
+flowchart LR
+    A[Raw logits] --> B[Repetition penalties] --> C[Temperature] --> D[Softmax] --> E[Top-k / top-p filtering] --> F[Renormalize] --> G[Sample]
 ```
 
 ### Question 53
@@ -650,9 +644,9 @@ Generation = let the LLM write the final answer
 
 ### Question 89
 
-**Q:** What does the AWS RAG architecture image show at a high level?
+**Q:** At a high level, what does a RAG architecture do before the model generates an answer?
 
-**A:** It shows external knowledge being retrieved and added as context before a foundation model generates the final response.
+**A:** External knowledge is retrieved and added as context before a foundation model generates the final response.
 
 ### Question 90
 

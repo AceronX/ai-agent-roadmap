@@ -30,14 +30,16 @@ A detailed prompt reduces guessing by defining the audience, task, rules, input 
 
 ### Question 3
 
-**Q:** What does the prompt improvement loop show?
+**Q:** What does the prompt improvement loop look like?
 
 **A:**
 
-It shows that prompting is iterative:
+Prompting is iterative:
 
-```text
-user goal -> prompt -> model -> output -> evaluate usefulness -> improve prompt
+```mermaid
+flowchart LR
+    G[User goal] --> P[Prompt] --> M[Model] --> O[Output] --> E[Evaluate usefulness] --> I[Improve prompt]
+    I --> P
 ```
 
 Do not trust a prompt only because it worked once.
@@ -60,12 +62,19 @@ It should define role, goal, tool rules, boundaries, completion criteria, and fi
 
 ### Question 6
 
-**Q:** What Builds the Final Prompt?
+**Q:** What builds the final prompt?
 
 **A:**
 
-In a real application, the model usually receives more than the user's visible message. Your app may add system rules, retrieved documents, examples, or an output schema.
-The final prompt can combine system rules, user request, context or documents, examples, and output schema before producing a model response that may be validated.
+In a real application, the model usually receives more than the user's visible message. The final prompt can combine:
+
+- system rules
+- the user request
+- context or documents
+- examples
+- an output schema
+
+The app may then validate the model's response.
 
 ### Question 7
 
@@ -253,12 +262,14 @@ ReAct combines reasoning and action. The agent decides the next action, calls a 
 
 ### Question 30
 
-**Q:** In the ReAct sequence diagram, what is the basic loop?
+**Q:** What is the basic loop in ReAct prompting?
 
 **A:**
 
-```text
-user goal -> agent decides action -> tool call -> tool observation -> agent updates plan -> final answer
+```mermaid
+flowchart LR
+    G[User goal] --> D[Agent decides action] --> T[Tool call] --> O[Tool observation] --> U[Agent updates plan] --> F[Final answer]
+    U -->|repeat| D
 ```
 
 ### Question 31
@@ -485,12 +496,14 @@ Examples teach the model the pattern. If examples differ from real inputs, the m
 
 ### Question 56
 
-**Q:** What does the prompt iteration loop show?
+**Q:** What does the prompt iteration loop look like?
 
 **A:**
 
-```text
-define goal -> write prompt -> test real inputs -> analyze output -> identify problems -> refine -> retest
+```mermaid
+flowchart LR
+    A[Define goal] --> B[Write prompt] --> C[Test real inputs] --> D[Analyze output] --> E[Identify problems] --> F[Refine]
+    F -->|retest| C
 ```
 
 ### Question 57
@@ -577,12 +590,15 @@ Prompt-only JSON is weakest. JSON mode improves JSON syntax. Structured outputs 
 
 ### Question 67
 
-**Q:** What does the structured output flow diagram show?
+**Q:** What are the steps in the structured output flow?
 
 **A:**
 
-```text
-input -> prompt + schema -> model request -> structured output -> parser -> validator -> application use or retry
+```mermaid
+flowchart LR
+    I[Input] --> PS[Prompt + schema] --> MR[Model request] --> SO[Structured output] --> P[Parser] --> V[Validator] --> Dd{Valid?}
+    Dd -->|use| AppUse[Application use]
+    Dd -->|retry| MR
 ```
 
 ### Question 68
@@ -698,12 +714,15 @@ The model can still produce invalid, incomplete, unsafe, or business-incorrect d
 
 ### Question 80
 
-**Q:** What does the validation flow diagram show?
+**Q:** What are the steps in validating a structured output?
 
 **A:**
 
-```text
-model response -> parse JSON -> schema validation -> business rules -> use data or retry/fallback/review
+```mermaid
+flowchart LR
+    M[Model response] --> P[Parse JSON] --> S[Schema validation] --> B[Business rules] --> Dd{Valid?}
+    Dd -->|use| U[Use data]
+    Dd -->|fail| R[Retry / fallback / review]
 ```
 
 ### Question 81

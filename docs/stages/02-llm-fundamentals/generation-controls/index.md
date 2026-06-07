@@ -438,6 +438,45 @@ presence_penalty = 0.6
 
 Before penalties, `pizza` clearly wins. After penalties, `pizza`, `cake`, and `apple` are much closer. Temperature and filtering will then decide how strongly these adjusted scores compete.
 
+## Output Length: Max Tokens and Stop Sequences
+
+Temperature, top-p, top-k, and the penalties decide *which* token comes next. Two more controls decide *when generation ends*.
+
+### Max Tokens (Max Length)
+
+`max_tokens` caps how many tokens the model may generate in one response.
+
+| What it does | What it does not do |
+| --- | --- |
+| Cuts generation off once the limit is reached | Make the model write a concise answer |
+| Protects against runaway output, cost, and latency | Summarize or compress the content |
+
+This distinction matters: a low `max_tokens` does not teach the model to be brief. It simply stops generation, which can **truncate the output mid-sentence** (or produce invalid JSON) if set too low. To get a short answer, ask for it in the prompt *and* set a safe limit as a backstop.
+
+### Stop Sequences
+
+A **stop sequence** is a string that makes the model stop generating as soon as it would produce that string. The stop text itself is not included in the output.
+
+```text
+Prompt:   List two fruits, one per line, then stop.
+stop: ["3."]
+Output:   1. apple
+          2. banana
+```
+
+Stop sequences are useful for ending output at a known boundary, such as:
+
+- a closing delimiter (`</answer>` or a code fence)
+- the start of a new role marker, so a chat completion stops before "User:"
+- a fixed separator between items
+
+| Control | Ends generation when... | Common use |
+| --- | --- | --- |
+| `max_tokens` | a token count is reached | safety cap on length, cost, latency |
+| stop sequence | a specific string is produced | stop at a delimiter or structural boundary |
+
+Both are safeguards, not quality controls. Use them to bound output, and rely on the prompt and sampling controls for *what* the output says.
+
 ## How Controls Work Together
 
 These controls affect different parts of the same pipeline:

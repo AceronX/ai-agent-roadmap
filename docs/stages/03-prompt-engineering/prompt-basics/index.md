@@ -293,6 +293,7 @@ flowchart TD
 | Role prompting | Setting perspective and audience | Low |
 | System prompting | Stable app or agent behavior | Low |
 | Step-back prompting | Better framing before solving | Medium |
+| Chain-of-thought | Step-by-step reasoning for multi-step problems | Medium |
 | Reasoning prompt | Multi-step problems and checks | Medium |
 | Self-consistency | More reliable answers from multiple attempts | High |
 | Tree of Thoughts | Search, planning, strategy, hard problems | High |
@@ -498,6 +499,19 @@ This helps when the model may focus too much on surface details. It is useful fo
     ```
 
     This works because the model frames the problem before giving specific ideas.
+
+#### Chain-of-Thought Prompting
+
+Chain-of-thought (CoT) prompting asks the model to work through intermediate reasoning steps before giving a final answer, instead of jumping straight to a conclusion. It often improves accuracy on multi-step problems such as math, logic, and planning.
+
+```text
+Question: A bat and a ball cost $1.10 together. The bat costs $1.00
+more than the ball. How much is the ball?
+
+Think step by step, then give the final answer.
+```
+
+The tradeoff: the model generates more tokens, which adds cost and latency. Use CoT when the task genuinely needs reasoning, not for simple lookups. In a product, you usually keep the detailed reasoning internal and show the user only the final answer plus a short justification.
 
 #### Reasoning Prompts
 

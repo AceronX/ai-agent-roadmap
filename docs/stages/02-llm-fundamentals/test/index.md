@@ -8,11 +8,11 @@ This study test checks understanding of every main section in **02 LLM Fundament
 | Tokenization | 12 |
 | Context Windows | 12 |
 | Model Families and Licenses | 12 |
-| Generation Controls | 12 |
+| Generation Controls | 14 |
 | Pricing and Latency | 12 |
 | Embeddings and Vector Search | 12 |
 | RAG Basics | 12 |
-| **Total** | **96** |
+| **Total** | **98** |
 
 ## Transformer Models and LLMs
 
@@ -449,15 +449,27 @@ new_logit_i = raw_logit_i - presence_penalty * seen_i
 
 **A:** Changing multiple controls together makes it hard to know which setting improved or damaged the output.
 
+### Question 61
+
+**Q:** What does a max tokens (max length) setting control?
+
+**A:** It caps how many tokens the model may generate in one response. It does not make the answer concise; it simply stops generation at the limit, which can truncate output mid-sentence if set too low.
+
+### Question 62
+
+**Q:** What is a stop sequence?
+
+**A:** A stop sequence is a string that makes the model stop generating as soon as it would produce that string. It is useful for ending output at a known boundary, such as a closing delimiter or before a new role marker, and the stop text itself is not included in the output.
+
 ## Pricing and Latency
 
-### Question 61
+### Question 63
 
 **Q:** What is LLM pricing usually based on?
 
 **A:** Most providers charge based on the number of tokens processed, usually separating input token cost and output token cost.
 
-### Question 62
+### Question 64
 
 **Q:** What is the simple pricing formula from this section?
 
@@ -467,19 +479,19 @@ new_logit_i = raw_logit_i - presence_penalty * seen_i
 Total cost = input tokens cost + output tokens cost
 ```
 
-### Question 63
+### Question 65
 
 **Q:** Why do both the user message and model response affect cost?
 
 **A:** The model must process input tokens and generate output tokens, and both are counted by most pricing systems.
 
-### Question 64
+### Question 66
 
 **Q:** What is latency?
 
 **A:** Latency is the time it takes for the system to produce a response after a request is sent.
 
-### Question 65
+### Question 67
 
 **Q:** What are the main components of total latency in this section?
 
@@ -489,43 +501,43 @@ Total cost = input tokens cost + output tokens cost
 network time + queue time + inference time + tool time
 ```
 
-### Question 66
+### Question 68
 
 **Q:** What is inference time?
 
 **A:** Inference time is the actual model processing and generation time. It is often the largest part of response latency.
 
-### Question 67
+### Question 69
 
 **Q:** Why do agent systems often have higher latency than one-shot chat?
 
 **A:** Agents may call tools, wait for APIs or databases, make multiple model calls, and feed observations back into the loop before answering.
 
-### Question 68
+### Question 70
 
 **Q:** How can long prompts increase both cost and latency?
 
 **A:** Long prompts contain more input tokens to process, use more context, and require more computation before generation.
 
-### Question 69
+### Question 71
 
 **Q:** How can long answers increase both cost and latency?
 
 **A:** Long answers require more output tokens, and output tokens are generated sequentially, which takes time and adds cost.
 
-### Question 70
+### Question 72
 
 **Q:** Why should an agent developer estimate cost before running a workload?
 
 **A:** Agent loops can multiply model calls, tool results, retrieved context, and output tokens. Estimation prevents unexpected bills and helps choose the right model and context strategy.
 
-### Question 71
+### Question 73
 
 **Q:** What is one way to reduce latency in a tool-using agent?
 
 **A:** Reduce unnecessary tool calls, compress tool outputs, choose faster models for simple steps, cache reusable context, or parallelize independent tool calls.
 
-### Question 72
+### Question 74
 
 **Q:** A model is cheap per token but slow for every request. What tradeoff should you evaluate?
 
@@ -533,7 +545,7 @@ network time + queue time + inference time + tool time
 
 ## Embeddings and Vector Search
 
-### Question 73
+### Question 75
 
 **Q:** What is an embedding?
 
@@ -544,13 +556,13 @@ network time + queue time + inference time + tool time
   -> [0.021, -0.338, 0.104, 0.872, ...]
 ```
 
-### Question 74
+### Question 76
 
 **Q:** Why do similar meanings appear near each other in embedding space?
 
 **A:** Embedding models are trained so semantically related items produce vectors that are close under a similarity metric.
 
-### Question 75
+### Question 77
 
 **Q:** Explain several models are used to generate these vector embeddings.
 
@@ -563,55 +575,55 @@ network time + queue time + inference time + tool time
 - Convolutional Neural Networks (CNNs) like VGG: Used to generate embeddings for images, capturing visual similarities.
 ```
 
-### Question 76
+### Question 78
 
 **Q:** What is chunking in an embedding pipeline?
 
 **A:** Chunking splits documents into smaller meaningful pieces before embedding, so retrieval can return focused passages instead of entire documents.
 
-### Question 77
+### Question 79
 
 **Q:** Why can poor chunking hurt retrieval quality?
 
 **A:** If important information is split badly or mixed with unrelated text, vector search may miss the answer or retrieve confusing chunks.
 
-### Question 78
+### Question 80
 
 **Q:** What is a vector database?
 
 **A:** A vector database stores, indexes, and retrieves high-dimensional vectors so similar items can be found quickly.
 
-### Question 79
+### Question 81
 
 **Q:** What is vector search?
 
 **A:** Vector search embeds a query, compares it with stored vectors, and returns the nearest or most similar vectors.
 
-### Question 80
+### Question 82
 
 **Q:** Why is vector search different from keyword search?
 
 **A:** Vector search compares meaning through embeddings, so it can match related wording such as "recover account password" and "reset login access" even when exact words differ.
 
-### Question 81
+### Question 83
 
 **Q:** What is a similarity metric?
 
 **A:** A similarity metric defines what "close" means between vectors, such as cosine similarity, dot product, Euclidean distance, Manhattan distance, or Chebyshev distance.
 
-### Question 82
+### Question 84
 
 **Q:** Why is cosine similarity common for text embeddings?
 
 **A:** It compares vector direction, which often captures semantic similarity better than raw vector size for text embeddings.
 
-### Question 83
+### Question 85
 
 **Q:** Compare exact k-NN and ANN search.
 
 **A:** Exact k-NN compares the query against all vectors and can be expensive at scale. ANN searches an index for a fast approximate match, trading some precision for speed.
 
-### Question 84
+### Question 86
 
 **Q:** Why is metadata required with vectors in real applications?
 
@@ -619,7 +631,7 @@ network time + queue time + inference time + tool time
 
 ## RAG Basics
 
-### Question 85
+### Question 87
 
 **Q:** What does RAG stand for?
 
@@ -630,67 +642,67 @@ Retrieval  = search for relevant information
 Augmented  = add that information to the prompt
 Generation = let the LLM write the final answer
 
-### Question 86
+### Question 88
 
 **Q:** What is the simplest way to explain RAG?
 
 **A:** RAG means search first, answer second. The system retrieves relevant source text, adds it to the prompt, and asks the LLM to answer from that context.
 
-### Question 87
+### Question 89
 
 **Q:** What does the AWS RAG architecture image show at a high level?
 
 **A:** It shows external knowledge being retrieved and added as context before a foundation model generates the final response.
 
-### Question 88
+### Question 90
 
 **Q:** Why does RAG help reduce guessing?
 
 **A:** It gives the model relevant source text at answer time, so the model can ground its response in retrieved evidence instead of relying only on training patterns.
 
-### Question 89
+### Question 91
 
 **Q:** What are the two main RAG pipelines?
 
 **A:** The indexing pipeline prepares documents for search. The question-answering pipeline retrieves relevant chunks for a user question and uses them in the LLM prompt.
 
-### Question 90
+### Question 92
 
 **Q:** What happens in the indexing pipeline?
 
 **A:** Documents are cleaned, split into chunks, embedded, stored with text and metadata, and made searchable in a vector store or index.
 
-### Question 91
+### Question 93
 
 **Q:** What happens in the question-answering pipeline?
 
 **A:** The user question is turned into a search query or embedding, relevant chunks are retrieved, chunks are placed in the prompt, and the LLM answers with sources.
 
-### Question 92
+### Question 94
 
 **Q:** Why does RAG usually use embeddings and vector search?
 
 **A:** Embeddings let the system retrieve chunks by meaning, so user questions can match source text even when the wording differs.
 
-### Question 93
+### Question 95
 
 **Q:** What should a strict basic RAG prompt tell the model?
 
 **A:** It should tell the model to answer only from the provided context, say it does not know if the answer is missing, and include the source when possible.
 
-### Question 94
+### Question 96
 
 **Q:** When should you use RAG?
 
 **A:** Use RAG when answers depend on private data, recent data, changing knowledge, citations, known source material, or many documents that cannot all fit in context.
 
-### Question 95
+### Question 97
 
 **Q:** When may RAG be unnecessary?
 
 **A:** RAG may be unnecessary for simple writing, rewriting, answers already in the prompt, general knowledge questions, or tasks with no external knowledge source.
 
-### Question 96
+### Question 98
 
 **Q:** A RAG system retrieves the wrong country policy for a refund question. What likely failed?
 

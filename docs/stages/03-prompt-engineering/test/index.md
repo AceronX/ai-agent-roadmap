@@ -4,11 +4,11 @@ This study test checks understanding of every main section in **Stage 03 - Promp
 
 | Section | Questions |
 | --- | ---: |
-| Prompt Basics | 32 |
+| Prompt Basics | 33 |
 | Writing Good Prompts | 28 |
 | Structured Outputs | 24 |
 | Prompt Testing | 6 |
-| **Total** | **90** |
+| **Total** | **91** |
 
 ## Prompt Basics
 
@@ -205,13 +205,21 @@ They often ask the model to produce more intermediate analysis or checks, which 
 
 ### Question 24
 
+**Q:** What is chain-of-thought prompting?
+
+**A:**
+
+Chain-of-thought prompting asks the model to work through intermediate reasoning steps before giving a final answer. It often improves accuracy on multi-step problems such as math, logic, and planning, at the cost of more generated tokens.
+
+### Question 25
+
 **Q:** What is self-consistency?
 
 **A:**
 
 Self-consistency means generating multiple attempts and choosing the answer that is most consistent or best supported.
 
-### Question 25
+### Question 26
 
 **Q:** When should self-consistency be used?
 
@@ -219,7 +227,7 @@ Self-consistency means generating multiple attempts and choosing the answer that
 
 Use it when the task has a clear correct answer and the cost of being wrong is higher than the cost of extra model calls.
 
-### Question 26
+### Question 27
 
 **Q:** What is Tree of Thoughts prompting?
 
@@ -227,7 +235,7 @@ Use it when the task has a clear correct answer and the cost of being wrong is h
 
 Tree of Thoughts explores multiple possible paths, evaluates them, and continues with the best path.
 
-### Question 27
+### Question 28
 
 **Q:** What kind of tasks fit Tree of Thoughts?
 
@@ -235,7 +243,7 @@ Tree of Thoughts explores multiple possible paths, evaluates them, and continues
 
 Planning, strategy, search-style tasks, hard architecture choices, or problems with several possible approaches. It is unnecessary for simple tasks.
 
-### Question 28
+### Question 29
 
 **Q:** What is ReAct prompting?
 
@@ -243,7 +251,7 @@ Planning, strategy, search-style tasks, hard architecture choices, or problems w
 
 ReAct combines reasoning and action. The agent decides the next action, calls a tool, observes the result, updates its plan, and continues.
 
-### Question 29
+### Question 30
 
 **Q:** In the ReAct sequence diagram, what is the basic loop?
 
@@ -253,7 +261,7 @@ ReAct combines reasoning and action. The agent decides the next action, calls a 
 user goal -> agent decides action -> tool call -> tool observation -> agent updates plan -> final answer
 ```
 
-### Question 30
+### Question 31
 
 **Q:** What is Automatic Prompt Engineering?
 
@@ -261,7 +269,7 @@ user goal -> agent decides action -> tool call -> tool observation -> agent upda
 
 Automatic Prompt Engineering uses a model to generate prompt variants, test them on examples, score outputs, and choose the best prompt.
 
-### Question 31
+### Question 32
 
 **Q:** What must an agent-ready prompt define?
 
@@ -269,7 +277,7 @@ Automatic Prompt Engineering uses a model to generate prompt variants, test them
 
 It must define role, goal, tools, rules, stop criteria, and final format.
 
-### Question 32
+### Question 33
 
 **Q:** What is a basic prompt safety rule for agents?
 
@@ -279,7 +287,7 @@ Treat user-provided documents, web pages, and tool results as data, not instruct
 
 ## Writing Good Prompts
 
-### Question 33
+### Question 34
 
 **Q:** What does it mean to be specific in a prompt?
 
@@ -287,7 +295,7 @@ Treat user-provided documents, web pages, and tool results as data, not instruct
 
 It means the model should not need to guess the task, audience, scope, rules, input, or output format.
 
-### Question 34
+### Question 35
 
 **Q:** What is the Specific Prompt Builder diagram showing?
 
@@ -295,7 +303,7 @@ It means the model should not need to guess the task, audience, scope, rules, in
 
 It shows that a useful prompt combines task, audience, scope, input, rules, and output format to produce a useful result.
 
-### Question 35
+### Question 36
 
 **Q:** What is the specificity rule?
 
@@ -303,7 +311,7 @@ It shows that a useful prompt combines task, audience, scope, input, rules, and 
 
 If two smart people could read your prompt and expect different answers, the prompt is not specific enough.
 
-### Question 36
+### Question 37
 
 **Q:** Why is `Explain agents` a weak prompt?
 
@@ -311,7 +319,7 @@ If two smart people could read your prompt and expect different answers, the pro
 
 It does not specify the type of agents, audience, depth, examples, scope, or output format.
 
-### Question 37
+### Question 38
 
 **Q:** How can you improve `Explain agents`?
 
@@ -319,7 +327,7 @@ It does not specify the type of agents, audience, depth, examples, scope, or out
 
 Example: `Explain AI agents to a beginner Python developer. Keep it under 250 words. Include a definition, workflow example, and one common mistake.`
 
-### Question 38
+### Question 39
 
 **Q:** What are the six questions to ask before writing an important prompt?
 
@@ -327,7 +335,7 @@ Example: `Explain AI agents to a beginner Python developer. Keep it under 250 wo
 
 Ask what you want, who it is for, what to include, what to avoid, what source to use, and what format to return.
 
-### Question 39
+### Question 40
 
 **Q:** What is the formula for most practical prompts?
 
@@ -355,7 +363,7 @@ Output:
 {Length, format, tone, and sections}
 ```
 
-### Question 40
+### Question 41
 
 **Q:** Why is audience important?
 
@@ -363,7 +371,7 @@ Output:
 
 Audience controls depth, vocabulary, examples, and tone. An answer for a beginner differs from one for a senior engineer.
 
-### Question 41
+### Question 42
 
 **Q:** Why is scope important?
 
@@ -371,7 +379,7 @@ Audience controls depth, vocabulary, examples, and tone. An answer for a beginne
 
 Scope tells the model what to include or ignore, preventing answers from becoming too broad.
 
-### Question 42
+### Question 43
 
 **Q:** Why should prompts include rules for missing information?
 
@@ -379,7 +387,7 @@ Scope tells the model what to include or ignore, preventing answers from becomin
 
 Missing-data rules stop the model from guessing. Example: `If root cause is missing, write "Root cause not confirmed."`
 
-### Question 43
+### Question 44
 
 **Q:** What makes the strong incident-summary prompt better than `Summarize this`?
 
@@ -387,7 +395,7 @@ Missing-data rules stop the model from guessing. Example: `If root cause is miss
 
 It defines audience, focus, source boundary, missing-data behavior, and exact bullet structure.
 
-### Question 44
+### Question 45
 
 **Q:** Why should code review prompts specify review focus?
 
@@ -395,7 +403,7 @@ It defines audience, focus, source boundary, missing-data behavior, and exact bu
 
 Without focus, the model may comment on low-value style issues instead of security, validation, transaction risks, or missing tests.
 
-### Question 45
+### Question 46
 
 **Q:** What is a useful rule for customer-support agent prompts?
 
@@ -403,7 +411,7 @@ Without focus, the model may comment on low-value style issues instead of securi
 
 Block risky promises. Example: `Do not promise refunds, credits, account changes, or delivery dates.`
 
-### Question 46
+### Question 47
 
 **Q:** When should a prompt stay short?
 
@@ -411,7 +419,7 @@ Block risky promises. Example: `Do not promise refunds, credits, account changes
 
 Short prompts are fine for simple, low-risk tasks like rewriting one sentence in plain English.
 
-### Question 47
+### Question 48
 
 **Q:** When should a prompt be longer?
 
@@ -419,7 +427,7 @@ Short prompts are fine for simple, low-risk tasks like rewriting one sentence in
 
 Use a longer prompt when the task is important, format-sensitive, source-grounded, safety-sensitive, or used by an application or agent.
 
-### Question 48
+### Question 49
 
 **Q:** What kind of context should be added to a prompt?
 
@@ -427,7 +435,7 @@ Use a longer prompt when the task is important, format-sensitive, source-grounde
 
 Add context that changes the answer, such as user goal, audience knowledge, domain, source document, framework, or known constraints.
 
-### Question 49
+### Question 50
 
 **Q:** What kind of context should be removed?
 
@@ -435,7 +443,7 @@ Add context that changes the answer, such as user goal, audience knowledge, doma
 
 Remove context that does not change the answer because it adds noise and consumes tokens.
 
-### Question 50
+### Question 51
 
 **Q:** Why do relevant technical terms improve prompts?
 
@@ -443,7 +451,7 @@ Remove context that does not change the answer because it adds noise and consume
 
 They reduce ambiguity and point the model to precise concepts. Example: `idempotency` is clearer than `duplicate payment problem`.
 
-### Question 51
+### Question 52
 
 **Q:** Why can wrong technical terms hurt a prompt?
 
@@ -451,7 +459,7 @@ They reduce ambiguity and point the model to precise concepts. Example: `idempot
 
 Wrong terms can send the model toward the wrong concept confidently. If unsure, ask the model which terms are relevant first.
 
-### Question 52
+### Question 53
 
 **Q:** Compare useful technical terms and buzzwords.
 
@@ -459,7 +467,7 @@ Wrong terms can send the model toward the wrong concept confidently. If unsure, 
 
 Useful terms name real concepts, like `RAG` or `JWT authentication`. Buzzwords sound impressive but do not define a task, like `next-generation AI paradigm`.
 
-### Question 53
+### Question 54
 
 **Q:** When should you use examples in a prompt?
 
@@ -467,7 +475,7 @@ Useful terms name real concepts, like `RAG` or `JWT authentication`. Buzzwords s
 
 Use examples when the model must follow a custom pattern, label set, tone, grading style, extraction rule, or strict format.
 
-### Question 54
+### Question 55
 
 **Q:** Why should prompt examples be close to real inputs?
 
@@ -475,7 +483,7 @@ Use examples when the model must follow a custom pattern, label set, tone, gradi
 
 Examples teach the model the pattern. If examples differ from real inputs, the model may learn the wrong behavior.
 
-### Question 55
+### Question 56
 
 **Q:** What does the prompt iteration loop show?
 
@@ -485,7 +493,7 @@ Examples teach the model the pattern. If examples differ from real inputs, the m
 define goal -> write prompt -> test real inputs -> analyze output -> identify problems -> refine -> retest
 ```
 
-### Question 56
+### Question 57
 
 **Q:** Why should prompts be tested with more than one input?
 
@@ -493,7 +501,7 @@ define goal -> write prompt -> test real inputs -> analyze output -> identify pr
 
 One good output can hide failures. Test normal, short, long, missing-data, ambiguous, and bad inputs.
 
-### Question 57
+### Question 58
 
 **Q:** What is one good refinement technique when a prompt fails?
 
@@ -501,7 +509,7 @@ One good output can hide failures. Test normal, short, long, missing-data, ambig
 
 Use a targeted fix, such as adding examples, constraints, format rules, a clearer role, or a verification step.
 
-### Question 58
+### Question 59
 
 **Q:** When should prompt iteration stop?
 
@@ -509,7 +517,7 @@ Use a targeted fix, such as adding examples, constraints, format rules, a cleare
 
 Stop when outputs are consistent across the test set, accuracy is acceptable for the task risk, and further improvements are minor.
 
-### Question 59
+### Question 60
 
 **Q:** Why are format rules useful?
 
@@ -517,7 +525,7 @@ Stop when outputs are consistent across the test set, accuracy is acceptable for
 
 They make output easier to copy into docs, tickets, spreadsheets, code, or agent workflows.
 
-### Question 60
+### Question 61
 
 **Q:** A prompt says `Make it better`. What is wrong, and how should it be fixed?
 
@@ -527,7 +535,7 @@ They make output easier to copy into docs, tickets, spreadsheets, code, or agent
 
 ## Structured Outputs
 
-### Question 61
+### Question 62
 
 **Q:** What is a structured output?
 
@@ -535,7 +543,7 @@ They make output easier to copy into docs, tickets, spreadsheets, code, or agent
 
 A structured output is a model response in a predictable data shape, usually JSON that follows a schema.
 
-### Question 62
+### Question 63
 
 **Q:** When should structured outputs be used?
 
@@ -543,7 +551,7 @@ A structured output is a model response in a predictable data shape, usually JSO
 
 Use them when software must parse, validate, store, display, route, or pass the model response to another workflow.
 
-### Question 63
+### Question 64
 
 **Q:** Compare plain text and structured output.
 
@@ -551,7 +559,7 @@ Use them when software must parse, validate, store, display, route, or pass the 
 
 Plain text is written for humans. Structured output is written for software with predictable fields and types.
 
-### Question 64
+### Question 65
 
 **Q:** Why is prompt-only JSON weak?
 
@@ -559,7 +567,7 @@ Plain text is written for humans. Structured output is written for software with
 
 The model may add prose, omit fields, rename fields, or use wrong types because the shape is not strongly enforced.
 
-### Question 65
+### Question 66
 
 **Q:** Compare prompt-only JSON, JSON mode, and structured outputs.
 
@@ -567,7 +575,7 @@ The model may add prose, omit fields, rename fields, or use wrong types because 
 
 Prompt-only JSON is weakest. JSON mode improves JSON syntax. Structured outputs are strongest when the provider constrains output to a schema.
 
-### Question 66
+### Question 67
 
 **Q:** What does the structured output flow diagram show?
 
@@ -577,7 +585,7 @@ Prompt-only JSON is weakest. JSON mode improves JSON syntax. Structured outputs 
 input -> prompt + schema -> model request -> structured output -> parser -> validator -> application use or retry
 ```
 
-### Question 67
+### Question 68
 
 **Q:** Why should schema design come before prompt writing?
 
@@ -585,7 +593,7 @@ input -> prompt + schema -> model request -> structured output -> parser -> vali
 
 The schema defines what data the application needs. A prompt should support that shape instead of inventing fields afterward.
 
-### Question 68
+### Question 69
 
 **Q:** What makes a good structured output field?
 
@@ -593,7 +601,7 @@ The schema defines what data the application needs. A prompt should support that
 
 It has a clear domain name, type, meaning, allowed values, and missing-data behavior.
 
-### Question 69
+### Question 70
 
 **Q:** Why are enums useful in structured outputs?
 
@@ -601,7 +609,7 @@ It has a clear domain name, type, meaning, allowed values, and missing-data beha
 
 Enums limit output to fixed choices, such as `low`, `medium`, or `high`, which makes parsing and routing safer.
 
-### Question 70
+### Question 71
 
 **Q:** Why should missing data often be represented as `null`?
 
@@ -609,7 +617,7 @@ Enums limit output to fixed choices, such as `low`, `medium`, or `high`, which m
 
 `null` keeps the shape stable while making missing information explicit.
 
-### Question 71
+### Question 72
 
 **Q:** Give examples about good pattern and risky pattern
 
@@ -632,7 +640,7 @@ Risky pattern:
 }
 ```
 
-### Question 72
+### Question 73
 
 **Q:** Why should schemas usually stay shallow?
 
@@ -640,7 +648,7 @@ Risky pattern:
 
 Deep schemas are harder to prompt, test, debug, and migrate. Start simple unless the application truly needs nesting.
 
-### Question 73
+### Question 74
 
 **Q:** How does the prompt support the schema?
 
@@ -648,7 +656,7 @@ Deep schemas are harder to prompt, test, debug, and migrate. Start simple unless
 
 The schema controls format, while the prompt controls interpretation, evidence rules, missing-data behavior, and decision rules.
 
-### Question 74
+### Question 75
 
 **Q:** What is a strong evidence rule for structured extraction?
 
@@ -656,7 +664,7 @@ The schema controls format, while the prompt controls interpretation, evidence r
 
 `Use only information in the input. Do not invent missing values. If a value is absent, set it to null.`
 
-### Question 75
+### Question 76
 
 **Q:** When are examples helpful for structured outputs?
 
@@ -664,7 +672,7 @@ The schema controls format, while the prompt controls interpretation, evidence r
 
 Use examples when categories are easy to confuse, such as account help vs refund request vs bug report.
 
-### Question 76
+### Question 77
 
 **Q:** What structured fields can help an agent decide the next step?
 
@@ -672,7 +680,7 @@ Use examples when categories are easy to confuse, such as account help vs refund
 
 Fields like `next_action`, `reason`, `missing_information`, `confidence`, and `can_finish`.
 
-### Question 77
+### Question 78
 
 **Q:** How are structured outputs different from tool calling?
 
@@ -680,7 +688,7 @@ Fields like `next_action`, `reason`, `missing_information`, `confidence`, and `c
 
 Structured outputs describe final or intermediate model responses. Tool calling asks the application to execute a function with structured arguments.
 
-### Question 78
+### Question 79
 
 **Q:** Why must structured outputs still be validated in code?
 
@@ -688,7 +696,7 @@ Structured outputs describe final or intermediate model responses. Tool calling 
 
 The model can still produce invalid, incomplete, unsafe, or business-incorrect data. Treat output as untrusted until validation passes.
 
-### Question 79
+### Question 80
 
 **Q:** What does the validation flow diagram show?
 
@@ -698,7 +706,7 @@ The model can still produce invalid, incomplete, unsafe, or business-incorrect d
 model response -> parse JSON -> schema validation -> business rules -> use data or retry/fallback/review
 ```
 
-### Question 80
+### Question 81
 
 **Q:** What should happen when validation fails?
 
@@ -706,7 +714,7 @@ model response -> parse JSON -> schema validation -> business rules -> use data 
 
 Retry safely, handle refusals separately, ask for missing information, route risky cases to human review, or simplify the schema.
 
-### Question 81
+### Question 82
 
 **Q:** Give one common structured-output failure.
 
@@ -714,7 +722,7 @@ Retry safely, handle refusals separately, ask for missing information, route ris
 
 The model may return a nearly correct enum value, such as `urgent`, when the schema only allows `low`, `medium`, or `high`.
 
-### Question 82
+### Question 83
 
 **Q:** Why use `additionalProperties: false` when possible?
 
@@ -722,7 +730,7 @@ The model may return a nearly correct enum value, such as `urgent`, when the sch
 
 It blocks unexpected extra fields, making the output safer and easier to validate.
 
-### Question 83
+### Question 84
 
 **Q:** What should a structured output production checklist include?
 
@@ -730,7 +738,7 @@ It blocks unexpected extra fields, making the output safer and easier to validat
 
 Schema first, exact enums, explicit missing-data behavior, validation, edge-case tests, logged failures, schema versioning, and provider limitation awareness.
 
-### Question 84
+### Question 85
 
 **Q:** A model extracts an order ID that was not in the customer message. What failed?
 
@@ -740,7 +748,7 @@ The evidence rule failed or was missing. The prompt should require `order_id: nu
 
 ## Prompt Testing
 
-### Question 85
+### Question 86
 
 **Q:** What is prompt testing??
 
@@ -748,7 +756,7 @@ The evidence rule failed or was missing. The prompt should require `order_id: nu
 
 Prompt testing is the process of evaluating how an AI model responds to a prompt to ensure the output is accurate, relevant, and consistent.
 
-### Question 86
+### Question 87
 
 **Q:** What are the main goals of prompt testing?
 
@@ -762,7 +770,7 @@ The main goals are to verify:
 - Robustness to different inputs
 - Safety and compliance
 
-### Question 87
+### Question 88
 
 **Q:** What should a prompt test record?
 
@@ -770,7 +778,7 @@ The main goals are to verify:
 
 It should record the prompt, input, expected output, actual output, scoring result, failure type, and what changed after revision.
 
-### Question 88
+### Question 89
 
 **Q:** What kinds of inputs should a prompt test set include?
 
@@ -778,7 +786,7 @@ It should record the prompt, input, expected output, actual output, scoring resu
 
 Include normal inputs, edge cases, missing information, ambiguous inputs, long inputs, short inputs, and bad or hostile inputs.
 
-### Question 89
+### Question 90
 
 **Q:** Why should prompt changes be tested instead of guessed?
 
@@ -786,7 +794,7 @@ Include normal inputs, edge cases, missing information, ambiguous inputs, long i
 
 Small wording changes can affect format, accuracy, safety, and cost. Testing shows whether the change actually improved behavior.
 
-### Question 90
+### Question 91
 
 **Q:** What is one useful success criterion for a prompt testing lab?
 

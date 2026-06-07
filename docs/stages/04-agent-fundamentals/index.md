@@ -33,3 +33,9 @@ Use the [Stage 4 checkpoint](checkpoint.md) before moving on.
 ## Test
 
 Use the [QAs: 04 Agent Fundamentals](test/index.md) to check your understanding of every topic in this stage.
+
+## Interview
+
+For deeper study or hiring, use the interview page with interviewer rubrics:
+
+- [Junior Interview: Agent Fundamentals](interview-junior/index.md) — friendly, example-driven questions for learners.

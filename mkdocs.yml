@@ -94,6 +94,7 @@ nav:
           - Embeddings and Vector Search: stages/02-llm-fundamentals/embeddings-vector-search/index.md
           - RAG Basics: stages/02-llm-fundamentals/rag-basics/index.md
           - QAs: stages/02-llm-fundamentals/test/index.md
+          - Junior Interview: stages/02-llm-fundamentals/interview-junior/index.md
       - 03 Prompt Engineering:
           - stages/03-prompt-engineering/index.md
           - Prompt Basics: stages/03-prompt-engineering/prompt-basics/index.md
@@ -101,6 +102,7 @@ nav:
           - Structured Outputs: stages/03-prompt-engineering/structured-outputs/index.md
           - Prompt Testing: stages/03-prompt-engineering/prompt-testing/index.md
           - QAs: stages/03-prompt-engineering/test/index.md
+          - Junior Interview: stages/03-prompt-engineering/interview-junior/index.md
       - 04 Agent Fundamentals:
           - stages/04-agent-fundamentals/index.md
           - Agent Loop: stages/04-agent-fundamentals/agent-loop/index.md
@@ -110,6 +112,7 @@ nav:
           - Stopping Criteria: stages/04-agent-fundamentals/stopping-criteria/index.md
           - Tools Overview: stages/04-agent-fundamentals/tools-overview/index.md
           - QAs: stages/04-agent-fundamentals/test/index.md
+          - Junior Interview: stages/04-agent-fundamentals/interview-junior/index.md
       - 05 Tools and Actions:
           - stages/05-tools-and-actions/index.md
           - Tool Definition: stages/05-tools-and-actions/tool-definition/index.md
@@ -119,6 +122,7 @@ nav:
           - Common Agent Tools: stages/05-tools-and-actions/common-agent-tools/index.md
           - Boundaries and Destructive Tools: stages/05-tools-and-actions/boundaries-and-destructive-tools/index.md
           - QAs: stages/05-tools-and-actions/test/index.md
+          - Junior Interview: stages/05-tools-and-actions/interview-junior/index.md
       - 06 MCP:
           - stages/06-mcp/index.md
           - MCP Overview: stages/06-mcp/mcp-overview/index.md

@@ -29,6 +29,12 @@ Build a prompt testing lab with several prompts, test inputs, expected outputs, 
 
 Use the [QAs: 03 Prompt Engineering](test/index.md) to check your understanding of every topic in this stage.
 
+## Interview
+
+For deeper study or hiring, use the interview page with interviewer rubrics:
+
+- [Junior Interview: Prompt Engineering](interview-junior/index.md) — friendly, example-driven questions for learners.
+
 ## Checkpoint
 
 Use the [Stage 3 checkpoint](checkpoint.md) before moving on.

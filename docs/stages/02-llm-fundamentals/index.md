@@ -33,6 +33,12 @@ Create a model comparison notebook or script that tests the same prompt across m
 
 Use the [QAs: 02 LLM Fundamentals](test/index.md) to check your understanding of every topic in this stage.
 
+## Interview
+
+For deeper study or hiring, use the interview page with interviewer rubrics:
+
+- [Junior Interview: LLM Fundamentals](interview-junior/index.md) — friendly, example-driven questions for learners.
+
 ## Checkpoint
 
 Use the [Stage 2 checkpoint](checkpoint.md) before moving on.

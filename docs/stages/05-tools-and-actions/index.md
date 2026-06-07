@@ -34,3 +34,9 @@ Use the [Stage 5 checkpoint](checkpoint.md) before moving on.
 ## Test
 
 Use the [QAs: 05 Tools and Actions](test/index.md) to check your understanding of every topic in this stage.
+
+## Interview
+
+For deeper study or hiring, use the interview page with interviewer rubrics:
+
+- [Junior Interview: Tools and Actions](interview-junior/index.md) — friendly, example-driven questions for learners.

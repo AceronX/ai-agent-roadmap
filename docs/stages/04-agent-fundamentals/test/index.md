@@ -4,13 +4,13 @@ This study test checks understanding of every main section in **04 Agent Fundame
 
 | Section | Questions |
 | --- | ---: |
-| Agent Loop | 18 |
+| Agent Loop | 22 |
 | ReAct Pattern | 13 |
 | Reasoning and Planning | 18 |
-| Acting and Observation | 15 |
+| Acting and Observation | 16 |
 | Stopping Criteria | 16 |
 | Tools Overview | 10 |
-| **Total** | **90** |
+| **Total** | **95** |
 
 ## Agent Loop
 
@@ -162,9 +162,45 @@ It is a no-progress or infinite-loop failure. The agent needs repeated-failure d
 
 Logs make the loop inspectable. Developers can see which tools were called, what observations returned, why the agent continued, and which stop reason ended the task.
 
+### Question 19
+
+**Q:** What are the main parts of an agent's core architecture, and how do they connect?
+
+**A:**
+
+A user goal goes to the agent brain (LLM, instructions, planning policy, safety rules). The brain draws on memory (task history, preferences, retrieved context) and a tool layer (search, database, code execution, browser, API, email). Tools act on the environment, which returns an observation that updates state, and the loop then continues or stops.
+
+```text
+User goal -> Agent brain -> (Memory + Tool layer) -> Environment -> Observation/state -> continue or stop
+```
+
+### Question 20
+
+**Q:** Before building an agent, what should a design template specify?
+
+**A:**
+
+It should specify the agent name, primary user, and goal; the inputs the agent can perceive (user message, files, tool observations, memory); the allowed tools (name, read or write, approval needed, expected output); loop limits (max iterations, timeout, cost or token budget, retry limit per tool); reflection checks (required evidence, output format, errors that force a new plan, uncertainty that needs a user question); and stop conditions (success, missing information, unsafe request, tool failure).
+
+### Question 21
+
+**Q:** Walk through how an agent loop handles a research task across iterations.
+
+**A:**
+
+The agent repeats perceive, plan, act, observe, and reflect. For example, to find and summarize credible sources: iteration 1 searches the web; iteration 2 reads selected sources; iteration 3 writes a structured summary; iteration 4 adds citations and caveats, then stops because the goal is satisfied. Each reflection decides whether more evidence or a quality check is needed before stopping.
+
+### Question 22
+
+**Q:** In a code-fixing agent loop, why does the agent reproduce the failure before editing, and why does it need tool access?
+
+**A:**
+
+Reproducing first, by running the tests, confirms the real failure and gives the agent evidence before changing code, so the fix targets the actual root cause. Code agents need tool access because the model alone can only suggest a fix; the loop lets it read the real repository, run tests, observe failures, make a minimal edit, and verify that the targeted test passes without breaking others.
+
 ## ReAct Pattern
 
-### Question 19
+### Question 23
 
 **Q:** What does ReAct mean?
 
@@ -172,7 +208,7 @@ Logs make the loop inspectable. Developers can see which tools were called, what
 
 ReAct means **Reason + Act**. The agent reasons about the next useful step, takes an action, observes the result, and uses that observation to decide the next step.
 
-### Question 20
+### Question 24
 
 **Q:** What is a one-sentence definition of ReAct?
 
@@ -180,7 +216,7 @@ ReAct means **Reason + Act**. The agent reasons about the next useful step, take
 
 ReAct is an agent loop where reasoning chooses the next action, and the observation from that action guides the next reasoning step.
 
-### Question 21
+### Question 25
 
 **Q:** What is the ReAct loop in compact form?
 
@@ -194,7 +230,7 @@ Reason -> Act -> Observe -> Need more?
                          -> Final Answer
 ```
 
-### Question 22
+### Question 26
 
 **Q:** What is the most important connection in the ReAct loop?
 
@@ -202,7 +238,7 @@ Reason -> Act -> Observe -> Need more?
 
 The observation must influence the next reasoning step. If the observation does not change or confirm what the agent does next, the loop is not using feedback effectively.
 
-### Question 23
+### Question 27
 
 **Q:** What should the Reason step do in a good ReAct trace?
 
@@ -210,7 +246,7 @@ The observation must influence the next reasoning step. If the observation does 
 
 It should name the next needed fact, decision, or action. Example: "I need the latest failed build log" is better than vague thinking.
 
-### Question 24
+### Question 28
 
 **Q:** What should the Act step do in a good ReAct trace?
 
@@ -218,7 +254,7 @@ It should name the next needed fact, decision, or action. Example: "I need the l
 
 It should use one relevant action with specific inputs, such as `read_build_log({"build_id": "latest"})`, instead of calling tools randomly.
 
-### Question 25
+### Question 29
 
 **Q:** What should the Observe step contain?
 
@@ -226,7 +262,7 @@ It should use one relevant action with specific inputs, such as `read_build_log(
 
 It should contain the actual result of the action, such as returned data, an error message, a file result, or a state change. It should not invent or ignore tool output.
 
-### Question 26
+### Question 30
 
 **Q:** Why is this weak ReAct behavior: "Maybe it is a dependency issue. Final answer: install dependencies"?
 
@@ -234,7 +270,7 @@ It should contain the actual result of the action, such as returned data, an err
 
 It skips action and observation. The agent guessed without reading logs, inspecting files, or grounding the final answer in evidence.
 
-### Question 27
+### Question 31
 
 **Q:** When should ReAct be used?
 
@@ -242,7 +278,7 @@ It skips action and observation. The agent guessed without reading logs, inspect
 
 Use ReAct when the task needs step-by-step interaction, external evidence, tools, investigation, or when one result determines the next step.
 
-### Question 28
+### Question 32
 
 **Q:** Give two tasks that usually do not need ReAct.
 
@@ -250,7 +286,7 @@ Use ReAct when the task needs step-by-step interaction, external evidence, tools
 
 Explaining what JSON is and rewriting a short paragraph usually do not need ReAct because the model can answer or transform the given input directly.
 
-### Question 29
+### Question 33
 
 **Q:** Compare ReAct and planning.
 
@@ -258,7 +294,7 @@ Explaining what JSON is and rewriting a short paragraph usually do not need ReAc
 
 Planning organizes intended steps. ReAct executes a feedback loop: reason, act, observe, then revise the next reasoning step based on the observation.
 
-### Question 30
+### Question 34
 
 **Q:** Does ReAct guarantee correct answers? Why or why not?
 
@@ -266,7 +302,7 @@ Planning organizes intended steps. ReAct executes a feedback loop: reason, act, 
 
 No. ReAct improves grounding, but tools can fail, observations can be stale or wrong, and the final answer can still misinterpret the evidence.
 
-### Question 31
+### Question 35
 
 **Q:** In a product, should a ReAct agent expose every private reasoning token to the user?
 
@@ -276,7 +312,7 @@ No. Learning traces can show Reason, Act, and Observation, but products should u
 
 ## Reasoning and Planning
 
-### Question 32
+### Question 36
 
 **Q:** What is agentic reasoning?
 
@@ -284,7 +320,7 @@ No. Learning traces can show Reason, Act, and Observation, but products should u
 
 Agentic reasoning is the decision-making process that lets an agent interpret a goal, identify missing information, choose tools or actions, compare next steps, and revise based on feedback.
 
-### Question 33
+### Question 37
 
 **Q:** Why does planning matter for complex agent tasks?
 
@@ -292,7 +328,7 @@ Agentic reasoning is the decision-making process that lets an agent interpret a 
 
 Planning breaks a broad goal into smaller steps, exposes dependencies, improves auditability, coordinates tools, and helps the agent recover when information is missing or actions fail.
 
-### Question 34
+### Question 38
 
 **Q:** What four questions does practical planning answer?
 
@@ -300,7 +336,7 @@ Planning breaks a broad goal into smaller steps, exposes dependencies, improves 
 
 It answers: What is the goal? What is the current state? What actions are available? Which sequence should be followed?
 
-### Question 35
+### Question 39
 
 **Q:** What is the difference between a reactive agent and a planning agent?
 
@@ -308,7 +344,7 @@ It answers: What is the goal? What is the current state? What actions are availa
 
 A reactive agent responds immediately to the current input. A planning agent looks ahead by considering the desired end state, current state, available actions, and a sequence to reach the goal.
 
-### Question 36
+### Question 40
 
 **Q:** What should a useful goal include for an agent?
 
@@ -316,7 +352,7 @@ A reactive agent responds immediately to the current input. A planning agent loo
 
 It should include the desired output, constraints, success criteria, deadlines or budgets, required data sources, and actions that need approval.
 
-### Question 37
+### Question 41
 
 **Q:** Why is "Help me with customer tickets" a weak goal?
 
@@ -324,7 +360,7 @@ It should include the desired output, constraints, success criteria, deadlines o
 
 It lacks scope, output format, priority, safety boundaries, and success criteria. The agent does not know which tickets, what action to take, or what not to do.
 
-### Question 38
+### Question 42
 
 **Q:** What is task decomposition?
 
@@ -332,7 +368,7 @@ It lacks scope, output format, priority, safety boundaries, and success criteria
 
 Task decomposition breaks a large goal into smaller subgoals that are easier to execute, order, verify, and retry.
 
-### Question 39
+### Question 43
 
 **Q:** Why should decomposed tasks be ordered by dependency?
 
@@ -340,7 +376,7 @@ Task decomposition breaks a large goal into smaller subgoals that are easier to 
 
 Some steps require earlier results. For example, an agent should not estimate total travel cost before it knows flights, hotel, and itinerary.
 
-### Question 40
+### Question 44
 
 **Q:** What is state representation in planning?
 
@@ -348,7 +384,7 @@ Some steps require earlier results. For example, an agent should not estimate to
 
 State representation is the structured view of the current situation: goal, facts, constraints, tool results, available resources, previous decisions, open questions, and progress.
 
-### Question 41
+### Question 45
 
 **Q:** What can happen when state representation is poor?
 
@@ -356,7 +392,7 @@ State representation is the structured view of the current situation: goal, fact
 
 The agent may duplicate work, forget constraints, use stale information, choose the wrong tool, or continue after the goal is already satisfied.
 
-### Question 42
+### Question 46
 
 **Q:** What is action sequencing?
 
@@ -364,7 +400,7 @@ The agent may duplicate work, forget constraints, use stale information, choose 
 
 Action sequencing orders the steps that move the agent from the current state to the goal state while considering dependencies, risk, optional actions, and approval gates.
 
-### Question 43
+### Question 47
 
 **Q:** Why is "send summary, then search bugs" a bad sequence for a bug-summary agent?
 
@@ -372,7 +408,7 @@ Action sequencing orders the steps that move the agent from the current state to
 
 It performs the external action before gathering and checking the required information. The agent should search, group, draft, request approval if needed, then send.
 
-### Question 44
+### Question 48
 
 **Q:** What tradeoffs can planning optimization consider?
 
@@ -380,7 +416,7 @@ It performs the external action before gathering and checking the required infor
 
 Planning can consider time, cost, risk, reliability, resource use, user preference, expected reward, and probability of success.
 
-### Question 45
+### Question 49
 
 **Q:** When is replanning needed?
 
@@ -388,7 +424,7 @@ Planning can consider time, cost, risk, reliability, resource use, user preferen
 
 Replanning is needed when a tool fails, the environment changes, the user changes the goal, another agent acts, a resource is missing, or the current plan becomes unsafe or impossible.
 
-### Question 46
+### Question 50
 
 **Q:** Compare centralized and decentralized multiagent planning.
 
@@ -396,7 +432,7 @@ Replanning is needed when a tool fails, the environment changes, the user change
 
 Centralized planning uses one controller to coordinate the plan, which improves oversight but can bottleneck. Decentralized planning lets agents plan locally and coordinate, which is flexible but harder to govern.
 
-### Question 47
+### Question 51
 
 **Q:** When should an agent use direct response instead of a planning loop?
 
@@ -404,7 +440,7 @@ Centralized planning uses one controller to coordinate the plan, which improves 
 
 Use direct response for simple, low-risk tasks such as greetings, basic Q&A, short transformations, or cases where low latency matters more than deeper reasoning.
 
-### Question 48
+### Question 52
 
 **Q:** When should an agent use plan-and-execute?
 
@@ -412,7 +448,7 @@ Use direct response for simple, low-risk tasks such as greetings, basic Q&A, sho
 
 Use plan-and-execute for complex, multi-phase work where the user or developer needs a visible, auditable sequence before execution.
 
-### Question 49
+### Question 53
 
 **Q:** What is the main tradeoff of using more advanced reasoning strategies?
 
@@ -422,7 +458,7 @@ They may improve quality, coverage, or risk control, but they usually increase t
 
 ## Acting and Observation
 
-### Question 50
+### Question 54
 
 **Q:** What is acting in an AI agent?
 
@@ -430,7 +466,7 @@ They may improve quality, coverage, or risk control, but they usually increase t
 
 Acting is the step where the agent does something beyond thinking, often by invoking a tool, querying a system, creating a file, running code, or taking another external step.
 
-### Question 51
+### Question 55
 
 **Q:** What are the three important parts of tool invocation?
 
@@ -438,7 +474,7 @@ Acting is the step where the agent does something beyond thinking, often by invo
 
 Tool choice, tool input, and tool result. The agent must choose the right tool, provide exact input, and read what the tool returns.
 
-### Question 52
+### Question 56
 
 **Q:** What is observation?
 
@@ -446,7 +482,7 @@ Tool choice, tool input, and tool result. The agent must choose the right tool, 
 
 Observation is reading what actually happened after an action, including returned data, errors, missing results, or changes in the environment.
 
-### Question 53
+### Question 57
 
 **Q:** What is reflection?
 
@@ -454,7 +490,7 @@ Observation is reading what actually happened after an action, including returne
 
 Reflection is deciding what an observation means for the user's goal and whether the agent should answer, ask, retry, change plan, or stop.
 
-### Question 54
+### Question 58
 
 **Q:** Using an example, compare observation and reflection.
 
@@ -462,7 +498,7 @@ Reflection is deciding what an observation means for the user's goal and whether
 
 Observation: "The forecast says heavy thunderstorms and high winds." Reflection: "A model rocket launch tomorrow is unsafe, so recommend waiting."
 
-### Question 55
+### Question 59
 
 **Q:** Why is reflection described as a special kind of reasoning?
 
@@ -470,7 +506,7 @@ Observation: "The forecast says heavy thunderstorms and high winds." Reflection:
 
 It happens after feedback. It looks backward at the result of an action, then decides whether the plan should continue, change, ask, or stop.
 
-### Question 56
+### Question 60
 
 **Q:** In the agent loop, what happens before an action and what happens after it?
 
@@ -478,7 +514,7 @@ It happens after feedback. It looks backward at the result of an action, then de
 
 Before action: reasoning and planning. After action: observing and reflecting. Reflection feeds the next round of reasoning and planning if more work is needed.
 
-### Question 57
+### Question 61
 
 **Q:** Why is built-in model knowledge not enough for tomorrow's weather?
 
@@ -486,7 +522,7 @@ Before action: reasoning and planning. After action: observing and reflecting. R
 
 Weather changes constantly. The agent needs current real-world data from a weather or web search tool instead of relying on training-time knowledge.
 
-### Question 58
+### Question 62
 
 **Q:** Why should a weather agent ask for the location if it does not know it?
 
@@ -494,7 +530,7 @@ Weather changes constantly. The agent needs current real-world data from a weath
 
 The forecast depends on location. Without a trusted location, the tool input would be incomplete and the answer could be wrong.
 
-### Question 59
+### Question 63
 
 **Q:** Beyond reporting a tool's raw result, what does reflection add?
 
@@ -502,7 +538,7 @@ The forecast depends on location. Without a trusted location, the tool input wou
 
 Reflection connects the result to the user's real goal and turns it into a decision. For example, instead of just reporting a 90% chance of thunderstorms, it recommends waiting for a clear, calm day before a model rocket launch.
 
-### Question 60
+### Question 64
 
 **Q:** Why should an agent verify its first answer instead of returning it immediately?
 
@@ -510,7 +546,7 @@ Reflection connects the result to the user's real goal and turns it into a decis
 
 A first guess can satisfy part of the problem but violate another constraint. In the bat-and-ball puzzle, the naive guess matches the total cost but breaks the rule that the bat costs exactly one dollar more than the ball; reflection catches this before the final response.
 
-### Question 61
+### Question 65
 
 **Q:** What is an example of bad tool input?
 
@@ -518,7 +554,7 @@ A first guess can satisfy part of the problem but violate another constraint. In
 
 Searching for "weather tomorrow" without including the location is bad input because the tool cannot know which forecast the user needs.
 
-### Question 62
+### Question 66
 
 **Q:** What does it mean to write observation like evidence and reflection like a decision?
 
@@ -526,7 +562,7 @@ Searching for "weather tomorrow" without including the location is bad input bec
 
 Observation should state the raw fact, such as "API returned 401 Unauthorized." Reflection should decide the implication, such as "Do not trust missing data; the tool failed."
 
-### Question 63
+### Question 67
 
 **Q:** Name three common failure modes in acting and observation.
 
@@ -534,7 +570,7 @@ Observation should state the raw fact, such as "API returned 401 Unauthorized." 
 
 Wrong tool, bad tool input, ignored result, shallow observation, no reflection, or infinite tool calls. Any three show the agent is not learning from feedback.
 
-### Question 64
+### Question 68
 
 **Q:** After each action, what should the reflection checklist ask?
 
@@ -542,9 +578,21 @@ Wrong tool, bad tool input, ignored result, shallow observation, no reflection, 
 
 It should ask what was expected, what actually happened, whether the tool succeeded, whether the result answers the real goal, whether constraints were violated, and whether to answer, ask, or act again.
 
+### Question 69
+
+**Q:** How do reasoning, planning, acting, observing, and reflecting fit together in one mental model?
+
+**A:**
+
+Reasoning understands the goal, facts, and missing information. Planning chooses the next step or tool. Acting takes the step, usually a tool call. Observing reads the exact result, error, or change. Reflecting judges whether the result helps the goal and whether to continue, revise, ask, or stop. The workflow loops:
+
+```text
+goal -> reason -> plan -> act -> observe -> reflect -> (need more: back to reason | satisfied: final answer)
+```
+
 ## Stopping Criteria
 
-### Question 65
+### Question 70
 
 **Q:** What are stopping criteria?
 
@@ -552,7 +600,7 @@ It should ask what was expected, what actually happened, whether the tool succee
 
 Stopping criteria are rules that tell an agent when work is complete, blocked, unsafe, too expensive, or no longer useful, so it should stop the loop and return an appropriate result.
 
-### Question 66
+### Question 71
 
 **Q:** Where in the agent loop are stopping criteria checked?
 
@@ -560,7 +608,7 @@ Stopping criteria are rules that tell an agent when work is complete, blocked, u
 
 They are checked after the agent takes an action, observes the result, and reflects on progress.
 
-### Question 67
+### Question 72
 
 **Q:** Why does stopping not always mean success?
 
@@ -568,7 +616,7 @@ They are checked after the agent takes an action, observes the result, and refle
 
 An agent can stop because it succeeded, needs input, needs approval, reached a limit, hit too many errors, detected no progress, or encountered an unsafe request.
 
-### Question 68
+### Question 73
 
 **Q:** Compare a success stop and a clarification stop.
 
@@ -576,7 +624,7 @@ An agent can stop because it succeeded, needs input, needs approval, reached a l
 
 A success stop means the goal is complete and the agent returns the result. A clarification stop means required input is missing, so the agent asks a specific question before continuing.
 
-### Question 69
+### Question 74
 
 **Q:** Why are limit stops necessary but not enough by themselves?
 
@@ -584,7 +632,7 @@ A success stop means the goal is complete and the agent returns the result. A cl
 
 Limit stops prevent runaway execution, but they do not prove the task is complete. The agent still needs success criteria and safety/failure rules.
 
-### Question 70
+### Question 75
 
 **Q:** What is a no-progress stop?
 
@@ -592,7 +640,7 @@ Limit stops prevent runaway execution, but they do not prove the task is complet
 
 A no-progress stop ends the loop when the agent repeats the same action, gets the same error, or completes several loops without adding useful new evidence.
 
-### Question 71
+### Question 76
 
 **Q:** Give one safety or approval stop for an email-sending agent.
 
@@ -600,7 +648,7 @@ A no-progress stop ends the loop when the agent repeats the same action, gets th
 
 Before sending, show the recipient, subject, and exact message preview, then wait for explicit approval.
 
-### Question 72
+### Question 77
 
 **Q:** Turn "stop when done" into a more measurable rule for a coding agent.
 
@@ -608,7 +656,7 @@ Before sending, show the recipient, subject, and exact message preview, then wai
 
 Stop when the target failing test passes, related tests pass, and the code change is limited to the root cause.
 
-### Question 73
+### Question 78
 
 **Q:** What is the purpose of stop reason codes?
 
@@ -616,7 +664,7 @@ Stop when the target failing test passes, related tests pass, and the code chang
 
 Stop reason codes record why the agent stopped, such as `success`, `needs_input`, `needs_approval`, `max_iterations`, `tool_error_limit`, `no_progress`, or `unsafe_request`.
 
-### Question 74
+### Question 79
 
 **Q:** Why should stop-related state be tracked explicitly?
 
@@ -624,7 +672,7 @@ Stop reason codes record why the agent stopped, such as `success`, `needs_input`
 
 Explicit state lets the application decide whether to continue using counts, limits, errors, repeated actions, approval flags, and stop reason instead of relying only on the model's judgment.
 
-### Question 75
+### Question 80
 
 **Q:** Why should safety or approval checks happen before the agent continues?
 
@@ -632,7 +680,7 @@ Explicit state lets the application decide whether to continue using counts, lim
 
 Because the next action may be risky or forbidden. The agent should request approval or refuse before making destructive, private, financial, production, or high-impact changes.
 
-### Question 76
+### Question 81
 
 **Q:** A research agent keeps collecting similar sources even after enough evidence exists. Which stop rule is weak?
 
@@ -640,7 +688,7 @@ Because the next action may be risky or forbidden. The agent should request appr
 
 The source count, time limit, confidence threshold, or no-progress rule is weak. The agent needs measurable criteria for enough research.
 
-### Question 77
+### Question 82
 
 **Q:** A support agent has no customer ID but keeps querying billing. What should it do?
 
@@ -648,7 +696,7 @@ The source count, time limit, confidence threshold, or no-progress rule is weak.
 
 It should trigger a clarification stop and ask for the required customer ID instead of making incomplete or misleading tool calls.
 
-### Question 78
+### Question 83
 
 **Q:** What is the practical rule for when an agent should stop?
 
@@ -656,7 +704,7 @@ It should trigger a clarification stop and ask for the required customer ID inst
 
 An agent should stop when the next loop is no longer useful, allowed, or worth the cost.
 
-### Question 79
+### Question 84
 
 **Q:** What four questions do good stopping criteria answer?
 
@@ -664,7 +712,7 @@ An agent should stop when the next loop is no longer useful, allowed, or worth t
 
 They answer: What proves success? What are the time, money, token, and tool limits? When should the agent stop trying? Which actions require approval, refusal, or handoff?
 
-### Question 80
+### Question 85
 
 **Q:** Why should an unsafe action request be checked before iteration limits?
 
@@ -674,7 +722,7 @@ Safety must interrupt the loop immediately. The agent should not continue toward
 
 ## Tools Overview
 
-### Question 81
+### Question 86
 
 **Q:** What are tools in AI agent systems?
 
@@ -682,7 +730,7 @@ Safety must interrupt the loop immediately. The agent should not continue toward
 
 Tools are external capabilities that let agents interact with the world beyond the language model, such as searching, reading files, querying databases, running code, sending messages, or updating systems.
 
-### Question 82
+### Question 87
 
 **Q:** What are the four core agent primitives?
 
@@ -698,7 +746,7 @@ Agent
 
 The model reasons, tools provide capabilities, memory stores information, and instructions define behavior.
 
-### Question 83
+### Question 88
 
 **Q:** Why does a model need tools to answer "What is the current weather in Tokyo?"
 
@@ -706,7 +754,7 @@ The model reasons, tools provide capabilities, memory stores information, and in
 
 The question requires current external data. Without a weather or web tool, the model would need to guess, refuse, or provide stale information.
 
-### Question 84
+### Question 89
 
 **Q:** Compare the flow without tools and with tools.
 
@@ -714,7 +762,7 @@ The question requires current external data. Without a weather or web tool, the 
 
 Without tools: `Input -> Model -> Output`. With tools: `Input -> Model -> Tool -> Environment -> Tool Result -> Model -> Output`.
 
-### Question 85
+### Question 90
 
 **Q:** What are perception tools?
 
@@ -722,7 +770,7 @@ Without tools: `Input -> Model -> Output`. With tools: `Input -> Model -> Tool -
 
 Perception tools gather information from the environment, such as web search, database query, file reader, API request, or document retrieval.
 
-### Question 86
+### Question 91
 
 **Q:** What are action tools?
 
@@ -730,7 +778,7 @@ Perception tools gather information from the environment, such as web search, da
 
 Action tools modify the environment, such as email senders, GitHub integrations, database writers, deployment systems, or browser automation.
 
-### Question 87
+### Question 92
 
 **Q:** What is the tool lifecycle?
 
@@ -741,7 +789,7 @@ Tool Registration -> Tool Selection -> Argument Generation
 -> Tool Execution -> Observation -> Response Generation
 ```
 
-### Question 88
+### Question 93
 
 **Q:** What is the difference between a tool and an agent?
 
@@ -749,7 +797,7 @@ Tool Registration -> Tool Selection -> Argument Generation
 
 A tool is a capability, such as a calculator or search engine. An agent is the system that uses tools together with a model, memory, and instructions to pursue a goal.
 
-### Question 89
+### Question 94
 
 **Q:** Name three risks of tool use.
 
@@ -757,7 +805,7 @@ A tool is a capability, such as a calculator or search engine. An agent is the s
 
 Tool failures, incorrect tool selection, latency, cost, security risk, permission misuse, unreliable outputs, or unexpected data.
 
-### Question 90
+### Question 95
 
 **Q:** Why do standards such as Function Calling and MCP matter for tool ecosystems?
 

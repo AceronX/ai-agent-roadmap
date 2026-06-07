@@ -128,6 +128,7 @@ nav:
           - Tool and Resource Exposure: stages/06-mcp/tool-and-resource-exposure/index.md
           - Security Boundaries for MCP-Connected Tools: stages/06-mcp/security-boundaries-conn-tool/index.md
           - QAs: stages/06-mcp/test/index.md
+          - Junior Interview: stages/06-mcp/interview-junior/index.md
           - Senior Interview: stages/06-mcp/interview/index.md
       - 07 RAG and Memory: stages/07-rag-and-memory/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md

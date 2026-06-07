@@ -37,4 +37,7 @@ Use the [QAs: 06 MCP](test/index.md) to check your understanding of every topic 
 
 ## Interview
 
-For hiring or deeper study, see [Senior Interview: MCP](interview/index.md) — open-ended questions with interviewer rubrics.
+For hiring or deeper study, use the interview pages with interviewer rubrics:
+
+- [Junior Interview: MCP](interview-junior/index.md) — friendly, example-driven questions for learners.
+- [Senior Interview: MCP](interview/index.md) — open-ended, trade-off and design questions.

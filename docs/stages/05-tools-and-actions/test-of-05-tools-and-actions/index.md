@@ -40,7 +40,7 @@ No. The definition tells the model what tool exists. The application or agent fr
 
 ### Question 4
 
-**Q:** In the tool-definition diagram, what does the application own?
+**Q:** What does the application own in a tool-calling setup?
 
 **A:**
 
@@ -128,7 +128,7 @@ Improve the tool name, description, use cases, non-use cases, input descriptions
 
 ### Question 15
 
-**Q:** In the output interpretation test, why is "Your order will arrive soon" a bad answer for `estimated_delivery_date: null`?
+**Q:** Why is "Your order will arrive soon" a bad answer when `estimated_delivery_date` is null?
 
 **A:**
 
@@ -218,7 +218,7 @@ No. It is missing the required `status` field.
 
 ### Question 26
 
-**Q:** In the schema loop diagram, what happens when validation fails?
+**Q:** What happens when schema validation fails?
 
 **A:**
 
@@ -284,7 +284,7 @@ The model chooses or proposes the function call. The application validates, auth
 
 ### Question 34
 
-**Q:** In the brain, hands, and guardrails diagram, what do guardrails do?
+**Q:** In function calling, what do guardrails do?
 
 **A:**
 
@@ -375,7 +375,7 @@ It happens when untrusted content from a webpage, email, ticket, or document con
 
 ### Question 45
 
-**Q:** In the support ticket trace, why is drafting a Slack message allowed before sending?
+**Q:** Why is drafting a Slack message allowed before sending it?
 
 **A:**
 
@@ -515,11 +515,11 @@ Search and retrieval, code execution, databases, APIs, files, and messaging.
 
 ### Question 62
 
-**Q:** What does the six-category diagram show?
+**Q:** How do the six common tool categories connect to the agent?
 
 **A:**
 
-It shows the agent core connected to the common tool families that let it find information, compute, query records, call services, work with files, and communicate outward.
+The agent core connects to the common tool families that let it find information, compute, query records, call services, work with files, and communicate outward.
 
 ### Question 63
 
@@ -697,7 +697,7 @@ Deleting files, running `rm -rf`, dropping database tables, terminating cloud in
 
 ### Question 84
 
-**Q:** In the permission boundary architecture diagram, what happens after classification?
+**Q:** After a tool action is classified, what happens next?
 
 **A:**
 

@@ -30,3 +30,7 @@ Build a simple MCP server that exposes safe tools and document how a host connec
 ## Checkpoint
 
 Use the [Stage 6 checkpoint](checkpoint.md) before moving on.
+
+## Test
+
+Use the [Test of 06 MCP](test-of-06-mcp/index.md) to check your understanding of every topic in this stage.

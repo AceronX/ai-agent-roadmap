@@ -48,7 +48,7 @@ Every AI app must know how to connect to every external system directly, creatin
 
 ### Question 5
 
-**Q:** What changes compared with direct integrations?
+**Q:** With MCP, what changes compared with direct integrations?
 
 **A:**
 
@@ -136,7 +136,7 @@ RAG is a retrieval workflow that finds relevant text and adds it to model contex
 
 ### Question 16
 
-**Q:** In the MCP-backed debugging example, why does the host ask for confirmation before creating an incident ticket?
+**Q:** Why does the host ask for confirmation before creating an incident ticket?
 
 **A:**
 
@@ -186,7 +186,7 @@ The host owns the user interface, model connection, client management, context a
 
 ### Question 22
 
-**Q:** What does the host control plane diagram show?
+**Q:** What does the host's control plane do?
 
 **A:**
 
@@ -262,7 +262,7 @@ Tools are model-requested actions that the host approves. Resources are applicat
 
 ### Question 31
 
-**Q:** In the connection lifecycle, what are the two broad phases?
+**Q:** What are the two broad phases of an MCP connection?
 
 **A:**
 
@@ -270,7 +270,7 @@ Setup and discovery happen first. Then the use phase repeats tool calls or resou
 
 ### Question 32
 
-**Q:** In the support assistant example, why does `send_email` require approval while `get_order_status` usually does not?
+**Q:** Why does `send_email` require approval while `get_order_status` usually does not?
 
 **A:**
 
@@ -304,7 +304,7 @@ Connect, handshake with `initialize`, discover capabilities, then use tools or r
 
 ### Question 36
 
-**Q:** In the server anatomy diagram, what happens after the server object is created?
+**Q:** After the server object is created, what happens next?
 
 **A:**
 
@@ -312,7 +312,7 @@ The developer registers tools, resources, and prompts, then runs the server on a
 
 ### Question 37
 
-**Q:** In the FastMCP example, what does `FastMCP("demo")` represent?
+**Q:** In FastMCP, what does `FastMCP("demo")` represent?
 
 **A:**
 
@@ -556,7 +556,7 @@ Resources are what the agent may inspect. Tools are what the agent may ask to do
 
 ### Question 67
 
-**Q:** In the MCP structure diagram, who decides what to show the model and what calls to allow?
+**Q:** In an MCP-connected system, who decides what to show the model and what calls to allow?
 
 **A:**
 
@@ -604,7 +604,7 @@ It is specific, easier for the model to choose correctly, easier to validate, an
 
 ### Question 73
 
-**Q:** In the exposure loop diagram, what happens after the server returns an observation?
+**Q:** What happens after the server returns an observation?
 
 **A:**
 
@@ -612,7 +612,7 @@ The client sends the result to the host, the host adds appropriate observation c
 
 ### Question 74
 
-**Q:** In the Minecraft example, why does the agent read inventory before acting?
+**Q:** Why should an agent read a resource like its inventory before acting?
 
 **A:**
 
@@ -782,7 +782,7 @@ It is malicious text in resources, tool results, emails, web pages, logs, or pro
 
 ### Question 95
 
-**Q:** In the secure MCP tool-call sequence, what happens after the server returns a result?
+**Q:** In a secure MCP tool call, what happens after the server returns a result?
 
 **A:**
 

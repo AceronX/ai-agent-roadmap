@@ -4,7 +4,7 @@
 
 <section class="topic-hero">
   <span class="topic-hero__eyebrow">Stage 06 - MCP</span>
-  <p class="topic-hero__lead">MCP makes it easy for an AI agent to connect to tools, resources, prompts, files, APIs, databases, and local applications. Security boundaries define what each connection can read, change, execute, and send so one unsafe tool call does not become a full system compromise.</p>
+  <p class="topic-hero__lead">MCP makes it easy for an AI agent to connect to outside tools such as files, APIs, databases, browsers, and apps. Security boundaries are the safety rules that decide what the agent may read, change, run, or send so one bad tool call does not damage the whole system.</p>
   <div class="topic-hero__facts">
     <span>Trust boundaries</span>
     <span>Least privilege</span>
@@ -16,7 +16,7 @@
 
 ## Goal
 
-Understand how to design security boundaries for MCP-connected tools in AI agents.
+Understand how to design simple, practical security boundaries for MCP-connected tools in AI agents.
 
 After this lesson, you should be able to explain:
 
@@ -27,6 +27,55 @@ After this lesson, you should be able to explain:
 - how local and remote MCP security differ,
 - how to prevent prompt injection, data exfiltration, over-broad permissions, and destructive actions,
 - when to use user approval, sandboxing, authentication, scope limits, and audit logs.
+
+## Before You Start
+
+You do not need to be a security expert to understand this topic. Start with one simple idea:
+
+```text
+An AI agent should not automatically get full access to every tool it can connect to.
+```
+
+MCP is useful because it gives agents a standard way to connect to tools. But useful tools can also be dangerous if they are too powerful.
+
+Beginner example:
+
+```text
+Safe:
+  The agent can read files inside one docs folder.
+
+Risky:
+  The agent can read the whole laptop, run shell commands, and send files to Slack.
+```
+
+The difference is the security boundary.
+
+### Key Words In Plain English
+
+| Word | Simple Meaning | Beginner Example |
+| --- | --- | --- |
+| MCP host | The AI app the user interacts with | Claude Desktop, an IDE agent, or a custom agent app |
+| MCP client | The part of the host that speaks MCP | The connector inside the AI app |
+| MCP server | The program that exposes tools or data | Filesystem server, GitHub server, database server |
+| Tool | An action the agent can request | Read file, search issue, send message |
+| Resource | Data the server can provide | Document, log, database row, file |
+| Prompt | A reusable instruction template | "Summarize this issue" workflow |
+| Credential | A secret or token used for access | API key, OAuth token, database password |
+| Boundary | A rule that limits access | Read docs only; do not delete files |
+
+### A Simple Analogy
+
+Think of an MCP-connected agent like a new employee with access cards.
+
+```text
+No boundary:
+  Give the employee keys to every room, every safe, every computer, and every bank account.
+
+Good boundary:
+  Give the employee access only to the rooms and systems needed for today's job.
+```
+
+The agent may be helpful, but it still needs limited access.
 
 ## Learning Path
 
@@ -228,6 +277,30 @@ MCP servers can expose more than callable tools.
 
 A safe MCP setup starts with classification. Every exposed tool should have a known risk level and a default policy.
 
+### Beginner Recipe
+
+For each MCP server, use this five-step recipe.
+
+```text
+1. List what the server exposes.
+2. Mark each item as read, write, send, execute, or destructive.
+3. Decide what is allowed automatically.
+4. Decide what needs user approval.
+5. Deny everything that is not needed for the task.
+```
+
+Example:
+
+| Step | Question | Filesystem MCP Answer |
+| --- | --- | --- |
+| 1 | What does it expose? | Read files, write files, list folders |
+| 2 | What is the risk? | Reading docs is low risk; deleting folders is high risk |
+| 3 | What is automatic? | Read and edit Markdown files inside `docs/` |
+| 4 | What needs approval? | Delete, rename, or edit many files |
+| 5 | What is denied? | Read `.ssh`, `.env`, browser cookies, or home directory |
+
+This recipe is simple, but it catches the most common beginner mistake: connecting a server and trusting every tool by default.
+
 ### Tool Risk Categories
 
 | Tool Type | What It Can Do | MCP Examples | Default Policy |
@@ -309,6 +382,22 @@ Send tool:
 Blocked:
   Reading secrets and sending them to arbitrary URLs.
 ```
+
+Beginner rule:
+
+```text
+Read permission and send permission are different permissions.
+Never combine them casually.
+```
+
+Why this matters:
+
+| Situation | Safe Boundary | Unsafe Boundary |
+| --- | --- | --- |
+| Agent reads private docs | It can summarize locally | It can post full docs to public Slack |
+| Agent reads customer ticket | It can draft a reply | It can email customer data to any address |
+| Agent reads code | It can explain code | It can upload code to unknown servers |
+| Agent reads logs | It can extract relevant errors | It can send raw logs with secrets outside |
 
 ### Scope Minimization
 
@@ -414,6 +503,25 @@ Slack:
 ## Part 4: Debug And Harden Real MCP Setups
 
 Real MCP security work is not only about tool schemas. It also includes local process safety, remote authorization, prompt injection handling, session handling, and auditability.
+
+### Beginner Mistakes To Avoid
+
+| Beginner Mistake | Why It Is Dangerous | Better Choice |
+| --- | --- | --- |
+| Connect every available MCP server | More tools means more ways to leak or change data | Connect only servers needed for the task |
+| Give access to the whole home folder | The agent may read secrets, keys, configs, and private files | Share one project folder |
+| Use an admin token | One mistake can affect production systems | Use narrow, task-specific scopes |
+| Let the agent send messages automatically | Private data can leave the trust zone | Draft first, approve before sending |
+| Treat tool results as trusted instructions | Retrieved pages can contain prompt injection | Treat tool results as untrusted data |
+| Skip logs | You cannot explain what happened later | Log tool name, target, scope, and result |
+
+The safest beginner default is:
+
+```text
+Read small, approved areas automatically.
+Write only scoped targets.
+Send, execute, delete, deploy, or grant access only with approval.
+```
 
 ### Local MCP Boundaries
 
@@ -689,6 +797,21 @@ The core rule:
 ```text
 Connect broadly only after you can restrict narrowly.
 ```
+
+### Beginner Cheat Sheet
+
+Use this as a quick review.
+
+| Question | Good Beginner Answer |
+| --- | --- |
+| Should I trust every MCP server? | No. Use known and approved servers. |
+| Should the agent see every tool? | No. Show only tools needed for the task. |
+| Should read access imply send access? | No. Reading and sending are separate permissions. |
+| Should destructive tools run automatically? | No. Deny or require explicit approval. |
+| Should local MCP access the whole laptop? | No. Limit it to a specific project folder. |
+| Should remote MCP use broad tokens? | No. Use least-privilege, per-user scopes. |
+| Should tool output be trusted? | No. Treat it as data, not instruction. |
+| Should actions be logged? | Yes. Logs make behavior auditable. |
 
 ## Practice
 

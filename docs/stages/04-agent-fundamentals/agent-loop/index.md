@@ -121,8 +121,11 @@ The agent loop is the control cycle that makes this possible.
 
 Most useful agents follow the same pattern:
 
-```text
-Perceive -> Plan -> Act -> Observe -> Reflect -> Stop or Continue
+```mermaid
+flowchart LR
+    P[Perceive] --> PL[Plan] --> A[Act] --> O[Observe] --> R[Reflect]
+    R -->|continue| P
+    R -->|stop| S[Stop]
 ```
 
 The loop lets the agent adapt when the first attempt is incomplete, wrong, or
@@ -240,37 +243,17 @@ database, call an API, or ask a human for missing information.
 
 An agent loop usually sits inside a larger architecture.
 
-```text
-┌─────────────────────────────────────────────────────┐
-│ User goal                                           │
-└──────────────────────┬──────────────────────────────┘
-                       ▼
-┌─────────────────────────────────────────────────────┐
-│ Agent brain                                         │
-│ - LLM or foundation model                           │
-│ - instructions                                      │
-│ - planning policy                                   │
-│ - safety rules                                      │
-└──────────┬───────────────────────┬──────────────────┘
-           │                       │
-           ▼                       ▼
-┌──────────────────────┐   ┌──────────────────────────┐
-│ Memory               │   │ Tool layer               │
-│ - task history       │   │ - search                 │
-│ - user preferences   │   │ - database               │
-│ - retrieved context  │   │ - code execution         │
-└──────────┬───────────┘   │ - browser/API/email      │
-           │               └────────────┬─────────────┘
-           │                            ▼
-           │               ┌──────────────────────────┐
-           │               │ Environment              │
-           │               │ files, web, apps, data   │
-           │               └────────────┬─────────────┘
-           │                            ▼
-           └──────────────► Observation and state ◄───┘
-                            │
-                            ▼
-                      Continue or stop
+```mermaid
+flowchart TD
+    U[User goal] --> B[Agent brain<br/>LLM, instructions,<br/>planning policy, safety rules]
+    B --> M[Memory<br/>task history, preferences,<br/>retrieved context]
+    B --> T[Tool layer<br/>search, database,<br/>code execution, browser/API/email]
+    T --> E[Environment<br/>files, web, apps, data]
+    E --> O[Observation and state]
+    M --> O
+    O --> D{Continue or stop?}
+    D -->|continue| B
+    D -->|stop| F[Final answer]
 ```
 
 The "brain" decides what to do, but the agent becomes useful because it can
@@ -414,14 +397,12 @@ Loop:
 
 Illustration:
 
-```text
-Question
-  |
-  v
-Search -> Read -> Compare -> Summarize -> Cite -> Stop
-             ^                     |
-             |                     v
-          Need more? <--------- Quality check
+```mermaid
+flowchart LR
+    Q[Question] --> S[Search] --> R[Read] --> C[Compare] --> Sm[Summarize] --> Ci[Cite] --> St[Stop]
+    Sm --> QC{Quality check}
+    QC -->|need more| R
+    QC -->|enough| Ci
 ```
 
 ## Code Assistant Example

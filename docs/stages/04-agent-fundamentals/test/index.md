@@ -36,8 +36,11 @@ Because it repeatedly controls what happens next: perceive the current state, pl
 
 **A:**
 
-```text
-Perceive -> Plan -> Act -> Observe -> Reflect -> Stop or Continue
+```mermaid
+flowchart LR
+    P[Perceive] --> PL[Plan] --> A[Act] --> O[Observe] --> R[Reflect]
+    R -->|continue| P
+    R -->|stop| S[Stop]
 ```
 
 Each step updates the agent's understanding before the next decision.
@@ -170,8 +173,17 @@ Logs make the loop inspectable. Developers can see which tools were called, what
 
 A user goal goes to the agent brain (LLM, instructions, planning policy, safety rules). The brain draws on memory (task history, preferences, retrieved context) and a tool layer (search, database, code execution, browser, API, email). Tools act on the environment, which returns an observation that updates state, and the loop then continues or stops.
 
-```text
-User goal -> Agent brain -> (Memory + Tool layer) -> Environment -> Observation/state -> continue or stop
+```mermaid
+flowchart LR
+    U[User goal] --> B[Agent brain]
+    B --> M[Memory]
+    B --> T[Tool layer]
+    T --> E[Environment]
+    M --> O[Observation / state]
+    E --> O
+    O --> D{Continue or stop?}
+    D -->|continue| B
+    D -->|stop| F[Stop]
 ```
 
 ### Question 20
@@ -222,12 +234,11 @@ ReAct is an agent loop where reasoning chooses the next action, and the observat
 
 **A:**
 
-```text
-Reason -> Act -> Observe -> Need more?
-             ^              |
-             | yes          | no
-             +--------------+
-                         -> Final Answer
+```mermaid
+flowchart LR
+    R[Reason] --> A[Act] --> O[Observe] --> N{Need more?}
+    N -->|yes| R
+    N -->|no| F[Final answer]
 ```
 
 ### Question 26
@@ -586,8 +597,11 @@ It should ask what was expected, what actually happened, whether the tool succee
 
 Reasoning understands the goal, facts, and missing information. Planning chooses the next step or tool. Acting takes the step, usually a tool call. Observing reads the exact result, error, or change. Reflecting judges whether the result helps the goal and whether to continue, revise, ask, or stop. The workflow loops:
 
-```text
-goal -> reason -> plan -> act -> observe -> reflect -> (need more: back to reason | satisfied: final answer)
+```mermaid
+flowchart LR
+    G[Goal] --> Re[Reason] --> P[Plan] --> A[Act] --> O[Observe] --> Rf[Reflect]
+    Rf -->|need more| Re
+    Rf -->|satisfied| F[Final answer]
 ```
 
 ## Stopping Criteria
@@ -784,9 +798,9 @@ Action tools modify the environment, such as email senders, GitHub integrations,
 
 **A:**
 
-```text
-Tool Registration -> Tool Selection -> Argument Generation
--> Tool Execution -> Observation -> Response Generation
+```mermaid
+flowchart LR
+    A[Tool Registration] --> B[Tool Selection] --> C[Argument Generation] --> D[Tool Execution] --> E[Observation] --> F[Response Generation]
 ```
 
 ### Question 93

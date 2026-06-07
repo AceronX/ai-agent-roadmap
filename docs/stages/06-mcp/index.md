@@ -34,3 +34,7 @@ Use the [Stage 6 checkpoint](checkpoint.md) before moving on.
 ## Test
 
 Use the [QAs: 06 MCP](test/index.md) to check your understanding of every topic in this stage.
+
+## Interview
+
+For hiring or deeper study, see [Senior Interview: MCP](interview/index.md) — open-ended questions with interviewer rubrics.

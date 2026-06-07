@@ -30,7 +30,7 @@ A detailed prompt reduces guessing by defining the audience, task, rules, input 
 
 ### Question 3
 
-**Q:** What does the prompt improvement loop show?
+**Q:** Why is prompting an iterative process?
 
 **A:**
 
@@ -60,7 +60,7 @@ It should define role, goal, tool rules, boundaries, completion criteria, and fi
 
 ### Question 6
 
-**Q:** In the "final prompt" diagram, what inputs can be combined before the model responds?
+**Q:** What inputs can be combined into the final prompt before the model responds?
 
 **A:**
 
@@ -132,11 +132,11 @@ Weak: `Review this code.` It has no focus. Strong: `Review this API handler for 
 
 ### Question 15
 
-**Q:** Why is prompt-only JSON risky?
+**Q:** If you are unsure how to write a prompt, what reliable structure can you start from?
 
 **A:**
 
-The model may add prose, omit fields, use wrong types, or return invalid JSON. Production systems should validate the output in code.
+Use the prompt recipe: state the role, the task, the context, the input, the constraints, the output format, and the success criteria. Filling in these parts in order turns a vague request into a clear, testable prompt.
 
 ### Question 16
 
@@ -244,7 +244,7 @@ ReAct combines reasoning and action. The agent decides the next action, calls a 
 
 ### Question 29
 
-**Q:** In the ReAct sequence diagram, what is the basic loop?
+**Q:** What is the basic loop in ReAct prompting?
 
 **A:**
 
@@ -262,11 +262,11 @@ Automatic Prompt Engineering uses a model to generate prompt variants, test them
 
 ### Question 31
 
-**Q:** What must an agent-ready prompt define?
+**Q:** How should you choose a prompting technique?
 
 **A:**
 
-It must define role, goal, tools, rules, stop criteria, and final format.
+Start with the simplest method that fits, usually clear zero-shot instructions. Move to few-shot, step-back, reasoning, ReAct, or Tree of Thoughts only when the task needs custom patterns, framing, multi-step reasoning, tools, or search. Advanced techniques add cost and latency, so use them only when the task needs them.
 
 ### Question 32
 
@@ -288,7 +288,7 @@ It means the model should not need to guess the task, audience, scope, rules, in
 
 ### Question 34
 
-**Q:** What is the Specific Prompt Builder diagram showing?
+**Q:** What elements combine to make a prompt specific?
 
 **A:**
 
@@ -328,7 +328,7 @@ Ask what you want, who it is for, what to include, what to avoid, what source to
 
 ### Question 39
 
-**Q:** What is the general prompt formula from the section?
+**Q:** What is a general formula for structuring a prompt?
 
 **A:**
 
@@ -458,7 +458,7 @@ Examples teach the model the pattern. If examples differ from real inputs, the m
 
 ### Question 55
 
-**Q:** What does the prompt iteration loop show?
+**Q:** What are the steps of the prompt iteration loop?
 
 **A:**
 
@@ -550,7 +550,7 @@ Prompt-only JSON is weakest. JSON mode improves JSON syntax. Structured outputs 
 
 ### Question 66
 
-**Q:** What does the structured output flow diagram show?
+**Q:** What are the steps in a structured output flow?
 
 **A:**
 
@@ -656,7 +656,7 @@ The model can still produce invalid, incomplete, unsafe, or business-incorrect d
 
 ### Question 79
 
-**Q:** What does the validation flow diagram show?
+**Q:** What are the steps in validating a structured output?
 
 **A:**
 

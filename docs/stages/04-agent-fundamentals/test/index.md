@@ -192,7 +192,14 @@ flowchart LR
 
 **A:**
 
-It should specify the agent name, primary user, and goal; the inputs the agent can perceive (user message, files, tool observations, memory); the allowed tools (name, read or write, approval needed, expected output); loop limits (max iterations, timeout, cost or token budget, retry limit per tool); reflection checks (required evidence, output format, errors that force a new plan, uncertainty that needs a user question); and stop conditions (success, missing information, unsafe request, tool failure).
+A design template should specify:
+
+- **Identity:** agent name, primary user, and goal
+- **Inputs it can perceive:** user message, files, tool observations, memory
+- **Allowed tools:** name, read or write, approval needed, expected output
+- **Loop limits:** max iterations, timeout, cost or token budget, retry limit per tool
+- **Reflection checks:** required evidence, output format, errors that force a new plan, uncertainty that needs a user question
+- **Stop conditions:** success, missing information, unsafe request, tool failure
 
 ### Question 21
 
@@ -200,7 +207,14 @@ It should specify the agent name, primary user, and goal; the inputs the agent c
 
 **A:**
 
-The agent repeats perceive, plan, act, observe, and reflect. For example, to find and summarize credible sources: iteration 1 searches the web; iteration 2 reads selected sources; iteration 3 writes a structured summary; iteration 4 adds citations and caveats, then stops because the goal is satisfied. Each reflection decides whether more evidence or a quality check is needed before stopping.
+The agent repeats perceive, plan, act, observe, and reflect. For example, to find and summarize credible sources:
+
+1. Search the web for candidate sources.
+2. Read the selected sources.
+3. Write a structured summary.
+4. Add citations and caveats, then stop because the goal is satisfied.
+
+Each reflection decides whether more evidence or a quality check is needed before stopping.
 
 ### Question 22
 
@@ -208,7 +222,8 @@ The agent repeats perceive, plan, act, observe, and reflect. For example, to fin
 
 **A:**
 
-Reproducing first, by running the tests, confirms the real failure and gives the agent evidence before changing code, so the fix targets the actual root cause. Code agents need tool access because the model alone can only suggest a fix; the loop lets it read the real repository, run tests, observe failures, make a minimal edit, and verify that the targeted test passes without breaking others.
+- **Why reproduce first:** running the tests confirms the real failure and gives the agent evidence before changing code, so the fix targets the actual root cause.
+- **Why it needs tool access:** the model alone can only suggest a fix. The loop lets it read the real repository, run tests, observe failures, make a minimal edit, and verify that the targeted test passes without breaking others.
 
 ## ReAct Pattern
 
@@ -587,7 +602,13 @@ Wrong tool, bad tool input, ignored result, shallow observation, no reflection, 
 
 **A:**
 
-It should ask what was expected, what actually happened, whether the tool succeeded, whether the result answers the real goal, whether constraints were violated, and whether to answer, ask, or act again.
+After each action, the reflection checklist should ask:
+
+- What was expected, and what actually happened?
+- Did the tool succeed?
+- Does the result answer the real goal?
+- Were any constraints violated?
+- Should the agent answer, ask, or act again?
 
 ### Question 69
 

@@ -88,7 +88,7 @@ nav:
           - Transformer Models: stages/02-llm-fundamentals/transformer-models/index.md
           - Tokenization: stages/02-llm-fundamentals/tokenization/index.md
           - Context Windows: stages/02-llm-fundamentals/context-windows/index.md
-          - Model Families: stages/02-llm-fundamentals/model-families/index.md
+          - Model Families and Licenses: stages/02-llm-fundamentals/model-families/index.md
           - Generation Controls: stages/02-llm-fundamentals/generation-controls/index.md
           - Pricing and Latency: stages/02-llm-fundamentals/pricing-and-latency/index.md
           - Embeddings and Vector Search: stages/02-llm-fundamentals/embeddings-vector-search/index.md

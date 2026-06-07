@@ -33,4 +33,4 @@ Use the [Stage 5 checkpoint](checkpoint.md) before moving on.
 
 ## Test
 
-Use the [Test of 05 Tools and Actions](test/index.md) to check your understanding of every topic in this stage.
+Use the [QAs: 05 Tools and Actions](test/index.md) to check your understanding of every topic in this stage.

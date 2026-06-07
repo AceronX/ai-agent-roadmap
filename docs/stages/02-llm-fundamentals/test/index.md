@@ -1,4 +1,4 @@
-# Test of 02 LLM Fundamentals
+# QAs: 02 LLM Fundamentals
 
 This study test checks understanding of every main section in **02 LLM Fundamentals**.
 

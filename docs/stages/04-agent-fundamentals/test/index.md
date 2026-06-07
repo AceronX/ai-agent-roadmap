@@ -1,4 +1,4 @@
-# Test of 04 Agent Fundamentals
+# QAs: 04 Agent Fundamentals
 
 This study test checks understanding of every main section in **04 Agent Fundamentals**.
 

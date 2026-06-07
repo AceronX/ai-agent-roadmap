@@ -1,4 +1,4 @@
-# Test of 03 Prompt Engineering
+# QAs: 03 Prompt Engineering
 
 This study test checks understanding of every main section in **Stage 03 - Prompt Engineering**.
 

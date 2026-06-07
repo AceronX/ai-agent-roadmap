@@ -33,4 +33,4 @@ Use the [Stage 6 checkpoint](checkpoint.md) before moving on.
 
 ## Test
 
-Use the [Test of 06 MCP](test/index.md) to check your understanding of every topic in this stage.
+Use the [QAs: 06 MCP](test/index.md) to check your understanding of every topic in this stage.

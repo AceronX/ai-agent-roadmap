@@ -27,7 +27,7 @@ Build a prompt testing lab with several prompts, test inputs, expected outputs, 
 
 ## Test
 
-Use the [Test of 03 Prompt Engineering](test/index.md) to check your understanding of every topic in this stage.
+Use the [QAs: 03 Prompt Engineering](test/index.md) to check your understanding of every topic in this stage.
 
 ## Checkpoint
 

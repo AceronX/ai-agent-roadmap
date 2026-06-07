@@ -32,4 +32,4 @@ Use the [Stage 4 checkpoint](checkpoint.md) before moving on.
 
 ## Test
 
-Use the [Test of 04 Agent Fundamentals](test/index.md) to check your understanding of every topic in this stage.
+Use the [QAs: 04 Agent Fundamentals](test/index.md) to check your understanding of every topic in this stage.

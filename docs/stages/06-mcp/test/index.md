@@ -1,4 +1,4 @@
-# Test of 06 MCP
+# QAs: 06 MCP
 
 This study test checks understanding of every main section in **06 MCP**.
 

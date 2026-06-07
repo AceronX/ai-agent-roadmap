@@ -35,9 +35,10 @@ Use the [QAs: 02 LLM Fundamentals](test/index.md) to check your understanding of
 
 ## Interview
 
-For deeper study or hiring, use the interview page with interviewer rubrics:
+For deeper study or hiring, use the interview pages with interviewer rubrics:
 
 - [Junior Interview: LLM Fundamentals](interview-junior/index.md) — friendly, example-driven questions for learners.
+- [Senior Interview: LLM Fundamentals](interview/index.md) — open-ended, trade-off and design questions.
 
 ## Checkpoint
 

@@ -95,6 +95,7 @@ nav:
           - RAG Basics: stages/02-llm-fundamentals/rag-basics/index.md
           - QAs: stages/02-llm-fundamentals/test/index.md
           - Junior Interview: stages/02-llm-fundamentals/interview-junior/index.md
+          - Senior Interview: stages/02-llm-fundamentals/interview/index.md
       - 03 Prompt Engineering:
           - stages/03-prompt-engineering/index.md
           - Prompt Basics: stages/03-prompt-engineering/prompt-basics/index.md
@@ -103,6 +104,7 @@ nav:
           - Prompt Testing: stages/03-prompt-engineering/prompt-testing/index.md
           - QAs: stages/03-prompt-engineering/test/index.md
           - Junior Interview: stages/03-prompt-engineering/interview-junior/index.md
+          - Senior Interview: stages/03-prompt-engineering/interview/index.md
       - 04 Agent Fundamentals:
           - stages/04-agent-fundamentals/index.md
           - Agent Loop: stages/04-agent-fundamentals/agent-loop/index.md
@@ -113,6 +115,7 @@ nav:
           - Tools Overview: stages/04-agent-fundamentals/tools-overview/index.md
           - QAs: stages/04-agent-fundamentals/test/index.md
           - Junior Interview: stages/04-agent-fundamentals/interview-junior/index.md
+          - Senior Interview: stages/04-agent-fundamentals/interview/index.md
       - 05 Tools and Actions:
           - stages/05-tools-and-actions/index.md
           - Tool Definition: stages/05-tools-and-actions/tool-definition/index.md
@@ -123,6 +126,7 @@ nav:
           - Boundaries and Destructive Tools: stages/05-tools-and-actions/boundaries-and-destructive-tools/index.md
           - QAs: stages/05-tools-and-actions/test/index.md
           - Junior Interview: stages/05-tools-and-actions/interview-junior/index.md
+          - Senior Interview: stages/05-tools-and-actions/interview/index.md
       - 06 MCP:
           - stages/06-mcp/index.md
           - MCP Overview: stages/06-mcp/mcp-overview/index.md

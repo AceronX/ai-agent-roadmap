@@ -36,6 +36,7 @@ Use the [QAs: 04 Agent Fundamentals](test/index.md) to check your understanding 
 
 ## Interview
 
-For deeper study or hiring, use the interview page with interviewer rubrics:
+For deeper study or hiring, use the interview pages with interviewer rubrics:
 
 - [Junior Interview: Agent Fundamentals](interview-junior/index.md) — friendly, example-driven questions for learners.
+- [Senior Interview: Agent Fundamentals](interview/index.md) — open-ended, trade-off and design questions.

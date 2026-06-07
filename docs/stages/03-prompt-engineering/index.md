@@ -31,9 +31,10 @@ Use the [QAs: 03 Prompt Engineering](test/index.md) to check your understanding 
 
 ## Interview
 
-For deeper study or hiring, use the interview page with interviewer rubrics:
+For deeper study or hiring, use the interview pages with interviewer rubrics:
 
 - [Junior Interview: Prompt Engineering](interview-junior/index.md) — friendly, example-driven questions for learners.
+- [Senior Interview: Prompt Engineering](interview/index.md) — open-ended, trade-off and design questions.
 
 ## Checkpoint
 

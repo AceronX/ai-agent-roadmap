@@ -37,6 +37,7 @@ Use the [QAs: 05 Tools and Actions](test/index.md) to check your understanding o
 
 ## Interview
 
-For deeper study or hiring, use the interview page with interviewer rubrics:
+For deeper study or hiring, use the interview pages with interviewer rubrics:
 
 - [Junior Interview: Tools and Actions](interview-junior/index.md) — friendly, example-driven questions for learners.
+- [Senior Interview: Tools and Actions](interview/index.md) — open-ended, trade-off and design questions.

@@ -31,7 +31,7 @@ Create a model comparison notebook or script that tests the same prompt across m
 
 ## Test
 
-Use the [Test of 02 LLM Fundamentals](test-of-02-llm-fundamentals/index.md) to check your understanding of every topic in this stage.
+Use the [Test of 02 LLM Fundamentals](test/index.md) to check your understanding of every topic in this stage.
 
 ## Checkpoint
 

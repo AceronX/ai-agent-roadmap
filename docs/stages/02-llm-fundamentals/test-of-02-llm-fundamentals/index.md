@@ -42,7 +42,7 @@ A database retrieves stored facts. An LLM generates likely text from learned pat
 
 ### Question 4
 
-**Q:** In the next-token prediction diagram, what happens after the model picks one token?
+**Q:** After the model picks one token, what happens next in autoregressive generation?
 
 **A:**
 
@@ -334,13 +334,29 @@ They often provide tradeoffs between cost, latency, capability, context size, de
 
 ### Question 39
 
+**Q:** What are common model variants within a family?
+
+**A:**
+
+Families often ship variants such as base, instruct (chat), reasoning, code, and vision (multimodal) models, plus embedding models. Each is optimized for a different kind of task.
+
+### Question 40
+
+**Q:** What is the difference between a standard model and a reasoning model?
+
+**A:**
+
+A standard model answers quickly with little explicit intermediate thinking. A reasoning model spends extra compute on internal step-by-step reasoning before answering, which can improve hard planning, math, and coding tasks, usually at higher cost and latency.
+
+### Question 41
+
 **Q:** What is an open-weight model?
 
 **A:**
 
 An open-weight model shares its trained parameters so users can download, run, inspect, fine-tune, or build on it under the terms of its license.
 
-### Question 40
+### Question 42
 
 **Q:** What is a closed-weight model?
 
@@ -348,7 +364,15 @@ An open-weight model shares its trained parameters so users can download, run, i
 
 A closed-weight model does not share trained parameters publicly. Users usually access it through a hosted API or service controlled by the provider.
 
-### Question 41
+### Question 43
+
+**Q:** What is the difference between open-weight and open-source?
+
+**A:**
+
+Open-weight means the trained parameters are available to download and run. Open-source usually implies more, such as training code, data, or a recognized open-source license. A model can be open-weight without being fully open-source.
+
+### Question 44
 
 **Q:** Compare open-weight and closed-weight models for deployment control.
 
@@ -356,7 +380,7 @@ A closed-weight model does not share trained parameters publicly. Users usually 
 
 Open-weight models give more control over hosting, adaptation, and inspection. Closed-weight models give less infrastructure control but often provide managed access, strong hosted performance, and simpler operations.
 
-### Question 42
+### Question 45
 
 **Q:** What is a model license?
 
@@ -364,15 +388,7 @@ Open-weight models give more control over hosting, adaptation, and inspection. C
 
 A license defines what users are legally allowed to do with a model, such as commercial use, modification, redistribution, fine-tuning, or sharing changes.
 
-### Question 43
-
-**Q:** Why must teams read the specific model license before product use?
-
-**A:**
-
-Model licenses can restrict commercial use, redistribution, large-scale deployment, derivative models, or required sharing of changes.
-
-### Question 44
+### Question 46
 
 **Q:** What is the practical difference between permissive and copyleft licenses?
 
@@ -380,29 +396,13 @@ Model licenses can restrict commercial use, redistribution, large-scale deployme
 
 Permissive licenses usually allow broad use, modification, and redistribution. Copyleft licenses may require distributed modified versions to release source code under similar terms.
 
-### Question 45
+### Question 47
 
 **Q:** Why are many AI model licenses not identical to normal open-source software licenses?
 
 **A:**
 
 Some model providers use custom AI licenses with restrictions on deployment scale, redistribution, commercial use, or prohibited uses.
-
-### Question 46
-
-**Q:** What is a tradeoff of open-weight models?
-
-**A:**
-
-They offer more control and inspection, but teams may need to manage hosting, inference optimization, security, updates, and quality evaluation themselves.
-
-### Question 47
-
-**Q:** What is a tradeoff of closed-weight models?
-
-**A:**
-
-They can be easy to access and powerful through managed APIs, but users cannot inspect weights, self-host freely, or adapt the model deeply.
 
 ### Question 48
 
@@ -521,11 +521,11 @@ Changing multiple controls together makes it hard to know which setting improved
 
 **A:**
 
-Most providers charge based on the number of tokens processed, usually separating input token cost and output token cost.
+Most providers charge based on the number of tokens processed, usually separating input token cost and output token cost. Output tokens are often priced higher than input tokens.
 
 ### Question 62
 
-**Q:** What is the simple pricing formula from this section?
+**Q:** What is the simple formula for total LLM cost?
 
 **A:**
 
@@ -551,7 +551,7 @@ Latency is the time it takes for the system to produce a response after a reques
 
 ### Question 65
 
-**Q:** What are the main components of total latency in this section?
+**Q:** What are the main components of total latency?
 
 **A:**
 
@@ -635,11 +635,11 @@ Embedding models are trained so semantically related items produce vectors that 
 
 ### Question 75
 
-**Q:** What does the embedding-space image illustrate?
+**Q:** What is semantic clustering in embedding space?
 
 **A:**
 
-It illustrates semantic clustering: similar concepts, such as animals or fruit, appear closer together in vector space than unrelated concepts.
+Semantic clustering means similar concepts, such as animals or fruit, appear closer together in vector space than unrelated concepts.
 
 ### Question 76
 
@@ -733,11 +733,11 @@ RAG means search first, answer second. The system retrieves relevant source text
 
 ### Question 87
 
-**Q:** What does the AWS RAG architecture image show at a high level?
+**Q:** At a high level, what does a RAG architecture do before the model generates an answer?
 
 **A:**
 
-It shows external knowledge being retrieved and added as context before a foundation model generates the final response.
+External knowledge is retrieved and added as context before a foundation model generates the final response.
 
 ### Question 88
 

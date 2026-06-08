@@ -14,7 +14,7 @@ Learn how agents retrieve knowledge and maintain useful state across interaction
 - Vector databases, SQL, and custom stores
 - Short-term and long-term memory
 - Episodic and semantic memory
-- User profile storage
+- [User profile storage](user-profile-storage/index.md)
 - Summarization, compression, and forgetting
 
 ## Build

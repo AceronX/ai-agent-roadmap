@@ -15,7 +15,7 @@ Learn how agents retrieve knowledge and maintain useful state across interaction
 - [Short-term and long-term memory](short-term-and-long-term-memory/index.md)
 - [Episodic and semantic memory](episodic-and-semantic-memory/index.md)
 - [User profile storage](user-profile-storage/index.md)
-- Summarization, compression, and forgetting
+- [Summarization, compression, and forgetting](summarization-compression-forgetting/index.md)
 
 ## Build
 

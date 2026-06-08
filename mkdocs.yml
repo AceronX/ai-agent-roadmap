@@ -140,6 +140,7 @@ nav:
           - Senior Interview: stages/06-mcp/interview/index.md
       - 07 RAG and Memory:
           - stages/07-rag-and-memory/index.md
+          - Episodic and Semantic Memory: stages/07-rag-and-memory/episodic-and-semantic-memory/index.md
           - User Profile Storage: stages/07-rag-and-memory/user-profile-storage/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md
       - 09 Building Agents: stages/09-building-agents/index.md

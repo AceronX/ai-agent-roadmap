@@ -140,11 +140,9 @@ nav:
           - Senior Interview: stages/06-mcp/interview/index.md
       - 07 RAG and Memory:
           - stages/07-rag-and-memory/index.md
-<<<<<<< Updated upstream
+          - Vector Databases, SQL, and Custom Stores: stages/07-rag-and-memory/vector-databases-sql-custom-stores/index.md
+          - Short-Term and Long-Term Memory: stages/07-rag-and-memory/short-term-and-long-term-memory/index.md
           - Episodic and Semantic Memory: stages/07-rag-and-memory/episodic-and-semantic-memory/index.md
-=======
-          - Vector databases, SQL, and custom stores: stages/07-rag-and-memory/vector-databases-sql-custom-stores/index.md
->>>>>>> Stashed changes
           - User Profile Storage: stages/07-rag-and-memory/user-profile-storage/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md
       - 09 Building Agents: stages/09-building-agents/index.md

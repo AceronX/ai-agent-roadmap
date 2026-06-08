@@ -11,7 +11,7 @@ Learn how agents retrieve knowledge and maintain useful state across interaction
 
 - RAG basics
 - Embeddings and vector search
-- Vector databases, SQL, and custom stores
+- [Vector databases, SQL, and custom stores](vector-databases-sql-custom-stores/index.md)
 - Short-term and long-term memory
 - [Episodic and semantic memory](episodic-and-semantic-memory/index.md)
 - [User profile storage](user-profile-storage/index.md)

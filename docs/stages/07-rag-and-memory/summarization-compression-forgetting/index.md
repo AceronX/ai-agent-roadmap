@@ -137,25 +137,92 @@ flowchart TD
     MM --> I[Importance scorer<br/>rates usefulness]
     MM --> F[Forgetting policy<br/>expires, archives, or deletes]
 
-    S --> R[Memory record]
-    C --> R
-    I --> D{Keep, shrink,<br/>or forget?}
-    R --> D
+    S --> R[Summary note<br/>short human-readable memory]
+    C --> R2[Compressed record<br/>structured fields and metadata]
+    R --> D{Keep, shrink,<br/>or forget?}
+    R2 --> D
+    I --> D
     F --> D
 
-    D -->|keep| L[(Long-term memory store)]
+    D -->|save event| E[(Episodic memory<br/>what happened, when, outcome)]
+    D -->|save stable fact| SM[(Semantic memory<br/>what remains true)]
     D -->|keep exact for now| B
     D -->|archive summary| AR[(Archive)]
     D -->|delete or expire| X[Removed memory]
 
-    L --> RET[Retriever]
+    E --> REF[Reflection<br/>look for patterns]
+    REF -->|repeated evidence| SM
+    E --> RET[Retriever]
+    SM --> RET
     RET --> B
 ```
 
 **How to read this diagram:** the agent keeps recent messages in short-term
 memory. A memory manager decides what old information should become a summary,
-a compact record, an archived note, or deleted data. Later, the retriever pulls
-only relevant long-term memory back into the short-term buffer.
+a compact record, an archived note, or deleted data. Important event records go
+to episodic memory. Stable facts go to semantic memory. Later, the retriever
+pulls only relevant long-term memory back into the short-term buffer.
+
+### Why Divide Episodic And Semantic Memory?
+
+Agents divide these memories because they answer different questions.
+
+```text
+Episodic memory asks: "What happened?"
+Semantic memory asks: "What is true or useful now?"
+```
+
+Think about school notes:
+
+```text
+Episodic note:
+  "On Monday, Maya missed three fraction questions because she forgot to find a
+  common denominator."
+
+Semantic note:
+  "Maya needs practice adding fractions with different denominators."
+```
+
+The episodic note is a record of one event. It has time, evidence, and outcome.
+The semantic note is a general lesson learned from that event. It is easier to
+reuse in the future.
+
+| Memory Type | Stores | Best For | Example |
+| --- | --- | --- | --- |
+| Episodic memory | past events, actions, outcomes, evidence | recall, audit, reflection | "Yesterday the agent fixed a broken MkDocs link." |
+| Semantic memory | stable facts, preferences, concepts, lessons | personalization, planning, durable context | "The project uses MkDocs Material." |
+
+They are divided for four practical reasons:
+
+- **Different shape:** episodic memory needs timestamps, steps, outcomes, and
+  evidence. Semantic memory needs facts, confidence, source, and update rules.
+- **Different retrieval:** episodic memory is useful when asking "what happened
+  before?" Semantic memory is useful when asking "what should I know right now?"
+- **Different forgetting:** old episodes can often be archived, while stable
+  facts may stay active until they are corrected or become stale.
+- **Different risk:** turning one event into a permanent fact too quickly can
+  make the agent believe something that is not really true.
+
+Technical rule:
+
+```text
+Do not immediately turn every episode into semantic memory.
+Use reflection, repeated evidence, or explicit user confirmation first.
+```
+
+Example:
+
+```text
+One episode:
+  "Today the user asked for a very detailed answer."
+
+Bad semantic memory:
+  "The user always prefers very detailed answers."
+
+Better semantic memory:
+  no permanent preference yet, or:
+  "For today's task, the user asked for extra detail."
+```
 
 ### Why "Remember Everything" Fails
 

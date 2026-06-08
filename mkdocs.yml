@@ -140,6 +140,7 @@ nav:
           - Senior Interview: stages/06-mcp/interview/index.md
       - 07 RAG and Memory:
           - stages/07-rag-and-memory/index.md
+          - Embeddings and Vector Search: stages/07-rag-and-memory/embeddings-and-vector-search/index.md
           - Vector Databases, SQL, and Custom Stores: stages/07-rag-and-memory/vector-databases-sql-custom-stores/index.md
           - Short-Term and Long-Term Memory: stages/07-rag-and-memory/short-term-and-long-term-memory/index.md
           - Episodic and Semantic Memory: stages/07-rag-and-memory/episodic-and-semantic-memory/index.md

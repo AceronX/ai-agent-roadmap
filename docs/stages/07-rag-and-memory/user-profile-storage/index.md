@@ -596,7 +596,7 @@ You are ready to move on when you can:
 ## Resources
 
 - [RAG Basics](../../02-llm-fundamentals/rag-basics/index.md)
-- [Embeddings and Vector Search](../../02-llm-fundamentals/embeddings-vector-search/index.md)
+- [Embeddings and Vector Search](../embeddings-and-vector-search/index.md)
 - [Context Windows](../../02-llm-fundamentals/context-windows/index.md)
 - [Tokenization](../../02-llm-fundamentals/tokenization/index.md)
 - [Stopping Criteria](../../04-agent-fundamentals/stopping-criteria/index.md)

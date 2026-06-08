@@ -433,7 +433,7 @@ You are ready to move on when you can:
 - [Context Windows](../../02-llm-fundamentals/context-windows/index.md)
 - [Agent Loop](../../04-agent-fundamentals/agent-loop/index.md)
 - [RAG Basics](../../02-llm-fundamentals/rag-basics/index.md)
-- [Embeddings and Vector Search](../../02-llm-fundamentals/embeddings-vector-search/index.md)
+- [Embeddings and Vector Search](../embeddings-and-vector-search/index.md)
 - [Vector Databases, SQL, and Custom Stores](../vector-databases-sql-custom-stores/index.md)
 - [Episodic and Semantic Memory](../episodic-and-semantic-memory/index.md)
 - [User Profile Storage](../user-profile-storage/index.md)

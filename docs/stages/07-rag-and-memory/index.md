@@ -10,7 +10,7 @@ Learn how agents retrieve knowledge and maintain useful state across interaction
 ## Learn
 
 - RAG basics
-- Embeddings and vector search
+- [Embeddings and vector search](embeddings-and-vector-search/index.md)
 - [Vector databases, SQL, and custom stores](vector-databases-sql-custom-stores/index.md)
 - [Short-term and long-term memory](short-term-and-long-term-memory/index.md)
 - [Episodic and semantic memory](episodic-and-semantic-memory/index.md)

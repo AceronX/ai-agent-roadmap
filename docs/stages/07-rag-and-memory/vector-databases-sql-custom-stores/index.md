@@ -553,7 +553,7 @@ You are ready to move on when you can:
 - [Elasticsearch Docs: Vector search](https://www.elastic.co/docs/solutions/search/vector)
 - [pgvector: Open-source vector similarity search for Postgres](https://github.com/pgvector/pgvector)
 - [RAG Basics](../../02-llm-fundamentals/rag-basics/index.md)
-- [Embeddings and Vector Search](../../02-llm-fundamentals/embeddings-vector-search/index.md)
+- [Embeddings and Vector Search](../embeddings-and-vector-search/index.md)
 - [User Profile Storage](../user-profile-storage/index.md)
 
 </div>

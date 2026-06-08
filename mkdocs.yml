@@ -138,7 +138,9 @@ nav:
           - QAs: stages/06-mcp/test/index.md
           - Junior Interview: stages/06-mcp/interview-junior/index.md
           - Senior Interview: stages/06-mcp/interview/index.md
-      - 07 RAG and Memory: stages/07-rag-and-memory/index.md
+      - 07 RAG and Memory:
+          - stages/07-rag-and-memory/index.md
+          - User Profile Storage: stages/07-rag-and-memory/user-profile-storage/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md
       - 09 Building Agents: stages/09-building-agents/index.md
       - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md

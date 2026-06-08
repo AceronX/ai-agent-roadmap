@@ -13,7 +13,7 @@ Learn how agents retrieve knowledge and maintain useful state across interaction
 - Embeddings and vector search
 - Vector databases, SQL, and custom stores
 - Short-term and long-term memory
-- Episodic and semantic memory
+- [Episodic and semantic memory](episodic-and-semantic-memory/index.md)
 - [User profile storage](user-profile-storage/index.md)
 - Summarization, compression, and forgetting
 

@@ -152,6 +152,7 @@ nav:
           - ReAct Agents: stages/08-agent-architectures/react-agents/index.md
           - RAG Agents: stages/08-agent-architectures/rag-agents/index.md
           - Planner-Executor Workflows: stages/08-agent-architectures/planner-executor/index.md
+          - Evaluator-Optimizer Loops: stages/08-agent-architectures/evaluator-optimizer-loops/index.md
           - Routing and Prompt Chaining: stages/08-agent-architectures/routing-and-prompt-chaining/index.md
       - 09 Building Agents: stages/09-building-agents/index.md
       - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md

@@ -13,7 +13,7 @@ Learn common agent architecture patterns and when each pattern is appropriate.
 - [Planner-executor workflows](planner-executor/index.md)
 - [Routing and prompt chaining](routing-and-prompt-chaining/index.md)
 - [ReAct agents](react-agents/index.md)
-- Evaluator-optimizer loops
+- [Evaluator-optimizer loops](evaluator-optimizer-loops/index.md)
 - DAG agents and tree-of-thought patterns
 - When a simpler workflow is better than an agent
 

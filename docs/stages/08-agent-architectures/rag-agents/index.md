@@ -224,6 +224,67 @@ A RAG agent should track more than conversation history.
 Without this state, a RAG agent can repeat searches, overuse tools, or answer
 from weak evidence.
 
+Example state shape:
+
+```python
+from typing import TypedDict
+
+
+class RagAgentState(TypedDict):
+    original_query: str
+    current_query: str
+    selected_sources: list[str]
+    retrieved_ids: list[str]
+    evidence_notes: list[str]
+    tool_results: list[dict]
+    search_history: list[str]
+    loop_count: int
+    stop_reason: str | None
+```
+
+This state is not the model's hidden reasoning. It is application state. It lets
+the system route, retry, stop, trace, and debug the workflow.
+
+### Graph Topology
+
+Many RAG agents are easier to reason about as a graph of nodes and conditional
+edges.
+
+```mermaid
+flowchart TD
+    A[Graph state] --> B[Query router]
+    B -->|Document question| C[Vector or hybrid retriever]
+    B -->|Exact data question| D[SQL or tool lookup]
+    C --> E[Relevance gate]
+    D --> E
+    E -->|Relevant evidence| F[Generator]
+    E -->|Weak evidence| G[Query rewriter]
+    G --> C
+    F --> H[Grounding check]
+    H -->|Supported| I[Final answer]
+    H -->|Unsupported| J[Draft repair or fallback]
+    J --> F
+```
+
+**How to read this diagram:** each node performs one job and updates shared
+state. The conditional edges decide whether the agent searches again, calls a
+tool, repairs a draft, or stops.
+
+Good graph nodes are narrow:
+
+| Node | Job |
+| --- | --- |
+| Router | Choose the source or tool family |
+| Retriever | Fetch candidate chunks, memories, or records |
+| Relevance gate | Decide whether retrieved items are useful |
+| Query rewriter | Create a better search query after a miss |
+| Generator | Draft an answer from selected evidence |
+| Grounding check | Check whether the draft is supported |
+| Fallback | Ask the user, say no source was found, or escalate |
+
+Avoid hiding all of this inside one large prompt. Separate nodes make the system
+easier to trace and test.
+
 ### Source Selection
 
 A RAG agent may have several retrieval sources.
@@ -349,6 +410,64 @@ Architecture pattern:
 ```text
 Retrieve broad candidates -> rerank by relevance -> keep the smallest useful set
 ```
+
+A common hybrid retrieval pattern is:
+
+```text
+Dense vector search + sparse keyword search -> merge rankings -> rerank
+```
+
+Dense retrieval helps with meaning. Sparse retrieval helps with exact terms such
+as error codes, file names, legal clauses, or product IDs. Ranking fusion, such
+as reciprocal rank fusion, can combine the two lists before the reranker chooses
+the final context.
+
+### Corrective RAG
+
+Corrective RAG, often shortened to CRAG, adds a relevance gate after retrieval.
+The agent does not assume the first retrieved chunks are good enough.
+
+```mermaid
+flowchart LR
+    A[Retrieve chunks] --> B[Grade relevance]
+    B -->|Good enough| C[Generate answer]
+    B -->|Weak or empty| D[Rewrite query]
+    D --> E[Retrieve again or use fallback source]
+    E --> B
+```
+
+**How to read this diagram:** the agent treats retrieval as something that can
+fail. If the evidence is weak, it changes the query, searches another source, or
+stops with a clear "not found" answer.
+
+Use this pattern when:
+
+- users ask vague or symptom-based questions,
+- the corpus is noisy,
+- many chunks are semantically similar,
+- the agent should avoid answering from weak evidence.
+
+Set a hard loop budget. A corrective loop without a budget can keep rewriting
+the same failed query.
+
+### Self-Reflective RAG
+
+Self-reflective RAG adds checks around generation. The agent asks whether the
+answer is supported by the retrieved context and whether it actually satisfies
+the request.
+
+Useful checks:
+
+| Check | Question |
+| --- | --- |
+| Grounding | Is each factual claim supported by retrieved context? |
+| Answer relevance | Does the answer address the user's actual question? |
+| Citation validity | Do citations point to retrieved source IDs? |
+| Conflict handling | Did the answer mention source disagreement? |
+
+This can be implemented with a smaller model, a rules-based verifier, a
+specialized evaluator, or a second LLM call. It improves reliability but adds
+latency and cost.
 
 ### Tool Use After Retrieval
 
@@ -555,6 +674,30 @@ Plan research -> run multiple targeted searches -> group evidence
 
 This is more expensive and slower, so it needs budgets and traceability.
 
+### Design 4: GraphRAG Investigation Agent
+
+Best for:
+
+- large document collections,
+- entity-heavy domains,
+- contracts, compliance, investigations, or research,
+- questions about relationships across many documents.
+
+Architecture:
+
+```text
+Extract entities and relationships -> build graph summaries
+-> route question to graph and document retrieval
+-> synthesize evidence across connected entities
+```
+
+GraphRAG is useful when the question depends on relationships, not just nearby
+text chunks. It can answer broader questions such as "What risks appear across
+these contracts?" better than simple chunk similarity alone.
+
+Do not start here for a beginner RAG agent. Graph ingestion, entity extraction,
+community summaries, updates, and evaluation add significant complexity.
+
 ## Practice
 
 ### Practice 1: Choose The Architecture
@@ -600,6 +743,26 @@ Explain what you would inspect:
 - trace logs,
 - indexing freshness.
 
+### Practice 4: Sketch The State Machine
+
+Draw a state object and node graph for this request:
+
+```text
+"Compare our password reset policy with the last two support incidents where MFA
+recovery failed."
+```
+
+Include:
+
+- graph state fields,
+- router choices,
+- document retrieval,
+- episodic memory retrieval,
+- relevance gate,
+- loop budget,
+- grounding check,
+- final stop reason.
+
 ## Summary
 
 A RAG agent is useful when retrieval itself requires decisions. It can choose
@@ -620,6 +783,8 @@ Before moving on, you should be able to:
 
 ## Resources
 
+### Local Roadmap Topics
+
 - [RAG and Memory](../../07-rag-and-memory/index.md)
 - [Embeddings and Vector Search](../../07-rag-and-memory/embeddings-and-vector-search/index.md)
 - [Vector Databases, SQL, and Custom Stores](../../07-rag-and-memory/vector-databases-sql-custom-stores/index.md)
@@ -627,5 +792,25 @@ Before moving on, you should be able to:
 - [Episodic and Semantic Memory](../../07-rag-and-memory/episodic-and-semantic-memory/index.md)
 - [Agent Loop](../../04-agent-fundamentals/agent-loop/index.md)
 - [Function Calling](../../05-tools-and-actions/function-calling/index.md)
+
+### Framework Documentation And Tutorials
+
+- [LangGraph: Agentic RAG](https://docs.langchain.com/oss/python/langgraph/agentic-rag)
+- [LangGraph overview](https://docs.langchain.com/oss/python/langgraph/overview)
+- [LlamaIndex: Agentic RAG with LlamaIndex](https://www.llamaindex.ai/blog/agentic-rag-with-llamaindex-2721b8a49ff6)
+- [LlamaIndex Workflows documentation](https://developers.llamaindex.ai/python/llamaagents/workflows/)
+
+### Structured Courses
+
+- [DeepLearning.AI: Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex)
+- [DeepLearning.AI courses](https://www.deeplearning.ai/courses)
+- [IBM RAG and Agentic AI Professional Certificate](https://www.coursera.org/professional-certificates/ibm-rag-and-agentic-ai)
+
+### Papers And Advanced Concepts
+
+- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
+- [CRAG: Corrective Retrieval Augmented Generation](https://arxiv.org/abs/2401.15884)
+- [Microsoft GraphRAG](https://microsoft.github.io/graphrag/)
 
 </div>

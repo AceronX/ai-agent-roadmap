@@ -10,7 +10,7 @@ Learn common agent architecture patterns and when each pattern is appropriate.
 ## Learn
 
 - ReAct agents
-- RAG agents
+- [RAG agents](rag-agents/index.md)
 - Planner-executor workflows
 - Routing and prompt chaining
 - Evaluator-optimizer loops

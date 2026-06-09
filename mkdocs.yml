@@ -146,6 +146,7 @@ nav:
           - Episodic and Semantic Memory: stages/07-rag-and-memory/episodic-and-semantic-memory/index.md
           - User Profile Storage: stages/07-rag-and-memory/user-profile-storage/index.md
           - Summarization, Compression, and Forgetting: stages/07-rag-and-memory/summarization-compression-forgetting/index.md
+          - Additional Explanation: stages/07-rag-and-memory/additional-explaination/index.md
       - 08 Agent Architectures: stages/08-agent-architectures/index.md
       - 09 Building Agents: stages/09-building-agents/index.md
       - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md

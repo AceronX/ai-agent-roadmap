@@ -285,6 +285,47 @@ Good graph nodes are narrow:
 Avoid hiding all of this inside one large prompt. Separate nodes make the system
 easier to trace and test.
 
+### Core Node Contracts
+
+In a production RAG agent, each graph node should have a clear contract: what it
+reads from state, what it writes back, and which edge it can choose next.
+
+| Node | Reads | Writes | Common Next Edge |
+| --- | --- | --- | --- |
+| Query router | user task, current query, user scope | selected source, sub-queries | retriever, tool, clarification |
+| Retriever | current query, selected source, filters | retrieved IDs, candidate chunks | relevance gate |
+| Relevance gate | query, retrieved chunks | evidence notes, rejected IDs | generator, query rewriter, fallback |
+| Query rewriter | original query, search history, failed evidence | new current query, loop count | retriever |
+| Generator | selected evidence, tool results, output rules | generation draft | grounding check |
+| Grounding check | draft, source IDs, evidence notes | supported claims, unsupported claims | final answer, draft repair, fallback |
+| Fallback | stop reason, failed searches, missing data | user-facing response or escalation | final answer |
+
+This makes the architecture testable. You can unit test the router without
+running generation, test the relevance gate with known good and bad chunks, and
+test the grounding check against intentionally unsupported drafts.
+
+### Router Output
+
+The router should usually produce structured output, not free-form prose.
+
+Example:
+
+```json
+{
+  "route": "document_rag",
+  "sources": ["policy_docs", "support_runbooks"],
+  "sub_queries": [
+    "MFA recovery after phone replacement",
+    "authenticator app lost account recovery"
+  ],
+  "needs_tool": false,
+  "reason": "The user asks for policy and troubleshooting guidance."
+}
+```
+
+The exact schema depends on the application, but the important point is that the
+next node can consume it deterministically.
+
 ### Source Selection
 
 A RAG agent may have several retrieval sources.
@@ -507,6 +548,35 @@ RAG agents can combine external knowledge and memory.
 Keep these separated in the architecture. A product policy and a user's
 preference should not be treated as the same kind of evidence.
 
+### Memory Across Execution Cycles
+
+Agentic RAG uses memory at more than one level.
+
+| Memory Layer | Where It Lives | What It Tracks |
+| --- | --- | --- |
+| Graph state | Current agent run | current query, searched sources, retrieved IDs, loop count |
+| Short-term context | Current model call | selected evidence, recent conversation, tool results |
+| Long-term memory | External store | selected user preferences, project facts, useful past events |
+| Entity or graph memory | Graph or structured store | people, systems, documents, incidents, and relationships |
+
+The graph state is execution memory. It prevents repeated searches and makes the
+loop debuggable. Long-term memory is different: it should store selected useful
+facts or episodes, not the entire raw execution state.
+
+Bad memory design:
+
+```text
+Save every agent step and retrieve it forever.
+```
+
+Better memory design:
+
+```text
+Extract durable facts, decisions, preferences, or solved incidents.
+Store them with source, confidence, privacy level, and timestamps.
+Retrieve them only when relevant to the current task.
+```
+
 ### Citation Discipline
 
 RAG agents should cite only sources they actually used.
@@ -604,6 +674,39 @@ Useful trace fields:
 
 Without traces, RAG-agent bugs are hard to diagnose because failure can happen in
 planning, retrieval, ranking, evidence checking, generation, or tool use.
+
+### Production Optimizations
+
+RAG agents can become slow because one user task may trigger several model calls:
+route, retrieve, grade, rewrite, generate, verify, and maybe repair. Optimize the
+architecture before blaming only the final model.
+
+| Bottleneck | Symptom | Practical Fix |
+| --- | --- | --- |
+| Too many grading calls | Retrieval feels slow before generation starts | Grade chunks in parallel or grade only top candidates |
+| Expensive router | Every request pays for a strong model | Use a smaller model or rules for simple routing |
+| Repeated failed searches | Agent loops on missing information | Track `loop_count`, searched sources, and query history |
+| Oversized context | Generation is slow and distracted | Deduplicate, rerank, and trim to the smallest useful set |
+| Tool calls after weak retrieval | Agent fetches live data too early | Check document evidence before expensive tools |
+| Verification on every task | Simple answers cost too much | Run grounding checks only for sourced or high-risk answers |
+
+Hard budgets should be part of the state:
+
+```text
+max_searches = 3
+max_tool_calls = 2
+max_context_chunks = 6
+max_total_agent_steps = 8
+```
+
+When the budget is exhausted, the agent should stop gracefully:
+
+```text
+"I searched the available policy docs and support runbooks, but I could not find
+a source that answers this. I would not answer this from retrieved evidence."
+```
+
+That response is better than a confident answer from weak context.
 
 ### When Not To Use A RAG Agent
 
@@ -777,6 +880,8 @@ Before moving on, you should be able to:
 - sketch a RAG agent loop,
 - route questions to documents, memory, profiles, SQL, or tools,
 - define evidence checks and stop rules,
+- describe the core node contracts in a production RAG agent,
+- explain how graph state differs from long-term memory,
 - explain citation discipline,
 - compare RAG agents against simpler workflows by cost, latency, reliability,
   and debuggability.

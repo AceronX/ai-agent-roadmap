@@ -146,18 +146,13 @@ nav:
           - Episodic and Semantic Memory: stages/07-rag-and-memory/episodic-and-semantic-memory/index.md
           - User Profile Storage: stages/07-rag-and-memory/user-profile-storage/index.md
           - Summarization, Compression, and Forgetting: stages/07-rag-and-memory/summarization-compression-forgetting/index.md
-<<<<<<< Updated upstream
           - Additional Explanation: stages/07-rag-and-memory/additional-explaination/index.md
       - 08 Agent Architectures:
           - stages/08-agent-architectures/index.md
+          - ReAct Agents: stages/08-agent-architectures/react-agents/index.md
           - RAG Agents: stages/08-agent-architectures/rag-agents/index.md
           - Planner-Executor Workflows: stages/08-agent-architectures/planner-executor/index.md
           - Routing and Prompt Chaining: stages/08-agent-architectures/routing-and-prompt-chaining/index.md
-=======
-      - 08 Agent Architectures:
-          - stages/08-agent-architectures/index.md
-          - ReAct Agents: stages/08-agent-architectures/react-agents/index.md
->>>>>>> Stashed changes
       - 09 Building Agents: stages/09-building-agents/index.md
       - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md
       - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md

@@ -81,6 +81,59 @@ You already saw [ReAct](../../04-agent-fundamentals/react-pattern/index.md) in S
 
 Neither pattern is "better." ReAct shines when the next move genuinely depends on the last observation. Planner-executor shines when you can see most of the steps before starting.
 
+### Two Shapes
+
+The two patterns have different *shapes*. ReAct is a tight loop that grows one step at a time; planner-executor commits to a full plan and then runs it straight through.
+
+**ReAct — decide as you go:**
+
+```mermaid
+flowchart LR
+    R[Reason] --> A[Act]
+    A --> O[Observe]
+    O --> Q{Done?}
+    Q -->|No| R
+    Q -->|Yes| F[Answer]
+```
+
+**Planner-executor — plan, then run:**
+
+```mermaid
+flowchart LR
+    P[Plan all steps] --> S1[Step 1]
+    S1 --> S2[Step 2]
+    S2 --> S3[Step 3]
+    S3 --> SO[Solve]
+```
+
+### The Same Goal, Two Ways
+
+Goal: *"Find the total revenue from last week's paid orders."*
+
+A **ReAct** agent discovers each step only after seeing the previous result:
+
+```text
+Reason: I need last week's orders.        Act: list_orders(since="7d")
+Observe: 240 orders
+Reason: I only want paid ones.            Act: filter_orders(status="paid")
+Observe: 180 orders
+Reason: Now sum the totals.               Act: sum_field(field="amount")
+Observe: 42,300
+Answer: Last week's paid revenue was $42,300.
+```
+
+A **planner-executor** agent writes the whole plan first, because the steps are predictable:
+
+```text
+Plan:
+1. list_orders(since="7d")          -> #E1
+2. filter_orders(#E1, status="paid") -> #E2
+3. sum_field(#E2, field="amount")    -> #E3
+Solve: "Last week's paid revenue was {#E3}."
+```
+
+Both reach the same answer. The planner-executor version commits to the steps up front, so a human can review the plan and the cheap executor can run it without re-reasoning at each step.
+
 ## Part 2: The Architecture
 
 A planner-executor workflow has three logical roles.
@@ -93,18 +146,54 @@ A planner-executor workflow has three logical roles.
 
 ```mermaid
 flowchart TD
-    G[Goal] --> P[Planner: build the plan]
-    P --> S1[Step 1]
-    S1 --> S2[Step 2]
-    S2 --> S3[Step 3]
-    S3 --> C{Plan still valid?}
-    C -->|Yes, more steps| S2
-    C -->|No| P
-    C -->|Done| SOL[Solver: compose answer]
-    SOL --> A[Final Answer]
+    G([Goal]) --> P[Planner<br/>decompose goal into an ordered plan]
+    P -->|plan| W[Executor: run next step]
+
+    subgraph Execute [Executor loop]
+      direction TB
+      W --> T{Tool needed?}
+      T -->|Yes| TOOL[(Call tool / API)]
+      TOOL --> O[Observe result]
+      T -->|No| O
+      O --> C{Plan still valid?}
+      C -->|More steps| W
+    end
+
+    C -->|Step broke the plan| P
+    C -->|All steps done| S[Solver<br/>compose final answer from step results]
+    S --> A([Final answer])
 ```
 
-**How to read this diagram:** the planner runs once to produce the whole plan. The executor then walks the steps. After each step the agent asks whether the plan still holds; if a result invalidates the plan, control returns to the planner to **re-plan**.
+**How to read this diagram:** the **planner** runs once to produce the whole plan. The **executor** then walks the steps inside the loop, calling a tool when a step needs one and observing the result. After each step it checks whether the plan still holds: most of the time it moves to the next step, but if a result invalidates the plan it returns to the planner to **re-plan**. When every step is done, the **solver** composes the final answer.
+
+### What the Planner Produces
+
+The planner is just an LLM call with a prompt that asks for a structured plan. A typical planner prompt looks like this:
+
+```text
+You are the planner. Break the goal into an ordered list of steps.
+Each step must name one tool and its arguments.
+A step may reference an earlier step's output as #E1, #E2, etc.
+Do not execute anything. Output only the plan as JSON.
+
+Tools available: list_orders, filter_orders, sum_field, send_email
+Goal: Email finance last week's paid revenue.
+```
+
+And the plan it returns:
+
+```json
+{
+  "plan": [
+    { "id": "E1", "tool": "list_orders",   "args": { "since": "7d" } },
+    { "id": "E2", "tool": "filter_orders",  "args": { "orders": "#E1", "status": "paid" } },
+    { "id": "E3", "tool": "sum_field",       "args": { "rows": "#E2", "field": "amount" } },
+    { "id": "E4", "tool": "send_email",      "args": { "to": "finance", "body": "Paid revenue: #E3" } }
+  ]
+}
+```
+
+Because the plan is plain data, your application can validate it, show it to a user for approval, or refuse a step before any tool runs.
 
 ### Why Separate Planning From Execution
 
@@ -119,6 +208,28 @@ The simplest version runs the plan straight through. More robust versions **re-p
 !!! warning "A plan is a hypothesis, not a guarantee"
     The planner writes the plan before seeing any real results. If your task has steps that can fail or return surprising data, you **must** add a re-planning path. A static plan with no recovery is the most common way planner-executor agents break.
 
+### Weak vs Strong Plans
+
+The quality of the whole workflow depends on the plan. A vague plan forces the executor to guess; a precise plan runs cleanly.
+
+<div class="prompt-compare">
+  <section>
+    <span class="prompt-compare__label prompt-compare__label--bad">Weak plan</span>
+    <pre><code>1. Get the data
+2. Process it
+3. Send the report</code></pre>
+    <p>No tools, no arguments, no data passing. The executor cannot run these steps without re-planning each one.</p>
+  </section>
+  <section>
+    <span class="prompt-compare__label prompt-compare__label--good">Strong plan</span>
+    <pre><code>1. list_orders(since="7d")            -> #E1
+2. filter_orders(#E1, status="paid")  -> #E2
+3. sum_field(#E2, field="amount")     -> #E3
+4. send_email(to="finance", body=#E3)</code></pre>
+    <p>Each step names a tool, its arguments, and how it uses earlier results. The executor can run it directly.</p>
+  </section>
+</div>
+
 ### Common Variants
 
 | Variant | Idea | Tradeoff |
@@ -127,6 +238,21 @@ The simplest version runs the plan straight through. More robust versions **re-p
 | **ReWOO** | Plan references step outputs as variables (`#E1`, `#E2`) so steps run without re-prompting the planner | Fewer LLM calls, but the plan cannot adapt mid-run |
 | **LLMCompiler** | Run independent steps in parallel | Lower latency, more orchestration complexity |
 | **Orchestrator-workers** | An orchestrator delegates subtasks to worker agents | Scales to large tasks, harder to debug |
+
+### Running Steps in Parallel
+
+A plan is not always a straight line. When two steps do not depend on each other, the executor can run them at the same time and join the results, which is the idea behind LLMCompiler. Independent branches cut latency.
+
+```mermaid
+flowchart LR
+    P[Plan] --> S1[Fetch sales total]
+    P --> S2[Fetch refunds total]
+    S1 --> J[net = sales - refunds]
+    S2 --> J
+    J --> SOL[Solve: report net revenue]
+```
+
+Here steps 1 and 2 have no dependency on each other, so they run concurrently. Step 3 waits for both, then the solver reports the result. A pure ReAct loop cannot do this, because it only ever takes one step at a time.
 
 ## Part 3: A Worked Plan and Trace
 

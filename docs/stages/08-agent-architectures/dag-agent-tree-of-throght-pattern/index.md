@@ -409,12 +409,14 @@ Search   Coding        Database
       |
   Final Answer
   ```     
+  
   DAG Agent decides how tasks should be executed efficiently.
   
   A simple way to remember:
   
   DAG Agent = Project Manager → organizes and runs tasks.
   Tree-of-Thought = Strategic Thinker → explores multiple ideas before deciding.
+
 ## Part 3: Compare DAGs, Trees, And Agent Loops
 
 DAG agents and Tree-of-Thought both organize multi-step reasoning, but they solve different problems.

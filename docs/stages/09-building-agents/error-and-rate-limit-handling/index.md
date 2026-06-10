@@ -73,6 +73,31 @@ except anthropic.APIConnectionError:
     ...        # network failure, no response
 ```
 
+??? note "OpenAI equivalent"
+    ```python
+    from openai import OpenAI
+    import openai
+
+    client = OpenAI()
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": "Hello"}],
+        )
+    except openai.RateLimitError:
+        ...        # 429
+    except openai.BadRequestError:
+        ...        # 400
+    except openai.AuthenticationError:
+        ...        # 401
+    except openai.APIStatusError as e:
+        if e.status_code >= 500:
+            ...    # server-side
+    except openai.APIConnectionError:
+        ...        # network failure
+    ```
+    The OpenAI SDK uses almost the same class names (`RateLimitError`, `APIStatusError`, `APIConnectionError`, `BadRequestError`, ...) and also auto-retries 429/5xx with `max_retries`.
+
 The main classes and their HTTP codes:
 
 | Exception | Code | Cause |
@@ -174,6 +199,8 @@ def call_with_retry(client, max_retries=5, base=1.0, cap=60.0, **kwargs):
                 raise          # fatal — don't retry 4xx
             time.sleep(min(base * (2 ** attempt), cap))
 ```
+
+The same function works against the OpenAI SDK — swap `anthropic.RateLimitError` / `anthropic.InternalServerError` for `openai.RateLimitError` / `openai.InternalServerError`. Both SDKs read `retry-after` and retry transient errors automatically via `max_retries`.
 
 The shape that matters: delay **doubles** each attempt (`2 ** attempt`), is **capped** so it never grows absurd, and adds **jitter** so retries spread out.
 

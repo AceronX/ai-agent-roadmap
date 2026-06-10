@@ -85,6 +85,9 @@ Every response carries a `stop_reason` telling you **why** generation ended. Ign
 | `refusal` | It declined for safety reasons. | Surface it; do not retry the same prompt. |
 | `pause_turn` | A long server-side turn paused. | Re-send to let it resume. |
 
+!!! note "OpenAI equivalent"
+    OpenAI calls this `finish_reason`, on `response.choices[0]`: `stop` (≈ `end_turn`), `length` (≈ `max_tokens`), `tool_calls` (≈ `tool_use`), and `content_filter`. The same lesson applies — check it before trusting the reply as final.
+
 The check that prevents the most bugs:
 
 ```python
@@ -160,6 +163,26 @@ response = client.messages.create(
 import json
 data = json.loads(next(b.text for b in response.content if b.type == "text"))
 ```
+
+??? note "OpenAI equivalent"
+    ```python
+    from pydantic import BaseModel
+    from openai import OpenAI
+
+    class Contact(BaseModel):
+        name: str
+        email: str
+        wants_demo: bool
+
+    client = OpenAI()
+    completion = client.beta.chat.completions.parse(
+        model="gpt-4o",
+        messages=[{"role": "user", "content":
+            "Extract: Jane Doe (jane@co.com) asked for a demo."}],
+        response_format=Contact,
+    )
+    contact = completion.choices[0].message.parsed   # a validated Contact instance
+    ```
 
 | Approach | When to use |
 | --- | --- |

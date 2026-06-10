@@ -63,6 +63,20 @@ text = next(b.text for b in response.content if b.type == "text")
 print(text)
 ```
 
+??? note "OpenAI equivalent"
+    ```python
+    from openai import OpenAI
+
+    client = OpenAI()  # reads OPENAI_API_KEY from the environment
+
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": "What is the capital of France?"}],
+    )
+
+    print(response.choices[0].message.content)  # here the reply is already a string
+    ```
+
 The required fields:
 
 | Field | What it does |
@@ -101,6 +115,19 @@ response = client.messages.create(
     messages=[{"role": "user", "content": "Explain what an API is."}],
 )
 ```
+
+??? note "OpenAI equivalent"
+    ```python
+    # OpenAI has no separate `system` parameter — the system prompt is the
+    # first message in the list, with role "system".
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You are a terse assistant. Answer in one sentence."},
+            {"role": "user", "content": "Explain what an API is."},
+        ],
+    )
+    ```
 
 | Where instructions go | Use it for |
 | --- | --- |
@@ -154,6 +181,19 @@ with client.messages.stream(
 
     final_message = stream.get_final_message()  # full Message once streaming ends
 ```
+
+??? note "OpenAI equivalent"
+    ```python
+    stream = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": "Write a short story about a lighthouse."}],
+        stream=True,
+    )
+    for chunk in stream:
+        piece = chunk.choices[0].delta.content
+        if piece:
+            print(piece, end="", flush=True)
+    ```
 
 Two reasons to stream:
 

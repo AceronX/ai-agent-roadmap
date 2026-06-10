@@ -105,6 +105,38 @@ for block in response.content:
 
 The model returns the call as a structured `tool_use` block; `block.input` is **already a parsed object**, not a string you have to repair.
 
+??? note "OpenAI equivalent"
+    ```python
+    import json
+    from openai import OpenAI
+
+    client = OpenAI()
+    tools = [{
+        "type": "function",
+        "function": {
+            "name": "get_stock_price",
+            "description": "Get the real-time price for a ticker symbol.",
+            "parameters": {
+                "type": "object",
+                "properties": {"ticker": {"type": "string"}},
+                "required": ["ticker"],
+            },
+        },
+    }]
+
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[{"role": "user", "content": "How much is GOOG trading at right now?"}],
+        tools=tools,
+        tool_choice="auto",
+    )
+
+    for call in response.choices[0].message.tool_calls or []:
+        print(call.function.name)                    # "get_stock_price"
+        print(json.loads(call.function.arguments))   # {"ticker": "GOOG"}
+    ```
+    The shape is the same, with one difference: OpenAI returns `tool_calls` whose `arguments` are a **JSON string** you must `json.loads`, whereas Claude's `tool_use` block gives you `input` as a dict directly.
+
 ## Part 3: Across Providers
 
 Every major provider exposes the same three-step capability — only the field names differ.

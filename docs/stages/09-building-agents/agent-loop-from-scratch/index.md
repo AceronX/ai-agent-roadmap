@@ -113,6 +113,26 @@ while True:
     messages.append({"role": "assistant", "content": reply})
 ```
 
+??? note "OpenAI equivalent"
+    ```python
+    from openai import OpenAI
+
+    client = OpenAI()  # reads OPENAI_API_KEY from the environment
+    MODEL = "gpt-4o"
+    messages = []
+
+    while True:
+        user_input = input("you> ")
+        if user_input.strip() in {"exit", "quit"}:
+            break
+        messages.append({"role": "user", "content": user_input})
+
+        response = client.chat.completions.create(model=MODEL, messages=messages)
+        reply = response.choices[0].message.content   # the reply is a plain string here
+        print(f"agent> {reply}")
+        messages.append({"role": "assistant", "content": reply})
+    ```
+
 Two things to notice:
 
 - `response.content` is a **list of blocks**, not a string. You select the text block rather than printing the whole object.
@@ -182,6 +202,46 @@ while True:
 final = next(b.text for b in response.content if b.type == "text")
 print(final)
 ```
+
+??? note "OpenAI equivalent"
+    ```python
+    import json
+
+    tools = [{
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "parameters": {
+                "type": "object",
+                "properties": {"city": {"type": "string"}},
+                "required": ["city"],
+            },
+        },
+    }]
+
+    messages = [{"role": "user", "content": "What's the weather in Paris?"}]
+
+    while True:
+        response = client.chat.completions.create(model=MODEL, messages=messages, tools=tools)
+        msg = response.choices[0].message
+
+        if response.choices[0].finish_reason != "tool_calls":
+            break
+
+        messages.append(msg)  # assistant turn, including its tool_calls
+        for call in msg.tool_calls:
+            args = json.loads(call.function.arguments)   # OpenAI args are a JSON string
+            output = run_tool(call.function.name, args)
+            messages.append({
+                "role": "tool",
+                "tool_call_id": call.id,
+                "content": output,
+            })
+
+    print(response.choices[0].message.content)
+    ```
+    Differences from Claude: tool calls live on `message.tool_calls`, `arguments` arrive as a **JSON string** you must `json.loads`, results go back as messages with `role: "tool"`, and you loop until `finish_reason != "tool_calls"`.
 
 The three rules that make this work:
 
@@ -284,6 +344,53 @@ def run_agent(goal: str) -> str:
 
 print(run_agent("What's the weather in Paris, and should I take a jacket?"))
 ```
+
+??? note "OpenAI equivalent (full loop)"
+    ```python
+    import json
+    from openai import OpenAI
+
+    client = OpenAI()
+    MODEL = "gpt-4o"
+    MAX_STEPS = 8
+
+    tools = [{
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "parameters": {
+                "type": "object",
+                "properties": {"city": {"type": "string"}},
+                "required": ["city"],
+            },
+        },
+    }]
+
+    def run_tool(name, args):
+        if name == "get_weather":
+            return f"18°C and clear in {args['city']}."
+        return f"Unknown tool: {name}"
+
+    def run_agent(goal: str) -> str:
+        messages = [{"role": "user", "content": goal}]
+        for _ in range(MAX_STEPS):
+            response = client.chat.completions.create(model=MODEL, messages=messages, tools=tools)
+            msg = response.choices[0].message
+            if response.choices[0].finish_reason != "tool_calls":
+                return msg.content
+            messages.append(msg)
+            for call in msg.tool_calls:
+                args = json.loads(call.function.arguments)
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": call.id,
+                    "content": run_tool(call.function.name, args),
+                })
+        return "Stopped: reached the step limit without a final answer."
+
+    print(run_agent("What's the weather in Paris, and should I take a jacket?"))
+    ```
 
 That is the whole thing. When you adopt a framework later, this is the loop it runs for you — the value it adds is everything *around* it (tracing, retries, memory, parallel tools), not the loop itself.
 

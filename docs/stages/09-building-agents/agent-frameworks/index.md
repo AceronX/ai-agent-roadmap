@@ -92,6 +92,8 @@ model = ChatAnthropic(model="claude-opus-4-8").bind_tools([multiply])
 chain = model | (lambda x: x.tool_calls)
 ```
 
+To run this against OpenAI instead, change two lines: `from langchain_openai import ChatOpenAI` and `ChatOpenAI(model="gpt-4o")`. The rest is identical — that swap-ability is the whole point of LangChain.
+
 ### LangGraph — the cyclic state machine
 
 Real agents loop: try, fail, call a tool, inspect, retry. LangGraph models this as an explicit **state machine**. A schema-defined `State` object is passed to every node; nodes update it; conditional edges inspect it and route to the next node. Tools live in an isolated `ToolNode`, and a conditional edge routes control to it whenever the model emits a tool call.

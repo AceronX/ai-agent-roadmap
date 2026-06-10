@@ -132,6 +132,35 @@ def debuggable_call(user_prompt: str, tools: list):
     return response
 ```
 
+??? note "OpenAI equivalent"
+    ```python
+    import logging, json
+    from openai import OpenAI
+
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    log = logging.getLogger("agent")
+    client = OpenAI()
+
+    def debuggable_call(user_prompt: str, tools: list):
+        messages = [{"role": "user", "content": user_prompt}]
+        log.info("PROMPT -> %s", json.dumps(messages))
+
+        response = client.chat.completions.create(
+            model="gpt-4o", messages=messages, tools=tools, tool_choice="auto",
+        )
+        msg = response.choices[0].message
+        for call in msg.tool_calls or []:
+            log.info("TOOL  -> %s", call.function.name)
+            log.info("ARGS  -> %s", call.function.arguments)
+            try:
+                json.loads(call.function.arguments)
+            except json.JSONDecodeError as e:
+                log.error("BAD JSON FROM MODEL: %s", e)
+
+        log.info("STOP  -> %s", response.choices[0].finish_reason)
+        return msg
+    ```
+
 The three log points — outgoing prompt, tool decision + arguments, and stop reason — are usually enough to explain any single misbehaving turn. For production, route these through OpenTelemetry or your framework's tracing hook so every run is captured. Structured observability across many runs is [Stage 11](../../11-evaluation-observability/index.md).
 
 ## Part 5: Selection Checklist

@@ -79,6 +79,17 @@ Use this as a map: the rest of the page walks the six in pairs.
 
 LangChain's philosophy is **standardization**. It wraps disparate model providers, vector stores, and tools behind one interface so you can swap components. Its LangChain Expression Language (LCEL) chains steps with the pipe operator (`|`); data flows down a linear pipeline where each step's output is the next step's input. Tools are defined with the `@tool` decorator — LangChain reads the type hints and docstring to build the provider's JSON schema.
 
+```mermaid
+flowchart TD
+    U[User prompt] --> P[PromptTemplate]
+    P --> M[LLM / Model<br/>AIMessage + optional tool_calls]
+    M --> O[OutputParser<br/>string, JSON, or tool calls]
+    O --> F[Final output]
+```
+
+- **Data control:** stateless between runs — each node transforms the payload and passes it *forward*.
+- **Limitation:** a chain cannot loop back on its own; repeating a failed step needs an external Python loop. That gap is exactly what LangGraph fills.
+
 ```python
 from langchain_core.tools import tool
 from langchain_anthropic import ChatAnthropic
@@ -97,6 +108,19 @@ To run this against OpenAI instead, change two lines: `from langchain_openai imp
 ### LangGraph — the cyclic state machine
 
 Real agents loop: try, fail, call a tool, inspect, retry. LangGraph models this as an explicit **state machine**. A schema-defined `State` object is passed to every node; nodes update it; conditional edges inspect it and route to the next node. Tools live in an isolated `ToolNode`, and a conditional edge routes control to it whenever the model emits a tool call.
+
+```mermaid
+flowchart TD
+    S([START]) --> DB[(State / checkpointer)]
+    DB --> A[Agent node<br/>calls model]
+    A --> C{Needs a tool?}
+    C -->|No| E([END])
+    C -->|Yes| T[Tool node<br/>runs code]
+    T -->|updates state| A
+```
+
+- **Data control:** a shared `State` object enters every node; nodes return partial updates that a *reducer* merges back in.
+- **Advantage:** the checkpointer snapshots state at each step, so you can pause, rewind, or time-travel into any point in the run.
 
 ```python
 from langgraph.graph import StateGraph, MessagesState, START, END
@@ -120,6 +144,18 @@ LangChain is best for linear "do A then B" flows; LangGraph for anything with lo
 
 LlamaIndex treats agents as active extensions of a **data ecosystem**. An `AgentRunner` manages overall task state, memory, and steps; an `AgentWorker` handles the next step's logic. Its specialty is turning indexes into tools — a `QueryEngineTool` lets the agent search a document store via native tool calling.
 
+```mermaid
+flowchart TD
+    U[User request] --> R[AgentRunner<br/>manages task state]
+    R <--> MEM[(Memory store)]
+    R --> W[AgentWorker<br/>calculates next step]
+    W --> V[Vector index<br/>RAG tool]
+    W --> G[Summary index<br/>graph tool]
+```
+
+- **Data control:** the `AgentRunner` holds conversational history and the high-level loop; the `AgentWorker` runs the immediate step and picks which index/tool to query.
+- **Advantage:** tuned for complex semantic document search and structured-data retrieval.
+
 ```python
 from llama_index.core.agent import FunctionCallingAgentWorker
 from llama_index.core.tools import QueryEngineTool
@@ -136,6 +172,19 @@ agent = worker.as_agent()
 ### CrewAI — role-based teams
 
 CrewAI frames agent design as **managing a project team**. You define agents with roles, goals, and backstories, assign them tasks, and a context object (or a manager agent) passes work down the line. Tools are bound to specific agents, so each agent only sees the schemas it needs.
+
+```mermaid
+flowchart TD
+    Crew[Crew<br/>orchestrates the project] --> T1[Task 1]
+    T1 -->|handoff| T2[Task 2]
+    T1 --> A[Agent A<br/>Researcher]
+    T2 --> B[Agent B<br/>Writer]
+    A --> ST[Search tools]
+    B --> FT[Format tools]
+```
+
+- **Data control:** sequential by default — Task 1's output becomes Task 2's required input — or hierarchical via a manager agent that delegates.
+- **Advantage:** restricting tools to specific roles keeps agents predictable and avoids wasting tokens on unrelated work.
 
 ```python
 from crewai import Agent, Task, Crew
@@ -157,6 +206,19 @@ LlamaIndex is the choice when the agent's job is mostly *retrieving and reasonin
 ### AutoGen — event-driven conversational networks
 
 AutoGen (Microsoft Research) treats agent work as an **open-ended chat room**: problems are solved by multiple agents talking until a termination message appears. A common pattern separates concerns — an `AssistantAgent` emits tool calls, and a sandboxed `UserProxyAgent` executes the code and posts results back.
+
+```mermaid
+flowchart TD
+    GM[GroupChatManager<br/>coordinates the room] --> RA[AssistantAgent<br/>Researcher]
+    GM --> CO[AssistantAgent<br/>Coder]
+    GM --> UP[UserProxyAgent<br/>local shell]
+    RA --> LOG[(Shared chat log)]
+    CO --> LOG
+    UP --> LOG
+```
+
+- **Data control:** fully distributed — the system's state *is* the chat transcript; agents watch it and act when their turn or trigger fires.
+- **Advantage:** very flexible for multi-agent debate, code self-correction loops, and human-in-the-loop intervention.
 
 ```python
 from autogen import AssistantAgent, UserProxyAgent

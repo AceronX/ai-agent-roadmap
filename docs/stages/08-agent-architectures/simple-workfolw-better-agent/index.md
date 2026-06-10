@@ -1,7 +1,7 @@
 # When A Simpler Workflow Is Better Than An Agent
 
 <div class="topic-page" markdown="1">
-
+    
 <section class="topic-hero">
   <span class="topic-hero__eyebrow">Stage 08 - Agent Architectures</span>
   <p class="topic-hero__lead">A full AI agent is not always the best architecture. Many useful AI systems should be a single model call, a fixed workflow, a prompt chain, or a small tool workflow. Simpler workflows are easier to test, cheaper to run, faster for users, and safer to operate.</p>
@@ -29,17 +29,17 @@ After this lesson, you should be able to explain:
 - how to choose the smallest architecture that solves the task.
 
 ## Quick Summary
+```
+Many beginners think:
 
-Use this table first. It gives the short version.
+Agent = Better AI
 
-| User Task | Better Architecture | Why |
-| --- | --- | --- |
-| Rewrite this email | Single LLM call | No tools or planning needed |
-| Extract fields from an invoice | Fixed workflow | Same steps every time |
-| Summarize docs with citations | RAG workflow | Retrieve, answer, cite |
-| Draft support reply from policy | Prompt chain | Predictable multi-step task |
-| Debug unknown production issue | Agent loop | Needs investigation and tool use |
-| Plan and execute many uncertain steps | Agent | Next action depends on observations |
+But in reality:
+
+Simpler Workflow > Agent
+
+for many use cases.
+```
 
 Beginner rule:
 
@@ -68,19 +68,44 @@ Unknown steps:
   investigate failing deployment -> inspect logs -> choose next tool -> retry
   Use an agent or agent-like loop.
 ```
+## Workflow && Agent
+What Is a Workflow?
 
-### Key Words In Plain English
+A workflow is a predefined sequence of steps.
 
-| Word | Simple Meaning | Beginner Example |
-| --- | --- | --- |
-| Single LLM call | One prompt, one answer | summarize this paragraph |
-| Workflow | Fixed sequence of steps | extract -> validate -> store |
-| Prompt chain | Several model calls in order | summarize -> classify -> draft |
-| Router | Chooses one path from several | billing path or coding path |
-| Agent | System that decides next actions from observations | search, inspect, retry, stop |
-| Autonomy | How much the system chooses by itself | agent chooses next tool |
-| Control | How predictable the system is | workflow follows fixed steps |
-| Overbuilding | Using a complex agent where a simpler workflow works | agent for simple formatting |
+Example:
+
+User Input
+    ↓
+Retrieve Data
+    ↓
+Analyze Data
+    ↓
+Generate Report
+    ↓
+Output
+
+The path is fixed.
+
+The AI does not decide what to do next.
+
+What Is an Agent?
+
+An agent decides for itself:
+
+User Input
+    ↓
+Think
+    ↓
+Choose Action
+    ↓
+Observe Result
+    ↓
+Think Again
+    ↓
+Choose Another Action
+
+The path is dynamic.
 
 ## Learning Path
 

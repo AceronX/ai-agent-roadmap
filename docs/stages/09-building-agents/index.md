@@ -9,10 +9,10 @@ Build agents from direct APIs first, then learn when frameworks add value.
 
 ## Learn
 
+- [Building an agent loop from scratch](agent-loop-from-scratch/index.md)
 - [Direct LLM API calls](direct-llm-api-calls/index.md)
 - [Parsing model output](parsing-model-output/index.md)
 - [Error and rate-limit handling](error-and-rate-limit-handling/index.md)
-- [Building an agent loop from scratch](agent-loop-from-scratch/index.md)
 - Provider-native function calling and tool use
 - LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, and the OpenAI Agents SDK
 - How to choose a framework without losing debuggability

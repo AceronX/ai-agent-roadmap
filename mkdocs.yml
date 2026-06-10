@@ -156,10 +156,10 @@ nav:
           - Evaluator-Optimizer Loops: stages/08-agent-architectures/evaluator-optimizer-loops/index.md
       - 09 Building Agents:
           - stages/09-building-agents/index.md
+          - Building an Agent Loop From Scratch: stages/09-building-agents/agent-loop-from-scratch/index.md
           - Direct LLM API Calls: stages/09-building-agents/direct-llm-api-calls/index.md
           - Parsing Model Output: stages/09-building-agents/parsing-model-output/index.md
           - Error and Rate-Limit Handling: stages/09-building-agents/error-and-rate-limit-handling/index.md
-          - Building an Agent Loop From Scratch: stages/09-building-agents/agent-loop-from-scratch/index.md
       - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md
       - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md
       - 12 Security and Ethics: stages/12-security-ethics/index.md

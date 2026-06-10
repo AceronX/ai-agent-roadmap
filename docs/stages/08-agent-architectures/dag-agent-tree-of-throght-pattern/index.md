@@ -95,19 +95,11 @@ This topic is designed in four parts. Read them in order.
 
 ## Part 1: Understand DAG Agents
 
-A DAG is a directed acyclic graph.
-
-That sounds technical, but the idea is simple:
-
-```text
-Directed:
-  Steps move in a direction.
-
-Acyclic:
-  The workflow does not loop back forever.
-
-Graph:
-  Steps are connected by dependencies.
+DAG = Directed Acyclic Graph
+```
+Directed → tasks have a specific direction/flow.
+Acyclic → no loops; once a step is finished, it doesn't come back to itself.
+Graph → many nodes connected together.
 ```
 
 ### Simple DAG Picture
@@ -124,26 +116,47 @@ flowchart TD
 ```
 
 **How to read this diagram:** `Retrieve documents` and `Read user profile` can happen separately. Both feed into `Extract useful facts`. The workflow moves forward and does not loop.
-
-### DAG Agent Definition
-
-```text
-A DAG agent is an agent workflow where each step is a node,
-and the edges define which step depends on which previous result.
+### Why use DAG Agents?
+Traditional workflow:
 ```
+A → B → C → D
+```
+Everything happens one by one.
 
-In practice, a DAG agent is often more controlled than an autonomous agent. The system designer decides the workflow shape.
+DAG workflow:
+```
+      A
+    /   \
+   B     C
+    \   /
+      D
+```
+B and C can run simultaneously.
 
-### Why DAGs Help
 
-| Problem | How A DAG Helps |
-| --- | --- |
-| The task has many steps | Each step becomes a node |
-| Some steps can run in parallel | Independent nodes can run at the same time |
-| Results need validation | Add a validation node |
-| Debugging is hard | Inspect node inputs and outputs |
-| Costs are unclear | Count model calls per node |
-| The workflow must be predictable | Edges define allowed order |
+### Why DAGs matter or not
+
+Advantages
+
+✅ Parallel processing
+
+✅ Faster than sequential chains
+
+✅ Modular
+
+✅ Easy to add new agents
+
+✅ Good for complex workflows
+
+Limitations
+
+❌ Harder to design
+
+❌ Debugging can be difficult
+
+❌ No natural exploration of alternatives
+
+❌ Workflow must usually be predefined
 
 ### Simple DAG Example: RAG Answer
 
@@ -176,18 +189,6 @@ Summary table:
 | `Draft answer` | Write response | draft text |
 | `Check citations` | Verify support | final or error |
 
-### DAGs Are Not Always Agents
-
-Some DAG workflows are just workflows.
-
-They become more agent-like when nodes include model decisions, tool use, routing, memory, or evaluation.
-
-| Workflow Type | Description |
-| --- | --- |
-| Fixed DAG | Same steps every time |
-| Conditional DAG | Some branches depend on state |
-| Agentic DAG | Nodes may use LLMs, tools, memory, and evaluators |
-| Cyclic graph | Allows loops; not a DAG anymore |
 
 ## Part 2: Understand Tree-of-Thought
 
@@ -236,61 +237,180 @@ flowchart TD
 
 **How to read this diagram:** the system does not commit to the first idea. It generates multiple options, evaluates them, and continues with better options.
 
-### Beginner Example: Planning A Study Schedule
+### Beginner Example
 
-Problem:
-
-```text
-Create a 7-day study plan for a beginner learning AI agents.
 ```
+Instead of producing one reasoning path, the AI explores many possible reasoning paths.
 
-Possible thoughts:
+Normal prompting:
 
-| Thought | Idea | Score |
-| --- | --- | --- |
-| A | Start with LLM basics, then prompting, then agents | high |
-| B | Start with advanced multi-agent systems | low |
-| C | Start with coding tools before concepts | medium |
+Question
+   |
+Answer
 
-Tree-of-Thought chooses path A because it fits the beginner goal better.
+ToT:
 
-### Tree Search Steps
+Question
+   |
+  /|\
+ / | \
+A  B  C
+|  |  |
+D  E  F
 
-```text
-1. Generate possible thoughts.
-2. Score or evaluate each thought.
-3. Keep the best thoughts.
-4. Expand those thoughts into next thoughts.
-5. Stop when the answer is good enough or budget is reached.
+The model thinks through multiple possibilities before selecting the best one.
+
+Why was ToT created?
+
+Traditional Chain-of-Thought:
+
+Problem
+  |
+Step 1
+  |
+Step 2
+  |
+Answer
+
+If Step 1 is wrong:
+
+Wrong Step 1
+    |
+Wrong Step 2
+    |
+Wrong Answer
+
+Everything fails.
+
+ToT explores multiple paths.
+
+How ToT Works
+Step 1
+
+Generate several thoughts.
+
+Example:
+
+Thought A
+Thought B
+Thought C
+Step 2
+
+Evaluate each thought.
+
+A = promising
+B = weak
+C = promising
+Step 3
+
+Expand promising branches.
+
+A
+├─ A1
+├─ A2
+
+C
+├─ C1
+├─ C2
+Step 4
+
+Choose the best path.
+
+C → C2 → Final Answer
+Example
+
+Puzzle:
+
+How can I get from city A to city B?
+
+Normal reasoning:
+
+Route 1
+
+ToT reasoning:
+
+Route 1
+Route 2
+Route 3
+
+Compare:
+
+Distance
+Cost
+Time
+
+Select best route.
 ```
-
-### Search Terms In Plain English
-
-| Term | Meaning |
-| --- | --- |
-| Breadth | How many options to try at each step |
-| Depth | How many steps ahead to explore |
-| Score | Quality estimate for a thought |
-| Prune | Drop weak branches |
-| Backtrack | Return to an earlier branch |
-| Beam search | Keep only the best few branches |
-
-### Tree-of-Thought Risks
-
-| Risk | Why It Matters |
-| --- | --- |
-| More model calls | Higher cost |
-| More latency | User waits longer |
-| Weak evaluator | Bad branches may be chosen |
-| Overthinking simple tasks | Simple questions become slow |
-| Hidden reasoning quality | The system may explore but still choose poorly |
 
 Beginner rule:
 
 ```text
 Use Tree-of-Thought only when exploring alternatives is worth the cost.
 ```
+### DAG Agents vs Tree-of-Thought
+| Feature            | DAG Agents             | Tree-of-Thought       |
+| ------------------ | ---------------------- | --------------------- |
+| Purpose            | Workflow orchestration | Reasoning exploration |
+| Structure          | Graph                  | Tree                  |
+| Focus              | Task execution         | Thinking process      |
+| Parallelism        | Very high              | Moderate              |
+| Multiple solutions | Usually no             | Yes                   |
+| Best for           | Agent systems          | Complex reasoning     |
+| Example            | Research pipeline      | Solving puzzles       |
 
+DAG Agent
+           Query
+              |
+      +-------+-------+
+      |               |
+  Search          Database
+      |               |
+      +-------+-------+
+              |
+          Summarize
+              |
+           Output
+
+Goal:
+
+Execute many tasks efficiently.
+
+Tree-of-Thought
+           Problem
+              |
+      +-------+-------+
+      |       |       |
+      A       B       C
+     / \     / \     / \
+   A1 A2   B1 B2   C1 C2
+
+Goal:
+
+Explore many reasoning possibilities and choose the best one.
+### How They Work Together in Modern AI Agents
+User Query
+      |
+Planner Agent
+      |
+Tree-of-Thought
+      |
+Best Plan Selected
+      |
+DAG Workflow
+      |
++--------+-------+--------+
+|        |                |
+Search   Coding        Database
+|        |                |
++--------+-------+--------+
+      |
+  Final Answer
+  DAG Agent decides how tasks should be executed efficiently.
+  
+  A simple way to remember:
+  
+  DAG Agent = Project Manager → organizes and runs tasks.
+  Tree-of-Thought = Strategic Thinker → explores multiple ideas before deciding.
 ## Part 3: Compare DAGs, Trees, And Agent Loops
 
 DAG agents and Tree-of-Thought both organize multi-step reasoning, but they solve different problems.
@@ -380,39 +500,6 @@ The best architecture is the simplest one that reliably solves the task.
 6. Log every node or branch result.
 ```
 
-### DAG Design Checklist
-
-| Question | Why It Matters |
-| --- | --- |
-| What are the nodes? | Defines work units |
-| What are the edges? | Defines dependencies |
-| What can run in parallel? | Reduces latency |
-| What must be validated? | Improves reliability |
-| What happens on failure? | Prevents silent errors |
-| What should be logged? | Helps debugging |
-
-### Tree-of-Thought Design Checklist
-
-| Question | Why It Matters |
-| --- | --- |
-| How many thoughts per step? | Controls cost |
-| How deep can the tree go? | Controls latency |
-| How are thoughts scored? | Controls quality |
-| When do we stop? | Prevents endless search |
-| What branches are pruned? | Saves budget |
-| What answer is returned? | Keeps final output clear |
-
-### Safe Limits
-
-| Limit | Example |
-| --- | --- |
-| Max DAG nodes | 8 nodes |
-| Max parallel calls | 3 at once |
-| Max tree breadth | 3 thoughts per step |
-| Max tree depth | 4 levels |
-| Max total model calls | 12 calls |
-| Max runtime | 30 seconds |
-| Max failures | stop after 2 node failures |
 
 ### Weak vs Strong Design
 

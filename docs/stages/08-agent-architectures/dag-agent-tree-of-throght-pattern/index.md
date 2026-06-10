@@ -358,6 +358,8 @@ Use Tree-of-Thought only when exploring alternatives is worth the cost.
 | Best for           | Agent systems          | Complex reasoning     |
 | Example            | Research pipeline      | Solving puzzles       |
 
+
+```
 DAG Agent
            Query
               |
@@ -370,11 +372,11 @@ DAG Agent
           Summarize
               |
            Output
-
+```
 Goal:
 
 Execute many tasks efficiently.
-
+```
 Tree-of-Thought
            Problem
               |
@@ -383,11 +385,12 @@ Tree-of-Thought
       A       B       C
      / \     / \     / \
    A1 A2   B1 B2   C1 C2
-
+```
 Goal:
 
 Explore many reasoning possibilities and choose the best one.
 ### How They Work Together in Modern AI Agents
+```
 User Query
       |
 Planner Agent
@@ -405,6 +408,7 @@ Search   Coding        Database
 +--------+-------+--------+
       |
   Final Answer
+  ```     
   DAG Agent decides how tasks should be executed efficiently.
   
   A simple way to remember:

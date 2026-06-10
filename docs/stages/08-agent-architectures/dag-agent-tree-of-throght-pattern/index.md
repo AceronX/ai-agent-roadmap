@@ -4,7 +4,7 @@
 
 <section class="topic-hero">
   <span class="topic-hero__eyebrow">Stage 08 - Agent Architectures</span>
-  <p class="topic-hero__lead">DAG agents and Tree-of-Thought patterns are ways to organize multi-step AI reasoning. A DAG agent runs a controlled graph of steps. Tree-of-Thought explores multiple possible reasoning paths before choosing one. Both patterns help when one prompt is too simple, but a fully autonomous agent would be too hard to control.</p>
+  <p class="topic-hero__lead">DAG agents and Tree-of-Thought patterns are ways to organize multi-step AI reasoning. A DAG agent runs a controlled graph of steps. Tree-of-Thought explores multiple possible reasoning paths before choosing one.</p>
   <div class="topic-hero__facts">
     <span>Graph steps</span>
     <span>Branching paths</span>
@@ -31,6 +31,7 @@ After this lesson, you should be able to explain:
 ## Quick Summary
 
 Use this table first. It gives the short version.
+Both are ways to organize how an AI agent thinks and executes tasks, but they solve different problems.
 
 | Pattern | Simple Meaning | Best For | Main Risk |
 | --- | --- | --- | --- |
@@ -68,19 +69,6 @@ Tree-of-Thought:
   Score each plan
   Continue with the best plan
 ```
-
-### Key Words In Plain English
-
-| Word | Simple Meaning | Beginner Example |
-| --- | --- | --- |
-| Node | One step in a workflow | summarize text |
-| Edge | Connection from one step to another | summary goes to fact extraction |
-| DAG | Directed acyclic graph: a graph that moves forward without loops | step A must finish before step B |
-| Dependency | A step needs another step's output | answer step needs retrieved facts |
-| Branch | More than one possible path | research path or coding path |
-| Thought | One intermediate reasoning step | possible plan or partial solution |
-| Tree search | Explore multiple branches | compare three possible solutions |
-| Evaluator | A step that scores or filters outputs | choose the best draft |
 
 ## Learning Path
 

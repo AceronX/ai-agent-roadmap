@@ -408,7 +408,8 @@ Search   Coding        Database
 +--------+-------+--------+
       |
   Final Answer
-  ```     
+
+```     
   
   DAG Agent decides how tasks should be executed efficiently.
   
@@ -452,7 +453,9 @@ Use a DAG when:
 
 Example:
 
-```text
+```
+
+text
 Generate report:
   retrieve metrics
   retrieve incidents

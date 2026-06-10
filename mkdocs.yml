@@ -154,6 +154,7 @@ nav:
           - Routing and Prompt Chaining: stages/08-agent-architectures/routing-and-prompt-chaining/index.md
           - Planner-Executor Workflows: stages/08-agent-architectures/planner-executor/index.md
           - Evaluator-Optimizer Loops: stages/08-agent-architectures/evaluator-optimizer-loops/index.md
+          - DAG Agents and Tree-of-Thought Patterns: stages/08-agent-architectures/dag-agent-tree-of-throght-pattern/index.md
       - 09 Building Agents:
           - stages/09-building-agents/index.md
           - Building an Agent Loop From Scratch: stages/09-building-agents/agent-loop-from-scratch/index.md

@@ -167,7 +167,12 @@ nav:
           - Provider-Native Function Calling and Tool Use: stages/09-building-agents/provider-native-function-calling/index.md
           - Agent Frameworks: stages/09-building-agents/agent-frameworks/index.md
           - Choosing a Framework Without Losing Debuggability: stages/09-building-agents/choosing-a-framework/index.md
-      - 10 Multi-Agent Systems: stages/10-multi-agent-systems/index.md
+      - 10 Multi-Agent Systems:
+          - stages/10-multi-agent-systems/index.md
+          - Supervisor-Worker Pattern: stages/10-multi-agent-systems/supervisor-worker-pattern/index.md
+          - Handoffs: stages/10-multi-agent-systems/handoffs/index.md
+          - Agents As Tools: stages/10-multi-agent-systems/agents-as-tools/index.md
+          - Shared State vs Message Passing: stages/10-multi-agent-systems/shared-state-vs-message-passing/index.md
       - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md
       - 12 Security and Ethics: stages/12-security-ethics/index.md
       - 13 Production Deployment: stages/13-production-deployment/index.md

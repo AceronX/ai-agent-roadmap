@@ -9,13 +9,31 @@ Learn when and how to coordinate multiple agents without adding unnecessary comp
 
 ## Learn
 
-- Supervisor-worker pattern
-- Handoffs
-- Agents as tools
-- Shared state vs message passing
+- [Supervisor-worker pattern](supervisor-worker-pattern/index.md)
+- [Handoffs](handoffs/index.md)
+- [Agents as tools](agents-as-tools/index.md)
+- [Shared state vs message passing](shared-state-vs-message-passing/index.md)
 - A2A protocol
 - Coordination failure modes
 - How to tell when one agent is enough
+
+## Start Here
+
+Multi-agent systems are easier to understand if you think of them like a small workplace. Instead of one person doing everything, different specialists collaborate around one larger goal.
+
+| Concept | Simple Meaning | Workplace Analogy |
+| --- | --- | --- |
+| Supervisor-worker pattern | One main agent manages specialist agents | A manager assigns work to a team |
+| Handoffs | One agent transfers control to another | Front desk transfers a call to billing |
+| Agents as tools | One agent calls another agent for a result | A writer asks a researcher for notes |
+| Shared state vs message passing | Agents share information through a common place or direct messages | Shared document vs email chain |
+
+Beginner rule:
+
+```text
+Do not add multiple agents just because you can.
+Add multiple agents when roles, ownership, or information flow become easier to control.
+```
 
 ## Build
 
@@ -26,6 +44,8 @@ Build a small agent team with a planner, researcher, writer, and reviewer. Measu
 - You can explain MCP as agent-to-tool communication and A2A as agent-to-agent communication.
 - You can identify when a multi-agent system is unnecessary.
 - You can design handoffs with clear responsibilities.
+- You can distinguish supervisor-worker, handoffs, and agents-as-tools.
+- You can choose between shared state and message passing for a simple workflow.
 
 ## Checkpoint
 

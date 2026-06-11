@@ -161,7 +161,7 @@ Add an agent when the new boundary makes the system clearer.
 Do not add an agent when it only moves confusion into messages.
 ```
 
-## Part 4: One Agent vs Many Agents
+## Part 4: Compare Designs And Decide
 
 Compare designs before building.
 
@@ -215,7 +215,7 @@ state update -> reviewer feedback -> revised assignment -> final answer
 
 If your team cannot inspect those traces, start with one agent.
 
-## Part 5: Decision Checklist
+### Decision Checklist
 
 Use this checklist before adding another agent.
 
@@ -237,7 +237,7 @@ If a second agent does not make ownership, safety, quality, or scale clearer,
 do not add it.
 ```
 
-## Part 6: Start With One Agent, Then Split
+### Start With One Agent, Then Split
 
 A practical way to design agents is to start with one agent and split only when you find a real reason.
 
@@ -269,7 +269,7 @@ This avoids designing a team before you know what the task needs.
 
 Do not split only because the agent has a long prompt. First remove unnecessary instructions, improve tool schemas, and make state clearer.
 
-## Part 7: Examples
+### Examples
 
 ### Example 1: Keep One Agent
 
@@ -339,7 +339,7 @@ It uses tools or asks for help only when the task requires it.
 
 More agents do not automatically mean more intelligence.
 
-## Part 8: Anti-Patterns
+### Anti-Patterns
 
 | Anti-Pattern | What It Looks Like | Better Choice |
 | --- | --- | --- |
@@ -351,7 +351,7 @@ More agents do not automatically mean more intelligence.
 | No owner | Many agents contribute, nobody owns final answer | Assign final owner |
 | Multi-agent before baseline | Team is built before one-agent version is tested | Build one-agent baseline first |
 
-## Part 9: One-Agent Design Template
+### One-Agent Design Template
 
 Use this template before deciding to split.
 

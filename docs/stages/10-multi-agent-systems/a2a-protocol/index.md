@@ -135,7 +135,7 @@ A2A is useful when "call another agent" should be more structured than
 "send a vague prompt to another chatbot."
 ```
 
-## Part 3: A2A vs MCP
+## Part 3: A2A vs MCP And Core Concepts
 
 A2A and MCP solve different connection problems.
 
@@ -178,7 +178,7 @@ Host agent
 
 The remote agent may use MCP internally, but the host agent does not need to know every tool the remote agent used.
 
-## Part 4: Core A2A Concepts
+### Core A2A Concepts
 
 A2A has a few key building blocks.
 
@@ -266,7 +266,7 @@ Artifact:
 
 This matters because agents do not only exchange plain text. They may exchange files, structured JSON, images, forms, or reports.
 
-## Part 5: Basic A2A Flow
+## Part 4: Basic Flow, Design, And Failure Modes
 
 A simple A2A flow has six steps.
 
@@ -317,7 +317,7 @@ Host agent:
   Uses the artifact to write the final recommendation for the user.
 ```
 
-## Part 6: When To Use A2A
+### When To Use A2A
 
 Use A2A when the other side is truly another agent, not just a function.
 
@@ -347,7 +347,7 @@ Use A2A when you need agent collaboration.
 Do not use A2A just to avoid writing a normal API or tool schema.
 ```
 
-## Part 7: Design A Simple A2A Interaction
+### Design A Simple A2A Interaction
 
 Before you build an A2A-style connection, define the interaction clearly.
 
@@ -389,7 +389,7 @@ failure_behavior:
   - If the artifact is missing required fields, request one correction.
 ```
 
-## Part 8: Common Failure Modes
+### Common Failure Modes
 
 A2A makes communication more structured, but it does not automatically make a multi-agent system reliable.
 

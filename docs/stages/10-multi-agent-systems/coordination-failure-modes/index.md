@@ -383,7 +383,7 @@ Guardrails:
 - stop when required evidence is collected,
 - ask the user when the next step changes the scope.
 
-## Part 4: Detecting Coordination Problems
+## Part 4: Detecting And Preventing Coordination Problems
 
 You need visibility into the system to diagnose coordination failures.
 
@@ -423,7 +423,7 @@ Writer Agent used only 1 source.
 
 Without a trace, the final answer might look complete even though the workflow failed.
 
-## Part 5: Prevention Checklist
+### Prevention Checklist
 
 Use this checklist before building a multi-agent workflow.
 

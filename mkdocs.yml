@@ -173,6 +173,7 @@ nav:
           - Handoffs: stages/10-multi-agent-systems/handoffs/index.md
           - Agents As Tools: stages/10-multi-agent-systems/agents-as-tools/index.md
           - Shared State vs Message Passing: stages/10-multi-agent-systems/shared-state-vs-message-passing/index.md
+          - A2A Protocol: stages/10-multi-agent-systems/a2a-protocol/index.md
       - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md
       - 12 Security and Ethics: stages/12-security-ethics/index.md
       - 13 Production Deployment: stages/13-production-deployment/index.md

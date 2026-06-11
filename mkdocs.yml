@@ -175,6 +175,7 @@ nav:
           - Shared State vs Message Passing: stages/10-multi-agent-systems/shared-state-vs-message-passing/index.md
           - A2A Protocol: stages/10-multi-agent-systems/a2a-protocol/index.md
           - Coordination Failure Modes: stages/10-multi-agent-systems/coordination-failure-modes/index.md
+          - How To Tell When One Agent Is Enough: stages/10-multi-agent-systems/when-one-agent-is-enough/index.md
       - 11 Evaluation and Observability: stages/11-evaluation-observability/index.md
       - 12 Security and Ethics: stages/12-security-ethics/index.md
       - 13 Production Deployment: stages/13-production-deployment/index.md

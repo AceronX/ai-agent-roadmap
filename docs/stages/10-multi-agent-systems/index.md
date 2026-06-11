@@ -15,7 +15,7 @@ Learn when and how to coordinate multiple agents without adding unnecessary comp
 - [Shared state vs message passing](shared-state-vs-message-passing/index.md)
 - [A2A protocol](a2a-protocol/index.md)
 - [Coordination failure modes](coordination-failure-modes/index.md)
-- How to tell when one agent is enough
+- [How to tell when one agent is enough](when-one-agent-is-enough/index.md)
 
 ## Start Here
 

@@ -186,7 +186,16 @@ nav:
           - Tracing and Structured Logging: stages/11-evaluation-observability/tracing-and-structured-logging/index.md
           - Human Review: stages/11-evaluation-observability/human-review/index.md
           - Evaluation and Observability Tools: stages/11-evaluation-observability/evaluation-tools/index.md
-      - 12 Security and Ethics: stages/12-security-ethics/index.md
+      - 12 Security and Ethics:
+          - stages/12-security-ethics/index.md
+          - Prompt Injection and Jailbreaks: stages/12-security-ethics/prompt-injection-and-jailbreaks/index.md
+          - Insecure Output Handling: stages/12-security-ethics/insecure-output-handling/index.md
+          - Excessive Agency: stages/12-security-ethics/excessive-agency/index.md
+          - Tool Sandboxing and Permissions: stages/12-security-ethics/tool-sandboxing-and-permissions/index.md
+          - Data Privacy and PII Redaction: stages/12-security-ethics/data-privacy-and-pii-redaction/index.md
+          - Bias, Toxicity, and Guardrails: stages/12-security-ethics/bias-toxicity-and-guardrails/index.md
+          - Safety and Red-Team Testing: stages/12-security-ethics/safety-and-red-team-testing/index.md
+          - OWASP LLM Top 10: stages/12-security-ethics/owasp-llm-top-10/index.md
       - 13 Production Deployment:
           - stages/13-production-deployment/index.md
           - Production Architecture: stages/13-production-deployment/production-architecture/index.md

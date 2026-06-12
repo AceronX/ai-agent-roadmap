@@ -11,7 +11,7 @@ Learn how to ship agent systems as reliable software.
 - [Production architecture](production-architecture/index.md)
 - [API design](api-design/index.md)
 - [Background jobs and queues](background-jobs-and-queues/index.md)
-- Docker
+- [Docker](docker/index.md)
 - CI/CD
 - Monitoring and alerts
 - Cost control

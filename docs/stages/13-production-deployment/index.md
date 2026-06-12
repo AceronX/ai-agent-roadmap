@@ -12,7 +12,7 @@ Learn how to ship agent systems as reliable software.
 - [API design](api-design/index.md)
 - [Background jobs and queues](background-jobs-and-queues/index.md)
 - [Docker](docker/index.md)
-- CI/CD
+- [CI/CD](ci-cd/index.md)
 - Monitoring and alerts
 - Cost control
 - Rollbacks and incident response

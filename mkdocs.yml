@@ -193,6 +193,7 @@ nav:
           - API Design: stages/13-production-deployment/api-design/index.md
           - Background Jobs and Queues: stages/13-production-deployment/background-jobs-and-queues/index.md
           - Docker: stages/13-production-deployment/docker/index.md
+          - CI/CD: stages/13-production-deployment/ci-cd/index.md
   - Reference:
       - reference/index.md
       - Glossary: reference/glossary.md

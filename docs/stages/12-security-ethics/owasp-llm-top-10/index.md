@@ -62,6 +62,16 @@ Residual risk:
 - Add red-team findings to regression tests.
 - Document known limits and emergency shutdown paths.
 
+## Example Scenario
+
+**Situation:** A customer-support agent can search tickets, retrieve knowledge-base articles, summarize account history, draft emails, and create refund recommendations.
+
+**What can go wrong:** The same workflow touches several OWASP categories. A malicious ticket can cause prompt injection. Account history can disclose sensitive information. A generated email can include unsafe output. A refund recommendation can become excessive agency if the agent can approve it directly.
+
+**Safer design:** Map the workflow to OWASP risks before launch: LLM01 for injected ticket text, LLM02 for account data, LLM05 for generated emails and tool arguments, LLM06 for refund actions, LLM08 for retrieved articles, and LLM10 for runaway retries.
+
+**Explanation:** The OWASP LLM Top 10 is most useful as a threat-modeling checklist. It helps teams find risks that span prompts, tools, retrieval, data handling, and operations.
+
 ## Resources
 
 - [OWASP Top 10 for Large Language Model Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)

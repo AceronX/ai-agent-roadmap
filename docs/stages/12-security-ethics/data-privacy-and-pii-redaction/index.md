@@ -66,6 +66,16 @@ Try tests like:
 - Test whether PII in retrieved documents leaks into the final answer.
 - Check whether memory stores personal data without an explicit need.
 
+## Example Scenario
+
+**Situation:** A support agent summarizes a customer complaint that includes a name, phone number, home address, order number, and medical detail. The full prompt and model response are stored in tracing logs.
+
+**What can go wrong:** Even if the final answer is safe, the logs may now contain sensitive personal data. Developers, vendors, or future retrieval jobs could access information they do not need.
+
+**Safer design:** Minimize the data sent to the model, redact PII before logging, limit who can view traces, set retention limits, and prevent the agent from storing personal details in long-term memory unless required.
+
+**Explanation:** Privacy controls must cover the whole agent pipeline. Prompts, tool results, traces, memory, and outputs can all leak PII, so redaction only at the final response is too late.
+
 ## Resources
 
 - [European Commission: Data protection](https://commission.europa.eu/law/law-topic/data-protection_en)

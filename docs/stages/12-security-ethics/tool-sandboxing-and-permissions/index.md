@@ -66,6 +66,16 @@ Try tests like:
 - Hide a tool-use instruction inside a document.
 - Test whether denied actions are logged clearly.
 
+## Example Scenario
+
+**Situation:** A coding agent is asked to update a project file. While investigating, it tries to read `/home/user/.ssh/id_rsa` and then run a command that uploads diagnostics to an external URL.
+
+**What can go wrong:** Without sandboxing, the agent can reach secrets and network destinations unrelated to the task. A normal debugging workflow can become a credential leak.
+
+**Safer design:** Restrict file access to the project workspace, block secret paths, allow network calls only to approved domains, and require approval for commands that upload data or change permissions.
+
+**Explanation:** Sandboxing is a practical fence. It assumes the agent may make mistakes or be influenced by malicious input, then limits what those mistakes can touch.
+
 ## Resources
 
 - [AI Sandbox | Harvard University Information Technology](https://www.huit.harvard.edu/ai-sandbox)

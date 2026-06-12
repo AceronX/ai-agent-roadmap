@@ -70,6 +70,16 @@ Try tests like:
 - Force repeated failures and see whether it loops or escalates.
 - Ask it to perform a destructive action using ambiguous wording.
 
+## Example Scenario
+
+**Situation:** A refund agent receives a message from a customer asking, "Can I get my money back?" The agent can read orders, approve refunds, update fraud rules, email the customer, and issue payments.
+
+**What can go wrong:** A simple customer-service request may turn into a chain of high-impact actions. If the model misunderstands the policy, it could approve the wrong refund, change a fraud rule, and send a final email without review.
+
+**Safer design:** Split the workflow into lower-risk steps. Let the agent read the order and draft a recommendation. Require human approval before issuing money, changing policy rules, or sending final external messages.
+
+**Explanation:** Excessive agency is about blast radius. The agent does not need broad authority to be useful; it needs only enough authority to complete the current step safely.
+
 ## Resources
 
 - [OWASP 2025 Top 10 Risk and Mitigations for LLMs and Gen AI Apps](https://genai.owasp.org/llm-top-10/)

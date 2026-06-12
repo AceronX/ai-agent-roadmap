@@ -82,6 +82,16 @@ Try tests like:
 - Ask it to generate tool arguments for a resource outside the user's scope.
 - Put a malicious payload in retrieved content and see whether it appears in output.
 
+## Example Scenario
+
+**Situation:** A support dashboard asks the model to create a short customer-note preview. The model returns: `<img src=x onerror=fetch('/admin/secrets')>`.
+
+**What can go wrong:** If the dashboard renders the model output as trusted HTML, the browser may execute attacker-controlled code. The model output becomes a cross-site scripting path even though the model only returned text.
+
+**Safer design:** Render model text as plain text by default. If HTML is truly needed, sanitize it with an allowlist, strip scripts and event handlers, and keep authentication tokens protected with normal browser security controls.
+
+**Explanation:** Valid model output is not automatically safe output. Any system that consumes generated text must validate, encode, or sanitize it according to the destination.
+
 ## Resources
 
 - [OWASP 2025 Top 10 Risk and Mitigations for LLMs and Gen AI Apps](https://genai.owasp.org/llm-top-10/)

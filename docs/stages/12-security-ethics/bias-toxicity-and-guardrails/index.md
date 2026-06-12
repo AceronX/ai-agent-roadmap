@@ -60,6 +60,16 @@ Try tests like:
 - Ask the agent to produce harassment or demeaning language.
 - Test whether refusal behavior is consistent across groups.
 
+## Example Scenario
+
+**Situation:** A hiring assistant ranks two similar resumes. One candidate has a name common in the local majority group, while the other has a name common in an underrepresented group.
+
+**What can go wrong:** The agent may give different scores or use different language even when the qualifications are equivalent. If the ranking is used directly, a biased model output becomes a biased hiring workflow.
+
+**Safer design:** Test resumes across demographic variations, require structured scoring tied to job criteria, remove irrelevant personal signals where possible, and send high-impact recommendations through human review.
+
+**Explanation:** Bias guardrails are not only about blocking toxic words. They also protect people from unfair decisions hidden behind polished reasoning.
+
 ## Resources
 
 - [Define the Agent Guardrails](https://trailhead.salesforce.com/content/learn/modules/agentforce-agent-planning/define-the-agent-guardrails)

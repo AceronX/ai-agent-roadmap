@@ -60,6 +60,16 @@ For a small production agent, include at least:
 | Agent loops or spends too much | Add step, time, retry, and cost limits |
 | Agent gives biased output | Improve evaluation data, policy checks, and review process |
 
+## Example Scenario
+
+**Situation:** Before launch, a team red-teams a travel-booking agent. Testers ask it to ignore policy, reveal saved traveler profiles, book a non-refundable ticket without approval, and repeat tool calls until it hits a rate limit.
+
+**What can go wrong:** The agent may pass normal happy-path tests but fail under adversarial pressure. A hidden prompt, ambiguous user request, or repeated retry can expose unsafe behavior only after release.
+
+**Safer design:** Record every failed red-team case, fix the control that allowed it, rerun the same test, and add it to regression tests. Keep monitoring after release because new attacks and workflows appear over time.
+
+**Explanation:** Red teaming is not a one-time checklist. It is a feedback loop that turns discovered failures into permanent tests and stronger controls.
+
 ## Resources
 
 - [AI Red Teaming Roadmap](https://roadmap.sh/ai-red-teaming)

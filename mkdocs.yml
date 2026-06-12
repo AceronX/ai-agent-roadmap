@@ -204,6 +204,7 @@ nav:
           - Docker: stages/13-production-deployment/docker/index.md
           - CI/CD: stages/13-production-deployment/ci-cd/index.md
           - Monitoring and Alerts: stages/13-production-deployment/monitoring-and-alerts/index.md
+          - Cost Control: stages/13-production-deployment/cost-control/index.md
   - Reference:
       - reference/index.md
       - Glossary: reference/glossary.md

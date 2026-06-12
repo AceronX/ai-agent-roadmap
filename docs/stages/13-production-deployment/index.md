@@ -8,8 +8,7 @@ Stage 13 of 14. Previous: [Stage 12 - Security and Ethics](../12-security-ethics
 Learn how to ship agent systems as reliable software.
 
 ## Learn
-
-- Production architecture
+- [Production architecture](production-architecture/index.md)
 - API design
 - Background jobs and queues
 - Docker

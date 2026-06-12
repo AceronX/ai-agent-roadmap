@@ -15,7 +15,7 @@ Learn how to ship agent systems as reliable software.
 - [CI/CD](ci-cd/index.md)
 - [Monitoring and alerts](monitoring-and-alerts/index.md)
 - [Cost control](cost-control/index.md)
-- Rollbacks and incident response
+- [Rollbacks and incident response](rollbacks-and-incident-response/index.md)
 
 ## Build
 

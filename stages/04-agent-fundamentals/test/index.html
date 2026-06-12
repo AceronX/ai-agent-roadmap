@@ -1,0 +1,6578 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical AI agent learning path and knowledge database for developers.">
+      
+      
+      
+        <link rel="canonical" href="https://AceronX.github.io/ai-agent-roadmap/stages/04-agent-fundamentals/test/">
+      
+      
+        <link rel="prev" href="../tools-overview/">
+      
+      
+        <link rel="next" href="../interview-junior/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>QAs - AI Agent Roadmap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css?v=15">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#agent-loop" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AI Agent Roadmap" class="md-header__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Agent Roadmap
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              QAs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Stages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI Agent Roadmap" class="md-nav__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    AI Agent Roadmap
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Stages
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Stages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap-sh-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap.sh Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-orientation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    00 Orientation
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            00 Orientation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-orientation/what-are-ai-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What Are AI Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-prerequisites/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    01 Prerequisites
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            01 Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/backend-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backend Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/git-and-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git and Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-llm-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    02 LLM Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            02 LLM Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/transformer-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokenization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/context-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/model-families/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Families and Licenses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/generation-controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generation Controls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/pricing-and-latency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pricing and Latency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/embeddings-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/rag-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-prompt-engineering/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    03 Prompt Engineering
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 Prompt Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/writing-good-prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Writing Good Prompts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/structured-outputs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structured Outputs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    04 Agent Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 Agent Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reasoning-and-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasoning and Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acting-and-observation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acting and Observation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stopping-criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stopping Criteria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agent-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 12
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 13
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 14
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 15
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 16
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 17
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 18
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 19
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 20
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 21
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 22
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#react-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReAct Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReAct Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 23
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 24
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 25
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 26
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 27
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 28
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 29
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 30
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 31
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 32
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 33
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 34
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 35
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reasoning-and-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reasoning and Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reasoning and Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 36
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 37
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 38
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 39
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 40
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-41" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 41
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 42
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-43" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 43
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 44
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-45" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 45
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 46
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-47" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 47
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 48
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-49" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 49
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 50
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 51
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 52
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-53" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 53
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acting-and-observation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acting and Observation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acting and Observation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-54" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 54
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-55" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 55
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 56
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-57" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 57
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-58" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 58
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-59" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 59
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 60
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-61" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 61
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-62" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 62
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-63" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 63
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 64
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-65" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 65
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-66" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 66
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-67" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 67
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-68" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 68
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-69" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 69
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stopping-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Criteria
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stopping Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-70" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 70
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-71" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 71
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-72" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 72
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-73" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 73
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-74" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 74
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 75
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-76" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 76
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-77" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 77
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-78" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 78
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-79" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 79
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 80
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-81" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 81
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-82" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 82
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-83" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 83
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-84" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 84
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 85
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-86" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 86
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-87" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 87
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-88" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 88
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-89" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 89
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 90
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-91" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 91
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-92" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 92
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-93" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 93
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-94" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 94
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 95
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-tools-and-actions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    05 Tools and Actions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 Tools and Actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Definition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/common-agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Common Agent Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/boundaries-and-destructive-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Boundaries and Destructive Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    06 MCP
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 MCP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-hosts-clients-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Hosts, Clients, Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/building-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building MCP Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/local-vs-remote-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Remote MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/tool-and-resource-exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool and Resource Exposure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/security-boundaries-conn-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Boundaries for MCP-Connected Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-rag-and-memory/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    07 RAG and Memory
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 RAG and Memory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/embeddings-and-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/vector-databases-sql-custom-stores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vector Databases, SQL, and Custom Stores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/short-term-and-long-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Short-Term and Long-Term Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/episodic-and-semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic and Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/user-profile-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Profile Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/summarization-compression-forgetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summarization, Compression, and Forgetting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/additional-explaination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additional Explanation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-agent-architectures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    08 Agent Architectures
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Agent Architectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/react-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/rag-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/routing-and-prompt-chaining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Routing and Prompt Chaining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/planner-executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planner-Executor Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/evaluator-optimizer-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluator-Optimizer Loops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/dag-agent-tree-of-throght-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAG Agents and Tree-of-Thought Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/simple-workfolw-better-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    When a Simpler Workflow Is Better Than an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-building-agents/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    09 Building Agents
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 Building Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-loop-from-scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building an Agent Loop From Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/direct-llm-api-calls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Direct LLM API Calls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/parsing-model-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parsing Model Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/error-and-rate-limit-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error and Rate-Limit Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/provider-native-function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provider-Native Function Calling and Tool Use
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Frameworks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/choosing-a-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Choosing a Framework Without Losing Debuggability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-multi-agent-systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    10 Multi-Agent Systems
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Multi-Agent Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/supervisor-worker-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor-Worker Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/handoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handoffs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/agents-as-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agents As Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/shared-state-vs-message-passing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared State vs Message Passing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/a2a-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/coordination-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coordination Failure Modes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/when-one-agent-is-enough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How To Tell When One Agent Is Enough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-evaluation-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    11 Evaluation and Observability
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            11 Evaluation and Observability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/agent-quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Quality Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tool-unit-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Unit Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/flow-integration-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flow Integration Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/prompt-regression-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Regression Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/rag-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tracing-and-structured-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing and Structured Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/human-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/evaluation-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluation and Observability Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-security-ethics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    12 Security and Ethics
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            12 Security and Ethics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/prompt-injection-and-jailbreaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Injection and Jailbreaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/insecure-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insecure Output Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Excessive Agency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/tool-sandboxing-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Sandboxing and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/data-privacy-and-pii-redaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Privacy and PII Redaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/bias-toxicity-and-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bias, Toxicity, and Guardrails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/safety-and-red-team-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Safety and Red-Team Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/owasp-llm-top-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OWASP LLM Top 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-production-deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    13 Production Deployment
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            13 Production Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/production-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/background-jobs-and-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Jobs and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/monitoring-and-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring and Alerts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/cost-control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cost Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/rollbacks-and-incident-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rollbacks and Incident Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agent-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Loop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent Loop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 12
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 13
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 14
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 15
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 16
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 17
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 18
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 19
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 20
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 21
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 22
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#react-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReAct Pattern
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReAct Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 23
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 24
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 25
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 26
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 27
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 28
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 29
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 30
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 31
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 32
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 33
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 34
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 35
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reasoning-and-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reasoning and Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reasoning and Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 36
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 37
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 38
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 39
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 40
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-41" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 41
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 42
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-43" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 43
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 44
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-45" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 45
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 46
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-47" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 47
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 48
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-49" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 49
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 50
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 51
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 52
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-53" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 53
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acting-and-observation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acting and Observation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Acting and Observation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-54" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 54
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-55" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 55
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 56
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-57" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 57
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-58" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 58
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-59" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 59
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 60
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-61" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 61
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-62" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 62
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-63" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 63
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 64
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-65" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 65
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-66" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 66
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-67" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 67
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-68" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 68
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-69" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 69
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stopping-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Criteria
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stopping Criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-70" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 70
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-71" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 71
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-72" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 72
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-73" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 73
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-74" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 74
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 75
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-76" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 76
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-77" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 77
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-78" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 78
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-79" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 79
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 80
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-81" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 81
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-82" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 82
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-83" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 83
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-84" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 84
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 85
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-86" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 86
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-87" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 87
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-88" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 88
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-89" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 89
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-90" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 90
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-91" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 91
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-92" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 92
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-93" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 93
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-94" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 94
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-95" class="md-nav__link">
+    <span class="md-ellipsis">
+      Question 95
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="qas-04-agent-fundamentals">QAs: 04 Agent Fundamentals</h1>
+<p>This study test checks understanding of every main section in <strong>04 Agent Fundamentals</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th style="text-align: right;">Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Loop</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td>ReAct Pattern</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td>Reasoning and Planning</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>Acting and Observation</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>Stopping Criteria</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>Tools Overview</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>95</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="agent-loop">Agent Loop</h2>
+<h3 id="question-1">Question 1</h3>
+<p><strong>Q:</strong> What makes an AI agent different from a simple chatbot?</p>
+<p><strong>A:</strong></p>
+<p>A chatbot usually answers the current message. An AI agent receives a goal, tracks state, may plan steps, use tools, observe results, retry or revise, and stop when completion or safety rules are met.</p>
+<h3 id="question-2">Question 2</h3>
+<p><strong>Q:</strong> Why is the agent loop described as a control cycle?</p>
+<p><strong>A:</strong></p>
+<p>Because it repeatedly controls what happens next: perceive the current state, plan, act, observe the result, reflect, then decide whether to continue or stop.</p>
+<h3 id="question-3">Question 3</h3>
+<p><strong>Q:</strong> What is the basic flow of the agent loop?</p>
+<p><strong>A:</strong></p>
+<pre class="mermaid"><code>flowchart LR
+    P[Perceive] --&gt; PL[Plan] --&gt; A[Act] --&gt; O[Observe] --&gt; R[Reflect]
+    R --&gt;|continue| P
+    R --&gt;|stop| S[Stop]</code></pre>
+<p>Each step updates the agent's understanding before the next decision.</p>
+<h3 id="question-4">Question 4</h3>
+<p><strong>Q:</strong> In the agent loop, what does perception mean?</p>
+<p><strong>A:</strong></p>
+<p>Perception means gathering visible state, such as the user request, files, search results, logs, database rows, API responses, memory, or previous tool outputs.</p>
+<h3 id="question-5">Question 5</h3>
+<p><strong>Q:</strong> What is the role of planning in an agent loop?</p>
+<p><strong>A:</strong></p>
+<p>Planning turns the goal into the next step or a sequence of steps. It helps the agent decide what information, tool, or action is needed before acting.</p>
+<h3 id="question-6">Question 6</h3>
+<p><strong>Q:</strong> What counts as an action in an agent loop?</p>
+<p><strong>A:</strong></p>
+<p>An action is anything the agent does to gather information or change state, such as searching, reading a file, running tests, querying a database, sending a message, or producing the final answer.</p>
+<h3 id="question-7">Question 7</h3>
+<p><strong>Q:</strong> Why must observations update the agent's working state?</p>
+<p><strong>A:</strong></p>
+<p>Because observations contain the result of the last action. If the agent ignores them, it may repeat failed actions, use stale assumptions, or answer without evidence.</p>
+<h3 id="question-8">Question 8</h3>
+<p><strong>Q:</strong> What is reflection in an agent loop?</p>
+<p><strong>A:</strong></p>
+<p>Reflection is the check after an action. The agent asks whether the result helped, whether assumptions changed, whether the goal is complete, and whether it should continue, revise, ask, or stop.</p>
+<h3 id="question-9">Question 9</h3>
+<p><strong>Q:</strong> Why does every agent loop need a stop condition?</p>
+<p><strong>A:</strong></p>
+<p>Without a stop condition, the agent can loop forever, waste tokens and time, retry broken tools, continue after the goal is complete, or take unsafe actions.</p>
+<h3 id="question-10">Question 10</h3>
+<p><strong>Q:</strong> Give one specific stop rule for a research agent.</p>
+<p><strong>A:</strong></p>
+<p>Stop when the answer includes at least three credible cited sources, a comparison table, and no unresolved required question. Also stop after a maximum step, time, or cost budget.</p>
+<h3 id="question-11">Question 11</h3>
+<p><strong>Q:</strong> What should a reliable tool call include besides the tool name?</p>
+<p><strong>A:</strong></p>
+<p>It should include structured arguments, permission level, expected observation format, and failure behavior such as retry, ask the user, or stop safely.</p>
+<h3 id="question-12">Question 12</h3>
+<p><strong>Q:</strong> Why should tools be limited to what the agent actually needs?</p>
+<p><strong>A:</strong></p>
+<p>More tools increase complexity, permission risk, validation work, logging needs, and failure cases. A narrow tool set is easier to control and debug.</p>
+<h3 id="question-13">Question 13</h3>
+<p><strong>Q:</strong> What is the difference between the agent brain and the tool layer?</p>
+<p><strong>A:</strong></p>
+<p>The agent brain uses the LLM, instructions, planning policy, and safety rules to decide what to do. The tool layer provides external capabilities such as search, databases, files, code execution, browser actions, APIs, or email.</p>
+<h3 id="question-14">Question 14</h3>
+<p><strong>Q:</strong> How does memory support the loop?</p>
+<p><strong>A:</strong></p>
+<p>Memory stores useful state across steps or sessions, such as current plan, last observation, open questions, user preferences, retrieved context, or past decisions.</p>
+<h3 id="question-15">Question 15</h3>
+<p><strong>Q:</strong> Why should memory be treated as evidence rather than absolute truth?</p>
+<p><strong>A:</strong></p>
+<p>Memory can be stale, incomplete, corrupted, or based on old preferences. The agent should verify important memory before using it for high-impact decisions.</p>
+<h3 id="question-16">Question 16</h3>
+<p><strong>Q:</strong> Compare a fixed workflow and an autonomous agent.</p>
+<p><strong>A:</strong></p>
+<p>A fixed workflow follows predefined steps and is reliable for routine tasks. An autonomous agent adapts its next step based on goals, state, tools, and observations, but needs stronger guardrails and monitoring.</p>
+<h3 id="question-17">Question 17</h3>
+<p><strong>Q:</strong> A code agent runs a test, sees the same failure, and runs the same test again forever. Which loop failure is this?</p>
+<p><strong>A:</strong></p>
+<p>It is a no-progress or infinite-loop failure. The agent needs repeated-failure detection, a max-iteration limit, and reflection that changes strategy after repeated observations.</p>
+<h3 id="question-18">Question 18</h3>
+<p><strong>Q:</strong> Why is logging actions and observations important in production agents?</p>
+<p><strong>A:</strong></p>
+<p>Logs make the loop inspectable. Developers can see which tools were called, what observations returned, why the agent continued, and which stop reason ended the task.</p>
+<h3 id="question-19">Question 19</h3>
+<p><strong>Q:</strong> What are the main parts of an agent's core architecture, and how do they connect?</p>
+<p><strong>A:</strong></p>
+<p>A user goal goes to the agent brain (LLM, instructions, planning policy, safety rules). The brain draws on memory (task history, preferences, retrieved context) and a tool layer (search, database, code execution, browser, API, email). Tools act on the environment, which returns an observation that updates state, and the loop then continues or stops.</p>
+<pre class="mermaid"><code>flowchart LR
+    U[User goal] --&gt; B[Agent brain]
+    B --&gt; M[Memory]
+    B --&gt; T[Tool layer]
+    T --&gt; E[Environment]
+    M --&gt; O[Observation / state]
+    E --&gt; O
+    O --&gt; D{Continue or stop?}
+    D --&gt;|continue| B
+    D --&gt;|stop| F[Stop]</code></pre>
+<h3 id="question-20">Question 20</h3>
+<p><strong>Q:</strong> Before building an agent, what should a design template specify?</p>
+<p><strong>A:</strong></p>
+<p>A design template should specify:</p>
+<ul>
+<li><strong>Identity:</strong> agent name, primary user, and goal</li>
+<li><strong>Inputs it can perceive:</strong> user message, files, tool observations, memory</li>
+<li><strong>Allowed tools:</strong> name, read or write, approval needed, expected output</li>
+<li><strong>Loop limits:</strong> max iterations, timeout, cost or token budget, retry limit per tool</li>
+<li><strong>Reflection checks:</strong> required evidence, output format, errors that force a new plan, uncertainty that needs a user question</li>
+<li><strong>Stop conditions:</strong> success, missing information, unsafe request, tool failure</li>
+</ul>
+<h3 id="question-21">Question 21</h3>
+<p><strong>Q:</strong> Walk through how an agent loop handles a research task across iterations.</p>
+<p><strong>A:</strong></p>
+<p>The agent repeats perceive, plan, act, observe, and reflect. For example, to find and summarize credible sources:</p>
+<ol>
+<li>Search the web for candidate sources.</li>
+<li>Read the selected sources.</li>
+<li>Write a structured summary.</li>
+<li>Add citations and caveats, then stop because the goal is satisfied.</li>
+</ol>
+<p>Each reflection decides whether more evidence or a quality check is needed before stopping.</p>
+<h3 id="question-22">Question 22</h3>
+<p><strong>Q:</strong> In a code-fixing agent loop, why does the agent reproduce the failure before editing, and why does it need tool access?</p>
+<p><strong>A:</strong></p>
+<ul>
+<li><strong>Why reproduce first:</strong> running the tests confirms the real failure and gives the agent evidence before changing code, so the fix targets the actual root cause.</li>
+<li><strong>Why it needs tool access:</strong> the model alone can only suggest a fix. The loop lets it read the real repository, run tests, observe failures, make a minimal edit, and verify that the targeted test passes without breaking others.</li>
+</ul>
+<h2 id="react-pattern">ReAct Pattern</h2>
+<h3 id="question-23">Question 23</h3>
+<p><strong>Q:</strong> What does ReAct mean?</p>
+<p><strong>A:</strong></p>
+<p>ReAct means <strong>Reason + Act</strong>. The agent reasons about the next useful step, takes an action, observes the result, and uses that observation to decide the next step.</p>
+<h3 id="question-24">Question 24</h3>
+<p><strong>Q:</strong> What is a one-sentence definition of ReAct?</p>
+<p><strong>A:</strong></p>
+<p>ReAct is an agent loop where reasoning chooses the next action, and the observation from that action guides the next reasoning step.</p>
+<h3 id="question-25">Question 25</h3>
+<p><strong>Q:</strong> What is the ReAct loop in compact form?</p>
+<p><strong>A:</strong></p>
+<pre class="mermaid"><code>flowchart LR
+    R[Reason] --&gt; A[Act] --&gt; O[Observe] --&gt; N{Need more?}
+    N --&gt;|yes| R
+    N --&gt;|no| F[Final answer]</code></pre>
+<h3 id="question-26">Question 26</h3>
+<p><strong>Q:</strong> What is the most important connection in the ReAct loop?</p>
+<p><strong>A:</strong></p>
+<p>The observation must influence the next reasoning step. If the observation does not change or confirm what the agent does next, the loop is not using feedback effectively.</p>
+<h3 id="question-27">Question 27</h3>
+<p><strong>Q:</strong> What should the Reason step do in a good ReAct trace?</p>
+<p><strong>A:</strong></p>
+<p>It should name the next needed fact, decision, or action. Example: "I need the latest failed build log" is better than vague thinking.</p>
+<h3 id="question-28">Question 28</h3>
+<p><strong>Q:</strong> What should the Act step do in a good ReAct trace?</p>
+<p><strong>A:</strong></p>
+<p>It should use one relevant action with specific inputs, such as <code>read_build_log({"build_id": "latest"})</code>, instead of calling tools randomly.</p>
+<h3 id="question-29">Question 29</h3>
+<p><strong>Q:</strong> What should the Observe step contain?</p>
+<p><strong>A:</strong></p>
+<p>It should contain the actual result of the action, such as returned data, an error message, a file result, or a state change. It should not invent or ignore tool output.</p>
+<h3 id="question-30">Question 30</h3>
+<p><strong>Q:</strong> Why is this weak ReAct behavior: "Maybe it is a dependency issue. Final answer: install dependencies"?</p>
+<p><strong>A:</strong></p>
+<p>It skips action and observation. The agent guessed without reading logs, inspecting files, or grounding the final answer in evidence.</p>
+<h3 id="question-31">Question 31</h3>
+<p><strong>Q:</strong> When should ReAct be used?</p>
+<p><strong>A:</strong></p>
+<p>Use ReAct when the task needs step-by-step interaction, external evidence, tools, investigation, or when one result determines the next step.</p>
+<h3 id="question-32">Question 32</h3>
+<p><strong>Q:</strong> Give two tasks that usually do not need ReAct.</p>
+<p><strong>A:</strong></p>
+<p>Explaining what JSON is and rewriting a short paragraph usually do not need ReAct because the model can answer or transform the given input directly.</p>
+<h3 id="question-33">Question 33</h3>
+<p><strong>Q:</strong> Compare ReAct and planning.</p>
+<p><strong>A:</strong></p>
+<p>Planning organizes intended steps. ReAct executes a feedback loop: reason, act, observe, then revise the next reasoning step based on the observation.</p>
+<h3 id="question-34">Question 34</h3>
+<p><strong>Q:</strong> Does ReAct guarantee correct answers? Why or why not?</p>
+<p><strong>A:</strong></p>
+<p>No. ReAct improves grounding, but tools can fail, observations can be stale or wrong, and the final answer can still misinterpret the evidence.</p>
+<h3 id="question-35">Question 35</h3>
+<p><strong>Q:</strong> In a product, should a ReAct agent expose every private reasoning token to the user?</p>
+<p><strong>A:</strong></p>
+<p>No. Learning traces can show Reason, Act, and Observation, but products should usually expose concise status, evidence, and final results rather than private internal reasoning.</p>
+<h2 id="reasoning-and-planning">Reasoning and Planning</h2>
+<h3 id="question-36">Question 36</h3>
+<p><strong>Q:</strong> What is agentic reasoning?</p>
+<p><strong>A:</strong></p>
+<p>Agentic reasoning is the decision-making process that lets an agent interpret a goal, identify missing information, choose tools or actions, compare next steps, and revise based on feedback.</p>
+<h3 id="question-37">Question 37</h3>
+<p><strong>Q:</strong> Why does planning matter for complex agent tasks?</p>
+<p><strong>A:</strong></p>
+<p>Planning breaks a broad goal into smaller steps, exposes dependencies, improves auditability, coordinates tools, and helps the agent recover when information is missing or actions fail.</p>
+<h3 id="question-38">Question 38</h3>
+<p><strong>Q:</strong> What four questions does practical planning answer?</p>
+<p><strong>A:</strong></p>
+<p>It answers: What is the goal? What is the current state? What actions are available? Which sequence should be followed?</p>
+<h3 id="question-39">Question 39</h3>
+<p><strong>Q:</strong> What is the difference between a reactive agent and a planning agent?</p>
+<p><strong>A:</strong></p>
+<p>A reactive agent responds immediately to the current input. A planning agent looks ahead by considering the desired end state, current state, available actions, and a sequence to reach the goal.</p>
+<h3 id="question-40">Question 40</h3>
+<p><strong>Q:</strong> What should a useful goal include for an agent?</p>
+<p><strong>A:</strong></p>
+<p>It should include the desired output, constraints, success criteria, deadlines or budgets, required data sources, and actions that need approval.</p>
+<h3 id="question-41">Question 41</h3>
+<p><strong>Q:</strong> Why is "Help me with customer tickets" a weak goal?</p>
+<p><strong>A:</strong></p>
+<p>It lacks scope, output format, priority, safety boundaries, and success criteria. The agent does not know which tickets, what action to take, or what not to do.</p>
+<h3 id="question-42">Question 42</h3>
+<p><strong>Q:</strong> What is task decomposition?</p>
+<p><strong>A:</strong></p>
+<p>Task decomposition breaks a large goal into smaller subgoals that are easier to execute, order, verify, and retry.</p>
+<h3 id="question-43">Question 43</h3>
+<p><strong>Q:</strong> Why should decomposed tasks be ordered by dependency?</p>
+<p><strong>A:</strong></p>
+<p>Some steps require earlier results. For example, an agent should not estimate total travel cost before it knows flights, hotel, and itinerary.</p>
+<h3 id="question-44">Question 44</h3>
+<p><strong>Q:</strong> What is state representation in planning?</p>
+<p><strong>A:</strong></p>
+<p>State representation is the structured view of the current situation: goal, facts, constraints, tool results, available resources, previous decisions, open questions, and progress.</p>
+<h3 id="question-45">Question 45</h3>
+<p><strong>Q:</strong> What can happen when state representation is poor?</p>
+<p><strong>A:</strong></p>
+<p>The agent may duplicate work, forget constraints, use stale information, choose the wrong tool, or continue after the goal is already satisfied.</p>
+<h3 id="question-46">Question 46</h3>
+<p><strong>Q:</strong> What is action sequencing?</p>
+<p><strong>A:</strong></p>
+<p>Action sequencing orders the steps that move the agent from the current state to the goal state while considering dependencies, risk, optional actions, and approval gates.</p>
+<h3 id="question-47">Question 47</h3>
+<p><strong>Q:</strong> Why is "send summary, then search bugs" a bad sequence for a bug-summary agent?</p>
+<p><strong>A:</strong></p>
+<p>It performs the external action before gathering and checking the required information. The agent should search, group, draft, request approval if needed, then send.</p>
+<h3 id="question-48">Question 48</h3>
+<p><strong>Q:</strong> What tradeoffs can planning optimization consider?</p>
+<p><strong>A:</strong></p>
+<p>Planning can consider time, cost, risk, reliability, resource use, user preference, expected reward, and probability of success.</p>
+<h3 id="question-49">Question 49</h3>
+<p><strong>Q:</strong> When is replanning needed?</p>
+<p><strong>A:</strong></p>
+<p>Replanning is needed when a tool fails, the environment changes, the user changes the goal, another agent acts, a resource is missing, or the current plan becomes unsafe or impossible.</p>
+<h3 id="question-50">Question 50</h3>
+<p><strong>Q:</strong> Compare centralized and decentralized multiagent planning.</p>
+<p><strong>A:</strong></p>
+<p>Centralized planning uses one controller to coordinate the plan, which improves oversight but can bottleneck. Decentralized planning lets agents plan locally and coordinate, which is flexible but harder to govern.</p>
+<h3 id="question-51">Question 51</h3>
+<p><strong>Q:</strong> When should an agent use direct response instead of a planning loop?</p>
+<p><strong>A:</strong></p>
+<p>Use direct response for simple, low-risk tasks such as greetings, basic Q&amp;A, short transformations, or cases where low latency matters more than deeper reasoning.</p>
+<h3 id="question-52">Question 52</h3>
+<p><strong>Q:</strong> When should an agent use plan-and-execute?</p>
+<p><strong>A:</strong></p>
+<p>Use plan-and-execute for complex, multi-phase work where the user or developer needs a visible, auditable sequence before execution.</p>
+<h3 id="question-53">Question 53</h3>
+<p><strong>Q:</strong> What is the main tradeoff of using more advanced reasoning strategies?</p>
+<p><strong>A:</strong></p>
+<p>They may improve quality, coverage, or risk control, but they usually increase token use, latency, tool calls, compute cost, and implementation complexity.</p>
+<h2 id="acting-and-observation">Acting and Observation</h2>
+<h3 id="question-54">Question 54</h3>
+<p><strong>Q:</strong> What is acting in an AI agent?</p>
+<p><strong>A:</strong></p>
+<p>Acting is the step where the agent does something beyond thinking, often by invoking a tool, querying a system, creating a file, running code, or taking another external step.</p>
+<h3 id="question-55">Question 55</h3>
+<p><strong>Q:</strong> What are the three important parts of tool invocation?</p>
+<p><strong>A:</strong></p>
+<p>Tool choice, tool input, and tool result. The agent must choose the right tool, provide exact input, and read what the tool returns.</p>
+<h3 id="question-56">Question 56</h3>
+<p><strong>Q:</strong> What is observation?</p>
+<p><strong>A:</strong></p>
+<p>Observation is reading what actually happened after an action, including returned data, errors, missing results, or changes in the environment.</p>
+<h3 id="question-57">Question 57</h3>
+<p><strong>Q:</strong> What is reflection?</p>
+<p><strong>A:</strong></p>
+<p>Reflection is deciding what an observation means for the user's goal and whether the agent should answer, ask, retry, change plan, or stop.</p>
+<h3 id="question-58">Question 58</h3>
+<p><strong>Q:</strong> Using an example, compare observation and reflection.</p>
+<p><strong>A:</strong></p>
+<p>Observation: "The forecast says heavy thunderstorms and high winds." Reflection: "A model rocket launch tomorrow is unsafe, so recommend waiting."</p>
+<h3 id="question-59">Question 59</h3>
+<p><strong>Q:</strong> Why is reflection described as a special kind of reasoning?</p>
+<p><strong>A:</strong></p>
+<p>It happens after feedback. It looks backward at the result of an action, then decides whether the plan should continue, change, ask, or stop.</p>
+<h3 id="question-60">Question 60</h3>
+<p><strong>Q:</strong> In the agent loop, what happens before an action and what happens after it?</p>
+<p><strong>A:</strong></p>
+<p>Before action: reasoning and planning. After action: observing and reflecting. Reflection feeds the next round of reasoning and planning if more work is needed.</p>
+<h3 id="question-61">Question 61</h3>
+<p><strong>Q:</strong> Why is built-in model knowledge not enough for tomorrow's weather?</p>
+<p><strong>A:</strong></p>
+<p>Weather changes constantly. The agent needs current real-world data from a weather or web search tool instead of relying on training-time knowledge.</p>
+<h3 id="question-62">Question 62</h3>
+<p><strong>Q:</strong> Why should a weather agent ask for the location if it does not know it?</p>
+<p><strong>A:</strong></p>
+<p>The forecast depends on location. Without a trusted location, the tool input would be incomplete and the answer could be wrong.</p>
+<h3 id="question-63">Question 63</h3>
+<p><strong>Q:</strong> Beyond reporting a tool's raw result, what does reflection add?</p>
+<p><strong>A:</strong></p>
+<p>Reflection connects the result to the user's real goal and turns it into a decision. For example, instead of just reporting a 90% chance of thunderstorms, it recommends waiting for a clear, calm day before a model rocket launch.</p>
+<h3 id="question-64">Question 64</h3>
+<p><strong>Q:</strong> Why should an agent verify its first answer instead of returning it immediately?</p>
+<p><strong>A:</strong></p>
+<p>A first guess can satisfy part of the problem but violate another constraint. In the bat-and-ball puzzle, the naive guess matches the total cost but breaks the rule that the bat costs exactly one dollar more than the ball; reflection catches this before the final response.</p>
+<h3 id="question-65">Question 65</h3>
+<p><strong>Q:</strong> What is an example of bad tool input?</p>
+<p><strong>A:</strong></p>
+<p>Searching for "weather tomorrow" without including the location is bad input because the tool cannot know which forecast the user needs.</p>
+<h3 id="question-66">Question 66</h3>
+<p><strong>Q:</strong> What does it mean to write observation like evidence and reflection like a decision?</p>
+<p><strong>A:</strong></p>
+<p>Observation should state the raw fact, such as "API returned 401 Unauthorized." Reflection should decide the implication, such as "Do not trust missing data; the tool failed."</p>
+<h3 id="question-67">Question 67</h3>
+<p><strong>Q:</strong> Name three common failure modes in acting and observation.</p>
+<p><strong>A:</strong></p>
+<p>Wrong tool, bad tool input, ignored result, shallow observation, no reflection, or infinite tool calls. Any three show the agent is not learning from feedback.</p>
+<h3 id="question-68">Question 68</h3>
+<p><strong>Q:</strong> After each action, what should the reflection checklist ask?</p>
+<p><strong>A:</strong></p>
+<p>After each action, the reflection checklist should ask:</p>
+<ul>
+<li>What was expected, and what actually happened?</li>
+<li>Did the tool succeed?</li>
+<li>Does the result answer the real goal?</li>
+<li>Were any constraints violated?</li>
+<li>Should the agent answer, ask, or act again?</li>
+</ul>
+<h3 id="question-69">Question 69</h3>
+<p><strong>Q:</strong> How do reasoning, planning, acting, observing, and reflecting fit together in one mental model?</p>
+<p><strong>A:</strong></p>
+<p>Reasoning understands the goal, facts, and missing information. Planning chooses the next step or tool. Acting takes the step, usually a tool call. Observing reads the exact result, error, or change. Reflecting judges whether the result helps the goal and whether to continue, revise, ask, or stop. The workflow loops:</p>
+<pre class="mermaid"><code>flowchart LR
+    G[Goal] --&gt; Re[Reason] --&gt; P[Plan] --&gt; A[Act] --&gt; O[Observe] --&gt; Rf[Reflect]
+    Rf --&gt;|need more| Re
+    Rf --&gt;|satisfied| F[Final answer]</code></pre>
+<h2 id="stopping-criteria">Stopping Criteria</h2>
+<h3 id="question-70">Question 70</h3>
+<p><strong>Q:</strong> What are stopping criteria?</p>
+<p><strong>A:</strong></p>
+<p>Stopping criteria are rules that tell an agent when work is complete, blocked, unsafe, too expensive, or no longer useful, so it should stop the loop and return an appropriate result.</p>
+<h3 id="question-71">Question 71</h3>
+<p><strong>Q:</strong> Where in the agent loop are stopping criteria checked?</p>
+<p><strong>A:</strong></p>
+<p>They are checked after the agent takes an action, observes the result, and reflects on progress.</p>
+<h3 id="question-72">Question 72</h3>
+<p><strong>Q:</strong> Why does stopping not always mean success?</p>
+<p><strong>A:</strong></p>
+<p>An agent can stop because it succeeded, needs input, needs approval, reached a limit, hit too many errors, detected no progress, or encountered an unsafe request.</p>
+<h3 id="question-73">Question 73</h3>
+<p><strong>Q:</strong> Compare a success stop and a clarification stop.</p>
+<p><strong>A:</strong></p>
+<p>A success stop means the goal is complete and the agent returns the result. A clarification stop means required input is missing, so the agent asks a specific question before continuing.</p>
+<h3 id="question-74">Question 74</h3>
+<p><strong>Q:</strong> Why are limit stops necessary but not enough by themselves?</p>
+<p><strong>A:</strong></p>
+<p>Limit stops prevent runaway execution, but they do not prove the task is complete. The agent still needs success criteria and safety/failure rules.</p>
+<h3 id="question-75">Question 75</h3>
+<p><strong>Q:</strong> What is a no-progress stop?</p>
+<p><strong>A:</strong></p>
+<p>A no-progress stop ends the loop when the agent repeats the same action, gets the same error, or completes several loops without adding useful new evidence.</p>
+<h3 id="question-76">Question 76</h3>
+<p><strong>Q:</strong> Give one safety or approval stop for an email-sending agent.</p>
+<p><strong>A:</strong></p>
+<p>Before sending, show the recipient, subject, and exact message preview, then wait for explicit approval.</p>
+<h3 id="question-77">Question 77</h3>
+<p><strong>Q:</strong> Turn "stop when done" into a more measurable rule for a coding agent.</p>
+<p><strong>A:</strong></p>
+<p>Stop when the target failing test passes, related tests pass, and the code change is limited to the root cause.</p>
+<h3 id="question-78">Question 78</h3>
+<p><strong>Q:</strong> What is the purpose of stop reason codes?</p>
+<p><strong>A:</strong></p>
+<p>Stop reason codes record why the agent stopped, such as <code>success</code>, <code>needs_input</code>, <code>needs_approval</code>, <code>max_iterations</code>, <code>tool_error_limit</code>, <code>no_progress</code>, or <code>unsafe_request</code>.</p>
+<h3 id="question-79">Question 79</h3>
+<p><strong>Q:</strong> Why should stop-related state be tracked explicitly?</p>
+<p><strong>A:</strong></p>
+<p>Explicit state lets the application decide whether to continue using counts, limits, errors, repeated actions, approval flags, and stop reason instead of relying only on the model's judgment.</p>
+<h3 id="question-80">Question 80</h3>
+<p><strong>Q:</strong> Why should safety or approval checks happen before the agent continues?</p>
+<p><strong>A:</strong></p>
+<p>Because the next action may be risky or forbidden. The agent should request approval or refuse before making destructive, private, financial, production, or high-impact changes.</p>
+<h3 id="question-81">Question 81</h3>
+<p><strong>Q:</strong> A research agent keeps collecting similar sources even after enough evidence exists. Which stop rule is weak?</p>
+<p><strong>A:</strong></p>
+<p>The source count, time limit, confidence threshold, or no-progress rule is weak. The agent needs measurable criteria for enough research.</p>
+<h3 id="question-82">Question 82</h3>
+<p><strong>Q:</strong> A support agent has no customer ID but keeps querying billing. What should it do?</p>
+<p><strong>A:</strong></p>
+<p>It should trigger a clarification stop and ask for the required customer ID instead of making incomplete or misleading tool calls.</p>
+<h3 id="question-83">Question 83</h3>
+<p><strong>Q:</strong> What is the practical rule for when an agent should stop?</p>
+<p><strong>A:</strong></p>
+<p>An agent should stop when the next loop is no longer useful, allowed, or worth the cost.</p>
+<h3 id="question-84">Question 84</h3>
+<p><strong>Q:</strong> What four questions do good stopping criteria answer?</p>
+<p><strong>A:</strong></p>
+<p>They answer: What proves success? What are the time, money, token, and tool limits? When should the agent stop trying? Which actions require approval, refusal, or handoff?</p>
+<h3 id="question-85">Question 85</h3>
+<p><strong>Q:</strong> Why should an unsafe action request be checked before iteration limits?</p>
+<p><strong>A:</strong></p>
+<p>Safety must interrupt the loop immediately. The agent should not continue toward an unsafe action just because it still has remaining iterations.</p>
+<h2 id="tools-overview">Tools Overview</h2>
+<h3 id="question-86">Question 86</h3>
+<p><strong>Q:</strong> What are tools in AI agent systems?</p>
+<p><strong>A:</strong></p>
+<p>Tools are external capabilities that let agents interact with the world beyond the language model, such as searching, reading files, querying databases, running code, sending messages, or updating systems.</p>
+<h3 id="question-87">Question 87</h3>
+<p><strong>Q:</strong> What are the four core agent primitives?</p>
+<p><strong>A:</strong></p>
+<div class="highlight"><pre><span></span><code>Agent
+├── Model
+├── Tools
+├── Memory
+└── Instructions
+</code></pre></div>
+<p>The model reasons, tools provide capabilities, memory stores information, and instructions define behavior.</p>
+<h3 id="question-88">Question 88</h3>
+<p><strong>Q:</strong> Why does a model need tools to answer "What is the current weather in Tokyo?"</p>
+<p><strong>A:</strong></p>
+<p>The question requires current external data. Without a weather or web tool, the model would need to guess, refuse, or provide stale information.</p>
+<h3 id="question-89">Question 89</h3>
+<p><strong>Q:</strong> Compare the flow without tools and with tools.</p>
+<p><strong>A:</strong></p>
+<p>Without tools: <code>Input -&gt; Model -&gt; Output</code>. With tools: <code>Input -&gt; Model -&gt; Tool -&gt; Environment -&gt; Tool Result -&gt; Model -&gt; Output</code>.</p>
+<h3 id="question-90">Question 90</h3>
+<p><strong>Q:</strong> What are perception tools?</p>
+<p><strong>A:</strong></p>
+<p>Perception tools gather information from the environment, such as web search, database query, file reader, API request, or document retrieval.</p>
+<h3 id="question-91">Question 91</h3>
+<p><strong>Q:</strong> What are action tools?</p>
+<p><strong>A:</strong></p>
+<p>Action tools modify the environment, such as email senders, GitHub integrations, database writers, deployment systems, or browser automation.</p>
+<h3 id="question-92">Question 92</h3>
+<p><strong>Q:</strong> What is the tool lifecycle?</p>
+<p><strong>A:</strong></p>
+<pre class="mermaid"><code>flowchart LR
+    A[Tool Registration] --&gt; B[Tool Selection] --&gt; C[Argument Generation] --&gt; D[Tool Execution] --&gt; E[Observation] --&gt; F[Response Generation]</code></pre>
+<h3 id="question-93">Question 93</h3>
+<p><strong>Q:</strong> What is the difference between a tool and an agent?</p>
+<p><strong>A:</strong></p>
+<p>A tool is a capability, such as a calculator or search engine. An agent is the system that uses tools together with a model, memory, and instructions to pursue a goal.</p>
+<h3 id="question-94">Question 94</h3>
+<p><strong>Q:</strong> Name three risks of tool use.</p>
+<p><strong>A:</strong></p>
+<p>Tool failures, incorrect tool selection, latency, cost, security risk, permission misuse, unreliable outputs, or unexpected data.</p>
+<h3 id="question-95">Question 95</h3>
+<p><strong>Q:</strong> Why do standards such as Function Calling and MCP matter for tool ecosystems?</p>
+<p><strong>A:</strong></p>
+<p>They make it easier for models, frameworks, and tools to communicate consistently, reducing the burden of custom integrations for every tool.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.path", "toc.follow", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid-init.js?v=1"></script>
+      
+        <script src="../../../javascripts/diagram-viewer.js?v=5"></script>
+      
+    
+  </body>
+</html>

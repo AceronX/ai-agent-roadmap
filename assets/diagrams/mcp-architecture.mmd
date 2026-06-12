@@ -1,0 +1,11 @@
+flowchart TB
+    host["MCP Host"]
+    client["MCP Client"]
+    fileServer["Filesystem MCP Server"]
+    databaseServer["Database MCP Server"]
+    customServer["Custom Tool MCP Server"]
+
+    host --> client
+    client --> fileServer
+    client --> databaseServer
+    client --> customServer

@@ -1,0 +1,11 @@
+flowchart TB
+    client["Client App"] --> api["Agent API"]
+    api --> queue["Job Queue"]
+    queue --> runtime["Agent Runtime"]
+    runtime --> llmProvider["LLM Provider"]
+    runtime --> toolLayer["Tool Layer or MCP"]
+    runtime --> memoryStore["Memory Store"]
+    runtime --> evalSuite["Evaluation Suite"]
+    runtime --> tracing["Tracing and Logs"]
+    tracing --> monitoring["Monitoring and Alerts"]
+    monitoring --> operators["Operators"]

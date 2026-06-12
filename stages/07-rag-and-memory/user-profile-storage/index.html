@@ -1,0 +1,5789 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical AI agent learning path and knowledge database for developers.">
+      
+      
+      
+        <link rel="canonical" href="https://AceronX.github.io/ai-agent-roadmap/stages/07-rag-and-memory/user-profile-storage/">
+      
+      
+        <link rel="prev" href="../episodic-and-semantic-memory/">
+      
+      
+        <link rel="next" href="../summarization-compression-forgetting/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>User Profile Storage - AI Agent Roadmap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css?v=15">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#goal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AI Agent Roadmap" class="md-header__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Agent Roadmap
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Profile Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Stages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI Agent Roadmap" class="md-nav__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    AI Agent Roadmap
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Stages
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Stages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap-sh-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap.sh Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-orientation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    00 Orientation
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            00 Orientation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-orientation/what-are-ai-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What Are AI Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-prerequisites/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    01 Prerequisites
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            01 Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/backend-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backend Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/git-and-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git and Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-llm-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    02 LLM Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            02 LLM Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/transformer-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokenization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/context-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/model-families/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Families and Licenses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/generation-controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generation Controls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/pricing-and-latency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pricing and Latency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/embeddings-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/rag-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-prompt-engineering/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    03 Prompt Engineering
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 Prompt Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/writing-good-prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Writing Good Prompts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/structured-outputs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structured Outputs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-agent-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    04 Agent Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 Agent Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/agent-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/react-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/reasoning-and-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasoning and Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/acting-and-observation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acting and Observation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/stopping-criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stopping Criteria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/tools-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-tools-and-actions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    05 Tools and Actions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 Tools and Actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Definition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/common-agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Common Agent Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/boundaries-and-destructive-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Boundaries and Destructive Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    06 MCP
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 MCP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-hosts-clients-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Hosts, Clients, Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/building-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building MCP Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/local-vs-remote-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Remote MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/tool-and-resource-exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool and Resource Exposure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/security-boundaries-conn-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Boundaries for MCP-Connected Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    07 RAG and Memory
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 RAG and Memory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embeddings-and-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-databases-sql-custom-stores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vector Databases, SQL, and Custom Stores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../short-term-and-long-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Short-Term and Long-Term Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../episodic-and-semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic and Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    User Profile Storage
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Profile Storage
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before You Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before You Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-words-in-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Words In Plain English
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understand-user-profile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: Understand User Profile Storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understand User Profile Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-profile-storage-fits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Profile Storage Fits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-memory-vs-other-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Memory vs Other Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Should Be Stored?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-not-be-stored-casually" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Should Not Be Stored Casually?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-not-just-use-chat-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Not Just Use Chat History?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-design-a-profile-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Design A Profile Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: Design A Profile Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-profile-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Profile Schema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-profile-fact-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better Profile Fact Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-field-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Field Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-storage-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Storage Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-retrieve-and-use-profile-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Retrieve And Use Profile Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Retrieve And Use Profile Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profile-retrieval-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Retrieval Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-vs-irrelevant-profile-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relevant vs Irrelevant Profile Facts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-write-and-update-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read, Write, And Update Decisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Update Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-protect-update-and-forget-profile-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Protect, Update, And Forget Profile Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: Protect, Update, And Forget Profile Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consent-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consent Levels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy-and-security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy And Security Controls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-memory-decision-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Safe Memory Decision Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Mistakes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weak-vs-strong-profile-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weak vs Strong Profile Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-log-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit Log Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini Project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exit Criteria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summarization-compression-forgetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summarization, Compression, and Forgetting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../additional-explaination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additional Explanation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-agent-architectures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    08 Agent Architectures
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Agent Architectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/react-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/rag-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/routing-and-prompt-chaining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Routing and Prompt Chaining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/planner-executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planner-Executor Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/evaluator-optimizer-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluator-Optimizer Loops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/dag-agent-tree-of-throght-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAG Agents and Tree-of-Thought Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/simple-workfolw-better-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    When a Simpler Workflow Is Better Than an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-building-agents/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    09 Building Agents
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 Building Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-loop-from-scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building an Agent Loop From Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/direct-llm-api-calls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Direct LLM API Calls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/parsing-model-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parsing Model Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/error-and-rate-limit-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error and Rate-Limit Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/provider-native-function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provider-Native Function Calling and Tool Use
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Frameworks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/choosing-a-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Choosing a Framework Without Losing Debuggability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-multi-agent-systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    10 Multi-Agent Systems
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Multi-Agent Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/supervisor-worker-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor-Worker Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/handoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handoffs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/agents-as-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agents As Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/shared-state-vs-message-passing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared State vs Message Passing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/a2a-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/coordination-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coordination Failure Modes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/when-one-agent-is-enough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How To Tell When One Agent Is Enough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-evaluation-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    11 Evaluation and Observability
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            11 Evaluation and Observability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/agent-quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Quality Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tool-unit-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Unit Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/flow-integration-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flow Integration Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/prompt-regression-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Regression Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/rag-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tracing-and-structured-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing and Structured Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/human-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/evaluation-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluation and Observability Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-security-ethics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    12 Security and Ethics
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            12 Security and Ethics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/prompt-injection-and-jailbreaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Injection and Jailbreaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/insecure-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insecure Output Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Excessive Agency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/tool-sandboxing-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Sandboxing and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/data-privacy-and-pii-redaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Privacy and PII Redaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/bias-toxicity-and-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bias, Toxicity, and Guardrails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/safety-and-red-team-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Safety and Red-Team Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/owasp-llm-top-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OWASP LLM Top 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-production-deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    13 Production Deployment
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            13 Production Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/production-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/background-jobs-and-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Jobs and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/monitoring-and-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring and Alerts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/cost-control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cost Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/rollbacks-and-incident-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rollbacks and Incident Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before You Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before You Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-words-in-plain-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Words In Plain English
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning Path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understand-user-profile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: Understand User Profile Storage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understand User Profile Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-profile-storage-fits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where Profile Storage Fits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-memory-vs-other-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Memory vs Other Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Should Be Stored?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-not-be-stored-casually" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Should Not Be Stored Casually?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-not-just-use-chat-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Not Just Use Chat History?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-design-a-profile-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Design A Profile Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: Design A Profile Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-profile-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Profile Schema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-profile-fact-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Better Profile Fact Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-field-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Field Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-storage-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Storage Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-retrieve-and-use-profile-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Retrieve And Use Profile Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Retrieve And Use Profile Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profile-retrieval-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Retrieval Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-vs-irrelevant-profile-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relevant vs Irrelevant Profile Facts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-write-and-update-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read, Write, And Update Decisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile Update Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-protect-update-and-forget-profile-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Protect, Update, And Forget Profile Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: Protect, Update, And Forget Profile Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consent-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consent Levels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privacy-and-security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privacy And Security Controls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-memory-decision-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Safe Memory Decision Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Mistakes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weak-vs-strong-profile-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weak vs Strong Profile Memory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-log-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit Log Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini Project
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exit Criteria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="user-profile-storage">User Profile Storage</h1>
+<div class="topic-page">
+<section class="topic-hero">
+  <span class="topic-hero__eyebrow">Stage 07 - RAG and Memory</span>
+  <p class="topic-hero__lead">User profile storage is the memory layer that lets an AI agent remember stable, useful facts about a user, such as preferences, settings, goals, and constraints. Good profile storage makes agents more helpful without stuffing every conversation into the prompt or remembering private data carelessly.</p>
+<div class="topic-hero__facts">
+    <span>User facts</span>
+    <span>Preferences</span>
+    <span>Consent</span>
+    <span>Retrieval</span>
+    <span>Forgetting</span>
+  </div>
+</section>
+<h2 id="goal">Goal</h2>
+<p>Understand how to store, retrieve, update, and protect user profile data for AI agents.</p>
+<p>After this lesson, you should be able to explain:</p>
+<ul>
+<li>what user profile storage is,</li>
+<li>why agents need profile memory,</li>
+<li>what information should and should not be stored,</li>
+<li>how profile storage differs from chat history and RAG documents,</li>
+<li>how to design a simple profile schema,</li>
+<li>how to retrieve only relevant profile facts,</li>
+<li>how to handle consent, privacy, updates, deletion, and audit logs.</li>
+</ul>
+<h2 id="before-you-start">Before You Start</h2>
+<p>Start with one simple idea:</p>
+<div class="highlight"><pre><span></span><code>User profile storage is not &quot;remember everything.&quot;
+It is &quot;remember selected useful facts safely.&quot;
+</code></pre></div>
+<p>Beginner example:</p>
+<div class="highlight"><pre><span></span><code>Useful profile memory:
+  &quot;User prefers concise answers.&quot;
+  &quot;User works mainly with Python.&quot;
+  &quot;User&#39;s timezone is Europe/Berlin.&quot;
+
+Bad profile memory:
+  Store every message forever.
+  Store passwords or secret keys.
+  Store sensitive personal data without consent.
+</code></pre></div>
+<p>The goal is to make the agent helpful, not invasive.</p>
+<h3 id="key-words-in-plain-english">Key Words In Plain English</h3>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Simple Meaning</th>
+<th>Beginner Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User profile</td>
+<td>Stored facts about one user</td>
+<td>timezone, language, preferences</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Information saved across interactions</td>
+<td>"User prefers tables"</td>
+</tr>
+<tr>
+<td>Preference</td>
+<td>How the user likes things done</td>
+<td>short answers, Python examples</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>A rule the agent should respect</td>
+<td>no cloud tools, budget under $50</td>
+</tr>
+<tr>
+<td>Consent</td>
+<td>User permission to store or use data</td>
+<td>"Remember this preference"</td>
+</tr>
+<tr>
+<td>Profile schema</td>
+<td>The structure of saved profile data</td>
+<td>fields like <code>timezone</code>, <code>language</code>, <code>topics</code></td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>Loading relevant facts when needed</td>
+<td>get timezone for scheduling</td>
+</tr>
+<tr>
+<td>Forgetting</td>
+<td>Removing or expiring stored facts</td>
+<td>delete old temporary preference</td>
+</tr>
+</tbody>
+</table>
+<h2 id="learning-path">Learning Path</h2>
+<p>This topic is designed in four parts. Read them in order.</p>
+<div class="learning-grid learning-grid--path">
+  <a class="learning-card" href="#part-1-understand-user-profile-storage">
+    <strong>Part 1 - Understand User Profile Storage</strong>
+    <span>Learn what profile memory is and why agents should not remember everything.</span>
+  </a>
+  <a class="learning-card" href="#part-2-design-a-profile-schema">
+    <strong>Part 2 - Design A Profile Schema</strong>
+    <span>Choose fields, confidence, source, update rules, and privacy level.</span>
+  </a>
+  <a class="learning-card" href="#part-3-retrieve-and-use-profile-data">
+    <strong>Part 3 - Retrieve And Use Profile Data</strong>
+    <span>Load only relevant facts into the prompt and keep user control visible.</span>
+  </a>
+  <a class="learning-card" href="#part-4-protect-update-and-forget-profile-data">
+    <strong>Part 4 - Protect, Update, And Forget Profile Data</strong>
+    <span>Handle consent, sensitive data, conflicts, deletion, and audits.</span>
+  </a>
+</div>
+<h2 id="part-1-understand-user-profile-storage">Part 1: Understand User Profile Storage</h2>
+<p>An AI agent often needs context about the user to be useful. If the user repeatedly says "use Python examples" or "keep answers short," the agent should not need to relearn that every time.</p>
+<p>User profile storage solves this by saving selected stable facts.</p>
+<p>Simple definition:</p>
+<div class="highlight"><pre><span></span><code>User profile storage is a structured memory store
+for useful facts about a user that may help future agent interactions.
+</code></pre></div>
+<h3 id="where-profile-storage-fits">Where Profile Storage Fits</h3>
+<pre class="mermaid"><code>flowchart LR
+    U[User] --&gt; A[Agent app]
+    A --&gt; M[Model]
+    A --&gt; P[User profile store]
+    A --&gt; R[RAG knowledge store]
+    A --&gt; H[Conversation history]
+
+    P --&gt; A
+    R --&gt; A
+    H --&gt; A</code></pre>
+<p><strong>How to read this diagram:</strong> user profile storage is different from RAG documents and chat history. The agent can use all three, but each one has a different purpose.</p>
+<h3 id="profile-memory-vs-other-memory">Profile Memory vs Other Memory</h3>
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th>What It Stores</th>
+<th>Example</th>
+<th>Main Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User profile</td>
+<td>Stable facts about the user</td>
+<td>timezone, role, preferences</td>
+<td>Personalization</td>
+</tr>
+<tr>
+<td>Conversation history</td>
+<td>Recent messages</td>
+<td>last 10 chat turns</td>
+<td>Short-term context</td>
+</tr>
+<tr>
+<td>RAG knowledge base</td>
+<td>External documents</td>
+<td>docs, policies, manuals</td>
+<td>Factual grounding</td>
+</tr>
+<tr>
+<td>Task state</td>
+<td>Current workflow progress</td>
+<td>step 3 of 5 completed</td>
+<td>Agent execution</td>
+</tr>
+<tr>
+<td>Episodic memory</td>
+<td>Past events or interactions</td>
+<td>user solved issue X last week</td>
+<td>Remembering experiences</td>
+</tr>
+<tr>
+<td>Semantic memory</td>
+<td>General learned facts</td>
+<td>user knows JavaScript</td>
+<td>Long-term user understanding</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-should-be-stored">What Should Be Stored?</h3>
+<p>Store facts that are useful, stable, and appropriate.</p>
+<table>
+<thead>
+<tr>
+<th>Good To Store</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preferred language</td>
+<td>Improves communication</td>
+</tr>
+<tr>
+<td>Timezone</td>
+<td>Helps scheduling and date interpretation</td>
+</tr>
+<tr>
+<td>Preferred answer style</td>
+<td>Makes responses easier to use</td>
+</tr>
+<tr>
+<td>Technical skill level</td>
+<td>Helps choose explanation depth</td>
+</tr>
+<tr>
+<td>Favorite programming language</td>
+<td>Improves examples</td>
+</tr>
+<tr>
+<td>Product settings</td>
+<td>Avoids repeated setup</td>
+</tr>
+<tr>
+<td>Accessibility preferences</td>
+<td>Improves usability</td>
+</tr>
+<tr>
+<td>Long-term project context</td>
+<td>Helps continuity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-should-not-be-stored-casually">What Should Not Be Stored Casually?</h3>
+<table>
+<thead>
+<tr>
+<th>Avoid Or Treat Carefully</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Passwords and API keys</td>
+<td>Secrets should use secure vaults, not profile memory</td>
+</tr>
+<tr>
+<td>Payment details</td>
+<td>High-risk sensitive data</td>
+</tr>
+<tr>
+<td>Medical, legal, or financial details</td>
+<td>Sensitive and regulated in many contexts</td>
+</tr>
+<tr>
+<td>Exact location history</td>
+<td>Privacy risk</td>
+</tr>
+<tr>
+<td>Private messages from other people</td>
+<td>Consent and privacy risk</td>
+</tr>
+<tr>
+<td>Inferred sensitive traits</td>
+<td>Can be inaccurate and harmful</td>
+</tr>
+<tr>
+<td>Temporary moods or guesses</td>
+<td>May become stale or wrong</td>
+</tr>
+</tbody>
+</table>
+<p>Beginner rule:</p>
+<div class="highlight"><pre><span></span><code>Store preferences and stable facts.
+Do not store secrets or sensitive data unless there is a clear need, consent, and protection.
+</code></pre></div>
+<h3 id="why-not-just-use-chat-history">Why Not Just Use Chat History?</h3>
+<p>Chat history is noisy. It may contain old, temporary, or irrelevant information.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Message from last week:
+  &quot;Today I need a very detailed answer.&quot;
+
+Stable profile preference:
+  &quot;Usually prefers concise answers.&quot;
+</code></pre></div>
+<p>If the agent blindly stores every message, it may confuse temporary requests with long-term preferences.</p>
+<h2 id="part-2-design-a-profile-schema">Part 2: Design A Profile Schema</h2>
+<p>A profile schema defines the shape of stored user facts.</p>
+<p>Simple definition:</p>
+<div class="highlight"><pre><span></span><code>A profile schema says what fields exist,
+what type each field has,
+where the data came from,
+and how it should be updated or deleted.
+</code></pre></div>
+<h3 id="basic-profile-schema">Basic Profile Schema</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timezone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Europe/Berlin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;preferred_language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;English&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;answer_style&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skill_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;beginner&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;favorite_programming_languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;JavaScript&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-08T10:30:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This simple version is useful, but production systems usually need more metadata.</p>
+<h3 id="better-profile-fact-structure">Better Profile Fact Structure</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;fact_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fact_456&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;answer_style&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_explicit&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;privacy_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-08T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-08T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expires_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Metadata matters because profile facts can become wrong, sensitive, or stale.</p>
+<h3 id="profile-field-design">Profile Field Design</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>Which user owns the fact</td>
+<td><code>user_123</code></td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>Type of profile fact</td>
+<td><code>timezone</code></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>Stored value</td>
+<td><code>Europe/Berlin</code></td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Where the fact came from</td>
+<td><code>user_explicit</code>, <code>inferred</code>, <code>imported</code></td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>How sure the system is</td>
+<td><code>1.0</code> for explicit user statement</td>
+</tr>
+<tr>
+<td><code>privacy_level</code></td>
+<td>Sensitivity category</td>
+<td><code>normal</code>, <code>sensitive</code>, <code>secret</code></td>
+</tr>
+<tr>
+<td><code>expires_at</code></td>
+<td>When the fact should expire</td>
+<td>temporary project preference</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>Last update time</td>
+<td>timestamp</td>
+</tr>
+</tbody>
+</table>
+<h3 id="source-types">Source Types</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Meaning</th>
+<th>Trust Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_explicit</code></td>
+<td>User clearly asked to remember it</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td><code>user_profile_import</code></td>
+<td>Imported from account settings</td>
+<td>High if source is trusted</td>
+</tr>
+<tr>
+<td><code>agent_observed</code></td>
+<td>Agent observed behavior</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><code>inferred</code></td>
+<td>Agent guessed from behavior</td>
+<td>Low; should be used carefully</td>
+</tr>
+<tr>
+<td><code>admin_set</code></td>
+<td>Organization or app configured it</td>
+<td>Depends on policy</td>
+</tr>
+</tbody>
+</table>
+<p>Avoid treating guesses as facts.</p>
+<div class="highlight"><pre><span></span><code>Good:
+  &quot;User explicitly said: remember that I prefer Python examples.&quot;
+
+Risky:
+  &quot;User asked one Python question, so they must be a Python developer forever.&quot;
+</code></pre></div>
+<h3 id="profile-storage-options">Profile Storage Options</h3>
+<table>
+<thead>
+<tr>
+<th>Storage Backend</th>
+<th>Good For</th>
+<th>Not Good For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relational database</td>
+<td>Structured profile fields, user settings, audit queries</td>
+<td>Fuzzy semantic search by meaning</td>
+</tr>
+<tr>
+<td>Document database</td>
+<td>Flexible JSON profiles</td>
+<td>Strict relational constraints</td>
+</tr>
+<tr>
+<td>Key-value store</td>
+<td>Simple preferences and fast reads</td>
+<td>Complex queries</td>
+</tr>
+<tr>
+<td>Vector database</td>
+<td>Similarity search over memories</td>
+<td>Exact settings like timezone</td>
+</tr>
+<tr>
+<td>Hybrid store</td>
+<td>Combining exact profile fields and semantic memories</td>
+<td>More system complexity</td>
+</tr>
+</tbody>
+</table>
+<p>Beginner recommendation:</p>
+<div class="highlight"><pre><span></span><code>Use a normal database for profile fields.
+Use vector search only for semantic memories that need meaning-based retrieval.
+</code></pre></div>
+<h2 id="part-3-retrieve-and-use-profile-data">Part 3: Retrieve And Use Profile Data</h2>
+<p>The agent should not load the entire profile into every prompt.</p>
+<p>It should retrieve the facts that are relevant to the current task.</p>
+<h3 id="profile-retrieval-flow">Profile Retrieval Flow</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[User request] --&gt; B[Identify needed profile facts]
+    B --&gt; C[Query profile store]
+    C --&gt; D[Filter by consent and privacy rules]
+    D --&gt; E[Add relevant facts to prompt]
+    E --&gt; F[Model responds or acts]
+    F --&gt; G[Optionally update profile]</code></pre>
+<p><strong>How to read this diagram:</strong> the profile store is not dumped into the model. The app selects only relevant facts, checks privacy rules, and then uses them for the current answer.</p>
+<h3 id="relevant-vs-irrelevant-profile-facts">Relevant vs Irrelevant Profile Facts</h3>
+<p>User asks:</p>
+<div class="highlight"><pre><span></span><code>Can you schedule a meeting with Mina tomorrow afternoon?
+</code></pre></div>
+<p>Relevant facts:</p>
+<table>
+<thead>
+<tr>
+<th>Profile Fact</th>
+<th>Why It Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User timezone</td>
+<td>Interprets "tomorrow afternoon"</td>
+</tr>
+<tr>
+<td>Working hours</td>
+<td>Avoids bad meeting times</td>
+</tr>
+<tr>
+<td>Calendar preferences</td>
+<td>Chooses default duration</td>
+</tr>
+<tr>
+<td>Preferred meeting platform</td>
+<td>Adds Zoom, Meet, or Teams</td>
+</tr>
+</tbody>
+</table>
+<p>Irrelevant facts:</p>
+<table>
+<thead>
+<tr>
+<th>Profile Fact</th>
+<th>Why It Should Stay Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Favorite programming language</td>
+<td>Not needed</td>
+</tr>
+<tr>
+<td>Preferred answer style</td>
+<td>Maybe useful for response, not scheduling</td>
+</tr>
+<tr>
+<td>Past vacation plans</td>
+<td>Not relevant</td>
+</tr>
+<tr>
+<td>Old project notes</td>
+<td>Not relevant</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prompt-example">Prompt Example</h3>
+<p>Weak prompt:</p>
+<div class="highlight"><pre><span></span><code>Here is the user&#39;s full profile:
+&lt;all profile data&gt;
+
+Schedule the meeting.
+</code></pre></div>
+<p>Better prompt:</p>
+<div class="highlight"><pre><span></span><code>User request:
+Schedule a meeting with Mina tomorrow afternoon.
+
+Relevant user profile:
+- Timezone: Europe/Berlin
+- Working hours: 09:00-17:00
+- Default meeting length: 30 minutes
+- Preferred meeting platform: Google Meet
+
+Task:
+Suggest a meeting time and ask for confirmation before creating the event.
+</code></pre></div>
+<p>This is cheaper, safer, and easier for the model to use.</p>
+<h3 id="read-write-and-update-decisions">Read, Write, And Update Decisions</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Agent Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User says "remember this"</td>
+<td>Store after confirming if needed</td>
+</tr>
+<tr>
+<td>User states temporary context</td>
+<td>Use for current conversation, maybe do not store</td>
+</tr>
+<tr>
+<td>User changes preference</td>
+<td>Update old fact and record new timestamp</td>
+</tr>
+<tr>
+<td>User contradicts profile</td>
+<td>Ask or prefer explicit latest statement</td>
+</tr>
+<tr>
+<td>User asks "what do you remember?"</td>
+<td>Show stored profile facts</td>
+</tr>
+<tr>
+<td>User asks to delete memory</td>
+<td>Delete or mark inactive</td>
+</tr>
+</tbody>
+</table>
+<h3 id="profile-update-flow">Profile Update Flow</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant U as User
+    participant A as Agent App
+    participant P as Profile Store
+    participant M as Model
+
+    U-&gt;&gt;A: Please remember I prefer short answers.
+    A-&gt;&gt;P: Save answer_style = concise
+    P--&gt;&gt;A: Saved
+    A-&gt;&gt;M: Generate confirmation
+    M--&gt;&gt;A: I will keep future answers concise.
+    A--&gt;&gt;U: Confirmation</code></pre>
+<p>For sensitive or inferred information, use a stronger confirmation flow.</p>
+<h2 id="part-4-protect-update-and-forget-profile-data">Part 4: Protect, Update, And Forget Profile Data</h2>
+<p>Profile memory can improve personalization, but it also creates responsibility.</p>
+<h3 id="consent-levels">Consent Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Consent Level</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No storage</td>
+<td>Do not save beyond current session</td>
+<td>guest mode</td>
+</tr>
+<tr>
+<td>Explicit memory</td>
+<td>Store only when user says to remember</td>
+<td>"Remember I prefer Python"</td>
+</tr>
+<tr>
+<td>App settings</td>
+<td>Store account preferences from settings</td>
+<td>language, timezone</td>
+</tr>
+<tr>
+<td>Inferred memory</td>
+<td>Agent suggests a possible memory</td>
+<td>"Should I remember you prefer short answers?"</td>
+</tr>
+<tr>
+<td>Organization-managed</td>
+<td>Company policy sets defaults</td>
+<td>enterprise workspace settings</td>
+</tr>
+</tbody>
+</table>
+<p>Beginner rule:</p>
+<div class="highlight"><pre><span></span><code>Explicit user memory is safer than hidden inferred memory.
+</code></pre></div>
+<h3 id="privacy-and-security-controls">Privacy And Security Controls</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User access</td>
+<td>Users should know what is stored</td>
+</tr>
+<tr>
+<td>Edit and delete</td>
+<td>Users should correct or remove memories</td>
+</tr>
+<tr>
+<td>Consent checks</td>
+<td>Sensitive facts need permission</td>
+</tr>
+<tr>
+<td>Data minimization</td>
+<td>Store only what is useful</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>Protect stored profile data</td>
+</tr>
+<tr>
+<td>Access control</td>
+<td>Prevent one user seeing another user's profile</td>
+</tr>
+<tr>
+<td>Audit logs</td>
+<td>Track profile reads, writes, updates, and deletes</td>
+</tr>
+<tr>
+<td>Expiration</td>
+<td>Remove stale temporary facts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="safe-memory-decision-chart">Safe Memory Decision Chart</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[Candidate profile fact] --&gt; B{Useful for future tasks?}
+    B --&gt;|No| X[Do not store]
+    B --&gt;|Yes| C{Sensitive or secret?}
+    C --&gt;|Secret| Y[Do not store in profile&lt;br/&gt;use secure vault if needed]
+    C --&gt;|Sensitive| D{Explicit consent?}
+    D --&gt;|No| Z[Ask user or do not store]
+    D --&gt;|Yes| E[Store with privacy label]
+    C --&gt;|Normal| F{Explicit or high confidence?}
+    F --&gt;|No| G[Ask before remembering]
+    F --&gt;|Yes| H[Store with source and timestamp]</code></pre>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why It Is Bad</th>
+<th>Better Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Store every conversation</td>
+<td>Expensive, noisy, privacy risk</td>
+<td>Store selected structured facts</td>
+</tr>
+<tr>
+<td>Store secrets in profile</td>
+<td>High security risk</td>
+<td>Use secret manager or vault</td>
+</tr>
+<tr>
+<td>Never expire facts</td>
+<td>Profile becomes stale</td>
+<td>Use timestamps and expiration</td>
+</tr>
+<tr>
+<td>Hide memory from user</td>
+<td>Reduces trust</td>
+<td>Provide "what do you remember?" view</td>
+</tr>
+<tr>
+<td>Treat inferred facts as certain</td>
+<td>Can personalize incorrectly</td>
+<td>Track source and confidence</td>
+</tr>
+<tr>
+<td>Load full profile every time</td>
+<td>More cost and privacy exposure</td>
+<td>Retrieve only relevant fields</td>
+</tr>
+<tr>
+<td>No delete path</td>
+<td>Bad privacy and user control</td>
+<td>Support delete and correction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="weak-vs-strong-profile-memory">Weak vs Strong Profile Memory</h3>
+<div class="prompt-compare">
+<section>
+    <span class="prompt-compare__label prompt-compare__label--bad">Weak</span>
+    <pre><code>Save everything the user says.
+Put the whole profile into every prompt.
+Let the model decide what is sensitive.
+Never delete memories unless the database is reset.</code></pre>
+    <p>This creates privacy risk, stale memories, higher cost, and poor user control.</p>
+  </section>
+<section>
+    <span class="prompt-compare__label prompt-compare__label--good">Strong</span>
+    <pre><code>Save only useful, stable profile facts.
+Track source, confidence, privacy level, and timestamp.
+Retrieve only facts relevant to the current task.
+Let users view, edit, and delete stored memories.</code></pre>
+    <p>This keeps personalization useful while limiting risk and prompt bloat.</p>
+  </section>
+</div>
+<h3 id="audit-log-example">Audit Log Example</h3>
+<p>For production systems, log profile memory changes.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-08T11:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;profile_fact_updated&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;answer_style&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user_explicit&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;old_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;detailed&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;new_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;concise&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;actor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;req_789&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Do not log secrets or unnecessary sensitive values.</p>
+<h2 id="summary">Summary</h2>
+<p>User profile storage helps agents remember useful facts across conversations.</p>
+<p>Core rules:</p>
+<div class="highlight"><pre><span></span><code>1. Store selected facts, not everything.
+2. Prefer explicit user-provided memories.
+3. Use a profile schema with source, confidence, timestamp, and privacy level.
+4. Retrieve only relevant facts for the current task.
+5. Give users visibility, correction, and deletion controls.
+6. Do not store secrets in profile memory.
+</code></pre></div>
+<p>Beginner shortcut:</p>
+<div class="highlight"><pre><span></span><code>Profile memory = stable user facts.
+Chat history = recent conversation.
+RAG = external knowledge documents.
+Task state = what the agent is doing now.
+</code></pre></div>
+<h2 id="practice">Practice</h2>
+<p>Design a user profile for this agent:</p>
+<div class="highlight"><pre><span></span><code>Agent:
+  Learning assistant for software developers
+
+Goal:
+  Personalize explanations and practice tasks.
+</code></pre></div>
+<p>Fill this table:</p>
+<table>
+<thead>
+<tr>
+<th>Profile Field</th>
+<th>Example Value</th>
+<th>Source</th>
+<th>Privacy Level</th>
+<th>When To Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skill_level</code></td>
+<td>beginner</td>
+<td>user_explicit</td>
+<td>normal</td>
+<td>explanation depth</td>
+</tr>
+<tr>
+<td><code>preferred_language</code></td>
+<td>English</td>
+<td>account_setting</td>
+<td>normal</td>
+<td>response language</td>
+</tr>
+<tr>
+<td><code>favorite_stack</code></td>
+<td>Python, FastAPI</td>
+<td>user_explicit</td>
+<td>normal</td>
+<td>examples</td>
+</tr>
+<tr>
+<td><code>answer_style</code></td>
+<td>step-by-step</td>
+<td>user_explicit</td>
+<td>normal</td>
+<td>formatting</td>
+</tr>
+<tr>
+<td><code>timezone</code></td>
+<td>Europe/Berlin</td>
+<td>account_setting</td>
+<td>normal</td>
+<td>scheduling</td>
+</tr>
+</tbody>
+</table>
+<p>Then answer:</p>
+<ol>
+<li>Which fields need explicit consent?</li>
+<li>Which fields should expire?</li>
+<li>Which fields should never be stored?</li>
+<li>Which fields are needed for a coding question?</li>
+<li>Which fields are needed for scheduling?</li>
+</ol>
+<h2 id="mini-project">Mini Project</h2>
+<p>Build a simple profile-memory prototype.</p>
+<p>It should support:</p>
+<ul>
+<li>create profile fact,</li>
+<li>read relevant profile facts,</li>
+<li>update profile fact,</li>
+<li>delete profile fact,</li>
+<li>show all remembered facts to the user,</li>
+<li>mark facts with source and confidence,</li>
+<li>mark facts with privacy level,</li>
+<li>retrieve only relevant facts for a task.</li>
+</ul>
+<p>Suggested data model:</p>
+<div class="highlight"><pre><span></span><code><span class="n">profile_fact</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;fact_id&quot;</span><span class="p">:</span> <span class="s2">&quot;fact_001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;answer_style&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;concise&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;user_explicit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;privacy_level&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-06-08T11:00:00Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;updated_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-06-08T11:00:00Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;expires_at&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Test cases:</p>
+<ol>
+<li>User says, "Remember that I prefer short answers."</li>
+<li>User asks, "What do you remember about me?"</li>
+<li>User says, "Actually, give detailed answers for coding questions."</li>
+<li>User asks a scheduling question.</li>
+<li>User asks to delete a remembered preference.</li>
+</ol>
+<h2 id="exit-criteria">Exit Criteria</h2>
+<p>You are ready to move on when you can:</p>
+<ul>
+<li>explain user profile storage in plain English,</li>
+<li>distinguish profile memory from chat history, task state, and RAG,</li>
+<li>list safe and unsafe profile facts,</li>
+<li>design a simple profile schema,</li>
+<li>explain why source, confidence, privacy level, and timestamps matter,</li>
+<li>retrieve only relevant profile facts for a task,</li>
+<li>handle explicit memory updates,</li>
+<li>explain consent, deletion, expiration, and audit logs,</li>
+<li>avoid storing secrets or sensitive data casually.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="../../02-llm-fundamentals/rag-basics/">RAG Basics</a></li>
+<li><a href="../embeddings-and-vector-search/">Embeddings and Vector Search</a></li>
+<li><a href="../../02-llm-fundamentals/context-windows/">Context Windows</a></li>
+<li><a href="../../02-llm-fundamentals/tokenization/">Tokenization</a></li>
+<li><a href="../../04-agent-fundamentals/stopping-criteria/">Stopping Criteria</a></li>
+<li><a href="../../06-mcp/security-boundaries-conn-tool/">MCP Security Boundaries</a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.path", "toc.follow", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid-init.js?v=1"></script>
+      
+        <script src="../../../javascripts/diagram-viewer.js?v=5"></script>
+      
+    
+  </body>
+</html>

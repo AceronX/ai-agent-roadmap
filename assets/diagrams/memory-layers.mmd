@@ -1,0 +1,10 @@
+flowchart TB
+    conversation["Conversation Context"] --> shortTerm["Short-Term Memory"]
+    scratchpad["Agent Scratchpad"] --> shortTerm
+    shortTerm --> agent["Agent Runtime"]
+
+    userProfile["User Profile"] --> longTerm["Long-Term Memory"]
+    semanticFacts["Semantic Facts"] --> longTerm
+    episodicEvents["Episodic Events"] --> longTerm
+    longTerm --> storage["Vector DB, SQL, or Custom Store"]
+    storage --> agent

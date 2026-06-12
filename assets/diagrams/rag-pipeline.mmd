@@ -1,0 +1,11 @@
+flowchart LR
+    documents["Documents"] --> chunking["Chunking"]
+    chunking --> embeddings["Embeddings"]
+    embeddings --> vectorStore["Vector Store"]
+    userQuestion["User Question"] --> queryEmbedding["Query Embedding"]
+    queryEmbedding --> retriever["Retriever"]
+    vectorStore --> retriever
+    retriever --> context["Relevant Context"]
+    context --> llm["LLM"]
+    userQuestion --> llm
+    llm --> answer["Answer With Sources"]

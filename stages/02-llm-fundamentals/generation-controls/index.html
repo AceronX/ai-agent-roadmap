@@ -1,0 +1,5914 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical AI agent learning path and knowledge database for developers.">
+      
+      
+      
+        <link rel="canonical" href="https://AceronX.github.io/ai-agent-roadmap/stages/02-llm-fundamentals/generation-controls/">
+      
+      
+        <link rel="prev" href="../model-families/">
+      
+      
+        <link rel="next" href="../pricing-and-latency/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>Generation Controls - AI Agent Roadmap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css?v=15">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#goal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AI Agent Roadmap" class="md-header__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Agent Roadmap
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Generation Controls
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Stages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI Agent Roadmap" class="md-nav__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    AI Agent Roadmap
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Stages
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Stages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap-sh-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap.sh Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-orientation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    00 Orientation
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            00 Orientation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-orientation/what-are-ai-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What Are AI Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-prerequisites/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    01 Prerequisites
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            01 Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/backend-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backend Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/git-and-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git and Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    02 LLM Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            02 LLM Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transformer-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokenization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-families/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Families and Licenses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Generation Controls
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generation Controls
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-simple-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Simple Mental Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-order-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Order Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Formulas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Comparison
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperature
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Temperature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-temperature-changes-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Temperature Changes Scores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-prompt-different-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Same Prompt, Different Temperature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-p
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Top-p">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rescaling-after-top-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling After Top-p
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-top-p-is-dynamic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Top-p Is Dynamic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-k
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Top-k">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-top-k-weakness" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Top-k Weakness
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequency-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Penalty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presence-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presence Penalty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequency-penalty-vs-presence-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Penalty Vs Presence Penalty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequency Penalty Vs Presence Penalty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combined-penalty-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combined Penalty Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-length-max-tokens-and-stop-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Length: Max Tokens and Stop Sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Length: Max Tokens and Stop Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#max-tokens-max-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Tokens (Max Length)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop Sequences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-controls-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Controls Work Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-you-change-them-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should You Change Them Together?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-settings-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Settings Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-same-question-different-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Same Question, Different Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Mistakes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      What To Remember
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pricing-and-latency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pricing and Latency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embeddings-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-prompt-engineering/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    03 Prompt Engineering
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 Prompt Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/writing-good-prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Writing Good Prompts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/structured-outputs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structured Outputs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-agent-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    04 Agent Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 Agent Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/agent-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/react-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/reasoning-and-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasoning and Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/acting-and-observation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acting and Observation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/stopping-criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stopping Criteria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/tools-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-tools-and-actions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    05 Tools and Actions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 Tools and Actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Definition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/common-agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Common Agent Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/boundaries-and-destructive-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Boundaries and Destructive Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    06 MCP
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 MCP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-hosts-clients-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Hosts, Clients, Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/building-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building MCP Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/local-vs-remote-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Remote MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/tool-and-resource-exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool and Resource Exposure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/security-boundaries-conn-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Boundaries for MCP-Connected Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-rag-and-memory/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    07 RAG and Memory
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 RAG and Memory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/embeddings-and-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/vector-databases-sql-custom-stores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vector Databases, SQL, and Custom Stores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/short-term-and-long-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Short-Term and Long-Term Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/episodic-and-semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic and Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/user-profile-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Profile Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/summarization-compression-forgetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summarization, Compression, and Forgetting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/additional-explaination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additional Explanation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-agent-architectures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    08 Agent Architectures
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Agent Architectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/react-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/rag-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/routing-and-prompt-chaining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Routing and Prompt Chaining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/planner-executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planner-Executor Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/evaluator-optimizer-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluator-Optimizer Loops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/dag-agent-tree-of-throght-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAG Agents and Tree-of-Thought Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/simple-workfolw-better-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    When a Simpler Workflow Is Better Than an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-building-agents/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    09 Building Agents
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 Building Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-loop-from-scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building an Agent Loop From Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/direct-llm-api-calls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Direct LLM API Calls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/parsing-model-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parsing Model Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/error-and-rate-limit-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error and Rate-Limit Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/provider-native-function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provider-Native Function Calling and Tool Use
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Frameworks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/choosing-a-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Choosing a Framework Without Losing Debuggability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-multi-agent-systems/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    10 Multi-Agent Systems
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Multi-Agent Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/supervisor-worker-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor-Worker Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/handoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handoffs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/agents-as-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agents As Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/shared-state-vs-message-passing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared State vs Message Passing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/a2a-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/coordination-failure-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coordination Failure Modes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-multi-agent-systems/when-one-agent-is-enough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How To Tell When One Agent Is Enough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-evaluation-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    11 Evaluation and Observability
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            11 Evaluation and Observability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/agent-quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Quality Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tool-unit-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Unit Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/flow-integration-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flow Integration Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/prompt-regression-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Regression Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/rag-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tracing-and-structured-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing and Structured Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/human-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/evaluation-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluation and Observability Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-security-ethics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    12 Security and Ethics
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            12 Security and Ethics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/prompt-injection-and-jailbreaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Injection and Jailbreaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/insecure-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insecure Output Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Excessive Agency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/tool-sandboxing-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Sandboxing and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/data-privacy-and-pii-redaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Privacy and PII Redaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/bias-toxicity-and-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bias, Toxicity, and Guardrails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/safety-and-red-team-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Safety and Red-Team Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/owasp-llm-top-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OWASP LLM Top 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-production-deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    13 Production Deployment
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            13 Production Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/production-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/background-jobs-and-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Jobs and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/monitoring-and-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring and Alerts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/cost-control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cost Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/rollbacks-and-incident-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rollbacks and Incident Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-simple-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Simple Mental Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-order-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Order Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-formulas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Formulas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Comparison
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperature
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Temperature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-temperature-changes-scores" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Temperature Changes Scores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-prompt-different-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Same Prompt, Different Temperature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-p
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Top-p">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rescaling-after-top-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rescaling After Top-p
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-top-p-is-dynamic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Top-p Is Dynamic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top-k
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Top-k">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-top-k-weakness" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Top-k Weakness
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequency-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Penalty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presence-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presence Penalty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequency-penalty-vs-presence-penalty" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequency Penalty Vs Presence Penalty
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequency Penalty Vs Presence Penalty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combined-penalty-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combined Penalty Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-length-max-tokens-and-stop-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Length: Max Tokens and Stop Sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Length: Max Tokens and Stop Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#max-tokens-max-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Tokens (Max Length)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop Sequences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-controls-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Controls Work Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#should-you-change-them-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Should You Change Them Together?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-settings-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Settings Guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-same-question-different-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Same Question, Different Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Mistakes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mini-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini Lab
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-remember" class="md-nav__link">
+    <span class="md-ellipsis">
+      What To Remember
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="generation-controls">Generation Controls</h1>
+<h2 id="goal">Goal</h2>
+<p>Learn how temperature, top-p, top-k, frequency penalty, and presence penalty change the way an LLM chooses its next token.</p>
+<h2 id="purpose">Purpose</h2>
+<p>Generation controls decide how an LLM chooses the next token. They do not change what the model knows. They change how focused, risky, repetitive, creative, or stable the model's next-token choices become.</p>
+<p>For AI agents, this matters because every token can affect a plan, a tool call, a JSON field, a memory update, or a final answer. A creative setting can help with brainstorming, but the same setting can break a tool call.</p>
+<h2 id="the-simple-mental-model">The Simple Mental Model</h2>
+<p>An LLM writes text one token at a time. At each step, it first gives every possible next token a raw score called a logit.</p>
+<p>A logit is not a probability yet. It is the model's internal score for "how well this token fits here."</p>
+<p>Imagine the prompt is:</p>
+<div class="highlight"><pre><span></span><code>I want to eat a slice of
+</code></pre></div>
+<p>The model might create a tiny version of this logit list:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Example logit</th>
+<th>Beginner meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">3.3</td>
+<td>strongest raw score</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">2.8</td>
+<td>also likely</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">1.7</td>
+<td>possible, but weaker</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">1.3</td>
+<td>strange, but not impossible</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">0.5</td>
+<td>very unlikely</td>
+</tr>
+</tbody>
+</table>
+<p>Then softmax turns those logits into probabilities:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Logit</th>
+<th style="text-align: right;">Probability after softmax</th>
+<th>Visual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">about 50%</td>
+<td>##########</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">about 30%</td>
+<td>######</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">about 10%</td>
+<td>##</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">about 7%</td>
+<td>#</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">about 3%</td>
+<td>#</td>
+</tr>
+</tbody>
+</table>
+<p>The actual model has a huge vocabulary, not just five tokens, but this tiny table shows the core idea: logits become probabilities, and then the model samples from those probabilities.</p>
+<p>Generation controls edit the logits or probability list before the model chooses one token.</p>
+<h2 id="application-order-diagram">Application Order Diagram</h2>
+<p>This diagram shows a beginner-friendly order for applying common generation controls during one next-token step.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["Prompt + text generated so far"] --&gt; B["Model outputs raw logits&lt;br/&gt;z_i for every candidate token"]
+    B --&gt; C["Count token history&lt;br/&gt;count_i and seen_i"]
+    C --&gt; D["Frequency + presence penalties&lt;br/&gt;z_pen_i = z_i - frequency_penalty * count_i - presence_penalty * seen_i"]
+    D --&gt; E["Temperature&lt;br/&gt;score_i = z_pen_i / temperature"]
+    E --&gt; F["Softmax&lt;br/&gt;P_i = exp(score_i) / sum_j exp(score_j)"]
+    F --&gt; G["Top-k filter&lt;br/&gt;keep the k highest probabilities"]
+    G --&gt; H["Top-p filter&lt;br/&gt;keep the smallest sorted group whose total probability reaches p"]
+    H --&gt; I["Renormalize&lt;br/&gt;remaining probabilities add to 100%"]
+    I --&gt; J["Sample one token"]
+    J --&gt; A</code></pre>
+<p>Exact order can vary by provider or inference library. Some systems apply top-k before top-p, some expose only a few of these controls, and some add extra controls such as repetition penalty or min-p. The important beginner model is:</p>
+<ol>
+<li>The model creates raw logits.</li>
+<li>Frequency and presence penalties adjust logits for tokens already used.</li>
+<li>Temperature reshapes the logits.</li>
+<li>Softmax turns logits into probabilities.</li>
+<li>Top-k and top-p remove unlikely or unwanted candidates.</li>
+<li>The remaining probabilities are rescaled.</li>
+<li>The model samples one token and repeats the whole process.</li>
+</ol>
+<h2 id="core-formulas">Core Formulas</h2>
+<p>Use these formulas as a simple mental model.</p>
+<p>First, apply frequency and presence penalties to each candidate token:</p>
+<div class="highlight"><pre><span></span><code>count_i = number of times token i has already appeared
+seen_i = 1 if count_i &gt; 0, otherwise 0
+
+penalized_logit_i =
+    raw_logit_i
+    - frequency_penalty * count_i
+    - presence_penalty * seen_i
+</code></pre></div>
+<p>Then apply temperature:</p>
+<div class="highlight"><pre><span></span><code>temperature_logit_i = penalized_logit_i / temperature
+</code></pre></div>
+<p>Then softmax converts the adjusted logits into probabilities:</p>
+<div class="highlight"><pre><span></span><code>probability_i =
+    exp(temperature_logit_i)
+    / sum(exp(temperature_logit_j) for every candidate token j)
+</code></pre></div>
+<p>Then top-k and top-p choose the allowed set:</p>
+<div class="highlight"><pre><span></span><code>top_k_set = the k tokens with the highest probability
+top_p_set = the smallest sorted token set whose probability sum reaches top_p
+
+allowed_set = tokens that survive the enabled filters
+</code></pre></div>
+<p>Finally, the probabilities of the allowed tokens are renormalized:</p>
+<div class="highlight"><pre><span></span><code>final_probability_i =
+    probability_i / sum(probability_j for j in allowed_set)
+</code></pre></div>
+<p>Tokens outside the allowed set get probability <code>0</code> for this step.</p>
+<h2 id="quick-comparison">Quick Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Question it answers</th>
+<th>Lower or smaller values</th>
+<th>Higher or larger values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>temperature</code></td>
+<td>How strongly should high logits win?</td>
+<td>More predictable, focused, repetitive</td>
+<td>More varied, creative, risky</td>
+</tr>
+<tr>
+<td><code>top_p</code></td>
+<td>How much total probability mass should stay available?</td>
+<td>Keeps only the safest high-probability group</td>
+<td>Allows a wider group of choices</td>
+</tr>
+<tr>
+<td><code>top_k</code></td>
+<td>How many candidate tokens should stay available?</td>
+<td>Keeps only a small fixed number of choices</td>
+<td>Allows more ranked choices</td>
+</tr>
+<tr>
+<td><code>frequency_penalty</code></td>
+<td>Should repeated tokens become less likely each time they repeat?</td>
+<td>Allows more repetition</td>
+<td>Pushes repeated tokens down more strongly</td>
+</tr>
+<tr>
+<td><code>presence_penalty</code></td>
+<td>Should any already-used token become less likely?</td>
+<td>Allows the model to reuse earlier tokens</td>
+<td>Encourages new words or ideas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="temperature">Temperature</h2>
+<p>Temperature changes how strongly the model prefers the most likely token.</p>
+<p>Think of it like a creativity slider:</p>
+<ul>
+<li><code>temperature = 0</code> or near <code>0</code>: the model strongly prefers the most likely token. This is useful for tool calls, structured output, math, code, and factual tasks.</li>
+<li><code>temperature = 0.3</code> to <code>0.7</code>: the model can vary its wording while usually staying on track.</li>
+<li><code>temperature = 0.8</code> to <code>1.0+</code>: the model explores less likely tokens. This can help creative writing and brainstorming, but it can also increase errors, strange wording, or format drift.</li>
+</ul>
+<h3 id="how-temperature-changes-scores">How Temperature Changes Scores</h3>
+<p>The model first produces raw scores called logits. Temperature divides those scores before probabilities are calculated:</p>
+<div class="highlight"><pre><span></span><code>adjusted_score = logit / temperature
+</code></pre></div>
+<p>At exactly <code>temperature = 0</code>, providers usually use greedy decoding or a near-greedy mode instead of literally dividing by zero.</p>
+<p>Low temperature makes the biggest scores dominate. High temperature makes the scores closer together.</p>
+<p>Using the earlier logits:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Original logit</th>
+<th style="text-align: right;">Adjusted logit at <code>temperature = 0.2</code></th>
+<th style="text-align: right;">Adjusted logit at <code>temperature = 2.0</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">1.65</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">14.0</td>
+<td style="text-align: right;">1.40</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">0.85</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">0.65</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+</tbody>
+</table>
+<p>After softmax, those adjusted logits become probabilities:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Normal, <code>temperature = 1.0</code></th>
+<th style="text-align: right;">Low, <code>temperature = 0.2</code></th>
+<th style="text-align: right;">High, <code>temperature = 2.0</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">about 50%</td>
+<td style="text-align: right;">about 92%</td>
+<td style="text-align: right;">about 35%</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">about 30%</td>
+<td style="text-align: right;">about 8%</td>
+<td style="text-align: right;">about 27%</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">about 10%</td>
+<td style="text-align: right;">near 0%</td>
+<td style="text-align: right;">about 16%</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">about 7%</td>
+<td style="text-align: right;">near 0%</td>
+<td style="text-align: right;">about 13%</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">about 3%</td>
+<td style="text-align: right;">near 0%</td>
+<td style="text-align: right;">about 9%</td>
+</tr>
+</tbody>
+</table>
+<p>Low temperature is like telling the model: "Pick the obvious answer." High temperature is like telling it: "Let unusual options compete."</p>
+<h3 id="same-prompt-different-temperature">Same Prompt, Different Temperature</h3>
+<p>Prompt:</p>
+<div class="highlight"><pre><span></span><code>Write the first sentence of a story about a dragon.
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Example output</th>
+<th>Why it happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low, <code>0.2</code></td>
+<td>"Once upon a time, a large green dragon lived in a dark cave on top of a mountain."</td>
+<td>Safe, common, predictable story words win.</td>
+</tr>
+<tr>
+<td>Medium, <code>0.5</code></td>
+<td>"Deep inside the Whispering Mountains, an ancient dragon guarded a treasure made of glowing blue crystals."</td>
+<td>The model still stays normal, but adds more color.</td>
+</tr>
+<tr>
+<td>High, <code>1.0</code></td>
+<td>"Barnaby was a terrible dragon because he sneezed soap bubbles instead of fire."</td>
+<td>Less likely ideas get a real chance, so the result becomes surprising.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="top-p">Top-p</h2>
+<p>Top-p is also called nucleus sampling. It keeps the smallest group of likely tokens whose total probability reaches the chosen <code>p</code> value.</p>
+<p>If <code>top_p = 0.80</code>, the model starts from the most likely token, adds probabilities from top to bottom, and stops when the running total reaches <code>80%</code>.</p>
+<p>Using the same list:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+<th style="text-align: right;">Running total</th>
+<th>Keep with <code>top_p = 0.80</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">50%</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">80%</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">90%</td>
+<td>no</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">7%</td>
+<td style="text-align: right;">97%</td>
+<td>no</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">3%</td>
+<td style="text-align: right;">100%</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Now the model can only choose between <code>pizza</code> and <code>cake</code>. The other tokens are removed for this step.</p>
+<h3 id="rescaling-after-top-p">Rescaling After Top-p</h3>
+<p>After filtering, the kept probabilities must add back up to <code>100%</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Before top-p</th>
+<th style="text-align: right;">After <code>top_p = 0.80</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">62.5%</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">37.5%</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>paper</td>
+<td style="text-align: right;">7%</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>shampoo</td>
+<td style="text-align: right;">3%</td>
+<td style="text-align: right;">0%</td>
+</tr>
+</tbody>
+</table>
+<p>The model then samples from only the remaining candidates.</p>
+<h3 id="why-top-p-is-dynamic">Why Top-p Is Dynamic</h3>
+<p>Top-p adapts to the model's confidence.</p>
+<p>If the model is very sure:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spell</td>
+<td style="text-align: right;">97%</td>
+</tr>
+<tr>
+<td>wand</td>
+<td style="text-align: right;">1%</td>
+</tr>
+<tr>
+<td>potion</td>
+<td style="text-align: right;">1%</td>
+</tr>
+<tr>
+<td>table</td>
+<td style="text-align: right;">1%</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>top_p</code> value like <code>0.90</code> keeps only <code>spell</code>.</p>
+<p>If the model is unsure:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>book</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr>
+<td>shirt</td>
+<td style="text-align: right;">11%</td>
+</tr>
+<tr>
+<td>game</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>bag</td>
+<td style="text-align: right;">9%</td>
+</tr>
+<tr>
+<td>many others</td>
+<td style="text-align: right;">48%</td>
+</tr>
+</tbody>
+</table>
+<p>The same <code>top_p = 0.90</code> keeps many more options. This is why top-p can feel more natural than a fixed cutoff.</p>
+<h2 id="top-k">Top-k</h2>
+<p>Top-k keeps only the top <code>k</code> candidate tokens by rank. It does not care how much probability they contain.</p>
+<p>If <code>top_k = 3</code>, the model keeps exactly the three highest-ranked candidates:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+<th style="text-align: right;">Rank</th>
+<th>Keep with <code>top_k = 3</code>?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">1</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">2</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">12%</td>
+<td style="text-align: right;">3</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>burger</td>
+<td style="text-align: right;">5%</td>
+<td style="text-align: right;">4</td>
+<td>no</td>
+</tr>
+<tr>
+<td>socks</td>
+<td style="text-align: right;">3%</td>
+<td style="text-align: right;">5</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>After filtering, the probabilities are rescaled:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Before top-k</th>
+<th style="text-align: right;">After <code>top_k = 3</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">54.3%</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">30%</td>
+<td style="text-align: right;">32.6%</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">12%</td>
+<td style="text-align: right;">13.1%</td>
+</tr>
+<tr>
+<td>burger</td>
+<td style="text-align: right;">5%</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>socks</td>
+<td style="text-align: right;">3%</td>
+<td style="text-align: right;">0%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-top-k-weakness">The Top-k Weakness</h3>
+<p>Top-k is simple, but it is blind to confidence.</p>
+<p>If the model is very sure, <code>top_k = 3</code> is usually fine:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spell</td>
+<td style="text-align: right;">99%</td>
+</tr>
+<tr>
+<td>wand</td>
+<td style="text-align: right;">0.5%</td>
+</tr>
+<tr>
+<td>potion</td>
+<td style="text-align: right;">0.3%</td>
+</tr>
+<tr>
+<td>table</td>
+<td style="text-align: right;">0.2%</td>
+</tr>
+</tbody>
+</table>
+<p>But if the model is confused, a fixed <code>top_k = 3</code> can cut away options that are almost equally good:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>car</td>
+<td style="text-align: right;">3%</td>
+</tr>
+<tr>
+<td>book</td>
+<td style="text-align: right;">3%</td>
+</tr>
+<tr>
+<td>shirt</td>
+<td style="text-align: right;">3%</td>
+</tr>
+<tr>
+<td>dog</td>
+<td style="text-align: right;">3%</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">3%</td>
+</tr>
+<tr>
+<td>game</td>
+<td style="text-align: right;">3%</td>
+</tr>
+</tbody>
+</table>
+<p>Here, keeping only three candidates is arbitrary. Top-p often handles this kind of uncertainty better because it expands the candidate set when many tokens have similar probability.</p>
+<h2 id="frequency-penalty">Frequency Penalty</h2>
+<p>Frequency penalty lowers the logit of a token based on how many times that token has already appeared.</p>
+<p>It answers this question:</p>
+<div class="highlight"><pre><span></span><code>Has this exact token appeared many times already?
+</code></pre></div>
+<p>The more often the token has appeared, the bigger the penalty becomes.</p>
+<p>Formula:</p>
+<div class="highlight"><pre><span></span><code>new_logit_i = raw_logit_i - frequency_penalty * count_i
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><code>count_i</code> is how many times token <code>i</code> has already appeared.</li>
+<li><code>frequency_penalty</code> controls how strongly repetition is punished.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Text so far: pizza pizza cake
+
+Candidate token: pizza
+count_i: 2
+raw_logit_i: 3.3
+frequency_penalty: 0.4
+
+new_logit_i = 3.3 - 0.4 * 2
+new_logit_i = 2.5
+</code></pre></div>
+<p>Because <code>pizza</code> appeared twice, it gets pushed down twice. This makes the model less likely to keep repeating <code>pizza</code>.</p>
+<p>Use frequency penalty when:</p>
+<ul>
+<li>The model repeats the same word or phrase too often.</li>
+<li>A creative response gets stuck in a loop.</li>
+<li>A summary keeps reusing the same wording.</li>
+<li>You want broader vocabulary without changing the whole prompt.</li>
+</ul>
+<p>Be careful with high frequency penalty. It can make the model avoid useful repeated words that are actually needed, such as names, technical terms, JSON keys, or code identifiers.</p>
+<h2 id="presence-penalty">Presence Penalty</h2>
+<p>Presence penalty lowers the logit of a token once the token has appeared at least one time.</p>
+<p>It answers this question:</p>
+<div class="highlight"><pre><span></span><code>Has this token appeared at all?
+</code></pre></div>
+<p>Unlike frequency penalty, presence penalty does not care whether the token appeared once or ten times. It only checks whether the token is present.</p>
+<p>Formula:</p>
+<div class="highlight"><pre><span></span><code>seen_i = 1 if count_i &gt; 0, otherwise 0
+
+new_logit_i = raw_logit_i - presence_penalty * seen_i
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Text so far: pizza pizza cake
+
+Candidate token: pizza
+count_i: 2
+seen_i: 1
+raw_logit_i: 3.3
+presence_penalty: 0.6
+
+new_logit_i = 3.3 - 0.6 * 1
+new_logit_i = 2.7
+</code></pre></div>
+<p>Even though <code>pizza</code> appeared twice, the presence penalty is applied only once because the token is already present.</p>
+<p>Use presence penalty when:</p>
+<ul>
+<li>The model keeps returning to the same topic.</li>
+<li>You want more new ideas in brainstorming.</li>
+<li>You want a list to cover different angles instead of repeating one angle.</li>
+<li>A story or dialogue keeps circling the same word choices.</li>
+</ul>
+<p>Be careful with high presence penalty. It can push the model away from important words that must repeat, such as a product name, a person's name, a required label, or a precise technical term.</p>
+<h2 id="frequency-penalty-vs-presence-penalty">Frequency Penalty Vs Presence Penalty</h2>
+<p>These two controls are similar, but they solve different repetition problems.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Better control</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The model repeats one word many times</td>
+<td><code>frequency_penalty</code></td>
+<td>The penalty grows each time the word repeats.</td>
+</tr>
+<tr>
+<td>The model keeps returning to the same topic</td>
+<td><code>presence_penalty</code></td>
+<td>Any already-used token is discouraged, which nudges the model toward new wording.</td>
+</tr>
+<tr>
+<td>The model needs exact repeated labels or keys</td>
+<td>Use low or no penalty</td>
+<td>Penalties may damage required structure.</td>
+</tr>
+<tr>
+<td>Creative brainstorming feels too narrow</td>
+<td><code>presence_penalty</code> or moderate temperature</td>
+<td>The model gets a push toward unused ideas.</td>
+</tr>
+<tr>
+<td>A paragraph has awkward repeated phrasing</td>
+<td><code>frequency_penalty</code></td>
+<td>Repeated tokens get progressively less attractive.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="combined-penalty-example">Combined Penalty Example</h3>
+<p>Use the combined formula:</p>
+<div class="highlight"><pre><span></span><code>penalized_logit_i =
+    raw_logit_i
+    - frequency_penalty * count_i
+    - presence_penalty * seen_i
+</code></pre></div>
+<p>Text so far:</p>
+<div class="highlight"><pre><span></span><code>pizza pizza cake
+</code></pre></div>
+<p>Settings:</p>
+<div class="highlight"><pre><span></span><code>frequency_penalty = 0.4
+presence_penalty = 0.6
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Candidate token</th>
+<th style="text-align: right;">Raw logit</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: right;">Seen</th>
+<th>Penalty math</th>
+<th style="text-align: right;">Penalized logit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pizza</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td><code>3.3 - 0.4*2 - 0.6*1</code></td>
+<td style="text-align: right;">1.9</td>
+</tr>
+<tr>
+<td>cake</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td><code>2.8 - 0.4*1 - 0.6*1</code></td>
+<td style="text-align: right;">1.8</td>
+</tr>
+<tr>
+<td>apple</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td><code>1.7 - 0.4*0 - 0.6*0</code></td>
+<td style="text-align: right;">1.7</td>
+</tr>
+</tbody>
+</table>
+<p>Before penalties, <code>pizza</code> clearly wins. After penalties, <code>pizza</code>, <code>cake</code>, and <code>apple</code> are much closer. Temperature and filtering will then decide how strongly these adjusted scores compete.</p>
+<h2 id="output-length-max-tokens-and-stop-sequences">Output Length: Max Tokens and Stop Sequences</h2>
+<p>Temperature, top-p, top-k, and the penalties decide <em>which</em> token comes next. Two more controls decide <em>when generation ends</em>.</p>
+<h3 id="max-tokens-max-length">Max Tokens (Max Length)</h3>
+<p><code>max_tokens</code> caps how many tokens the model may generate in one response.</p>
+<table>
+<thead>
+<tr>
+<th>What it does</th>
+<th>What it does not do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cuts generation off once the limit is reached</td>
+<td>Make the model write a concise answer</td>
+</tr>
+<tr>
+<td>Protects against runaway output, cost, and latency</td>
+<td>Summarize or compress the content</td>
+</tr>
+</tbody>
+</table>
+<p>This distinction matters: a low <code>max_tokens</code> does not teach the model to be brief. It simply stops generation, which can <strong>truncate the output mid-sentence</strong> (or produce invalid JSON) if set too low. To get a short answer, ask for it in the prompt <em>and</em> set a safe limit as a backstop.</p>
+<h3 id="stop-sequences">Stop Sequences</h3>
+<p>A <strong>stop sequence</strong> is a string that makes the model stop generating as soon as it would produce that string. The stop text itself is not included in the output.</p>
+<div class="highlight"><pre><span></span><code>Prompt:   List two fruits, one per line, then stop.
+stop: [&quot;3.&quot;]
+Output:   1. apple
+          2. banana
+</code></pre></div>
+<p>Stop sequences are useful for ending output at a known boundary, such as:</p>
+<ul>
+<li>a closing delimiter (<code>&lt;/answer&gt;</code> or a code fence)</li>
+<li>the start of a new role marker, so a chat completion stops before "User:"</li>
+<li>a fixed separator between items</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Ends generation when...</th>
+<th>Common use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_tokens</code></td>
+<td>a token count is reached</td>
+<td>safety cap on length, cost, latency</td>
+</tr>
+<tr>
+<td>stop sequence</td>
+<td>a specific string is produced</td>
+<td>stop at a delimiter or structural boundary</td>
+</tr>
+</tbody>
+</table>
+<p>Both are safeguards, not quality controls. Use them to bound output, and rely on the prompt and sampling controls for <em>what</em> the output says.</p>
+<h2 id="how-controls-work-together">How Controls Work Together</h2>
+<p>These controls affect different parts of the same pipeline:</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Control</th>
+<th>What it changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw logits</td>
+<td><code>frequency_penalty</code></td>
+<td>Lowers tokens more if they appeared many times.</td>
+</tr>
+<tr>
+<td>Raw logits</td>
+<td><code>presence_penalty</code></td>
+<td>Lowers tokens once if they appeared at all.</td>
+</tr>
+<tr>
+<td>Adjusted logits</td>
+<td><code>temperature</code></td>
+<td>Sharpens or flattens the score differences.</td>
+</tr>
+<tr>
+<td>Probability list</td>
+<td><code>top_k</code></td>
+<td>Keeps a fixed number of highest-ranked tokens.</td>
+</tr>
+<tr>
+<td>Probability list</td>
+<td><code>top_p</code></td>
+<td>Keeps a dynamic group based on total probability mass.</td>
+</tr>
+<tr>
+<td>Final sampling</td>
+<td>Renormalization</td>
+<td>Makes the kept probabilities add back up to <code>100%</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Think of the controls like a series of gates:</p>
+<div class="highlight"><pre><span></span><code>raw logits
+  -&gt; repetition penalties change scores
+  -&gt; temperature changes score sharpness
+  -&gt; softmax creates probabilities
+  -&gt; top-k/top-p remove candidates
+  -&gt; renormalization rescales what remains
+  -&gt; sampling chooses one token
+</code></pre></div>
+<h2 id="should-you-change-them-together">Should You Change Them Together?</h2>
+<p>For beginners, change one control at a time. Otherwise, you will not know which control caused the behavior change.</p>
+<p>A practical rule:</p>
+<ul>
+<li>If you are experimenting with <code>temperature</code>, keep <code>top_p</code> high, such as <code>1.0</code>, avoid changing <code>top_k</code>, and keep penalties at <code>0</code>.</li>
+<li>If you are experimenting with <code>top_p</code>, keep <code>temperature</code> moderate, such as <code>0.7</code> to <code>1.0</code>.</li>
+<li>If you are experimenting with <code>frequency_penalty</code>, keep temperature and top-p stable so you can clearly see whether repetition improves.</li>
+<li>If you are experimenting with <code>presence_penalty</code>, test whether the answer gains useful variety or drifts away from the task.</li>
+<li>If you use a local model that exposes <code>top_k</code>, start with a common value such as <code>40</code> or <code>50</code>, then test the result.</li>
+</ul>
+<p>Some APIs expose only temperature and top-p. Some local inference engines expose temperature, top-p, top-k, min-p, repetition penalty, and more. Treat every setting as something to test, not something to trust blindly.</p>
+<h2 id="agent-settings-guide">Agent Settings Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Agent job</th>
+<th>Suggested starting point</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool call arguments</td>
+<td><code>temperature: 0</code> to <code>0.2</code>, <code>top_p: 1.0</code>, penalties: <code>0</code></td>
+<td>Tool calls need stable, parseable fields.</td>
+</tr>
+<tr>
+<td>JSON or structured output</td>
+<td><code>temperature: 0</code> to <code>0.2</code>, penalties: <code>0</code></td>
+<td>Creativity and repetition penalties can break schemas or required keys.</td>
+</tr>
+<tr>
+<td>Math or code reasoning</td>
+<td><code>temperature: 0</code> to <code>0.3</code>, penalties: <code>0</code></td>
+<td>You want fewer surprising choices and no pressure away from repeated symbols.</td>
+</tr>
+<tr>
+<td>Customer support</td>
+<td><code>temperature: 0.2</code> to <code>0.5</code>, small or no penalties</td>
+<td>Polite and consistent, but not robotic.</td>
+</tr>
+<tr>
+<td>Search query rewriting</td>
+<td><code>temperature: 0</code> to <code>0.4</code>, penalties: <code>0</code></td>
+<td>Query expansion needs focus and exact terms may need to repeat.</td>
+</tr>
+<tr>
+<td>Brainstorming</td>
+<td><code>temperature: 0.7</code> to <code>1.0</code>, <code>top_p: 0.9</code>, optional presence penalty</td>
+<td>More variety is useful.</td>
+</tr>
+<tr>
+<td>Story writing</td>
+<td><code>temperature: 0.8+</code>, <code>top_p: 0.9</code> to <code>1.0</code>, optional frequency penalty</td>
+<td>Unusual wording can be a feature, while repetition can be reduced.</td>
+</tr>
+</tbody>
+</table>
+<p>In agent systems, the safest pattern is often to use different settings for different steps:</p>
+<div class="highlight"><pre><span></span><code>planner step:      low or medium temperature
+tool-call step:    low temperature, no penalties
+creative draft:    higher temperature, maybe light penalties
+final answer:      medium temperature, usually light or no penalties
+</code></pre></div>
+<h2 id="example-same-question-different-settings">Example: Same Question, Different Settings</h2>
+<p>Prompt:</p>
+<div class="highlight"><pre><span></span><code>Do you know who the best football player is?
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Settings</th>
+<th>Example behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fact checker</td>
+<td><code>temperature = 0.1</code>, <code>top_p = 0.20</code>, penalties <code>0</code></td>
+<td>Gives a safe answer naming widely discussed players such as Lionel Messi, Cristiano Ronaldo, Pele, and Diego Maradona.</td>
+</tr>
+<tr>
+<td>Sports fan</td>
+<td><code>temperature = 0.7</code>, <code>top_p = 0.85</code>, small frequency penalty</td>
+<td>Gives a more conversational answer and may compare playing styles or eras without repeating the same phrase too much.</td>
+</tr>
+<tr>
+<td>Brainstorm list</td>
+<td><code>temperature = 0.8</code>, <code>top_p = 0.9</code>, moderate presence penalty</td>
+<td>May cover different criteria such as trophies, skill, longevity, influence, and peak performance.</td>
+</tr>
+<tr>
+<td>Uncontrolled</td>
+<td><code>temperature = 1.8</code>, <code>top_p = 1.0</code>, high penalties</td>
+<td>May drift into strange or useless text because almost everything is allowed and the model is pushed away from earlier wording.</td>
+</tr>
+</tbody>
+</table>
+<p>The key idea: penalties change the scores, temperature changes how strongly the model prefers high scores, and top-p/top-k decide which choices are allowed.</p>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why it hurts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Using high temperature for tool calls</td>
+<td>The model may invent fields, change formats, or choose the wrong tool.</td>
+</tr>
+<tr>
+<td>Using frequency or presence penalties for JSON</td>
+<td>The model may avoid repeating required keys, labels, or symbols.</td>
+</tr>
+<tr>
+<td>Lowering every setting at once</td>
+<td>You cannot tell which setting fixed or harmed the output.</td>
+</tr>
+<tr>
+<td>Treating <code>temperature = 0</code> as perfectly deterministic</td>
+<td>Some systems can still vary because of infrastructure, model routing, floating-point behavior, or provider settings.</td>
+</tr>
+<tr>
+<td>Using one setting for the whole agent</td>
+<td>Planning, tool use, writing, and summarizing often need different behavior.</td>
+</tr>
+<tr>
+<td>Ignoring evaluation</td>
+<td>A setting that feels good on one prompt may fail on edge cases.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mini-lab">Mini Lab</h2>
+<p>Use one prompt and run it several times with different settings.</p>
+<p>Prompt:</p>
+<div class="highlight"><pre><span></span><code>Write a short answer explaining why an AI agent should validate tool results.
+</code></pre></div>
+<p>Test these settings:</p>
+<table>
+<thead>
+<tr>
+<th>Run</th>
+<th style="text-align: right;">Temperature</th>
+<th style="text-align: right;">Top-p</th>
+<th style="text-align: right;">Top-k</th>
+<th style="text-align: right;">Frequency penalty</th>
+<th style="text-align: right;">Presence penalty</th>
+<th>What to observe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">off</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td>Is it stable and precise?</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">off</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td>Is it still accurate but more natural?</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">off</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td>Does it become more creative or less focused?</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td>Does top-k make the style more controlled?</td>
+</tr>
+<tr>
+<td>E</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">off</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">0</td>
+<td>Does repeated wording decrease?</td>
+</tr>
+<tr>
+<td>F</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">off</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.5</td>
+<td>Does the answer explore more distinct ideas?</td>
+</tr>
+</tbody>
+</table>
+<p>Record:</p>
+<ul>
+<li>Did the answer stay correct?</li>
+<li>Did the answer keep the requested format?</li>
+<li>Did repeated wording improve or did important terms disappear?</li>
+<li>Did the wording become more helpful or just more random?</li>
+<li>Would this setting be safe for tool calls?</li>
+</ul>
+<h2 id="what-to-remember">What To Remember</h2>
+<ul>
+<li>Logits are raw next-token scores.</li>
+<li>Frequency penalty lowers tokens more when they have appeared many times.</li>
+<li>Presence penalty lowers tokens once if they have appeared at all.</li>
+<li>Temperature changes the shape of the probability distribution.</li>
+<li>Top-p cuts by total probability mass.</li>
+<li>Top-k cuts by a fixed number of candidates.</li>
+<li>Lower-risk settings are usually better for correctness, tools, schemas, and repeatability.</li>
+<li>Higher-variety settings are usually better for brainstorming, creative writing, and exploration.</li>
+<li>AI agents often need multiple generation profiles, not one global setting.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="../tokenization/">Tokenization</a></li>
+<li><a href="../context-windows/">Context Windows</a></li>
+<li><a href="../../03-prompt-engineering/prompt-basics/">Prompt Basics</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.path", "toc.follow", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid-init.js?v=1"></script>
+      
+        <script src="../../../javascripts/diagram-viewer.js?v=5"></script>
+      
+    
+  </body>
+</html>

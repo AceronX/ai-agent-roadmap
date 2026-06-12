@@ -1,0 +1,9 @@
+flowchart LR
+    userInput["User Input"] --> observe["Observe Context"]
+    observe --> reason["Reason and Plan"]
+    reason --> act["Act With Tool"]
+    act --> toolResult["Tool Result"]
+    toolResult --> reflect["Reflect and Update State"]
+    reflect --> decision{"Goal Met?"}
+    decision -->|"No"| reason
+    decision -->|"Yes"| finalAnswer["Final Answer"]

@@ -1,0 +1,5312 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A practical AI agent learning path and knowledge database for developers.">
+      
+      
+      
+        <link rel="canonical" href="https://AceronX.github.io/ai-agent-roadmap/stages/10-multi-agent-systems/coordination-failure-modes/">
+      
+      
+        <link rel="prev" href="../a2a-protocol/">
+      
+      
+        <link rel="next" href="../when-one-agent-is-enough/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>Coordination Failure Modes - AI Agent Roadmap</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css?v=15">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#goal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AI Agent Roadmap" class="md-header__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Agent Roadmap
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coordination Failure Modes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Stages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AI Agent Roadmap" class="md-nav__button md-logo" aria-label="AI Agent Roadmap" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.5 15.5c0 1.11-.89 2-2 2s-2-.89-2-2 .9-2 2-2 2 .9 2 2m-9-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.89 2-2-.89-2-2-2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2z"/></svg>
+
+    </a>
+    AI Agent Roadmap
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AceronX/ai-agent-roadmap" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ai-agent-roadmap
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Stages
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Stages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap-sh-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap.sh Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-orientation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    00 Orientation
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            00 Orientation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-orientation/what-are-ai-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What Are AI Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-prerequisites/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    01 Prerequisites
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            01 Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/backend-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backend Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-prerequisites/git-and-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git and Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-llm-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    02 LLM Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            02 LLM Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/transformer-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/tokenization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tokenization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/context-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Context Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/model-families/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Families and Licenses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/generation-controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generation Controls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/pricing-and-latency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pricing and Latency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/embeddings-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/rag-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-llm-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-prompt-engineering/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    03 Prompt Engineering
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            03 Prompt Engineering
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/writing-good-prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Writing Good Prompts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/structured-outputs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structured Outputs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/prompt-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-prompt-engineering/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-agent-fundamentals/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    04 Agent Fundamentals
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            04 Agent Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/agent-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/react-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/reasoning-and-planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reasoning and Planning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/acting-and-observation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Acting and Observation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/stopping-criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stopping Criteria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/tools-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-agent-fundamentals/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-tools-and-actions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    05 Tools and Actions
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            05 Tools and Actions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-definition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Definition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/tool-error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/common-agent-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Common Agent Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/boundaries-and-destructive-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Boundaries and Destructive Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-tools-and-actions/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    06 MCP
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            06 MCP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/mcp-hosts-clients-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Hosts, Clients, Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/building-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building MCP Servers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/local-vs-remote-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local vs Remote MCP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/tool-and-resource-exposure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool and Resource Exposure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/security-boundaries-conn-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Boundaries for MCP-Connected Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QAs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview-junior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Junior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-mcp/interview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Senior Interview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-rag-and-memory/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    07 RAG and Memory
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            07 RAG and Memory
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/embeddings-and-vector-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embeddings and Vector Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/vector-databases-sql-custom-stores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vector Databases, SQL, and Custom Stores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/short-term-and-long-term-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Short-Term and Long-Term Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/episodic-and-semantic-memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Episodic and Semantic Memory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/user-profile-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    User Profile Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/summarization-compression-forgetting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Summarization, Compression, and Forgetting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-rag-and-memory/additional-explaination/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Additional Explanation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-agent-architectures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    08 Agent Architectures
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            08 Agent Architectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/react-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ReAct Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/rag-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Agents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/routing-and-prompt-chaining/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Routing and Prompt Chaining
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/planner-executor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Planner-Executor Workflows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/evaluator-optimizer-loops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluator-Optimizer Loops
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/dag-agent-tree-of-throght-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAG Agents and Tree-of-Thought Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-agent-architectures/simple-workfolw-better-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    When a Simpler Workflow Is Better Than an Agent
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-building-agents/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    09 Building Agents
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            09 Building Agents
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-loop-from-scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building an Agent Loop From Scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/direct-llm-api-calls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Direct LLM API Calls
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/parsing-model-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parsing Model Output
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/error-and-rate-limit-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Error and Rate-Limit Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/provider-native-function-calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Provider-Native Function Calling and Tool Use
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/agent-frameworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Frameworks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-building-agents/choosing-a-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Choosing a Framework Without Losing Debuggability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    10 Multi-Agent Systems
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            10 Multi-Agent Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supervisor-worker-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supervisor-Worker Pattern
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../handoffs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Handoffs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents-as-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agents As Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shared-state-vs-message-passing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared State vs Message Passing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../a2a-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2A Protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Coordination Failure Modes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coordination Failure Modes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before You Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-the-core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: The Core Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: The Core Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Picture
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-why-multi-agent-systems-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Why Multi-Agent Systems Fail
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-common-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Common Failure Modes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Common Failure Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-role-confusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Role Confusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bad-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Bad Handoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-state-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. State Drift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-duplicate-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Duplicate Work
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-conflicting-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Conflicting Outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-output-format-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Output Format Mismatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Deadlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-runaway-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Runaway Delegation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-permission-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Permission Leakage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-no-clear-stop-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. No Clear Stop Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-detecting-and-preventing-coordination-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Detecting And Preventing Coordination Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: Detecting And Preventing Coordination Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordination-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coordination Trace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prevention Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-design-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Design Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-example-report-team-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      End Example: Report Team Failure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1-name-the-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Name The Failure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2-improve-the-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Improve The Handoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3-add-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3: Add Guardrails
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exit Criteria
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../when-one-agent-is-enough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How To Tell When One Agent Is Enough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-evaluation-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    11 Evaluation and Observability
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            11 Evaluation and Observability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/agent-quality-metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Quality Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tool-unit-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Unit Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/flow-integration-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flow Integration Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/prompt-regression-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Regression Tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/rag-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/tracing-and-structured-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tracing and Structured Logging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/human-review/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Human Review
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-evaluation-observability/evaluation-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Evaluation and Observability Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-security-ethics/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    12 Security and Ethics
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            12 Security and Ethics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/prompt-injection-and-jailbreaks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prompt Injection and Jailbreaks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/insecure-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insecure Output Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Excessive Agency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/tool-sandboxing-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tool Sandboxing and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/data-privacy-and-pii-redaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Privacy and PII Redaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/bias-toxicity-and-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bias, Toxicity, and Guardrails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/safety-and-red-team-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Safety and Red-Team Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-security-ethics/owasp-llm-top-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OWASP LLM Top 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-production-deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    13 Production Deployment
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            13 Production Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/production-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/background-jobs-and-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Jobs and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/ci-cd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/monitoring-and-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring and Alerts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/cost-control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cost Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-production-deployment/rollbacks-and-incident-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rollbacks and Incident Response
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Best Practices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before You Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-the-core-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: The Core Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: The Core Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Picture
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-why-multi-agent-systems-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: Why Multi-Agent Systems Fail
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-common-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Common Failure Modes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Common Failure Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-role-confusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Role Confusion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bad-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Bad Handoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-state-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. State Drift
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-duplicate-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Duplicate Work
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-conflicting-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Conflicting Outputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-output-format-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Output Format Mismatch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-deadlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Deadlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-runaway-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Runaway Delegation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-permission-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Permission Leakage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-no-clear-stop-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. No Clear Stop Rule
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-detecting-and-preventing-coordination-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: Detecting And Preventing Coordination Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4: Detecting And Preventing Coordination Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordination-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coordination Trace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prevention Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-design-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Design Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-example-report-team-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      End Example: Report Team Failure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1-name-the-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Name The Failure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2-improve-the-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Improve The Handoff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3-add-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3: Add Guardrails
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exit Criteria
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="coordination-failure-modes">Coordination Failure Modes</h1>
+<div class="topic-page">
+<section class="topic-hero">
+  <span class="topic-hero__eyebrow">Stage 10 - Multi-Agent Systems</span>
+  <p class="topic-hero__lead">Coordination failure modes are the ways multi-agent systems break when agents do not share goals, context, ownership, timing, or boundaries clearly. Most failures are not caused by one bad answer. They come from agents misunderstanding how to work together.</p>
+<div class="topic-hero__facts">
+    <span>Role confusion</span>
+    <span>Bad handoffs</span>
+    <span>State drift</span>
+    <span>Duplicate work</span>
+    <span>Unsafe action</span>
+  </div>
+</section>
+<h2 id="goal">Goal</h2>
+<p>Understand the common ways multi-agent systems fail and how to design guardrails before those failures happen.</p>
+<p>After this lesson, you should be able to explain:</p>
+<ul>
+<li>what a coordination failure is,</li>
+<li>why multi-agent systems fail differently from single-agent systems,</li>
+<li>how role confusion, bad handoffs, stale state, and duplicated work happen,</li>
+<li>how communication style affects reliability,</li>
+<li>how to detect coordination problems,</li>
+<li>how to prevent common failures with simple design rules.</li>
+</ul>
+<h2 id="before-you-start">Before You Start</h2>
+<p>Multi-agent systems can look powerful because several agents can work together.</p>
+<p>But adding agents also adds coordination problems:</p>
+<div class="highlight"><pre><span></span><code>One agent:
+  One goal, one context, one action path.
+
+Multiple agents:
+  Many roles, many contexts, many messages, many possible misunderstandings.
+</code></pre></div>
+<p>The beginner rule:</p>
+<div class="highlight"><pre><span></span><code>Every extra agent adds another place where ownership, context, timing,
+permissions, or output format can break.
+</code></pre></div>
+<p>Do not judge a multi-agent system only by whether each individual agent works. Judge it by whether the agents work together correctly.</p>
+<h2 id="part-1-the-core-idea">Part 1: The Core Idea</h2>
+<p>A <strong>coordination failure</strong> happens when agents are individually doing something reasonable, but the overall system behaves badly because the agents are not aligned.</p>
+<p>Simple definition:</p>
+<div class="highlight"><pre><span></span><code>A coordination failure is a system-level failure caused by unclear roles,
+missing context, inconsistent state, weak handoffs, or uncontrolled agent
+interaction.
+</code></pre></div>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Research agent:
+  Finds three sources.
+
+Writer agent:
+  Writes a draft from only one source.
+
+Reviewer agent:
+  Reviews the draft but never sees the original goal.
+
+Final answer:
+  Looks polished, but misses the user&#39;s main requirement.
+</code></pre></div>
+<p>No single agent obviously crashed. The failure came from the coordination between them.</p>
+<h3 id="simple-picture">Simple Picture</h3>
+<pre class="mermaid"><code>flowchart TD
+    G[User goal] --&gt; S[Supervisor]
+    S --&gt; R[Research agent]
+    S --&gt; W[Writer agent]
+    R --&gt;|Incomplete notes| W
+    W --&gt;|Draft missing goal| V[Reviewer agent]
+    V --&gt; A[Final answer looks complete but is wrong]</code></pre>
+<p><strong>How to read this diagram:</strong> each agent did a task, but missing context moved through the system until the final answer became wrong.</p>
+<h2 id="part-2-why-multi-agent-systems-fail">Part 2: Why Multi-Agent Systems Fail</h2>
+<p>A single-agent system can fail by hallucinating, choosing the wrong tool, or misunderstanding the user.</p>
+<p>A multi-agent system can fail in those same ways, plus new ways:</p>
+<table>
+<thead>
+<tr>
+<th>Failure Source</th>
+<th>Single Agent</th>
+<th>Multi-Agent System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal misunderstanding</td>
+<td>Agent misunderstands the user</td>
+<td>One agent understands, another receives a distorted version</td>
+</tr>
+<tr>
+<td>Context loss</td>
+<td>Agent forgets important information</td>
+<td>Context is dropped between agents</td>
+</tr>
+<tr>
+<td>Tool misuse</td>
+<td>Agent calls the wrong tool</td>
+<td>Wrong agent gets a tool or permission</td>
+</tr>
+<tr>
+<td>State error</td>
+<td>Agent tracks state incorrectly</td>
+<td>Agents disagree about shared state</td>
+</tr>
+<tr>
+<td>Output mismatch</td>
+<td>Final answer has wrong format</td>
+<td>One agent returns data the next agent cannot use</td>
+</tr>
+<tr>
+<td>Control problem</td>
+<td>Agent keeps looping</td>
+<td>Agents keep delegating, retrying, or waiting on each other</td>
+</tr>
+</tbody>
+</table>
+<p>The larger the system, the more important coordination becomes.</p>
+<div class="highlight"><pre><span></span><code>Multi-agent quality = individual agent quality + communication quality +
+state quality + ownership quality + stop rules.
+</code></pre></div>
+<h2 id="part-3-common-failure-modes">Part 3: Common Failure Modes</h2>
+<h3 id="1-role-confusion">1. Role Confusion</h3>
+<p>Role confusion happens when agents do not know what they own.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Research agent writes the final answer.
+Writer agent repeats research.
+Reviewer agent edits content instead of reviewing it.
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>Guardrail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agents duplicate work</td>
+<td>Roles overlap too much</td>
+<td>Define one responsibility per agent</td>
+</tr>
+<tr>
+<td>Agents overwrite each other</td>
+<td>No ownership rule</td>
+<td>Assign fields or outputs to specific agents</td>
+</tr>
+<tr>
+<td>Nobody completes the final answer</td>
+<td>No final owner</td>
+<td>Name the agent responsible for synthesis</td>
+</tr>
+<tr>
+<td>Agent refuses useful work</td>
+<td>Role is too narrow or unclear</td>
+<td>Define allowed and disallowed actions</td>
+</tr>
+</tbody>
+</table>
+<p>Good role instruction:</p>
+<div class="highlight"><pre><span></span><code>You are the reviewer.
+Your job is to identify missing requirements, unsupported claims, and format errors.
+Do not rewrite the full draft unless explicitly asked.
+Return review notes only.
+</code></pre></div>
+<h3 id="2-bad-handoff">2. Bad Handoff</h3>
+<p>A bad handoff happens when one agent transfers work without enough context.</p>
+<p>Weak handoff:</p>
+<div class="highlight"><pre><span></span><code>Front desk agent:
+  &quot;This is a billing issue. Take it.&quot;
+</code></pre></div>
+<p>Better handoff:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User asks why refund has not arrived.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;user_goal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check refund status for order A102.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;known_facts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;order_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A102&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;return_received&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-06-04&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;open_question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Was the refund processed by the payment provider?&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Missing Handoff Data</th>
+<th>What Goes Wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original user goal</td>
+<td>Receiving agent solves the wrong problem</td>
+</tr>
+<tr>
+<td>Reason for handoff</td>
+<td>Receiving agent does not know why it is involved</td>
+</tr>
+<tr>
+<td>Known facts</td>
+<td>User has to repeat information</td>
+</tr>
+<tr>
+<td>Completed actions</td>
+<td>Agent repeats previous work</td>
+</tr>
+<tr>
+<td>Open questions</td>
+<td>Agent misses the next useful step</td>
+</tr>
+<tr>
+<td>Safety limits</td>
+<td>Agent may take an unauthorized action</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-state-drift">3. State Drift</h3>
+<p>State drift happens when agents disagree about what is true.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Planner state:
+  Draft is ready for review.
+
+Writer state:
+  Draft is still incomplete.
+
+Reviewer state:
+  Review is complete.
+
+Supervisor:
+  Publishes an outdated draft.
+</code></pre></div>
+<p>State drift is common when:</p>
+<ul>
+<li>agents keep separate memory,</li>
+<li>shared state is not updated consistently,</li>
+<li>old messages are treated as current,</li>
+<li>retries create duplicate state,</li>
+<li>agents write to the same fields without conflict rules.</li>
+</ul>
+<p>Guardrails:</p>
+<ul>
+<li>keep one source of truth for task status,</li>
+<li>add timestamps or version numbers,</li>
+<li>log which agent changed each field,</li>
+<li>make updates structured,</li>
+<li>validate state before high-impact actions.</li>
+</ul>
+<h3 id="4-duplicate-work">4. Duplicate Work</h3>
+<p>Duplicate work happens when multiple agents perform the same task without realizing it.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Research agent A searches pricing.
+Research agent B also searches pricing.
+Both return different notes.
+Writer combines both and creates inconsistent claims.
+</code></pre></div>
+<p>Duplicate work wastes cost and can create conflicting outputs.</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No task assignment record</td>
+<td>Track assigned, in-progress, and completed tasks</td>
+</tr>
+<tr>
+<td>Supervisor retries without checking status</td>
+<td>Use task IDs and status checks</td>
+</tr>
+<tr>
+<td>Agents independently decide next steps</td>
+<td>Centralize planning or use explicit message passing</td>
+</tr>
+<tr>
+<td>No idempotency key for actions</td>
+<td>Use idempotency keys for external changes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-conflicting-outputs">5. Conflicting Outputs</h3>
+<p>Conflicting outputs happen when agents return answers that cannot both be true or cannot be combined cleanly.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Pricing agent:
+  &quot;Vendor A is cheapest.&quot;
+
+Risk agent:
+  &quot;Vendor A requires the highest support cost.&quot;
+
+Writer:
+  &quot;Vendor A is clearly the best choice.&quot;
+</code></pre></div>
+<p>The writer ignored the conflict instead of resolving it.</p>
+<p>Guardrails:</p>
+<ul>
+<li>require agents to include confidence and evidence,</li>
+<li>make the synthesizer compare disagreements,</li>
+<li>ask a reviewer to check contradictions,</li>
+<li>escalate unresolved conflicts,</li>
+<li>do not hide uncertainty in the final answer.</li>
+</ul>
+<h3 id="6-output-format-mismatch">6. Output Format Mismatch</h3>
+<p>Output format mismatch happens when one agent returns data the next agent cannot use.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Expected:
+  JSON list of risks.
+
+Actual:
+  Long paragraph with no fields.
+</code></pre></div>
+<p>This failure is simple but common.</p>
+<p>Use output contracts:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;risks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;missing_information&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then validate the output before passing it to the next agent.</p>
+<h3 id="7-deadlock">7. Deadlock</h3>
+<p>Deadlock happens when agents wait on each other and no one moves the task forward.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Planner waits for reviewer approval.
+Reviewer waits for writer draft.
+Writer waits for planner details.
+No agent asks the user or changes strategy.
+</code></pre></div>
+<p>Guardrails:</p>
+<ul>
+<li>define who owns the next action,</li>
+<li>set timeouts,</li>
+<li>use a supervisor or scheduler,</li>
+<li>allow agents to ask for missing information,</li>
+<li>stop safely when progress is blocked.</li>
+</ul>
+<h3 id="8-runaway-delegation">8. Runaway Delegation</h3>
+<p>Runaway delegation happens when agents keep passing work to other agents.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Supervisor -&gt; Research agent
+Research agent -&gt; Web agent
+Web agent -&gt; Source-checking agent
+Source-checking agent -&gt; Research agent
+Research agent -&gt; Web agent again
+</code></pre></div>
+<p>This can waste tokens, money, and time.</p>
+<p>Guardrails:</p>
+<ul>
+<li>set maximum delegation depth,</li>
+<li>set maximum loop iterations,</li>
+<li>track repeated tasks,</li>
+<li>require a reason before delegation,</li>
+<li>force final synthesis after enough evidence is collected.</li>
+</ul>
+<h3 id="9-permission-leakage">9. Permission Leakage</h3>
+<p>Permission leakage happens when an agent receives tools or data it does not need.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Reviewer agent only needs to review a draft.
+It also receives the tool to publish the draft.
+</code></pre></div>
+<p>This creates unnecessary risk.</p>
+<p>Guardrails:</p>
+<ul>
+<li>give each agent the minimum tools it needs,</li>
+<li>separate read tools from write tools,</li>
+<li>require approval for irreversible actions,</li>
+<li>avoid sending private context to unrelated agents,</li>
+<li>log every external action.</li>
+</ul>
+<h3 id="10-no-clear-stop-rule">10. No Clear Stop Rule</h3>
+<p>A multi-agent workflow can keep working after the useful work is done.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>Research is complete.
+Writer drafts answer.
+Reviewer asks for more research.
+Researcher adds minor facts.
+Writer rewrites.
+Reviewer asks again.
+</code></pre></div>
+<p>Guardrails:</p>
+<ul>
+<li>define done criteria,</li>
+<li>stop after a maximum number of iterations,</li>
+<li>stop when improvement becomes small,</li>
+<li>stop when required evidence is collected,</li>
+<li>ask the user when the next step changes the scope.</li>
+</ul>
+<h2 id="part-4-detecting-and-preventing-coordination-problems">Part 4: Detecting And Preventing Coordination Problems</h2>
+<p>You need visibility into the system to diagnose coordination failures.</p>
+<p>Useful logs:</p>
+<ul>
+<li>which agent acted,</li>
+<li>what task it received,</li>
+<li>what context it received,</li>
+<li>what tool it used,</li>
+<li>what output it returned,</li>
+<li>what state changed,</li>
+<li>who owns the next step,</li>
+<li>why the system stopped.</li>
+</ul>
+<h3 id="coordination-trace">Coordination Trace</h3>
+<p>Instead of logging only final answers, log the handoffs and state changes.</p>
+<div class="highlight"><pre><span></span><code>Task ID: report_42
+
+1. Supervisor assigned competitor research to Research Agent.
+2. Research Agent returned 3 sources and 2 open questions.
+3. Supervisor assigned draft writing to Writer Agent.
+4. Writer Agent used only 1 source.
+5. Reviewer flagged missing source coverage.
+6. Supervisor sent draft back to Writer Agent with required fix.
+7. Writer Agent produced final draft.
+8. Supervisor stopped because exit criteria were met.
+</code></pre></div>
+<p>This trace makes the failure visible:</p>
+<div class="highlight"><pre><span></span><code>Writer Agent used only 1 source.
+</code></pre></div>
+<p>Without a trace, the final answer might look complete even though the workflow failed.</p>
+<h3 id="prevention-checklist">Prevention Checklist</h3>
+<p>Use this checklist before building a multi-agent workflow.</p>
+<table>
+<thead>
+<tr>
+<th>Design Question</th>
+<th>Good Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who owns the user goal?</td>
+<td>One supervisor, host agent, or workflow controller</td>
+</tr>
+<tr>
+<td>What is each agent responsible for?</td>
+<td>One clear role per agent</td>
+</tr>
+<tr>
+<td>What context does each agent receive?</td>
+<td>Only the context needed for its task</td>
+</tr>
+<tr>
+<td>What output format is expected?</td>
+<td>A structured contract or clear message format</td>
+</tr>
+<tr>
+<td>How is state stored?</td>
+<td>One source of truth or explicit message trail</td>
+</tr>
+<tr>
+<td>Who can change state?</td>
+<td>Only agents with permission for specific fields</td>
+</tr>
+<tr>
+<td>What requires approval?</td>
+<td>Sending, deleting, buying, publishing, production changes</td>
+</tr>
+<tr>
+<td>How are conflicts resolved?</td>
+<td>Reviewer, supervisor rule, or user escalation</td>
+</tr>
+<tr>
+<td>What ends the workflow?</td>
+<td>Done criteria, max steps, timeout, or safety stop</td>
+</tr>
+<tr>
+<td>How is the workflow debugged?</td>
+<td>Logs for tasks, messages, tools, state, and artifacts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="simple-design-template">Simple Design Template</h3>
+<div class="highlight"><pre><span></span><code>Workflow name:
+User goal:
+Final owner:
+
+Agents:
+- Agent name:
+  Role:
+  Allowed tools:
+  May read:
+  May write:
+  Expected output:
+
+State:
+- Source of truth:
+- Version or timestamp rule:
+- Conflict rule:
+
+Handoffs:
+- Required fields:
+- Who can hand off:
+- Who accepts handoff:
+
+Stop rules:
+- Success:
+- Max iterations:
+- Timeout:
+- Escalation:
+</code></pre></div>
+<h2 id="end-example-report-team-failure">End Example: Report Team Failure</h2>
+<p>User asks:</p>
+<div class="highlight"><pre><span></span><code>Create a short report comparing three project management tools.
+Include pricing, strengths, weaknesses, and a recommendation.
+</code></pre></div>
+<p>Weak coordination:</p>
+<div class="highlight"><pre><span></span><code>1. Supervisor asks Research Agent for notes.
+2. Research Agent returns pricing only.
+3. Writer Agent writes a report from pricing notes.
+4. Reviewer Agent checks grammar only.
+5. Final report misses strengths and weaknesses.
+</code></pre></div>
+<p>The failure:</p>
+<div class="highlight"><pre><span></span><code>The system completed the workflow, but not the user&#39;s goal.
+</code></pre></div>
+<p>Better coordination:</p>
+<div class="highlight"><pre><span></span><code>1. Supervisor creates required fields:
+   pricing, strengths, weaknesses, recommendation.
+
+2. Research Agent must fill all fields or mark missing information.
+
+3. Writer Agent may only draft after required fields exist.
+
+4. Reviewer Agent checks the draft against the original user goal.
+
+5. Supervisor stops only when all required fields are present.
+</code></pre></div>
+<p>The fix is not "add smarter agents." The fix is clearer coordination.</p>
+<h2 id="practice">Practice</h2>
+<h3 id="exercise-1-name-the-failure">Exercise 1: Name The Failure</h3>
+<p>Identify the coordination failure mode.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Failure Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Two agents both email the same customer with different answers</td>
+<td></td>
+</tr>
+<tr>
+<td>A billing agent receives a handoff without the order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>A reviewer publishes a draft even though it only needed to review it</td>
+<td></td>
+</tr>
+<tr>
+<td>A writer receives notes as paragraphs but expected structured JSON</td>
+<td></td>
+</tr>
+<tr>
+<td>Agents keep sending the task to each other without finishing</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="exercise-2-improve-the-handoff">Exercise 2: Improve The Handoff</h3>
+<p>Improve this weak handoff:</p>
+<div class="highlight"><pre><span></span><code>This is technical. Please handle it.
+</code></pre></div>
+<p>Add:</p>
+<ul>
+<li>reason for handoff,</li>
+<li>user goal,</li>
+<li>known facts,</li>
+<li>completed actions,</li>
+<li>open questions,</li>
+<li>safety or permission limits.</li>
+</ul>
+<h3 id="exercise-3-add-guardrails">Exercise 3: Add Guardrails</h3>
+<p>For this workflow, write three guardrails:</p>
+<div class="highlight"><pre><span></span><code>Supervisor -&gt; Research Agent -&gt; Writer Agent -&gt; Reviewer Agent -&gt; Final Answer
+</code></pre></div>
+<p>At least one guardrail should control state, one should control output format, and one should control stopping.</p>
+<h2 id="exit-criteria">Exit Criteria</h2>
+<p>You understand this topic when you can:</p>
+<ul>
+<li>define a coordination failure,</li>
+<li>explain why multi-agent systems add new failure modes,</li>
+<li>identify role confusion, bad handoffs, state drift, duplicate work, deadlock, and runaway delegation,</li>
+<li>explain how output contracts prevent format mismatch,</li>
+<li>design a basic handoff packet,</li>
+<li>name useful logs for debugging coordination,</li>
+<li>write stop rules for a multi-agent workflow.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.path", "toc.follow", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+      
+        <script src="../../../javascripts/mermaid-init.js?v=1"></script>
+      
+        <script src="../../../javascripts/diagram-viewer.js?v=5"></script>
+      
+    
+  </body>
+</html>

@@ -79,6 +79,29 @@ reviewed run
 
 Do not let review live only in a dashboard. Pull important examples back into the repository as durable eval cases.
 
+## Example Review Form
+
+For a customer-support draft, a review form might look like this:
+
+| Field | Reviewer input |
+| --- | --- |
+| `correctness_score` | 1-5 |
+| `grounding_score` | 1-5 |
+| `tone_score` | 1-5 |
+| `safe_to_send` | yes / no |
+| `failure_category` | policy, retrieval, tone, unsafe action, missing info, other |
+| `review_note` | short explanation |
+
+Example review:
+
+```text
+safe_to_send: no
+failure_category: missing info
+review_note: The draft promises a refund but the ticket has no transaction ID.
+```
+
+That reviewed run should become a regression case: future versions must ask for the transaction ID before drafting a refund promise.
+
 ## Common Failure Modes
 
 | Failure | Fix |

@@ -91,6 +91,24 @@ budgets:
 
 This test checks the whole flow without demanding one exact final sentence.
 
+## Example Assertions In Code
+
+The exact test shape depends on your framework, but the assertions usually look like this:
+
+```python
+def test_refund_flow_requires_policy_lookup(agent, fake_tools):
+    result = agent.run("Customer was charged twice and wants a refund.")
+
+    assert result.stop_reason == "success"
+    assert result.tool_calls[0].name == "search_policy"
+    assert "create_draft_reply" in [call.name for call in result.tool_calls]
+    assert "issue_refund" not in [call.name for call in result.tool_calls]
+    assert "policy" in result.final_answer.lower()
+    assert result.latency_ms < 10_000
+```
+
+This test does not care whether the reply says "I understand" or "I can help." It cares that the agent followed the required process.
+
 ## Debugging Failed Flow Tests
 
 When a flow test fails, label the root cause:

@@ -92,6 +92,30 @@ expected_answer_points:
 
 Store source IDs, not just expected prose. That lets you measure retrieval and answer quality separately.
 
+## Worked Example: Recall@3
+
+Question:
+
+```text
+Can customers receive a refund after 45 days?
+```
+
+Expected source:
+
+```text
+refund-policy-v3#late-refunds
+```
+
+Retriever output:
+
+| Rank | Source ID | Relevant? |
+| ---: | --- | --- |
+| 1 | `refund-policy-v3#standard-window` | partly |
+| 2 | `refund-policy-v3#late-refunds` | yes |
+| 3 | `billing-faq#charge-disputes` | no |
+
+The relevant source appears in the top three, so this case passes Recall@3. Precision@3 is weaker because only one of the three chunks is clearly relevant. The next improvement might be reranking, not changing the generator prompt.
+
 ## Common Failure Modes
 
 | Failure | Fix |

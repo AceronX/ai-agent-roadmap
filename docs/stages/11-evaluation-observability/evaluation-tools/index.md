@@ -81,6 +81,20 @@ Good first setup:
 
 Add specialized tools when the manual workflow becomes painful.
 
+## Example Tool Choices
+
+For a small team building a document-answering support agent:
+
+| Need | Reasonable tool choice |
+| --- | --- |
+| Store eval cases and run experiments | LangSmith or a repo-based YAML/JSON eval runner |
+| Measure RAG groundedness | Ragas |
+| Track production cost and latency | Helicone or LangFuse |
+| Export traces to existing observability | OpenTelemetry or OpenLLMetry |
+| Run prompt checks in CI | Promptfoo or DeepEval |
+
+For an early prototype, a simple JSON dataset plus a script may be enough. For production, trace search, feedback collection, and cost dashboards become much more valuable.
+
 ## Common Failure Modes
 
 | Failure | Fix |

@@ -108,6 +108,45 @@ def test_search_tickets_denies_cross_tenant_access(fake_ticket_store, tenant_b_u
 
 Keep these tests deterministic. Use fake stores, mock APIs, and fixed fixtures. Full network calls belong in integration tests, not tool unit tests.
 
+## Example: Testing A Write Tool Safely
+
+Write tools need stricter tests than read tools because they create side effects.
+
+Tool contract:
+
+```python
+def create_refund_draft(ticket_id: str, amount_cents: int, reason: str) -> dict:
+    """Create a refund draft. This tool must not submit the refund."""
+```
+
+Important tests:
+
+```python
+def test_create_refund_draft_does_not_submit_refund(fake_payment_api):
+    result = create_refund_draft(
+        ticket_id="T-100",
+        amount_cents=2500,
+        reason="duplicate charge",
+    )
+
+    assert result["ok"] is True
+    assert result["status"] == "draft"
+    assert fake_payment_api.submitted_refunds == []
+
+def test_create_refund_draft_rejects_large_amount_without_approval():
+    result = create_refund_draft(
+        ticket_id="T-100",
+        amount_cents=250000,
+        reason="duplicate charge",
+    )
+
+    assert result["ok"] is False
+    assert result["error_type"] == "approval_required"
+    assert result["retryable"] is False
+```
+
+The test proves the tool name is honest: it creates a draft, not a submitted refund.
+
 ## Testing Tool Descriptions
 
 A tool has two interfaces:

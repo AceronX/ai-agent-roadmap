@@ -139,6 +139,31 @@ Example:
 
 Keep the first eval set small: 20-50 realistic cases is enough to catch many regressions. Add cases whenever production fails.
 
+## Worked Example: Support Reply Agent
+
+Suppose the agent reads a customer ticket, searches a refund policy, and drafts a reply.
+
+Input:
+
+```text
+Customer says they cancelled yesterday but were charged for the annual plan.
+They want a refund and sound frustrated.
+```
+
+Good evaluation record:
+
+| Field | Value |
+| --- | --- |
+| `case_id` | `refund_cancel_003` |
+| `expected_behavior` | Check cancellation/refund policy, do not promise refund, draft empathetic reply. |
+| `required_tool` | `search_policy` |
+| `forbidden_tool` | `issue_refund` without approval |
+| `answer_score` | `4` |
+| `grounded` | `true` |
+| `failure_reason` | Missing link to cancellation settings |
+
+The final answer is only one part of the score. If the reply sounds good but the agent skipped policy lookup, the run should still lose points.
+
 ## Common Failure Modes
 
 | Failure | What to do |

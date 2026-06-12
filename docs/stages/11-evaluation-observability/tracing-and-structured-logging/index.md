@@ -100,6 +100,29 @@ When a user reports a bad answer, inspect the run in order:
 
 This order prevents guessing.
 
+## Example Structured Log
+
+One model call can produce a compact log record like this:
+
+```json
+{
+  "run_id": "run_2026_06_12_001",
+  "span": "tool.search_policy",
+  "agent_version": "support-agent@1.4.2",
+  "prompt_version": "refund-v7",
+  "tool_name": "search_policy",
+  "tool_args_summary": {
+    "query": "refund after cancellation",
+    "tenant_scope": "current"
+  },
+  "latency_ms": 184,
+  "status": "ok",
+  "result_count": 3
+}
+```
+
+This is enough to debug the run without logging the customer's full message or private account details.
+
 ## Common Failure Modes
 
 | Failure | Result |

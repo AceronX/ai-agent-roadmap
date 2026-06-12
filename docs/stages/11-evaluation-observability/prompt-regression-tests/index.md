@@ -86,6 +86,31 @@ Build regression sets by risk:
 
 Add every production failure to the relevant bucket so it cannot silently return.
 
+## Example: One Prompt Change, Three Outcomes
+
+Old instruction:
+
+```text
+Draft a helpful support reply using the available policy context.
+```
+
+New instruction:
+
+```text
+Draft a concise support reply using only the available policy context.
+If the policy does not answer the question, say what information is missing.
+```
+
+Regression result:
+
+| Case | What changed | Outcome |
+| --- | --- | --- |
+| `refund_001` | Stopped inventing refund eligibility. | improved |
+| `password_002` | Still answered correctly. | unchanged |
+| `angry_customer_003` | Became too terse and lost empathy. | regressed |
+
+The new prompt is not automatically better. The team must decide whether to keep it, revise it, or add a style instruction for frustrated customers.
+
 ## Common Failure Modes
 
 | Failure | Fix |

@@ -123,6 +123,20 @@ One model call can produce a compact log record like this:
 
 This is enough to debug the run without logging the customer's full message or private account details.
 
+## Example: Debugging From A Trace
+
+Trace summary:
+
+| Step | Span | Status | Notes |
+| ---: | --- | --- | --- |
+| 1 | `model.plan` | ok | Planned to search refund policy. |
+| 2 | `retrieve.documents` | ok | Returned `refund-policy-v2`, not latest `v3`. |
+| 3 | `model.draft` | ok | Draft used old 60-day refund rule. |
+| 4 | `safety.check` | failed | Detected stale policy version. |
+| 5 | `agent.final` | stopped | Returned escalation message. |
+
+The visible answer may look cautious, but the trace shows the root cause: stale retrieval data. The fix belongs in indexing/versioning, not the final response prompt.
+
 ## Common Failure Modes
 
 | Failure | Result |

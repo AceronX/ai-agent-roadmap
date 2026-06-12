@@ -95,6 +95,35 @@ For a small team building a document-answering support agent:
 
 For an early prototype, a simple JSON dataset plus a script may be enough. For production, trace search, feedback collection, and cost dashboards become much more valuable.
 
+## Example: Lightweight Local Eval Runner
+
+Before adopting a platform, a team can start with a tiny local workflow:
+
+```text
+eval_cases.yaml
+run_eval.py
+results/
+  2026-06-12-prompt-v7.json
+  2026-06-13-prompt-v8.json
+```
+
+Example result row:
+
+```json
+{
+  "case_id": "refund_cancel_003",
+  "agent_version": "support-agent@1.4.2",
+  "prompt_version": "refund-v8",
+  "score": 4,
+  "latency_ms": 3810,
+  "cost_usd": 0.012,
+  "failure_reason": "missing cancellation link",
+  "trace_id": "run_2026_06_13_018"
+}
+```
+
+This simple file-based setup teaches the core workflow. Observability tools become easier to evaluate once the team already knows what data it wants.
+
 ## Common Failure Modes
 
 | Failure | Fix |

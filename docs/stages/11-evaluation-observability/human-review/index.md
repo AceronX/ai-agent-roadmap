@@ -102,6 +102,31 @@ review_note: The draft promises a refund but the ticket has no transaction ID.
 
 That reviewed run should become a regression case: future versions must ask for the transaction ID before drafting a refund promise.
 
+## Example: Turning Review Into An Eval
+
+Human review note:
+
+```text
+The answer was polite, but it used the old refund window and did not cite policy.
+```
+
+New eval case:
+
+```yaml
+id: stale_refund_policy_006
+input: "Can I get a refund 45 days after renewal?"
+expected:
+  must_use_source: "refund-policy-v3#late-refunds"
+  must_include:
+    - "manager approval"
+    - "cannot promise a refund"
+  must_not_include:
+    - "60 days"
+failure_source: human_review
+```
+
+This keeps the same reviewed failure from coming back after the next prompt or retrieval change.
+
 ## Common Failure Modes
 
 | Failure | Fix |

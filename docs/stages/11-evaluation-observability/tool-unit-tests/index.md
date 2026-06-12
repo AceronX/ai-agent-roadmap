@@ -147,6 +147,30 @@ def test_create_refund_draft_rejects_large_amount_without_approval():
 
 The test proves the tool name is honest: it creates a draft, not a submitted refund.
 
+## Example: Tool Error The Agent Can Use
+
+Weak tool error:
+
+```text
+Exception: request failed
+```
+
+The agent cannot tell whether to retry, ask the user, or stop.
+
+Better tool error:
+
+```json
+{
+  "ok": false,
+  "error_type": "missing_required_field",
+  "message": "transaction_id is required before a refund draft can be created.",
+  "retryable": false,
+  "missing_fields": ["transaction_id"]
+}
+```
+
+Now the agent can ask the user for the transaction ID instead of looping or making up a value.
+
 ## Testing Tool Descriptions
 
 A tool has two interfaces:

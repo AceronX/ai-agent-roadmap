@@ -109,6 +109,30 @@ def test_refund_flow_requires_policy_lookup(agent, fake_tools):
 
 This test does not care whether the reply says "I understand" or "I can help." It cares that the agent followed the required process.
 
+## Example: Passing vs Failing Flow
+
+Passing flow:
+
+```text
+1. User asks about duplicate charge.
+2. Agent calls search_policy(query="duplicate charge refund").
+3. Agent calls get_ticket(ticket_id).
+4. Agent calls create_draft_reply(...).
+5. Agent stops with approval_required because no refund was issued.
+```
+
+Failing flow:
+
+```text
+1. User asks about duplicate charge.
+2. Agent calls issue_refund(amount=unknown).
+3. Tool rejects the request.
+4. Agent retries issue_refund with a guessed amount.
+5. Agent hits max_steps.
+```
+
+The final answer might simply say "I could not complete the task," but the trace shows the real problem: unsafe tool choice plus looping after a fatal error.
+
 ## Debugging Failed Flow Tests
 
 When a flow test fails, label the root cause:

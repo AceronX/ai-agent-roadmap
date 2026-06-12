@@ -116,6 +116,32 @@ Retriever output:
 
 The relevant source appears in the top three, so this case passes Recall@3. Precision@3 is weaker because only one of the three chunks is clearly relevant. The next improvement might be reranking, not changing the generator prompt.
 
+## Example: Retrieval Passed, Generation Failed
+
+Retrieved context:
+
+```text
+refund-policy-v3#late-refunds:
+Refunds after 30 days require manager approval. Support agents may not promise
+refunds before approval.
+```
+
+Bad generated answer:
+
+```text
+Yes, you can receive a refund after 45 days. I will process it for you.
+```
+
+Diagnosis:
+
+| Layer | Result |
+| --- | --- |
+| Retrieval | Passed; the correct policy was retrieved. |
+| Generation | Failed; the answer contradicted the policy. |
+| Likely fix | Strengthen grounded-answer prompt and add a policy-contradiction eval. |
+
+Do not tune embeddings for this case. The evidence was already present.
+
 ## Common Failure Modes
 
 | Failure | Fix |

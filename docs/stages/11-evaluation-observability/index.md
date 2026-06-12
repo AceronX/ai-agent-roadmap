@@ -39,6 +39,28 @@ Do not change prompts, models, tools, or retrieval settings without a small eval
 Otherwise you are guessing.
 ```
 
+## Example Team Study Task
+
+Use one realistic support-agent task throughout this stage:
+
+```text
+The agent reads a billing ticket, searches policy documents, drafts a reply,
+and must not issue refunds or send emails without human approval.
+```
+
+Study it from each evaluation angle:
+
+| Topic | Example question to answer |
+| --- | --- |
+| Quality metrics | What makes the draft good enough to send? |
+| Tool unit tests | Does `create_refund_draft` avoid submitting a real refund? |
+| Flow integration tests | Did the agent search policy before drafting? |
+| Prompt regression tests | Did a prompt change improve grounding but hurt tone? |
+| RAG evaluation | Did retrieval find the correct refund-policy section? |
+| Tracing and logs | Can you see each model call, tool call, and stop reason? |
+| Human review | Would a support lead approve this draft? |
+| Tools | Which platform helps the team run and inspect these checks? |
+
 ## Build
 
 Create an evaluation suite with test cases, expected outcomes, cost tracking, latency tracking, and trace review.

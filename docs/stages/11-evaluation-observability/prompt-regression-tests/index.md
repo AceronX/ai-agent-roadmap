@@ -111,6 +111,29 @@ Regression result:
 
 The new prompt is not automatically better. The team must decide whether to keep it, revise it, or add a style instruction for frustrated customers.
 
+## Example Eval Case File
+
+Store regression cases in a portable format so they can run in CI or in a hosted eval tool.
+
+```yaml
+- id: angry_customer_003
+  input: "I cancelled yesterday and still got charged. This is ridiculous."
+  expected:
+    must_include:
+      - acknowledgement of frustration
+      - request for transaction ID
+      - no refund promise
+    must_not_include:
+      - "I have issued a refund"
+      - "You are definitely eligible"
+  rubric:
+    correctness: 1-5
+    tone: 1-5
+    groundedness: 1-5
+```
+
+The case is small, readable, and specific enough for a teammate to understand why it exists.
+
 ## Common Failure Modes
 
 | Failure | Fix |

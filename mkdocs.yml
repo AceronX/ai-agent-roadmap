@@ -190,6 +190,7 @@ nav:
       - 13 Production Deployment:
           - stages/13-production-deployment/index.md
           - Production Architecture: stages/13-production-deployment/production-architecture/index.md
+          - API Design: stages/13-production-deployment/api-design/index.md
   - Reference:
       - reference/index.md
       - Glossary: reference/glossary.md

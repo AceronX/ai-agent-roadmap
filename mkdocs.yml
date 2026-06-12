@@ -191,6 +191,7 @@ nav:
           - stages/13-production-deployment/index.md
           - Production Architecture: stages/13-production-deployment/production-architecture/index.md
           - API Design: stages/13-production-deployment/api-design/index.md
+          - Background Jobs and Queues: stages/13-production-deployment/background-jobs-and-queues/index.md
   - Reference:
       - reference/index.md
       - Glossary: reference/glossary.md

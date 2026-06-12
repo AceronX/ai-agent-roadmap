@@ -10,7 +10,7 @@ Learn how to ship agent systems as reliable software.
 ## Learn
 - [Production architecture](production-architecture/index.md)
 - [API design](api-design/index.md)
-- Background jobs and queues
+- [Background jobs and queues](background-jobs-and-queues/index.md)
 - Docker
 - CI/CD
 - Monitoring and alerts
